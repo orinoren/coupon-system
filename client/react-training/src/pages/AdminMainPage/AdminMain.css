@@ -1,0 +1,20 @@
+.admin-main-op-badge {
+  border-radius: 50%;
+  width: 170px;
+  height: 170px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 20px;
+  background-color: rgb(40, 189, 40);
+  color: white;
+  box-shadow: 0px 0px 5px 5px green;
+}
+.admin-main-op-badge:hover {
+  border: 10px;
+  background-color: rgb(40, 189, 40);
+  color: white;
+  box-shadow: 0px 0px 10px 10px green;
+  border: white;
+  font-style: oblique;
+}

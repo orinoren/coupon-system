@@ -1,0 +1,66 @@
+.company-operation-border {
+  /* border: 2px solid black; */
+  box-shadow: 0px 0px 10px 10px rgb(100, 99, 99);
+
+  background: linear-gradient(
+    to right,
+    rgba(164, 253, 161, 0.9),
+    rgba(164, 253, 161, 0.8)
+  );
+}
+.comapny-operations-coupon-view {
+  box-shadow: 0px 0px 10px 10px rgb(100, 99, 99);
+}
+.company-operations-bg {
+  background: rgb(219, 219, 219);
+  padding: 20px;
+}
+
+#form-image-input {
+  display: none;
+}
+.form-image-label {
+  border: 1px solid rgb(0, 0, 0);
+  cursor: pointer;
+  margin-top: 0.5em;
+  color: black;
+  font-weight: 700;
+
+  background: linear-gradient(
+    to right,
+    rgba(73, 219, 68, 0.9),
+    rgba(73, 219, 68, 0.3)
+  );
+}
+.form-image-label:hover {
+  border: 2px solid black;
+}
+.form-control-date-icon {
+  cursor: pointer;
+}
+.form-clear-label {
+  border: 1px solid rgb(0, 0, 0);
+  cursor: pointer;
+  margin-top: 0.5em;
+  color: black;
+  font-weight: 700;
+  width: 5em;
+  text-align: center;
+
+  background: linear-gradient(
+    to right,
+    rgba(70, 105, 221, 0.9),
+    rgba(70, 105, 221, 0.3)
+  );
+}
+.form-clear-label:hover {
+  border: 2px solid black;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+.company-opertaions-submit-btn:hover {
+  font-weight: bold;
+  background-color: grey;
+  color: black;
+}

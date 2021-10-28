@@ -1,0 +1,27 @@
+.container-bg {
+  background: linear-gradient(
+    to top,
+    rgba(2, 124, 2, 0.9),
+    rgba(2, 124, 2, 0.1)
+  );
+}
+.rotate {
+  transform: rotate(-15deg);
+}
+.home-login-btn {
+  border-radius: 20%;
+  border: green 0.1em solid;
+  background-color: transparent;
+  color: #000;
+  font-size: 1em;
+}
+.home-login-btn:hover {
+  border: green 2px solid;
+  background-color: white;
+  color: #000;
+}
+@media screen and (max-width: 950px) {
+  .home-login-btn {
+    margin-top: 10px;
+  }
+}

@@ -1,0 +1,32 @@
+.coupon-card-conatiner-border {
+  border: 2px solid grey;
+  border-radius: 5%;
+  cursor: pointer;
+  background-color: white;
+}
+.coupon-card-margin-top {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.coupon-card-conatiner-border:hover {
+  border: 3px solid green;
+}
+.coupon-card-border {
+  border-left: none;
+  border-right: none;
+  border-radius: 10%;
+}
+.coupon-card-title-text-font {
+  font-size: 14px;
+}
+.coupon-card-p-text-font {
+  font-size: 12px;
+}
+.coupoun-card-img-size {
+  height: 8em;
+  border-bottom: 0.5px solid grey;
+  border-radius: 15%;
+}
+.coupon-card-op-icon:hover {
+  text-shadow: 0px 1px #474545;
+}

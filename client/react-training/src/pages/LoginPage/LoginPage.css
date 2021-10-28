@@ -1,0 +1,19 @@
+.container-login-page-bg {
+  background: linear-gradient(
+    to top,
+    rgba(2, 124, 2, 0.9),
+    rgba(2, 124, 2, 0.1)
+  );
+}
+
+.container-login-form {
+  box-shadow: 0px 0px 10px 5px rgb(12, 104, 12);
+  border: 2px solid rgb(0, 214, 0);
+  padding: 20px;
+}
+#passwordError {
+  visibility: hidden;
+}
+#emailError {
+  visibility: hidden;
+}

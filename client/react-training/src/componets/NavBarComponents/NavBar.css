@@ -1,0 +1,32 @@
+.my-navbar {
+  z-index: 100;
+}
+.my-navbar-header {
+  color: rgb(109, 243, 109) !important;
+  font-size: 30px;
+  font-weight: 1000;
+  font-style: oblique;
+  cursor: pointer;
+}
+.nav-li {
+  cursor: pointer;
+}
+
+.fa-shopping-cart {
+  position: relative;
+  cursor: pointer;
+}
+.cart-notification {
+  position: absolute;
+  min-width: 80%;
+  top: -70%;
+  right: -65%;
+  font-size: 18px;
+  background-color: rgb(252, 56, 56);
+  border: 1px solid black;
+  border-radius: 50%;
+  color: white;
+  width: auto;
+  text-align: center;
+  padding: 4px;
+}

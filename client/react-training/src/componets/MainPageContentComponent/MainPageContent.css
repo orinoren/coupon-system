@@ -1,0 +1,29 @@
+.main-page-content-header {
+  border-top: 1px solid green;
+  padding: 0.5em;
+
+  color: green;
+}
+.main-page-content-margin-top {
+  margin-top: 1em;
+}
+.main-page-see-more {
+  font-size: large;
+  color: black;
+}
+.main-page-see-more:hover {
+  cursor: pointer;
+  color: green;
+}
+.main-page-see-less {
+  font-size: large;
+  color: black;
+}
+.main-page-see-less:hover {
+  cursor: pointer;
+  color: red;
+}
+.card-list-section {
+  background: rgb(233, 233, 233);
+  margin-bottom: 1.5em;
+}
