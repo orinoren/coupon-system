@@ -17,3 +17,7 @@
 #emailError {
   visibility: hidden;
 }
+.remain-space {
+  height: 15.5625em;
+  visibility: hidden;
+}

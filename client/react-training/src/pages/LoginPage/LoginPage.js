@@ -82,15 +82,15 @@ const LoginPage = () => {
   }, [userDetails, history]);
 
   return (
-    <div className="container-fluid container-login-page-bg">
-      <div className="row h-100 align-items-center justify-content-between">
-        <div className="col-3">
+    <div className="container-fluid  container-login-page-bg">
+      <div className="row h-100 pt-5 align-items-center justify-content-between">
+        <div className="col-12 mt-2 col-lg-3 order-2 order-lg-1">
           <CompanyEmailPassList></CompanyEmailPassList>
         </div>
-        <div className="col-12  col-lg-6">
+        <div className="col-12 col-lg-6 order-1 order-lg-2">
           <div className="container w-75 container-login-form">
             <div className="row ">
-              <div className="col-6">
+              <div className="col-12 col-sm-6">
                 <form
                   onSubmit={(e) => {
                     e.preventDefault();
@@ -167,7 +167,7 @@ const LoginPage = () => {
                   </button>
                 </form>
               </div>
-              <div className="col-6">
+              <div className="col-6 d-none d-sm-block">
                 <img
                   style={{ width: "90%", height: "90%", margin: "20px" }}
                   src={homePic}
@@ -177,13 +177,11 @@ const LoginPage = () => {
             </div>
           </div>
         </div>
-        <div className="col-3">
+        <div className="col-12 col-lg-3 order-3">
           <CustomerEmailPassList></CustomerEmailPassList>
         </div>
-        <div className="col-12">
-          <img src={fotterPic} alt="" />
-        </div>
       </div>
+      <div className="remain-space">*</div>
     </div>
   );
 };

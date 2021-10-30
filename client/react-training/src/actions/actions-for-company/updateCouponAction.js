@@ -18,7 +18,13 @@ export const companyUpdateCouponAction =
             dispatch({ type: "UPDATE-COUPON", payload: respo.data });
             dispatch(companySumbitCoupon());
           }
-        } catch (err) {}
+        } catch (error) {
+          dispatch({
+            type: "COUPON-OP-FAILED",
+            payload: error.response.data,
+          });
+          dispatch(companySumbitCoupon());
+        }
       } else {
         try {
           const respo = await authenticatedAxios
