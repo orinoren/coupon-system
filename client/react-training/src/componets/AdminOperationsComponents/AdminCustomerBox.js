@@ -38,38 +38,77 @@ const AdminCustomerBox = (props) => {
 
   const submit = () => {
     if (!updateMode) {
-      const customerObj = {
-        first_name: firstName.current.value,
-        last_name: lastName.current.value,
-        email: email.current.value,
-        password: password.current.value,
-      };
-      dispatch(adminAddCustomerAction(customerObj));
-      dispatch(adminResetAddMode());
-    } else {
-      setFirstNameState(firstName.current.value);
-      setLastNameState(lastName.current.value);
-      setEmailState(email.current.value);
-      setPasswordState(password.current.value);
-      const customerObj = {
-        id: idState,
-        first_name: firstName.current.value,
-        last_name: lastName.current.value,
-        email: email.current.value,
-        password: password.current.value,
-      };
-
-      if (showOp.customerOp && searchMode) {
-        dispatch({
-          type: "UPDATE-FROM-SEARCH-RESULT-CUSTOMER-LIST",
-          payload: {
-            customerObj: customerObj,
-          },
-        });
+      if (firstName.current.value === "") {
+        document.getElementById("customer-add-first-name").textContent =
+          "please enter first name";
+      } else if (lastName.current.value === "") {
+        document.getElementById("customer-add-last-name").textContent =
+          "please enter last name";
+      } else if (email.current.value === "") {
+        document.getElementById("customer-add-email").textContent =
+          "please enter email";
+      } else if (!email.current.value.includes("@")) {
+        document.getElementById("customer-add-email").textContent =
+          "@ is missing ";
+      } else if (password.current.value === "") {
+        document.getElementById("customer-add-password").textContent =
+          "please enter password";
+      } else {
+        const customerObj = {
+          first_name: firstName.current.value,
+          last_name: lastName.current.value,
+          email: email.current.value,
+          password: password.current.value,
+        };
+        dispatch(adminAddCustomerAction(customerObj));
+        dispatch(adminResetAddMode());
       }
-      dispatch(adminUpdateCustomerAction(customerObj));
+    } else {
+      if (firstName.current.value === "") {
+        document.getElementById(
+          "customer-update-first-name-" + props.id
+        ).textContent = "please enter first name";
+      } else if (lastName.current.value === "") {
+        document.getElementById(
+          "customer-update-last-name-" + props.id
+        ).textContent = "please enter last name";
+      } else if (email.current.value === "") {
+        document.getElementById(
+          "customer-update-email-" + props.id
+        ).textContent = "please enter email";
+      } else if (!email.current.value.includes("@")) {
+        document.getElementById(
+          "customer-update-email-" + props.id
+        ).textContent = "@ is missing ";
+      } else if (password.current.value === "") {
+        document.getElementById(
+          "customer-update-password-" + props.id
+        ).textContent = "please enter password";
+      } else {
+        setFirstNameState(firstName.current.value);
+        setLastNameState(lastName.current.value);
+        setEmailState(email.current.value);
+        setPasswordState(password.current.value);
+        const customerObj = {
+          id: idState,
+          first_name: firstName.current.value,
+          last_name: lastName.current.value,
+          email: email.current.value,
+          password: password.current.value,
+        };
 
-      setUpdateMode(false);
+        if (showOp.customerOp && searchMode) {
+          dispatch({
+            type: "UPDATE-FROM-SEARCH-RESULT-CUSTOMER-LIST",
+            payload: {
+              customerObj: customerObj,
+            },
+          });
+        }
+        dispatch(adminUpdateCustomerAction(customerObj));
+
+        setUpdateMode(false);
+      }
     }
   };
 
@@ -95,13 +134,14 @@ const AdminCustomerBox = (props) => {
         <div className="col-12 col-lg-9 col-xl-7 col-xxl-6">
           <div className="container-fluid p-0 admin-op-main-container mt-0">
             <div className="row ">
-              <div className="col-8">
+              <div className="col-9">
                 <div className="container-fluid p-3">
                   <div className="row g-1 align-items-between">
                     {props.addCustomerMode === true ? (
                       <AdminBoxInputContainerAdd
-                        ref={firstName}
+                        refTo={firstName}
                         label={"First name :"}
+                        id="customer-add-first-name"
                       ></AdminBoxInputContainerAdd>
                     ) : updateMode ? (
                       <AdminBoxInputContainerUpdate
@@ -109,6 +149,8 @@ const AdminCustomerBox = (props) => {
                         onChangeFunc={setFirstNameState}
                         value={firstNameState}
                         refTo={firstName}
+                        idPrefix={"customer-update-first-name-"}
+                        idSuffix={props.id}
                       ></AdminBoxInputContainerUpdate>
                     ) : (
                       <div className="col-12">
@@ -118,8 +160,9 @@ const AdminCustomerBox = (props) => {
 
                     {props.addCustomerMode === true ? (
                       <AdminBoxInputContainerAdd
-                        ref={lastName}
+                        refTo={lastName}
                         label={"Last name :"}
+                        id="customer-add-last-name"
                       ></AdminBoxInputContainerAdd>
                     ) : updateMode ? (
                       <AdminBoxInputContainerUpdate
@@ -127,14 +170,17 @@ const AdminCustomerBox = (props) => {
                         onChangeFunc={setLastNameState}
                         value={lastNameState}
                         refTo={lastName}
+                        idPrefix={"customer-update-last-name-"}
+                        idSuffix={props.id}
                       ></AdminBoxInputContainerUpdate>
                     ) : (
                       <div className="col-12 ">LastName : {lastNameState}</div>
                     )}
                     {props.addCustomerMode ? (
                       <AdminBoxInputContainerAdd
-                        ref={email}
+                        refTo={email}
                         label={"Email :"}
+                        id="customer-add-email"
                       ></AdminBoxInputContainerAdd>
                     ) : updateMode ? (
                       <AdminBoxInputContainerUpdate
@@ -142,14 +188,17 @@ const AdminCustomerBox = (props) => {
                         onChangeFunc={setEmailState}
                         value={emailState}
                         refTo={email}
+                        idPrefix={"customer-update-email-"}
+                        idSuffix={props.id}
                       ></AdminBoxInputContainerUpdate>
                     ) : (
                       <div className="col-12 ">Email : {emailState}</div>
                     )}
                     {props.addCustomerMode ? (
                       <AdminBoxInputContainerAdd
-                        ref={password}
+                        refTo={password}
                         label={"Password :"}
+                        id="customer-add-password"
                       ></AdminBoxInputContainerAdd>
                     ) : updateMode ? (
                       <AdminBoxInputContainerUpdate
@@ -157,6 +206,8 @@ const AdminCustomerBox = (props) => {
                         onChangeFunc={setPasswordState}
                         value={passwordState}
                         refTo={password}
+                        idPrefix={"customer-update-password-"}
+                        idSuffix={props.id}
                       ></AdminBoxInputContainerUpdate>
                     ) : (
                       <div className="col-12 ">Password : {passwordState}</div>
@@ -164,13 +215,13 @@ const AdminCustomerBox = (props) => {
                   </div>
                 </div>
               </div>
-              <div className="col-4">
+              <div className="col-3">
                 <AdminBoxButtons
                   addCustomerMode={props.addCustomerMode}
                   updateMode={updateMode}
                   onClickSave={submit}
                   onClickUpdate={handleUpdateClicked}
-                  onClickRemove={handleDeleteClicked}
+                  onClickDelete={handleDeleteClicked}
                 ></AdminBoxButtons>
               </div>
             </div>

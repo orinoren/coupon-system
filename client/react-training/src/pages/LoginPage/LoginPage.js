@@ -6,7 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginAction } from "../../actions/loginAction";
 import { useHistory } from "react-router";
 import { useEffect, useState } from "react";
-import { resetSearchModeAction } from "../../actions/actions-for-ui/action-for-ui";
+import {
+  cartResetShowViewAction,
+  resetSearchModeAction,
+} from "../../actions/actions-for-ui/action-for-ui";
 import CompanyEmailPassList from "./CompanyEmailPassList";
 import CustomerEmailPassList from "./CustomerEmailPassList";
 const LoginPage = () => {

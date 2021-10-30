@@ -1,6 +1,36 @@
 import React from "react";
-
+import { useSelector } from "react-redux";
 const AdminBoxInputContainerUpdate = (props) => {
+  const showOp = useSelector(
+    (state) => state.uiRootReducer.showOpForAdminReducer
+  );
+  const handleOnFocusInput = () => {
+    if (showOp.companyOp) {
+      document.getElementById(
+        "company-update-name-" + props.idSuffix
+      ).textContent = "";
+      document.getElementById(
+        "company-update-email-" + props.idSuffix
+      ).textContent = "";
+      document.getElementById(
+        "company-update-password-" + props.idSuffix
+      ).textContent = "";
+    } else {
+      document.getElementById(
+        "customer-update-first-name-" + props.idSuffix
+      ).textContent = "";
+      document.getElementById(
+        "customer-update-last-name-" + props.idSuffix
+      ).textContent = "";
+      document.getElementById(
+        "customer-update-email-" + props.idSuffix
+      ).textContent = "";
+      document.getElementById(
+        "customer-update-password-" + props.idSuffix
+      ).textContent = "";
+    }
+  };
+
   return (
     <div className="container ">
       <div className="row">
@@ -12,6 +42,7 @@ const AdminBoxInputContainerUpdate = (props) => {
             onChange={(e) => {
               props.onChangeFunc(e.target.value);
             }}
+            onFocus={() => handleOnFocusInput()}
             value={props.value}
             ref={props.refTo}
             className=""
@@ -22,7 +53,10 @@ const AdminBoxInputContainerUpdate = (props) => {
           />
         </div>
         <div className="col-4 p-0">
-          <span className="text-danger">error</span>
+          <span
+            id={props.idPrefix + props.idSuffix}
+            className="text-danger"
+          ></span>
         </div>
       </div>
     </div>

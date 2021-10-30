@@ -42,6 +42,9 @@ const AdminCompanyBox = (props) => {
       } else if (email.current.value === "") {
         document.getElementById("company-add-email").textContent =
           "please enter email";
+      } else if (!email.current.value.includes("@")) {
+        document.getElementById("company-add-email").textContent =
+          "@ is missing ";
       } else if (password.current.value === "") {
         document.getElementById("company-add-password").textContent =
           "please enter password";
@@ -56,25 +59,39 @@ const AdminCompanyBox = (props) => {
         dispatch(adminResetAddMode());
       }
     } else {
-      setEmailState(email.current.value);
-      setPasswordState(password.current.value);
-      const companyObj = {
-        company_id: idState,
-        name: companyNameState,
-        email: email.current.value,
-        password: password.current.value,
-      };
-      if (showOp.companyOp && searchMode) {
-        dispatch({
-          type: "UPDATE-FROM-SEARCH-RESULT-COMPANY-LIST",
-          payload: {
-            companyObj: companyObj,
-          },
-        });
-      }
-      dispatch(adminUpdateCompanyAction(companyObj));
+      if (email.current.value === "") {
+        document.getElementById(
+          "company-update-email-" + props.id
+        ).textContent = "please enter email";
+      } else if (!email.current.value.includes("@")) {
+        document.getElementById(
+          "company-update-email-" + props.id
+        ).textContent = "@ is missing ";
+      } else if (password.current.value === "") {
+        document.getElementById(
+          "company-update-password-" + props.id
+        ).textContent = "please enter password";
+      } else {
+        setEmailState(email.current.value);
+        setPasswordState(password.current.value);
+        const companyObj = {
+          company_id: idState,
+          name: companyNameState,
+          email: email.current.value,
+          password: password.current.value,
+        };
+        if (showOp.companyOp && searchMode) {
+          dispatch({
+            type: "UPDATE-FROM-SEARCH-RESULT-COMPANY-LIST",
+            payload: {
+              companyObj: companyObj,
+            },
+          });
+        }
+        dispatch(adminUpdateCompanyAction(companyObj));
 
-      setUpdateMode(false);
+        setUpdateMode(false);
+      }
     }
   };
 
@@ -84,15 +101,14 @@ const AdminCompanyBox = (props) => {
     setUpdateMode(true);
   };
 
-  const handleDeleteClicked = () => {
+  const handleDeleteClicked = (idToDelete) => {
     if (showOp.companyOp && searchMode) {
       dispatch({
         type: "DELETE-FROM-SEARCH-RESULT-COMPANY-LIST",
-        payload: props.id,
+        payload: idToDelete,
       });
-
-      dispatch(adminDeleteCompanyAction(idState));
     }
+    dispatch(adminDeleteCompanyAction(idToDelete));
   };
 
   return (
@@ -127,7 +143,8 @@ const AdminCompanyBox = (props) => {
                           onChangeFunc={setEmailState}
                           value={emailState}
                           refTo={email}
-                          id={"company-update-email-" + props.id}
+                          idPrefix={"company-update-email-"}
+                          idSuffix={props.id}
                         ></AdminBoxInputContainerUpdate>
                       ) : (
                         <div className="col-12 ">Email : {emailState}</div>
@@ -144,7 +161,8 @@ const AdminCompanyBox = (props) => {
                           onChangeFunc={setPasswordState}
                           value={passwordState}
                           refTo={password}
-                          id={"company-update-password-" + props.id}
+                          idPrefix={"company-update-password-"}
+                          idSuffix={props.id}
                         ></AdminBoxInputContainerUpdate>
                       ) : (
                         <div className="col-12 ">
@@ -162,7 +180,8 @@ const AdminCompanyBox = (props) => {
                   updateMode={updateMode}
                   onClickSave={submit}
                   onClickUpdate={handleUpdateClicked}
-                  onClickRemove={handleDeleteClicked}
+                  onClickDelete={handleDeleteClicked}
+                  idToDelete={props.id}
                 ></AdminBoxButtons>
                 <div className="container-fluid  m-0 h-100"></div>
               </div>

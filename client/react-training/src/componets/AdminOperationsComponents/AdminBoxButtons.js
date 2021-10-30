@@ -22,7 +22,7 @@ const AdminBoxButtons = (props) => {
           </div>
 
           <div
-            onClick={() => props.onClickDelete()}
+            onClick={() => props.onClickDelete(props.idToDelete)}
             className="col-12 col-sm-7 text-center col-lg-4 admin-company-box-remove-button"
           >
             Delete

@@ -3,13 +3,14 @@ const urlSuffix = "admin/delete-company";
 
 export const adminDeleteCompanyAction =
   (companyId) => async (dispatch, getState) => {
-    const updateConfig = {
+    const deleteCompanyConfig = {
       params: { id: companyId },
     };
+    console.log(companyId);
     try {
       await authenticatedAxios
         .getAuthenticatedAxios()
-        .delete(urlSuffix, updateConfig);
+        .delete(urlSuffix, deleteCompanyConfig);
       dispatch({ type: "DELETE-COMPANY", payload: companyId });
     } catch (error) {}
   };

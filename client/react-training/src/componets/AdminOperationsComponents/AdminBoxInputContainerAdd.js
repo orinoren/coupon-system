@@ -1,6 +1,23 @@
 import React from "react";
 import "./AdminOperations.css";
+import { useSelector } from "react-redux";
 const AdminBoxInputContainerAdd = (props) => {
+  const showOp = useSelector(
+    (state) => state.uiRootReducer.showOpForAdminReducer
+  );
+  const handleOnFocusInput = () => {
+    if (showOp.companyOp) {
+      document.getElementById("company-add-name").textContent = "";
+      document.getElementById("company-add-email").textContent = "";
+      document.getElementById("company-add-password").textContent = "";
+    } else {
+      document.getElementById("customer-add-first-name").textContent = "";
+      document.getElementById("customer-add-last-name").textContent = "";
+      document.getElementById("customer-add-email").textContent = "";
+      document.getElementById("customer-add-password").textContent = "";
+    }
+  };
+
   return (
     <div className="container ">
       <div className="row">
@@ -9,11 +26,7 @@ const AdminBoxInputContainerAdd = (props) => {
         </div>
         <div className="col-5 p-0">
           <input
-            onFocus={() => {
-              document.getElementById("company-add-name").textContent = "";
-              document.getElementById("company-add-email").textContent = "";
-              document.getElementById("company-add-password").textContent = "";
-            }}
+            onFocus={() => handleOnFocusInput()}
             ref={props.refTo}
             className=""
             type="text"
@@ -23,9 +36,10 @@ const AdminBoxInputContainerAdd = (props) => {
           />
         </div>
         <div className="col-4 p-0">
-          <span id={props.id} className="error-messege-for-admin text-danger">
-            error
-          </span>
+          <span
+            id={props.id}
+            className="error-messege-for-admin text-danger"
+          ></span>
         </div>
       </div>
     </div>
