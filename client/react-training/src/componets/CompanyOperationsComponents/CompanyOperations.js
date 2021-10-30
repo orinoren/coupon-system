@@ -72,7 +72,7 @@ const CompanyOperations = (props) => {
         setCouponObj({ ...couponObj, title: e.target.value });
         break;
       case "category":
-        if (e.target.value !== 0) {
+        if (e.target.value !== 0 && e.target.value !== "Choose...") {
           const categoryName = document.getElementById(e.target.value);
           setCategoryName(categoryName.textContent);
           setCouponObj({ ...couponObj, category_id: e.target.value });
@@ -117,7 +117,10 @@ const CompanyOperations = (props) => {
         });
         setImageView(defaultImage);
         const allInputs = document.querySelectorAll(".form-control-coupon");
-
+        const allErrorInputsMsg = document.querySelectorAll(
+          ".coupon-input-error"
+        );
+        allErrorInputsMsg.forEach((msg) => (msg.textContent = ""));
         allInputs.forEach((input) => (input.value = " "));
         document.querySelector(
           ".inline-form-custom-select-coupon"

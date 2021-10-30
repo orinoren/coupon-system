@@ -34,12 +34,47 @@ const CompanyOperationsCouponView = (props) => {
 
   const handleCouponSubmit = () => {
     dispatch({ type: "RESET-COUPON-OP-FAILED" });
-    if (addMode) {
-      dispatch(companyAddCouponAction({ ...props.couponObject }));
-    } else if (updateMode) {
-      dispatch(companyUpdateCouponAction({ ...props.couponObject }));
+    const { title, category_id, startDate, endDate, amount, price } =
+      props.couponObject;
+    console.log(category_id);
+    console.log(title);
+    let notValid = false;
+    if (title === "") {
+      document.getElementById("coupon-title-input-error").textContent =
+        "please enter title";
+      notValid = true;
     }
-    dispatch(companySumbitCoupon());
+    if (category_id === 0) {
+      document.getElementById("coupon-category-input-error").textContent =
+        "please enter category";
+      notValid = true;
+    }
+    if (startDate === "") {
+      document.getElementById("coupon-start-date-input-error").textContent =
+        "please enter date";
+      notValid = true;
+    }
+    if (endDate === "") {
+      document.getElementById("coupon-end-date-input-error").textContent =
+        "please enter date";
+      notValid = true;
+    }
+    if (amount <= 0) {
+      document.getElementById("coupon-amount-input-error").textContent =
+        "please enter amount bigger then 0";
+    }
+    if (price <= 0) {
+      document.getElementById("coupon-price-input-error").textContent =
+        "please price bigger then 0";
+      notValid = true;
+    }
+    if (!notValid) {
+      if (addMode) {
+        dispatch(companyAddCouponAction({ ...props.couponObject }));
+      } else if (updateMode) {
+        dispatch(companyUpdateCouponAction({ ...props.couponObject }));
+      }
+    }
   };
   return (
     <div>
