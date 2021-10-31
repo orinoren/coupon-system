@@ -3,12 +3,18 @@ import "../../pages/CartPage/Cart.css";
 import { useSelector, useDispatch } from "react-redux";
 import { purchaseCouponAction } from "../../actions/actions-for-customer/purchaseCouponAction";
 import { useHistory } from "react-router";
-import { resetUserModeAction } from "../../actions/actions-for-ui/action-for-ui";
+import {
+  resetCartAction,
+  resetCartNotificationAction,
+  resetUserModeAction,
+} from "../../actions/actions-for-ui/action-for-ui";
 const CartSummery = () => {
   const cartSummery = useSelector(
     (state) => state.uiRootReducer.cartPropertisReducer.cartSummery
   );
-
+  const couponPurchaseDetails = useSelector(
+    (state) => state.customerRootReducer.purchaseCouponReducer
+  );
   const couponsToPurchase = useSelector(
     (state) => state.uiRootReducer.cartArrReducer
   );
@@ -30,6 +36,8 @@ const CartSummery = () => {
         }
       }
       dispatch(purchaseCouponAction(couponsIdArr));
+      dispatch(resetCartAction());
+      dispatch(resetCartNotificationAction());
     }
   };
   return (
@@ -59,6 +67,17 @@ const CartSummery = () => {
                     Purcahse
                   </div>
                 </div>
+                {couponPurchaseDetails.purchaseSucceed ? (
+                  <span className="text-success fw-bold text-center">
+                    Purchase made succesfully
+                  </span>
+                ) : couponPurchaseDetails.purchaseFailed ? (
+                  <span className="text-success fw-bold text-center">
+                    Purchase failed
+                  </span>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           </div>

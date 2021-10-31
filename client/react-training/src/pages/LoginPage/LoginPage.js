@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import {
   cartResetShowViewAction,
   resetSearchModeAction,
+  resetUserModeAction,
 } from "../../actions/actions-for-ui/action-for-ui";
 import CompanyEmailPassList from "./CompanyEmailPassList";
 import CustomerEmailPassList from "./CustomerEmailPassList";
@@ -66,6 +67,7 @@ const LoginPage = () => {
     if (loginAttempt) {
       if (userDetails.logged) {
         if (userDetails.role === "ADMIN") {
+          dispatch(resetUserModeAction());
           history.push("/admin");
         } else if (userDetails.role === "COMPANY") {
           history.push("/company");

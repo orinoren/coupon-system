@@ -61,6 +61,7 @@ const CouponCardList = (props) => {
                   price={coupon.price}
                   image={coupon.imageSrc}
                   couponImage={coupon.couponImage}
+                  companyName={coupon.companyName}
                 />
               </div>
             ))
@@ -84,6 +85,7 @@ const CouponCardList = (props) => {
                 price={coupon.price}
                 image={coupon.imageSrc}
                 couponImage={coupon.couponImage}
+                companyName={coupon.companyName}
               />
             </div>
           ))

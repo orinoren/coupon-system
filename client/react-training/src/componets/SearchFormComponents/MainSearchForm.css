@@ -25,3 +25,6 @@
   margin-top: 0.2em;
   position: absolute;
 }
+.search-input-container {
+  position: relative;
+}

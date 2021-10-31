@@ -7,6 +7,10 @@ export const purchaseCouponAction =
       const res = await authenticatedAxios
         .getAuthenticatedAxios()
         .post(urlSuffix, couponsIdArr);
-      dispatch({ type: "PURCHASE-COUPON", payload: res.data });
-    } catch (error) {}
+      if (res.status === 200) {
+        dispatch({ type: "PURCHASE-COUPON-SUCCEED" });
+      }
+    } catch (error) {
+      dispatch({ type: "PURCHASE-COUPON-FAILED" });
+    }
   };

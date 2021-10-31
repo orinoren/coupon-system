@@ -18,12 +18,13 @@ const Main = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(guestOrCustomerModeAction());
+    dispatch({ type: "PURCHASE-COUPON-RESET-MSG" });
     return () => {};
   }, [dispatch, cartCouponsContent]);
   return (
     <div>
-      <div className="container-fluid main-container-bg m-0 mt-md-5 p-0 p-md-3  ">
-        <div className="row ">
+      <div className="container-fluid main-container-bg m-0 mt-md-2 p-0 p-md-3  ">
+        <div className="row m-0 p-0 m-md-1 p-md-1 ">
           <MainSearchForm placeholder={"Search coupon..."}></MainSearchForm>
         </div>
 

@@ -66,12 +66,6 @@ const NavBar = () => {
     <>
       <nav className="my-navbar navbar navbar-expand-md navbar-light bg-light">
         <div className="container-fluid">
-          <div
-            onClick={() => hanldeHeaderClicked()}
-            className="navbar-brand d-none d-md-inline my-navbar-header"
-          >
-            COUPON PROJECT
-          </div>
           <button
             className="navbar-toggler"
             type="button"
@@ -83,47 +77,65 @@ const NavBar = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
+          <div
+            onClick={() => hanldeHeaderClicked()}
+            className="navbar-brand my-navbar-header"
+          >
+            COUPON PROJECT
+          </div>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav m-0 me-md-auto mb-2 mb-lg-0">
-              <li className="nav-item nav-link active nav-li ">
-                {loginDetails.logged ? "Home" : ""}
-              </li>
-              <li className="nav-item nav-link nav-li">
-                {loginDetails.role === "ADMIN" ? (
-                  <span
-                    onClick={() => {
-                      dispatch(adminOperationsBoxState("customer"));
-                      dispatch(showCustomerOpAction());
-                    }}
-                  >
-                    Customer Op
-                  </span>
-                ) : loginDetails.role === "COMPANY" ? (
-                  <span onClick={() => dispatch(companyCouponAddModeAction())}>
-                    Coupon OP
-                  </span>
-                ) : loginDetails.role === "CUSTOMER" ? (
-                  <span onClick={() => dispatch(showCustomerCouponsAction())}>
-                    {/* Customer */}Your Coupons
-                  </span>
-                ) : (
-                  ""
-                )}
-              </li>
-              <li className="nav-item nav-link nav-li">
-                {loginDetails.role === "ADMIN" ? (
-                  <span
-                    onClick={() => {
-                      dispatch(adminOperationsBoxState("company"));
-                      dispatch(showCompanyOpAction());
-                    }}
-                  >
-                    Company Op
-                  </span>
-                ) : (
-                  ""
-                )}
-              </li>
+              {loginDetails.logged ? (
+                <li className="nav-item nav-link active nav-li ">Home</li>
+              ) : (
+                ""
+              )}
+              {loginDetails.logged ? (
+                <li className="nav-item nav-link nav-li">
+                  {loginDetails.role === "ADMIN" ? (
+                    <span
+                      onClick={() => {
+                        dispatch(adminOperationsBoxState("customer"));
+                        dispatch(showCustomerOpAction());
+                      }}
+                    >
+                      Customer Op
+                    </span>
+                  ) : loginDetails.role === "COMPANY" ? (
+                    <span
+                      onClick={() => dispatch(companyCouponAddModeAction())}
+                    >
+                      Coupon OP
+                    </span>
+                  ) : loginDetails.role === "CUSTOMER" ? (
+                    <span onClick={() => dispatch(showCustomerCouponsAction())}>
+                      {/* Customer */}Your Coupons
+                    </span>
+                  ) : (
+                    ""
+                  )}
+                </li>
+              ) : (
+                ""
+              )}
+              {loginDetails.logged ? (
+                <li className="nav-item nav-link nav-li">
+                  {loginDetails.role === "ADMIN" ? (
+                    <span
+                      onClick={() => {
+                        dispatch(adminOperationsBoxState("company"));
+                        dispatch(showCompanyOpAction());
+                      }}
+                    >
+                      Company Op
+                    </span>
+                  ) : (
+                    ""
+                  )}
+                </li>
+              ) : (
+                ""
+              )}
             </ul>
             {guestOrCustomerMode ? (
               <div className="px-1 px-md-5 pt-4">

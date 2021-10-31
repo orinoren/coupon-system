@@ -56,8 +56,8 @@ const CompanyMain = () => {
       <MainSearchForm placeholder={"Search coupon..."}></MainSearchForm>
       <div className="container-fluid mt-0 mt-md-5">
         <div className="row justify-content-center">
-          <div className="col-6 col-sm-2">
-            <div className="w-75 h-75" onClick={handleButtonClick}>
+          <div className="p-0 p-md-1 col-12 col-md-2">
+            <div className="" onClick={handleButtonClick}>
               <OperationButton
                 name={companyCouponAddMode ? "Close Add Mode" : "Add Coupon"}
               ></OperationButton>

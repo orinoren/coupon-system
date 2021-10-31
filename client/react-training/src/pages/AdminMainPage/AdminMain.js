@@ -102,8 +102,8 @@ const AdminMain = () => {
         }
       ></MainSearchForm>
       <div className="container">
-        <div className="row  m-0 mt-md-5 justify-content-evenly">
-          <div className="col-12 col-sm-6 order-2 order-md-1 col-md-2 align-self-center mb-0 ">
+        <div className="row m-0 mt-md-5 justify-content-evenly">
+          <div className="col-12  col-md-2 order-2 order-md-1  align-self-center mb-0 ">
             <div
               onClick={() => {
                 dispatch(adminOperationsBoxState("company"));
@@ -122,7 +122,7 @@ const AdminMain = () => {
             </div>
           </div>
           {showOp.companyOp || showOp.customerOp ? (
-            <div className="col-12 order-1 order-md-2 col-md-2 justify-content-center align-self-center m-0 mb-md-0">
+            <div className="col-12 col-md-2 order-1 order-md-2  justify-content-center align-self-center m-0 mb-md-0">
               <div
                 onClick={() => {
                   resetAddMode();
@@ -137,7 +137,7 @@ const AdminMain = () => {
             ""
           )}
 
-          <div className="col-12 order-3  col-md-2 align-self-center">
+          <div className="col-12 col-md-2 order-3   align-self-center">
             <div
               onClick={() => {
                 dispatch(adminOperationsBoxState("customer"));

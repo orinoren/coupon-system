@@ -13,7 +13,7 @@ import com.orinoren318598984.full_project.model.Customer;
 @Repository
 public interface CouponRepo extends JpaRepository<Coupon, Long> {
 
-	@Query(value = "select c ,ci.image from Coupon c inner join CouponImage ci on c.couponImage = ci.id")
+	@Query(value = "select c ,ci.image,c.companyOfCoupon.name  from Coupon c inner join CouponImage ci  on  c.couponImage = ci.id")
 	List<Object>findAllCouponAndImages();
 	
 	List<Coupon> findByEndDateBefore(LocalDate expireDate);

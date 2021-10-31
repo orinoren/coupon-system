@@ -6,10 +6,10 @@ export const getAllCouponsAction = () => async (dispatch, getState) => {
     const res = await axios.get(url);
 
     const allCoupons = res.data;
-
+    console.log(allCoupons);
     const allCouponWithImages = [];
     for (let i = 0; i < allCoupons.length; i++) {
-      for (let j = 0; j < allCoupons[i].length; j += 2) {
+      for (let j = 0; j < allCoupons[i].length; j += 3) {
         const coupon = allCoupons[i][j];
 
         let startDate = new Date(...coupon.startDate);
@@ -32,16 +32,19 @@ export const getAllCouponsAction = () => async (dispatch, getState) => {
         const couponImage = allCoupons[i][j + 1];
         allCouponWithImages.push({
           ...coupon,
+          companyName: allCoupons[i][j + 2],
           imageSrc: couponImage,
           startDate: startDateForCoupon,
           endDate: endDateForCoupon,
         });
       }
     }
-
     dispatch({
       type: "GET-ALL-COUPONS",
       payload: allCouponWithImages,
     });
-  } catch (error) {}
+    console.log(allCouponWithImages);
+  } catch (error) {
+    console.log("ERRE");
+  }
 };

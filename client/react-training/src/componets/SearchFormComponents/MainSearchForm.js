@@ -145,7 +145,7 @@ const MainSearchForm = (props) => {
         e.preventDefault();
         handleSearchBtnClicked(e);
       }}
-      className="mt-5"
+      className="p-0 p-md-1 m-0 mt-2 mt-md-5"
     >
       <form onSubmit={(e) => e.preventDefault()} className="gy-5 d-flex  ">
         <div className="sort-div d-none d-md-inline col-1 offset-3">
@@ -167,7 +167,7 @@ const MainSearchForm = (props) => {
             Search
           </button>
         </div>
-        <div className="d-none d-md-inline col-3 ml-4">
+        <div className="search-input-container d-md-inline col-11 col-md-3 ml-4">
           <input
             ref={searchInput}
             className="form-control me-2"
@@ -175,6 +175,14 @@ const MainSearchForm = (props) => {
             placeholder={props.placeholder}
             aria-label="Search"
           />
+        </div>
+        <div className="col-1 p-1 text-center d-block d-md-none text-success border bg-light">
+          <span
+            className="search-icon"
+            onClick={() => handleSearchBtnClicked()}
+          >
+            <i class="fas fa-search"></i>
+          </span>
         </div>
       </form>
     </div>

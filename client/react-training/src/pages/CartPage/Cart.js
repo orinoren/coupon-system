@@ -12,6 +12,7 @@ const Cart = (props) => {
 
   const handleExitCartButtonClicked = () => {
     dispatch(cartResetShowViewAction());
+    dispatch({ type: "PURCHASE-COUPON-RESET-MSG" });
   };
 
   return (

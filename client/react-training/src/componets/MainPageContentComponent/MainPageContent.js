@@ -55,7 +55,7 @@ const MainPageContent = (props) => {
     return () => {};
   }, [addedCoupon, updatedCoupon, deletedCoupon, userDetails, dispatch]);
   return (
-    <div className="mt-4">
+    <div className="mt-2 mt-md-4">
       <div className="row m-0 m-md-1  main-content-top-margin">
         {showSearchMode && !showOp.customerOp && !showOp.companyOp ? (
           <div className="m-0 m-md-1">

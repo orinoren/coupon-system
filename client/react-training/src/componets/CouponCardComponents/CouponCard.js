@@ -20,9 +20,14 @@ const CouponCard = (props) => {
   const [endDateView, setEndDateView] = useState(props.endDate);
   const [couponAddToCartAmount, setCouponAddToCartAmount] = useState(0);
 
+  const couponPurchaseDetails = useSelector(
+    (state) => state.customerRootReducer.purchaseCouponReducer
+  );
   const companyCouponAddMode = useSelector(
     (state) => state.uiRootReducer.companyAddCouponModeReducer.addMode
   );
+
+  const loginDetails = useSelector((state) => state.authReducer);
   const companyGlobalMode = useSelector(
     (state) => state.uiRootReducer.globalModeReducer.companyMode
   );
@@ -46,7 +51,13 @@ const CouponCard = (props) => {
       setShowAddToCartControlles(true);
     }
   };
-
+  useEffect(() => {
+    if (couponPurchaseDetails.purchaseSucceed) {
+      setShowAddToCartControlles(false);
+      setCouponAddToCartAmount(0);
+    }
+    return () => {};
+  }, [couponPurchaseDetails]);
   return (
     <div className="container mb-2 coupon-card-conatiner-border p-1 ">
       <div className="row">
@@ -95,7 +106,7 @@ const CouponCard = (props) => {
                   </div>
                 </div>
 
-                {companyGlobalMode ? (
+                {loginDetails.role === "COMPANY" ? (
                   <div>
                     <div className="d-flex mt-3 pt-2 border-top justify-content-between">
                       <div className="coupon-card-op-icon">
@@ -115,6 +126,10 @@ const CouponCard = (props) => {
                         </span>
                       </div>
                     </div>
+                  </div>
+                ) : loginDetails.role === "ADMIN" ? (
+                  <div className="text-center border bg-primary text-white ">
+                    {props.companyName}
                   </div>
                 ) : (
                   <div
