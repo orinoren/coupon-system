@@ -22,7 +22,7 @@ const Main = () => {
   }, [dispatch, cartCouponsContent]);
   return (
     <div>
-      <div className="container-fluid main-container-bg  ">
+      <div className="container-fluid main-container-bg m-0 mt-md-5 p-0 p-md-3  ">
         <div className="row ">
           <MainSearchForm placeholder={"Search coupon..."}></MainSearchForm>
         </div>

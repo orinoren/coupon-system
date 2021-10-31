@@ -56,9 +56,9 @@ const MainPageContent = (props) => {
   }, [addedCoupon, updatedCoupon, deletedCoupon, userDetails, dispatch]);
   return (
     <div className="mt-4">
-      <div className="row main-content-top-margin">
+      <div className="row m-0 m-md-1  main-content-top-margin">
         {showSearchMode && !showOp.customerOp && !showOp.companyOp ? (
-          <div>
+          <div className="m-0 m-md-1">
             <CouponCardListSection
               searchMode={showSearchMode}
               title="Result"
@@ -68,7 +68,7 @@ const MainPageContent = (props) => {
           " "
         )}
         {showCustomerCoupons ? (
-          <div>
+          <div className="m-0 m-md-1">
             <CouponCardListSection
               showCustomerCoupons={showCustomerCoupons}
               title="Your Coupons(CUSTOMER)"
@@ -81,15 +81,15 @@ const MainPageContent = (props) => {
         {userDetails.role === "COMPANY" ? (
           <CouponCardListSection title="Your Coupons(COMPANY)"></CouponCardListSection>
         ) : (
-          <div>
-            <div>
+          <div className="m-0 m-md-1">
+            <div className="m-0 m-md-1">
               <CouponCardListSection title="TOP COUPONS"></CouponCardListSection>
             </div>
 
-            <div>
+            <div className="m-0 m-md-1">
               <CouponCardListSection title="FOOD"></CouponCardListSection>
             </div>
-            <div>
+            <div className="m-0 m-md-1">
               <CouponCardListSection title="VACATION"></CouponCardListSection>
             </div>
           </div>

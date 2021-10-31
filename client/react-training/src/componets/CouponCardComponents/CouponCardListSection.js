@@ -62,7 +62,7 @@ const CouponCardListSection = (props) => {
   };
   return (
     <div>
-      <div className="container">
+      <div className="container-fluid m-0 m-md-2 p-0 p-md-2">
         <div className="row justify-content-between main-page-content-header ">
           <div className="h3 mb-2 pl-2 col-3 pt-1">
             {props.title.includes("Your Coupons")

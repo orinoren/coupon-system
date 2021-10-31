@@ -54,7 +54,7 @@ const CompanyMain = () => {
   return (
     <div>
       <MainSearchForm placeholder={"Search coupon..."}></MainSearchForm>
-      <div className="container-fluid mt-5">
+      <div className="container-fluid mt-0 mt-md-5">
         <div className="row justify-content-center">
           <div className="col-6 col-sm-2">
             <div className="w-75 h-75" onClick={handleButtonClick}>

@@ -54,7 +54,7 @@ const AdminOperations = () => {
   ]);
   return (
     <div>
-      <div className="container-fluid bg-light mt-5">
+      <div className="container-fluid bg-light mt-1 mt-md-5">
         <div className="row justify-content-center ">
           <div className="col-12">
             <div>
@@ -119,7 +119,6 @@ const AdminOperations = () => {
                       />
                     );
                   })}
-              ;
             </div>
           </div>
         </div>

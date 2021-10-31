@@ -143,7 +143,7 @@ const CompanyOperationsForm = (props) => {
                   }}
                   value={props.couponToUpdateObj.startDate}
                   type="date"
-                  className=" w-50 form-control form-control-coupon"
+                  className=" w-50 form-control form-control-coupon-date form-control-coupon"
                   id="formStartDateInput"
                 />
               </div>
@@ -168,7 +168,7 @@ const CompanyOperationsForm = (props) => {
                   }}
                   value={props.couponToUpdateObj.endDate}
                   type="date"
-                  className="w-50 form-control form-control-coupon"
+                  className="w-50 form-control form-control-coupon-date form-control-coupon"
                   id="formEndDateInput"
                 />
               </div>

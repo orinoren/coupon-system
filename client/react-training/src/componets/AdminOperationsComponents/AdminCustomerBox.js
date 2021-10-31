@@ -129,7 +129,7 @@ const AdminCustomerBox = (props) => {
   };
 
   return (
-    <div className="container-fluid mt-2">
+    <div className="container-fluid p-0 p-sm-1 mt-2">
       <div className="row justify-content-center">
         <div className="col-12 col-lg-9 col-xl-7 col-xxl-6">
           <div className="container-fluid p-0 admin-op-main-container mt-0">
@@ -153,8 +153,12 @@ const AdminCustomerBox = (props) => {
                         idSuffix={props.id}
                       ></AdminBoxInputContainerUpdate>
                     ) : (
-                      <div className="col-12">
-                        First name : {firstNameState}
+                      <div className="container-fluid p-0 m-0">
+                        <div className="row">
+                          <div className="col-12 ">
+                            <span>First name: {firstNameState}</span>
+                          </div>
+                        </div>
                       </div>
                     )}
 
@@ -174,7 +178,13 @@ const AdminCustomerBox = (props) => {
                         idSuffix={props.id}
                       ></AdminBoxInputContainerUpdate>
                     ) : (
-                      <div className="col-12 ">LastName : {lastNameState}</div>
+                      <div className="container-fluid p-0 m-0">
+                        <div className="row">
+                          <div className="col-12 ">
+                            <span>Last name: {lastNameState}</span>
+                          </div>
+                        </div>
+                      </div>
                     )}
                     {props.addCustomerMode ? (
                       <AdminBoxInputContainerAdd
@@ -192,7 +202,13 @@ const AdminCustomerBox = (props) => {
                         idSuffix={props.id}
                       ></AdminBoxInputContainerUpdate>
                     ) : (
-                      <div className="col-12 ">Email : {emailState}</div>
+                      <div className="container-fluid p-0 m-0">
+                        <div className="row">
+                          <div className="col-12 ">
+                            <span>Email: {emailState}</span>
+                          </div>
+                        </div>
+                      </div>
                     )}
                     {props.addCustomerMode ? (
                       <AdminBoxInputContainerAdd
@@ -210,7 +226,13 @@ const AdminCustomerBox = (props) => {
                         idSuffix={props.id}
                       ></AdminBoxInputContainerUpdate>
                     ) : (
-                      <div className="col-12 ">Password : {passwordState}</div>
+                      <div className="container-fluid p-0 m-0">
+                        <div className="row">
+                          <div className="col-12 ">
+                            <span>Password: {passwordState}</span>
+                          </div>
+                        </div>
+                      </div>
                     )}
                   </div>
                 </div>

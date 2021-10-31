@@ -68,7 +68,7 @@ const CouponControllers = (props) => {
     <div>
       <div className="container-fluid">
         <div className="row">
-          <div className="col-6">
+          <div className="col-6 p-0">
             <span>close</span>
           </div>
           <div className="p-0 col-2">

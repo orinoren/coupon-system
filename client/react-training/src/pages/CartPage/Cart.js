@@ -40,7 +40,7 @@ const Cart = (props) => {
                       ></i>
                     </div>
                   </div>
-                  <div className="row m-0 ml-lg-1">
+                  <div className="row p-0 p-md-1 m-0 ml-lg-1">
                     <div className="col-12 p-0 p-lg-1 col-md-7">
                       <div className="container-fluid p-0 p-lg-1 ">
                         {props.cartCouponList?.map((coupon, index) => {

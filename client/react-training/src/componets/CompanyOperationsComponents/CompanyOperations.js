@@ -138,16 +138,16 @@ const CompanyOperations = (props) => {
   //-----------------------------------------------------------------------------------------------------
   return (
     <div>
-      <div className="container mt-5 p-5 company-operations-bg">
-        <div className="row align-items-center justify-content-evenly">
-          <div className="col-6 ">
+      <div className="container mt-5 p-1 p-md-5 company-operations-bg">
+        <div className="row m-0 p-0 m-md-1 p-md-1 align-items-center justify-content-evenly">
+          <div className="col-12  col-md-6 m-0 p-0 m-md-1 p-md-1 ">
             <CompanyOperationsForm
               couponViewFunc={handleOnCouponChange}
               couponToUpdateObj={couponObj}
               categoryName={categoryName}
             ></CompanyOperationsForm>
           </div>
-          <div className="col-4 ">
+          <div className="col-12 col-md-4 mt-5 mt-md-0 ">
             <CompanyOperationsCouponView
               addMode={companyCouponAddMode}
               imgView={imageView}

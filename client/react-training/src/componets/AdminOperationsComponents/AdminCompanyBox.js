@@ -112,69 +112,83 @@ const AdminCompanyBox = (props) => {
   };
 
   return (
-    <div className="container-fluid mt-2">
+    <div className="container-fluid p-0 p-sm-1 mt-2">
       <div className="row justify-content-center">
         <div className="col-12 col-lg-9 col-xl-7 col-xxl-6">
           <div className="container-fluid p-0 admin-op-main-container mt-0">
-            <div className="row ">
+            <div className="row m-0 p-0 ">
               <div className="col-9">
                 <div className="container-fluid p-3">
                   <div className="row g-1 align-items-between">
-                    <div className="col-12 ">
-                      {props.addCompanyMode === true ? (
-                        <AdminBoxInputContainerAdd
-                          refTo={companyName}
-                          label={"Name :"}
-                          id="company-add-name"
-                        ></AdminBoxInputContainerAdd>
-                      ) : (
-                        <span> Name : {companyNameState}</span>
-                      )}
-
-                      {props.addCompanyMode ? (
-                        <AdminBoxInputContainerAdd
-                          refTo={email}
-                          label={"Email :"}
-                          id="company-add-email"
-                        ></AdminBoxInputContainerAdd>
-                      ) : updateMode ? (
-                        <AdminBoxInputContainerUpdate
-                          label={"Email: "}
-                          onChangeFunc={setEmailState}
-                          value={emailState}
-                          refTo={email}
-                          idPrefix={"company-update-email-"}
-                          idSuffix={props.id}
-                        ></AdminBoxInputContainerUpdate>
-                      ) : (
-                        <div className="col-12 ">Email : {emailState}</div>
-                      )}
-                      {props.addCompanyMode ? (
-                        <AdminBoxInputContainerAdd
-                          refTo={password}
-                          label={"Password :"}
-                          id="company-add-password"
-                        ></AdminBoxInputContainerAdd>
-                      ) : updateMode ? (
-                        <AdminBoxInputContainerUpdate
-                          label={"Password: "}
-                          onChangeFunc={setPasswordState}
-                          value={passwordState}
-                          refTo={password}
-                          idPrefix={"company-update-password-"}
-                          idSuffix={props.id}
-                        ></AdminBoxInputContainerUpdate>
-                      ) : (
-                        <div className="col-12 ">
-                          Password : {passwordState}
+                    {props.addCompanyMode === true ? (
+                      <AdminBoxInputContainerAdd
+                        refTo={companyName}
+                        label={"Name :"}
+                        id="company-add-name"
+                      ></AdminBoxInputContainerAdd>
+                    ) : (
+                      <div className="container-fluid p-0 m-0">
+                        <div className="row">
+                          <div className="col-3 col-sm-12">
+                            <span> Name: {companyNameState}</span>
+                          </div>
                         </div>
-                      )}
-                    </div>
+                      </div>
+                    )}
+
+                    {props.addCompanyMode ? (
+                      <AdminBoxInputContainerAdd
+                        refTo={email}
+                        label={"Email :"}
+                        id="company-add-email"
+                      ></AdminBoxInputContainerAdd>
+                    ) : updateMode ? (
+                      <AdminBoxInputContainerUpdate
+                        label={"Email: "}
+                        onChangeFunc={setEmailState}
+                        value={emailState}
+                        refTo={email}
+                        idPrefix={"company-update-email-"}
+                        idSuffix={props.id}
+                      ></AdminBoxInputContainerUpdate>
+                    ) : (
+                      <div className="container-fluid p-0 m-0">
+                        <div className="row">
+                          <div className="col-3 col-sm-12">
+                            <span>Email: {emailState}</span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                    {props.addCompanyMode ? (
+                      <AdminBoxInputContainerAdd
+                        refTo={password}
+                        label={"Password :"}
+                        id="company-add-password"
+                      ></AdminBoxInputContainerAdd>
+                    ) : updateMode ? (
+                      <AdminBoxInputContainerUpdate
+                        label={"Password: "}
+                        onChangeFunc={setPasswordState}
+                        value={passwordState}
+                        refTo={password}
+                        idPrefix={"company-update-password-"}
+                        idSuffix={props.id}
+                      ></AdminBoxInputContainerUpdate>
+                    ) : (
+                      <div className="container-fluid p-0 m-0">
+                        <div className="row">
+                          <div className="col-3 col-sm-12">
+                            <span> Password: {passwordState}</span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
 
-              <div className="col-3">
+              <div className="col-3 px-1 px-lg-2 ">
                 <AdminBoxButtons
                   addCustomerMode={props.addCompanyMode}
                   updateMode={updateMode}
@@ -183,7 +197,6 @@ const AdminCompanyBox = (props) => {
                   onClickDelete={handleDeleteClicked}
                   idToDelete={props.id}
                 ></AdminBoxButtons>
-                <div className="container-fluid  m-0 h-100"></div>
               </div>
             </div>
           </div>

@@ -17,9 +17,9 @@
 }
 .admin-company-box-remove-button {
   border-radius: 15%;
-  border: 2px solid black;
+  border: 1px solid black;
   background-color: red;
-  margin-right: 5px;
+  margin-right: 2px;
   color: white;
   padding: 2px;
 }
@@ -34,5 +34,5 @@
   cursor: pointer;
   font-weight: bolder;
 
-  padding: 4px;
+  padding: 8px;
 }

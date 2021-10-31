@@ -64,3 +64,17 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background-color: grey;
   color: black;
 }
+@media (max-width: 600px) {
+  .form-control-coupon-date {
+    width: 75% !important ;
+  }
+}
+
+@media (max-width: 600px) {
+  .comapny-operations-coupon-view {
+    box-shadow: none;
+  }
+  .company-operation-border {
+    box-shadow: none;
+  }
+}

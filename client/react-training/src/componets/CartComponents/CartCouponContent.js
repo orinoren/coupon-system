@@ -20,9 +20,9 @@ const CartCouponContent = (props) => {
     <div className="container-fluid p-0 my-3 cart-content-bg ">
       <div className="row m-0">
         <div className="col-12 p-0 ">
-          <div className="container-fluid p-0">
-            <div className="row m-0 justify-content-center ">
-              <div className="align-self-center p-0 col-3 ">
+          <div className="container-fluid  p-0">
+            <div className="row m-0   ">
+              <div className="align-self-center d-none d-md-block  p-0 col-3 ">
                 <div className="container-fluid p-0">
                   <div className="row m-0 justify-content-center ">
                     <img
@@ -37,7 +37,7 @@ const CartCouponContent = (props) => {
                   </div>
                 </div>
               </div>
-              <div className="col-9 p-0 cart-coupon-border ">
+              <div className="col-12 col-md-9 p-0 cart-coupon-border ">
                 <div className="container-fluid h-100 p-0 cart-coupon-content-details ">
                   <div className="row h-100 m-0 ">
                     <div className="container">
