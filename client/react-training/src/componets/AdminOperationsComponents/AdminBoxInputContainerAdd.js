@@ -21,10 +21,10 @@ const AdminBoxInputContainerAdd = (props) => {
   return (
     <div className="container ">
       <div className="row">
-        <div className="col-12 col-sm-3">
+        <div className="col-sm-3">
           <label htmlFor="fname">{props.label}</label>
         </div>
-        <div className="col-5 p-0 my-2 my-sm-0">
+        <div className="col-5 my-2 my-sm-0">
           <input
             onFocus={() => handleOnFocusInput()}
             ref={props.refTo}
@@ -35,7 +35,7 @@ const AdminBoxInputContainerAdd = (props) => {
             autoComplete="off"
           />
         </div>
-        <div className="col-4 p-0">
+        <div className="col-12 col-md-4 p-0">
           <span
             id={props.id}
             className="error-messege-for-admin text-danger"

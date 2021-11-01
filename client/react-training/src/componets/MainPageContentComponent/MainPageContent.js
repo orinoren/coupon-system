@@ -17,6 +17,9 @@ const MainPageContent = (props) => {
     (state) => state.uiRootReducer.showOpForAdminReducer
   );
 
+  const purchaseSucceed = useSelector(
+    (state) => state.customerRootReducer.purchaseCouponReducer.purchaseSucceed
+  );
   const showCustomerCoupons = useSelector(
     (state) =>
       state.uiRootReducer.showCustomerCouponsReducer.showCustomerCoupons
@@ -47,13 +50,20 @@ const MainPageContent = (props) => {
     ) {
       if (userDetails.role === "CUSTOMER") {
         dispatch(getAllCustomerCouponsAction());
+        dispatch(getAllCouponsAction());
       }
-      dispatch(getAllCouponsAction());
     } else {
       dispatch(getAllCouponsAction());
     }
     return () => {};
-  }, [addedCoupon, updatedCoupon, deletedCoupon, userDetails, dispatch]);
+  }, [
+    addedCoupon,
+    updatedCoupon,
+    deletedCoupon,
+    purchaseSucceed,
+    userDetails,
+    dispatch,
+  ]);
   return (
     <div className="mt-2 mt-md-4">
       <div className="row m-0 m-md-1  main-content-top-margin">

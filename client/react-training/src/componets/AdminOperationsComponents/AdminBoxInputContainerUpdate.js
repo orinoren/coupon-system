@@ -7,9 +7,6 @@ const AdminBoxInputContainerUpdate = (props) => {
   const handleOnFocusInput = () => {
     if (showOp.companyOp) {
       document.getElementById(
-        "company-update-name-" + props.idSuffix
-      ).textContent = "";
-      document.getElementById(
         "company-update-email-" + props.idSuffix
       ).textContent = "";
       document.getElementById(
@@ -52,7 +49,7 @@ const AdminBoxInputContainerUpdate = (props) => {
             autoComplete="off"
           />
         </div>
-        <div className="col-4 p-0">
+        <div className="col-12 col-md-4 p-0">
           <span
             id={props.idPrefix + props.idSuffix}
             className="text-danger"
