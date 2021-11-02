@@ -27,7 +27,6 @@ const Main = () => {
         <div className="row m-0 p-0 m-md-1 p-md-1 ">
           <MainSearchForm placeholder={"Search coupon..."}></MainSearchForm>
         </div>
-
         <div>
           {showCart ? <Cart cartCouponList={cartCouponsContent}></Cart> : ""}
         </div>

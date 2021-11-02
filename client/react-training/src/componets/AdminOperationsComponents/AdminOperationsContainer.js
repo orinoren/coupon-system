@@ -5,10 +5,6 @@ import { useState, useEffect } from "react";
 import AdminCustomerBox from "./AdminCustomerBox";
 
 const AdminOperations = () => {
-  const boxKind = useSelector(
-    (state) => state.uiRootReducer.adminOpBoxTypeReducer.typeOfBox
-  );
-
   const showOp = useSelector(
     (state) => state.uiRootReducer.showOpForAdminReducer
   );
@@ -58,12 +54,12 @@ const AdminOperations = () => {
         <div className="row justify-content-center ">
           <div className="col-12">
             <div>
-              {addModeCompanyShowBox && boxKind === "company" ? (
+              {addModeCompanyShowBox && showOp.companyOp ? (
                 <AdminCompanyBox addCompanyMode={true} />
               ) : (
                 " "
               )}
-              {addModeCustomerShowBox && boxKind === "customer" ? (
+              {addModeCustomerShowBox && showOp.customerOp ? (
                 <AdminCustomerBox addCustomerMode={true} />
               ) : (
                 " "

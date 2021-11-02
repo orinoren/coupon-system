@@ -1,9 +1,3 @@
-export const adminOperationsBoxState = (kind) => {
-  return {
-    type: "ADMIN-OPERATIONS-BOX-STATE",
-    payload: kind,
-  };
-};
 export const adminCompanyAddMode = () => {
   return {
     type: "ADMIN-COMPANY-ADD-MODE",

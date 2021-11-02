@@ -13,10 +13,6 @@ import AdminBoxInputContainerAdd from "./AdminBoxInputContainerAdd";
 import AdminBoxInputContainerUpdate from "./AdminBoxInputContainerUpdate";
 import AdminBoxButtons from "./AdminBoxButtons";
 const AdminCompanyBox = (props) => {
-  const boxKind = useSelector(
-    (state) => state.uiRootReducer.adminOpBoxTypeReducer.typeOfBox
-  );
-
   const showOp = useSelector(
     (state) => state.uiRootReducer.showOpForAdminReducer
   );

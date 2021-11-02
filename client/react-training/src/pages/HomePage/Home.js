@@ -40,7 +40,7 @@ const Home = () => {
         </div>
         <div className="col-md-4 col-lg-7 mt-3 justify-self-center ">
           <div className="row justify-content-center">
-            {userDetails.logged ? (
+            {userDetails.isLogged ? (
               <button
                 onClick={() => handleGoToWebstieBtnClicked()}
                 className="btn home-login-btn 

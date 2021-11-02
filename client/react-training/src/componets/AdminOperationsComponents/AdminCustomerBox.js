@@ -13,10 +13,6 @@ import {
 } from "../../actions/actions-for-ui/action-for-ui";
 import { adminUpdateCustomerAction } from "../../actions/actions-for-admin/actions-for-admin-for-customer/adminUpdateCustomerAction";
 const AdminCustomerBox = (props) => {
-  const boxKind = useSelector(
-    (state) => state.uiRootReducer.adminOpBoxTypeReducer.typeOfBox
-  );
-
   const showOp = useSelector(
     (state) => state.uiRootReducer.showOpForAdminReducer
   );

@@ -1,16 +1,3 @@
-const initiatlState = {
-  typeOfBox: "",
-};
-export const adminOpBoxTypeReducer = (state = initiatlState, action) => {
-  switch (action.type) {
-    case "ADMIN-OPERATIONS-BOX-STATE":
-      return { ...state, typeOfBox: action.payload };
-
-    default:
-      return state;
-  }
-};
-//----------------------------------------------------------------
 const addMode = {
   addCompanyMode: false,
   addCustomerMode: false,

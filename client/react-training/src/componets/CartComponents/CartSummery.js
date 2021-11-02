@@ -24,7 +24,7 @@ const CartSummery = () => {
   const dispatch = useDispatch();
 
   const handlePurchaseBtnClicked = () => {
-    if (!loginDetails.logged) {
+    if (!loginDetails.isLogged) {
       history.push("/login");
       dispatch(resetUserModeAction());
     } else {

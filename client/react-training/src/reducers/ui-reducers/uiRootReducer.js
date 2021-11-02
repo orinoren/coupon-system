@@ -2,7 +2,6 @@ import { combineReducers } from "redux";
 
 import {
   companySubmitCouponReducer,
-  adminOpBoxTypeReducer,
   adminAddModeOpReducer,
   adminUpdateModeOpReducer,
   companyUpdateCouponModeReducer,
@@ -20,7 +19,6 @@ import {
 } from "./adminOpBoxTypeReducer";
 
 const uiRootReducer = combineReducers({
-  adminOpBoxTypeReducer,
   adminAddModeOpReducer,
   adminUpdateModeOpReducer,
   companySubmitCouponReducer,

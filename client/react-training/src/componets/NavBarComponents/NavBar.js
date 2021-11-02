@@ -12,7 +12,6 @@ import {
   companyCouponResetUpdateModeAction,
   resetSearchModeAction,
   resetUserModeAction,
-  adminOperationsBoxState,
   cartResetShowViewAction,
   showCompanyOpAction,
   showCustomerOpAction,
@@ -85,17 +84,16 @@ const NavBar = () => {
           </div>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav m-0 me-md-auto mb-2 mb-lg-0">
-              {loginDetails.logged ? (
+              {loginDetails.isLogged ? (
                 <li className="nav-item nav-link active nav-li ">Home</li>
               ) : (
                 ""
               )}
-              {loginDetails.logged ? (
+              {loginDetails.isLogged ? (
                 <li className="nav-item nav-link nav-li">
                   {loginDetails.role === "ADMIN" ? (
                     <span
                       onClick={() => {
-                        dispatch(adminOperationsBoxState("customer"));
                         dispatch(showCustomerOpAction());
                       }}
                     >
@@ -118,12 +116,11 @@ const NavBar = () => {
               ) : (
                 ""
               )}
-              {loginDetails.logged ? (
+              {loginDetails.isLogged ? (
                 <li className="nav-item nav-link nav-li">
                   {loginDetails.role === "ADMIN" ? (
                     <span
                       onClick={() => {
-                        dispatch(adminOperationsBoxState("company"));
                         dispatch(showCompanyOpAction());
                       }}
                     >
@@ -161,7 +158,7 @@ const NavBar = () => {
             )}
             <form className="nav-item d-flex pt-4 ">
               <button className="btn btn-outline-success" type="button">
-                {loginDetails.logged ? (
+                {loginDetails.isLogged ? (
                   <div onClick={() => handleLogoutBtnClicked()}>Log out</div>
                 ) : (
                   <div onClick={() => handleLoginBtnClicked()}>Login</div>

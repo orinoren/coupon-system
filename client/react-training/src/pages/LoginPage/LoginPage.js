@@ -65,7 +65,7 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (loginAttempt) {
-      if (userDetails.logged) {
+      if (userDetails.isLogged) {
         if (userDetails.role === "ADMIN") {
           dispatch(resetUserModeAction());
           history.push("/admin");
