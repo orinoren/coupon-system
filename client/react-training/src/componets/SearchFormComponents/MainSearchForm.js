@@ -5,6 +5,13 @@ import { searchModeAction } from "../../actions/actions-for-ui/action-for-ui";
 import { useRef } from "react";
 import SortBox from "./SortBox";
 import { useState } from "react";
+import {
+  checkIfSearchWithSort,
+  getAdminSearchResultForCompanies,
+  getAdminSearchResultForCustomers,
+  getSearchResultCouponList,
+  getSortedSearchResultCouponList,
+} from "./MainSearchFormFunctions";
 const MainSearchForm = (props) => {
   const dispatch = useDispatch();
 
@@ -18,7 +25,7 @@ const MainSearchForm = (props) => {
   const allCoupons = useSelector(
     (state) => state.getAllCouponsReducer.allCoupons
   );
-  const showOp = useSelector(
+  const showOperationsFor = useSelector(
     (state) => state.uiRootReducer.showOpForAdminReducer
   );
   const allCompanyCoupons = useSelector(
@@ -28,114 +35,57 @@ const MainSearchForm = (props) => {
   const userDetails = useSelector((state) => state.authReducer);
 
   const searchInput = useRef();
+
   const handleSearchBtnClicked = () => {
     dispatch(searchModeAction());
-    let isSearchWithSort = false;
-    const maxPrice = document.getElementById("max-price-input")?.value;
-    const checkedInputs = [];
-    const sortInputs = document.querySelectorAll(".sort-input");
-    sortInputs.forEach((input) =>
-      input.checked ? (isSearchWithSort = true) : ""
-    );
+    let { isSearchWithSort, checkedCategoryInputs } = checkIfSearchWithSort();
+
     if (isSearchWithSort) {
-      sortInputs.forEach((input) => {
-        if (input.checked) {
-          checkedInputs.push(input.id);
-        }
-      });
-      if (userDetails.role === "COMPANY") {
-        const searchResultCompanyCouponsList = allCompanyCoupons.filter(
-          (coupon) =>
-            coupon.title
-              .toLowerCase()
-              .includes(searchInput.current.value.toLowerCase()) &&
-            checkedInputs.includes(coupon.category_id) &&
-            coupon.price <= maxPrice
-        );
-
-        dispatch({
-          type: "SEARCH-RESULT-COUPON-LIST",
-          payload: searchResultCompanyCouponsList,
-        });
-      } else {
-        const searchResultCouponsList = allCoupons.filter(
-          (coupon) =>
-            coupon.title
-              .toLowerCase()
-              .includes(searchInput.current.value.toLowerCase()) &&
-            checkedInputs.includes(coupon.category_id + "") &&
-            coupon.price <= maxPrice
-        );
-
-        dispatch({
-          type: "SEARCH-RESULT-COUPON-LIST",
-          payload: searchResultCouponsList,
-        });
-      }
+      const maxPrice = document.getElementById("max-price-input")?.value;
+      getSortedSearchResultCouponList(
+        allCompanyCoupons,
+        allCoupons,
+        searchInput,
+        checkedCategoryInputs,
+        maxPrice,
+        userDetails.role,
+        dispatch
+      );
       setShowSortBox(false);
-      /**/
     } else {
-      if (userDetails.role === "ADMIN") {
-        if (showOp.companyOp) {
-          const searchResultCompanyList = allCompanies.filter((company) =>
-            company.name
-              .toLowerCase()
-              .includes(searchInput.current.value.toLowerCase())
+      //search without sort
+      switch (userDetails.role) {
+        case "ADMIN":
+          if (showOperationsFor.companyOp) {
+            getAdminSearchResultForCompanies(
+              allCompanies,
+              searchInput,
+              dispatch
+            );
+          } else if (showOperationsFor.customerOp) {
+            getAdminSearchResultForCustomers(
+              allCustomers,
+              searchInput,
+              dispatch
+            );
+          } else {
+            getSearchResultCouponList(allCoupons, searchInput, dispatch);
+          }
+          break;
+        case "COMPANY":
+          const searchResultCompanyCouponsList = getSearchResultCouponList(
+            allCompanyCoupons,
+            searchInput,
+            dispatch
           );
-          dispatch({
-            type: "SEARCH-RESULT-COMAPNY-LIST",
-            payload: searchResultCompanyList,
-          });
-        } else if (showOp.customerOp) {
-          const searchResultCustomerList = allCustomers.filter(
-            (customer) =>
-              customer.first_name
-                .toLowerCase()
-                .includes(searchInput.current.value.toLowerCase()) ||
-              customer.last_name
-                .toLowerCase()
-                .includes(searchInput.current.value.toLowerCase())
+          break;
+        default:
+          const searchResultCouponsList = getSearchResultCouponList(
+            allCoupons,
+            searchInput,
+            dispatch
           );
-
-          dispatch({
-            type: "SEARCH-RESULT-CUSTOMER-LIST",
-            payload: searchResultCustomerList,
-          });
-        } else {
-          const searchResultCouponsList = allCoupons.filter((coupon) =>
-            coupon.title
-              .toLowerCase()
-              .includes(searchInput.current.value.toLowerCase())
-          );
-
-          dispatch({
-            type: "SEARCH-RESULT-COUPON-LIST",
-            payload: searchResultCouponsList,
-          });
-        }
-      } else if (userDetails.role === "COMPANY") {
-        const searchResultCompanyCouponsList = allCompanyCoupons.filter(
-          (coupon) =>
-            coupon.title
-              .toLowerCase()
-              .includes(searchInput.current.value.toLowerCase())
-        );
-
-        dispatch({
-          type: "SEARCH-RESULT-COUPON-LIST",
-          payload: searchResultCompanyCouponsList,
-        });
-      } else {
-        const searchResultCouponsList = allCoupons.filter((coupon) =>
-          coupon.title
-            .toLowerCase()
-            .includes(searchInput.current.value.toLowerCase())
-        );
-
-        dispatch({
-          type: "SEARCH-RESULT-COUPON-LIST",
-          payload: searchResultCouponsList,
-        });
+          break;
       }
     }
   };
@@ -181,7 +131,7 @@ const MainSearchForm = (props) => {
             className="search-icon"
             onClick={() => handleSearchBtnClicked()}
           >
-            <i class="fas fa-search"></i>
+            <i className="fas fa-search"></i>
           </span>
         </div>
       </form>

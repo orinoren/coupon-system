@@ -2,7 +2,7 @@
 
 # useSelectors :
 
-1. `showOperationsFor` : determain of which operations to show for customers or companies .
+1. `showOperationsFor` : determine of which operations to show for customers or companies .
 
 2. `addedCompany`/`addedCustomer`, `updatedCompany`/`updatedCustomer`,
    `deletedCompany`/`deletedCustomer` :
@@ -17,11 +17,11 @@
 
 ## useEffect :
 
-First useEffect : checking on every change of loginDetails.isLogged or loginDetails.role
+`First useEffect` : checking on every change of loginDetails.isLogged or loginDetails.role
 if isLogged is true and loginDetails.role is ADMIN if one of the condition
 is not satasfied useHistory routing the user to the Home page
 
-Second useEffect : on every change of succesfull addedCompany/addedCustomer,
+`Second useEffect` : on every change of succesfull addedCompany/addedCustomer,
 updatedCompany/updatedCustomer, deletedCompany/deletedCustomer
 getting all companies/customers from the databse
 and force rerender every time a successfull operation been made
@@ -33,7 +33,7 @@ for customer search or company search or coupon search
 
 `getOperationsButtonForCompany` / `getOperationsButtonForCustomer` :
 using the showOperationsFor to force change of the button
-determain by showOperationsFor if showOperationsFor.company/customer
+determine by showOperationsFor if showOperationsFor.company/customer
 the button wiil be for adding a company/customer
 if not so the button will change to company/customer opertaions
 
@@ -44,7 +44,7 @@ button to appear
 
 getAllCustomerOrCompaniesForOpertions:
 returns <AdminOperations/> that conatins conatainer of
-all the customers/companies or nothing determain by showOperationsFor
+all the customers/companies or nothing determine by showOperationsFor
 
 # ---
 
