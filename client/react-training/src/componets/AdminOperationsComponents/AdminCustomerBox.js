@@ -3,30 +3,31 @@ import "./AdminOperations.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useRef, useState } from "react";
 import { adminAddCustomerAction } from "../../actions/actions-for-admin/actions-for-admin-for-customer/adminAddCustomerAction";
-import { adminDeleteCustomerAction } from "../../actions/actions-for-admin/actions-for-admin-for-customer/adminDeleteCustomerAction";
-import AdminBoxInputContainerAdd from "./AdminBoxInputContainerAdd";
-import AdminBoxInputContainerUpdate from "./AdminBoxInputContainerUpdate";
 import AdminBoxButtons from "./AdminBoxButtons";
 import {
   adminResetAddMode,
   adminCustomerUpdateMode,
 } from "../../actions/actions-for-ui/action-for-ui";
-import { adminUpdateCustomerAction } from "../../actions/actions-for-admin/actions-for-admin-for-customer/adminUpdateCustomerAction";
+import {
+  customerValidationToAdd,
+  customerValidationToUpdate,
+  dispatchDeletedCustomer,
+  dispatchUpdatedCustomer,
+  getCustomerBoxFunc,
+  getCustomerBoxToAddFunc,
+  getCustomerBoxToUpdateFunc,
+} from "./AdminOperationsFunctions";
 const AdminCustomerBox = (props) => {
-  const showOp = useSelector(
-    (state) => state.uiRootReducer.showOpForAdminReducer
-  );
-  const searchMode = useSelector(
+  const isSearchMode = useSelector(
     (state) => state.uiRootReducer.searchModeReducer.searchMode
   );
   const [updateMode, setUpdateMode] = useState(false);
   const dispatch = useDispatch();
-  const firstName = useRef();
-  const lastName = useRef();
-  const email = useRef();
-  const password = useRef();
+  const firstNameRef = useRef();
+  const lastNameRef = useRef();
+  const emailRef = useRef();
+  const passwordRef = useRef();
 
-  const [idState, setIdState] = useState(props.id);
   const [firstNameState, setFirstNameState] = useState(props.firstName);
   const [lastNameState, setLastNameState] = useState(props.lastName);
   const [emailState, setEmailState] = useState(props.email);
@@ -34,75 +35,44 @@ const AdminCustomerBox = (props) => {
 
   const submit = () => {
     if (!updateMode) {
-      if (firstName.current.value === "") {
-        document.getElementById("customer-add-first-name").textContent =
-          "please enter first name";
-      } else if (lastName.current.value === "") {
-        document.getElementById("customer-add-last-name").textContent =
-          "please enter last name";
-      } else if (email.current.value === "") {
-        document.getElementById("customer-add-email").textContent =
-          "please enter email";
-      } else if (!email.current.value.includes("@")) {
-        document.getElementById("customer-add-email").textContent =
-          "@ is missing ";
-      } else if (password.current.value === "") {
-        document.getElementById("customer-add-password").textContent =
-          "please enter password";
-      } else {
+      const isAddValid = customerValidationToAdd(
+        firstNameRef,
+        lastNameRef,
+        emailRef,
+        passwordRef
+      );
+      if (isAddValid) {
         const customerObj = {
-          first_name: firstName.current.value,
-          last_name: lastName.current.value,
-          email: email.current.value,
-          password: password.current.value,
+          first_name: firstNameRef.current.value,
+          last_name: lastNameRef.current.value,
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
         };
         dispatch(adminAddCustomerAction(customerObj));
         dispatch(adminResetAddMode());
       }
     } else {
-      if (firstName.current.value === "") {
-        document.getElementById(
-          "customer-update-first-name-" + props.id
-        ).textContent = "please enter first name";
-      } else if (lastName.current.value === "") {
-        document.getElementById(
-          "customer-update-last-name-" + props.id
-        ).textContent = "please enter last name";
-      } else if (email.current.value === "") {
-        document.getElementById(
-          "customer-update-email-" + props.id
-        ).textContent = "please enter email";
-      } else if (!email.current.value.includes("@")) {
-        document.getElementById(
-          "customer-update-email-" + props.id
-        ).textContent = "@ is missing ";
-      } else if (password.current.value === "") {
-        document.getElementById(
-          "customer-update-password-" + props.id
-        ).textContent = "please enter password";
-      } else {
-        setFirstNameState(firstName.current.value);
-        setLastNameState(lastName.current.value);
-        setEmailState(email.current.value);
-        setPasswordState(password.current.value);
+      const isUpdateValid = customerValidationToUpdate(
+        firstNameRef,
+        lastNameRef,
+        emailRef,
+        passwordRef,
+        props.id
+      );
+      if (isUpdateValid) {
+        setFirstNameState(firstNameRef.current.value);
+        setLastNameState(lastNameRef.current.value);
+        setEmailState(emailRef.current.value);
+        setPasswordState(passwordRef.current.value);
         const customerObj = {
-          id: idState,
-          first_name: firstName.current.value,
-          last_name: lastName.current.value,
-          email: email.current.value,
-          password: password.current.value,
+          id: props.id,
+          first_name: firstNameRef.current.value,
+          last_name: lastNameRef.current.value,
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
         };
 
-        if (showOp.customerOp && searchMode) {
-          dispatch({
-            type: "UPDATE-FROM-SEARCH-RESULT-CUSTOMER-LIST",
-            payload: {
-              customerObj: customerObj,
-            },
-          });
-        }
-        dispatch(adminUpdateCustomerAction(customerObj));
-
+        dispatchUpdatedCustomer(customerObj, isSearchMode, dispatch);
         setUpdateMode(false);
       }
     }
@@ -110,19 +80,39 @@ const AdminCustomerBox = (props) => {
 
   const handleUpdateClicked = () => {
     dispatch(adminCustomerUpdateMode());
-
     setUpdateMode(true);
   };
 
-  const handleDeleteClicked = () => {
-    if (showOp.customerOp && searchMode) {
-      dispatch({
-        type: "DELETE-FROM-SEARCH-RESULT-CUSTOMER-LIST",
-        payload: props.id,
-      });
-    }
-    dispatch(adminDeleteCustomerAction(idState));
+  const handleDeleteClicked = (idToDelete) => {
+    dispatchDeletedCustomer(idToDelete, isSearchMode, dispatch);
   };
+  const getCustomerBoxToAdd = () =>
+    getCustomerBoxToAddFunc(firstNameRef, lastNameRef, emailRef, passwordRef);
+
+  const getCustomerBoxToUpdate = () =>
+    getCustomerBoxToUpdateFunc(
+      setFirstNameState,
+      firstNameState,
+      firstNameRef,
+      props.id,
+      setLastNameState,
+      lastNameState,
+      lastNameRef,
+      setEmailState,
+      emailState,
+      emailRef,
+      setPasswordState,
+      passwordState,
+      passwordRef
+    );
+
+  const getCustomerBox = () =>
+    getCustomerBoxFunc(
+      firstNameState,
+      lastNameState,
+      emailState,
+      passwordState
+    );
 
   return (
     <div className="container-fluid p-0 p-sm-1 mt-2">
@@ -133,103 +123,11 @@ const AdminCustomerBox = (props) => {
               <div className="col-9">
                 <div className="container-fluid p-3">
                   <div className="row g-1 align-items-between">
-                    {props.addCustomerMode === true ? (
-                      <AdminBoxInputContainerAdd
-                        refTo={firstName}
-                        label={"First name :"}
-                        id="customer-add-first-name"
-                      ></AdminBoxInputContainerAdd>
-                    ) : updateMode ? (
-                      <AdminBoxInputContainerUpdate
-                        label={"First name :"}
-                        onChangeFunc={setFirstNameState}
-                        value={firstNameState}
-                        refTo={firstName}
-                        idPrefix={"customer-update-first-name-"}
-                        idSuffix={props.id}
-                      ></AdminBoxInputContainerUpdate>
-                    ) : (
-                      <div className="container-fluid p-0 m-0">
-                        <div className="row">
-                          <div className="col-12 ">
-                            <span>First name: {firstNameState}</span>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {props.addCustomerMode === true ? (
-                      <AdminBoxInputContainerAdd
-                        refTo={lastName}
-                        label={"Last name :"}
-                        id="customer-add-last-name"
-                      ></AdminBoxInputContainerAdd>
-                    ) : updateMode ? (
-                      <AdminBoxInputContainerUpdate
-                        label={"Last name :"}
-                        onChangeFunc={setLastNameState}
-                        value={lastNameState}
-                        refTo={lastName}
-                        idPrefix={"customer-update-last-name-"}
-                        idSuffix={props.id}
-                      ></AdminBoxInputContainerUpdate>
-                    ) : (
-                      <div className="container-fluid p-0 m-0">
-                        <div className="row">
-                          <div className="col-12 ">
-                            <span>Last name: {lastNameState}</span>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                    {props.addCustomerMode ? (
-                      <AdminBoxInputContainerAdd
-                        refTo={email}
-                        label={"Email :"}
-                        id="customer-add-email"
-                      ></AdminBoxInputContainerAdd>
-                    ) : updateMode ? (
-                      <AdminBoxInputContainerUpdate
-                        label={"Email :"}
-                        onChangeFunc={setEmailState}
-                        value={emailState}
-                        refTo={email}
-                        idPrefix={"customer-update-email-"}
-                        idSuffix={props.id}
-                      ></AdminBoxInputContainerUpdate>
-                    ) : (
-                      <div className="container-fluid p-0 m-0">
-                        <div className="row">
-                          <div className="col-12 ">
-                            <span>Email: {emailState}</span>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                    {props.addCustomerMode ? (
-                      <AdminBoxInputContainerAdd
-                        refTo={password}
-                        label={"Password :"}
-                        id="customer-add-password"
-                      ></AdminBoxInputContainerAdd>
-                    ) : updateMode ? (
-                      <AdminBoxInputContainerUpdate
-                        label={"Password :"}
-                        onChangeFunc={setPasswordState}
-                        value={passwordState}
-                        refTo={password}
-                        idPrefix={"customer-update-password-"}
-                        idSuffix={props.id}
-                      ></AdminBoxInputContainerUpdate>
-                    ) : (
-                      <div className="container-fluid p-0 m-0">
-                        <div className="row">
-                          <div className="col-12 ">
-                            <span>Password: {passwordState}</span>
-                          </div>
-                        </div>
-                      </div>
-                    )}
+                    {props.addCustomerMode
+                      ? getCustomerBoxToAdd()
+                      : updateMode
+                      ? getCustomerBoxToUpdate()
+                      : getCustomerBox()}
                   </div>
                 </div>
               </div>
@@ -240,6 +138,7 @@ const AdminCustomerBox = (props) => {
                   onClickSave={submit}
                   onClickUpdate={handleUpdateClicked}
                   onClickDelete={handleDeleteClicked}
+                  idToDelete={props.id}
                 ></AdminBoxButtons>
               </div>
             </div>
