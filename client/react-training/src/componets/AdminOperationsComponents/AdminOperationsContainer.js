@@ -3,9 +3,12 @@ import AdminCompanyBox from "./AdminCompanyBox";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import AdminCustomerBox from "./AdminCustomerBox";
-
+import {
+  getAllCompaniesBoxesFunc,
+  getAllCustomersBoxesFunc,
+} from "./AdminOperationsFunctions";
 const AdminOperations = () => {
-  const showOp = useSelector(
+  const showOperationsFor = useSelector(
     (state) => state.uiRootReducer.showOpForAdminReducer
   );
 
@@ -19,7 +22,7 @@ const AdminOperations = () => {
     (state) => state.uiRootReducer.searchModeReducer.searchMode
   );
 
-  const allCustomerSearchResult = useSelector(
+  const allCustomersSearchResult = useSelector(
     (state) => state.uiRootReducer.searchResultCustomerListReducer.customerList
   );
 
@@ -33,88 +36,42 @@ const AdminOperations = () => {
     (state) => state.uiRootReducer.adminAddModeOpReducer.addCustomerMode
   );
 
-  const [companyBoxContent, setCompanyBoxContent] = useState([...allCompanies]);
-  const [customerBoxContent, setCustomerBoxContent] = useState([
-    ...allCustomers,
-  ]);
+  const getAllCompaniesBoxes = () => {
+    return getAllCompaniesBoxesFunc(
+      searchMode,
+      allCompaniesSearchResult,
+      allCompanies
+    );
+  };
+  const getAllCustomersBoxes = () => {
+    return getAllCustomersBoxesFunc(
+      searchMode,
+      allCustomersSearchResult,
+      allCustomers
+    );
+  };
 
-  useEffect(() => {
-    setCompanyBoxContent([...allCompanies]);
-    setCustomerBoxContent([...allCustomers]);
-    return () => {};
-  }, [
-    allCompanies,
-    allCustomers,
-    allCompaniesSearchResult,
-    allCustomerSearchResult,
-  ]);
   return (
     <div>
       <div className="container-fluid bg-light mt-1 mt-md-5">
         <div className="row justify-content-center ">
           <div className="col-12">
             <div>
-              {addModeCompanyShowBox && showOp.companyOp ? (
+              {addModeCompanyShowBox && showOperationsFor.companyOp ? (
                 <AdminCompanyBox addCompanyMode={true} />
               ) : (
                 " "
               )}
-              {addModeCustomerShowBox && showOp.customerOp ? (
+              {addModeCustomerShowBox && showOperationsFor.customerOp ? (
                 <AdminCustomerBox addCustomerMode={true} />
               ) : (
                 " "
               )}
             </div>
             <div>
-              {showOp.companyOp
-                ? searchMode && showOp.companyOp
-                  ? allCompaniesSearchResult?.map((company) => {
-                      return (
-                        <AdminCompanyBox
-                          key={company.company_id}
-                          id={company.company_id}
-                          name={company.name}
-                          email={company.email}
-                          password={company.password}
-                        />
-                      );
-                    })
-                  : companyBoxContent.map((company) => {
-                      return (
-                        <AdminCompanyBox
-                          key={company.company_id}
-                          id={company.company_id}
-                          name={company.name}
-                          email={company.email}
-                          password={company.password}
-                        />
-                      );
-                    })
-                : showOp.customerOp && searchMode
-                ? allCustomerSearchResult?.map((customer) => {
-                    return (
-                      <AdminCustomerBox
-                        key={customer.id}
-                        id={customer.id}
-                        firstName={customer.first_name}
-                        lastName={customer.last_name}
-                        email={customer.email}
-                        password={customer.password}
-                      />
-                    );
-                  })
-                : customerBoxContent.map((customer) => {
-                    return (
-                      <AdminCustomerBox
-                        key={customer.id}
-                        id={customer.id}
-                        firstName={customer.first_name}
-                        lastName={customer.last_name}
-                        email={customer.email}
-                        password={customer.password}
-                      />
-                    );
-                  })}
+              {showOperationsFor.companyOp
+                ? getAllCompaniesBoxes()
+                : getAllCustomersBoxes()}
             </div>
           </div>
         </div>

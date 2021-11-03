@@ -1,11 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
 const AdminBoxInputContainerUpdate = (props) => {
-  const showOp = useSelector(
+  const showOperationsFor = useSelector(
     (state) => state.uiRootReducer.showOpForAdminReducer
   );
   const handleOnFocusInput = () => {
-    if (showOp.companyOp) {
+    if (showOperationsFor.companyOp) {
       document.getElementById(
         "company-update-email-" + props.idSuffix
       ).textContent = "";

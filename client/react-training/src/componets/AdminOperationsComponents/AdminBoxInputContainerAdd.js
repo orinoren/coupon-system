@@ -2,11 +2,11 @@ import React from "react";
 import "./AdminOperations.css";
 import { useSelector } from "react-redux";
 const AdminBoxInputContainerAdd = (props) => {
-  const showOp = useSelector(
+  const showOperationsFor = useSelector(
     (state) => state.uiRootReducer.showOpForAdminReducer
   );
   const handleOnFocusInput = () => {
-    if (showOp.companyOp) {
+    if (showOperationsFor.companyOp) {
       document.getElementById("company-add-name").textContent = "";
       document.getElementById("company-add-email").textContent = "";
       document.getElementById("company-add-password").textContent = "";
