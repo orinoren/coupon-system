@@ -79,7 +79,7 @@ const SortBox = () => {
                 onChange={(e) => handleMaxPriceInputChange(e)}
                 type="range"
                 min="0"
-                max="5000"
+                max="1000"
                 id="max-price-input"
               />
               <span className="px-2 fs-5 text-success fw-bold ">

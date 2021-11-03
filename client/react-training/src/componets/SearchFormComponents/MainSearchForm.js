@@ -7,15 +7,16 @@ import SortBox from "./SortBox";
 import { useState } from "react";
 import {
   checkIfSearchWithSort,
-  getAdminSearchResultForCompanies,
-  getAdminSearchResultForCustomers,
-  getSearchResultCouponList,
-  getSortedSearchResultCouponList,
+  dispatchAdminSearchResultForCompanies,
+  dispatchAdminSearchResultForCustomers,
+  dispatchSearchResultCouponList,
+  dispatchSortedSearchResultCouponList,
 } from "./MainSearchFormFunctions";
 const MainSearchForm = (props) => {
   const dispatch = useDispatch();
 
   const [showSortBox, setShowSortBox] = useState(false);
+
   const allCompanies = useSelector(
     (state) => state.adminRootReducer.adminGetAllCompaniesReducer.allCompanies
   );
@@ -32,59 +33,54 @@ const MainSearchForm = (props) => {
     (state) =>
       state.companyRootReducer.companyGetAllCouponsReducer.companyCoupons
   );
-  const userDetails = useSelector((state) => state.authReducer);
+  const loginDetails = useSelector((state) => state.authReducer);
 
   const searchInput = useRef();
 
-  const handleSearchBtnClicked = () => {
+  const handleSearchButtonClicked = () => {
     dispatch(searchModeAction());
     let { isSearchWithSort, checkedCategoryInputs } = checkIfSearchWithSort();
-
     if (isSearchWithSort) {
       const maxPrice = document.getElementById("max-price-input")?.value;
-      getSortedSearchResultCouponList(
+      dispatchSortedSearchResultCouponList(
         allCompanyCoupons,
         allCoupons,
         searchInput,
         checkedCategoryInputs,
         maxPrice,
-        userDetails.role,
+        loginDetails.role,
         dispatch
       );
       setShowSortBox(false);
     } else {
       //search without sort
-      switch (userDetails.role) {
+      switch (loginDetails.role) {
         case "ADMIN":
           if (showOperationsFor.companyOp) {
-            getAdminSearchResultForCompanies(
+            dispatchAdminSearchResultForCompanies(
               allCompanies,
               searchInput,
               dispatch
             );
           } else if (showOperationsFor.customerOp) {
-            getAdminSearchResultForCustomers(
+            dispatchAdminSearchResultForCustomers(
               allCustomers,
               searchInput,
               dispatch
             );
           } else {
-            getSearchResultCouponList(allCoupons, searchInput, dispatch);
+            dispatchSearchResultCouponList(allCoupons, searchInput, dispatch);
           }
           break;
         case "COMPANY":
-          const searchResultCompanyCouponsList = getSearchResultCouponList(
+          dispatchSearchResultCouponList(
             allCompanyCoupons,
             searchInput,
             dispatch
           );
           break;
         default:
-          const searchResultCouponsList = getSearchResultCouponList(
-            allCoupons,
-            searchInput,
-            dispatch
-          );
+          dispatchSearchResultCouponList(allCoupons, searchInput, dispatch);
           break;
       }
     }
@@ -93,7 +89,7 @@ const MainSearchForm = (props) => {
     <div
       onSubmit={(e) => {
         e.preventDefault();
-        handleSearchBtnClicked(e);
+        handleSearchButtonClicked(e);
       }}
       className="p-0 p-md-1 m-0 mt-2 mt-md-5"
     >
@@ -110,7 +106,7 @@ const MainSearchForm = (props) => {
         </div>
         <div className="d-none d-md-inline col-2 col-xl-1">
           <button
-            onClick={() => handleSearchBtnClicked()}
+            onClick={() => handleSearchButtonClicked()}
             className="btn my-main-search-button btn-outline-success w-75"
             type="button"
           >
@@ -129,7 +125,7 @@ const MainSearchForm = (props) => {
         <div className="col-1 p-1 text-center d-block d-md-none text-success border bg-light">
           <span
             className="search-icon"
-            onClick={() => handleSearchBtnClicked()}
+            onClick={() => handleSearchButtonClicked()}
           >
             <i className="fas fa-search"></i>
           </span>

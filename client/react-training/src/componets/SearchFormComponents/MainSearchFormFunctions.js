@@ -13,7 +13,7 @@ export const checkIfSearchWithSort = () => {
   return { isSearchWithSort, checkedCategoryInputs };
 };
 
-export const getSearchResultCouponList = (
+export const dispatchSearchResultCouponList = (
   couponList,
   searchInput,
   dispatch
@@ -27,7 +27,7 @@ export const getSearchResultCouponList = (
   });
 };
 
-export const getSortedSearchResultCouponList = (
+export const dispatchSortedSearchResultCouponList = (
   companyCouponList,
   couponList,
   searchInput,
@@ -65,7 +65,7 @@ export const getSortedSearchResultCouponList = (
     });
   }
 };
-export const getAdminSearchResultForCompanies = (
+export const dispatchAdminSearchResultForCompanies = (
   allCompanies,
   searchInput,
   dispatch
@@ -78,7 +78,7 @@ export const getAdminSearchResultForCompanies = (
     payload: searchResultCompanyList,
   });
 };
-export const getAdminSearchResultForCustomers = (
+export const dispatchAdminSearchResultForCustomers = (
   allCustomers,
   searchInput,
   dispatch

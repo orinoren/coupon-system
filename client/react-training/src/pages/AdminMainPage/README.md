@@ -11,7 +11,7 @@
    and assign in the dependency array of useEffect(seconed useEffect) to get all companies/customers
    from the databse and force rerender every time a successfull operation been made .
 
-3. `loginDetails` : contains all necessery details of the current login user
+3. `loginDetails` : contains all necessary details of the current login user
    and assign in the dependency array of useEffect(first useEffect) to force render in
    every change of loginDetails.isLogged or loginDetails.role
 
