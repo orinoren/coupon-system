@@ -38,3 +38,29 @@
 
 6. if the case is default so its must be Client or Guest `dispatchSearchResultCouponList()` on all coupons
    is called
+
+### `Main Search Form Functions`
+
+# Methods :
+
+1. `checkIfSearchWithSort` : checks if the search is with sort by iterating through all the input of the categories if the input is checked the id of input is
+   added to `checkedCategoryInputs` array and `isSearchWithSort` becomes true and returning the `checkedCategoryInputs` array and `isSearchWithSort`. else if no category input found as checked returning the `checkedCategoryInputs` empty array and `isSearchWithSort` as false.
+
+2. `dispatchSearchResultCouponList` :
+   filter the array by checking if the `searchInput`
+   is includes in coupon title and dispatch the result to `SEARCH-RESULT-COUPON-LIST` reducer
+
+3. `dispatchSortedSearchResultCouponList` :
+   #a. checks which is the current user role
+   #b. if role is COMPANY filter the array of the current company coupons that activate the search opertaion by checking if the `searchInput`
+   is includes in coupon title and if `checkedCategoryInputs` includes the coupon category and if `maxPriceInput` is less then or equal coupon price.
+   #c. dispatch the result to `SEARCH-RESULT-COUPON-LIST` reducer
+   #d. if role is not COMPANY filter the array of all coupons by same logic as #b and #c
+
+4. `dispatchAdminSearchResultForCompanies` :
+   filter the array of all Companies that company name includes the `searchInput`
+   and dispatch the result `SEARCH-RESULT-COMAPNY-LIST` reducer
+
+5. `dispatchAdminSearchResultForCustomers` :
+   filter the array of all Customer that customer first name or customer last name includes the `searchInput`
+   and dispatch the result `SEARCH-RESULT-CUSTOMER-LIST` reducer
