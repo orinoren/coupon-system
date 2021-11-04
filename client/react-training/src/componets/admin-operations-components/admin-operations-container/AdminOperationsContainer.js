@@ -1,7 +1,7 @@
 import React from "react";
-import AdminCompanyBox from "./admin-operation-box/AdminCompanyBox";
+import AdminCompanyBox from "../admin-operation-box/AdminCompanyBox";
 import { useSelector } from "react-redux";
-import AdminCustomerBox from "./admin-operation-box/AdminCustomerBox";
+import AdminCustomerBox from "../admin-operation-box/AdminCustomerBox";
 import {
   getAllCompaniesBoxesFunc,
   getAllCustomersBoxesFunc,

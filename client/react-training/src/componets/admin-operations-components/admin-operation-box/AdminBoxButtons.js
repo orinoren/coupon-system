@@ -1,5 +1,5 @@
 import React from "react";
-import "../../AdminOperations.css";
+import "../AdminOperations.css";
 const AdminBoxButtons = (props) => {
   return (
     <div className="container-fluid p-0 m-0 h-100">
