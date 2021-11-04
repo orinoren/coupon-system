@@ -97,42 +97,45 @@ export const getCompanyBoxFunc = (
   );
 };
 export const companyValidationToAdd = (companyName, email, password) => {
-  let isValid = true;
   if (companyName.current.value === "") {
     document.getElementById("company-add-name").textContent =
       "please enter name";
-    isValid = false;
-  } else if (email.current.value === "") {
+    return false;
+  }
+  if (email.current.value === "") {
     document.getElementById("company-add-email").textContent =
       "please enter email";
-    isValid = false;
-  } else if (!email.current.value.includes("@")) {
+    return false;
+  }
+  if (!email.current.value.includes("@")) {
     document.getElementById("company-add-email").textContent = "@ is missing ";
-    isValid = false;
-  } else if (password.current.value === "") {
+    return false;
+  }
+  if (password.current.value === "") {
     document.getElementById("company-add-password").textContent =
       "please enter password";
-    isValid = false;
+    return false;
   }
-  return isValid;
+  return true;
 };
 export const companyValidationToUpdate = (email, password, company_id) => {
-  let isValid = true;
   if (email.current.value === "") {
     document.getElementById("company-update-email-" + company_id).textContent =
       "please enter email";
-    isValid = false;
-  } else if (!email.current.value.includes("@")) {
+    return false;
+  }
+  if (!email.current.value.includes("@")) {
     document.getElementById("company-update-email-" + company_id).textContent =
       "@ is missing ";
-    isValid = false;
-  } else if (password.current.value === "") {
+    return false;
+  }
+  if (password.current.value === "") {
     document.getElementById(
       "company-update-password-" + company_id
     ).textContent = "please enter password";
-    isValid = false;
+    return false;
   }
-  return isValid;
+  return true;
 };
 export const dispatchUpdatedCompany = (companyObj, isSearchMode, dispatch) => {
   if (isSearchMode) {

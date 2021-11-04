@@ -8,28 +8,32 @@ export const customerValidationToAdd = (
   emailRef,
   passwordRef
 ) => {
-  let isValid = true;
   if (firstNameRef.current.value === "") {
     document.getElementById("customer-add-first-name").textContent =
       "please enter first name";
-    isValid = false;
-  } else if (lastNameRef.current.value === "") {
+    return false;
+  }
+  if (lastNameRef.current.value === "") {
     document.getElementById("customer-add-last-name").textContent =
       "please enter last name";
-    isValid = false;
-  } else if (emailRef.current.value === "") {
+    return false;
+  }
+  if (emailRef.current.value === "") {
     document.getElementById("customer-add-email").textContent =
       "please enter email";
-    isValid = false;
-  } else if (!emailRef.current.value.includes("@")) {
+    return false;
+  }
+  if (!emailRef.current.value.includes("@")) {
     document.getElementById("customer-add-email").textContent = "@ is missing ";
-    isValid = false;
-  } else if (passwordRef.current.value === "") {
+    return false;
+  }
+  if (passwordRef.current.value === "") {
     document.getElementById("customer-add-password").textContent =
       "please enter password";
-    isValid = false;
+    return false;
   }
-  return isValid;
+
+  return true;
 };
 export const customerValidationToUpdate = (
   firstNameRef,
@@ -38,34 +42,37 @@ export const customerValidationToUpdate = (
   passwordRef,
   customer_id
 ) => {
-  let isValid = true;
   if (firstNameRef.current.value === "") {
     document.getElementById(
       "customer-update-first-name-" + customer_id
     ).textContent = "please enter first name";
-    isValid = false;
-  } else if (lastNameRef.current.value === "") {
+    return false;
+  }
+  if (lastNameRef.current.value === "") {
     document.getElementById(
       "customer-update-last-name-" + customer_id
     ).textContent = "please enter last name";
-    isValid = false;
-  } else if (emailRef.current.value === "") {
+    return false;
+  }
+  if (emailRef.current.value === "") {
     document.getElementById(
       "customer-update-email-" + customer_id
     ).textContent = "please enter email";
-    isValid = false;
-  } else if (!emailRef.current.value.includes("@")) {
+    return false;
+  }
+  if (!emailRef.current.value.includes("@")) {
     document.getElementById(
       "customer-update-email-" + customer_id
     ).textContent = "@ is missing ";
-    isValid = false;
-  } else if (passwordRef.current.value === "") {
+    return false;
+  }
+  if (passwordRef.current.value === "") {
     document.getElementById(
       "customer-update-password-" + customer_id
     ).textContent = "please enter password";
-    isValid = false;
+    return false;
   }
-  return isValid;
+  return true;
 };
 export const dispatchUpdatedCustomer = (
   customerObj,

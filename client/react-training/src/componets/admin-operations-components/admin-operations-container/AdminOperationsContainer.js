@@ -17,7 +17,7 @@ const AdminOperationsContainer = () => {
   const allCustomers = useSelector(
     (state) => state.adminRootReducer.adminGetAllCustomersReducer.allCustomers
   );
-  const searchMode = useSelector(
+  const isSearchMode = useSelector(
     (state) => state.uiRootReducer.searchModeReducer.searchMode
   );
 
@@ -28,23 +28,23 @@ const AdminOperationsContainer = () => {
   const allCompaniesSearchResult = useSelector(
     (state) => state.uiRootReducer.searchResultCompanyListReducer.companyList
   );
-  const addModeCompanyShowBox = useSelector(
+  const showCompanyBoxToAdd = useSelector(
     (state) => state.uiRootReducer.adminAddModeOpReducer.addCompanyMode
   );
-  const addModeCustomerShowBox = useSelector(
+  const showCustomerBoxToAdd = useSelector(
     (state) => state.uiRootReducer.adminAddModeOpReducer.addCustomerMode
   );
 
   const getAllCompaniesBoxes = () => {
     return getAllCompaniesBoxesFunc(
-      searchMode,
+      isSearchMode,
       allCompaniesSearchResult,
       allCompanies
     );
   };
   const getAllCustomersBoxes = () => {
     return getAllCustomersBoxesFunc(
-      searchMode,
+      isSearchMode,
       allCustomersSearchResult,
       allCustomers
     );
@@ -56,12 +56,12 @@ const AdminOperationsContainer = () => {
         <div className="row justify-content-center ">
           <div className="col-12">
             <div>
-              {addModeCompanyShowBox && showOperationsFor.companyOp ? (
+              {showCompanyBoxToAdd && showOperationsFor.companyOp ? (
                 <AdminCompanyBox addCompanyMode={true} />
               ) : (
                 " "
               )}
-              {addModeCustomerShowBox && showOperationsFor.customerOp ? (
+              {showCustomerBoxToAdd && showOperationsFor.customerOp ? (
                 <AdminCustomerBox addCustomerMode={true} />
               ) : (
                 " "
