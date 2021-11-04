@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-const AdminBoxInputContainerUpdate = (props) => {
+const AdminBoxInputToUpdate = (props) => {
   const showOperationsFor = useSelector(
     (state) => state.uiRootReducer.showOpForAdminReducer
   );
@@ -60,4 +60,4 @@ const AdminBoxInputContainerUpdate = (props) => {
   );
 };
 
-export default AdminBoxInputContainerUpdate;
+export default AdminBoxInputToUpdate;

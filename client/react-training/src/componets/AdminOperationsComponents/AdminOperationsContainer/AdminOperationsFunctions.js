@@ -1,7 +1,7 @@
 import AdminCustomerBox from "../AdminOperationsContainer/AdminOperatisonBox/AdminCustomerBox";
 import AdminCompanyBox from "../AdminOperationsContainer/AdminOperatisonBox/AdminCompanyBox";
-import AdminBoxInputContainerAdd from "./AdminOperatisonBox/AdminBoxInputContainerAdd";
-import AdminBoxInputContainerUpdate from "./AdminOperatisonBox/AdminBoxInputContainerUpdate";
+import AdminBoxInputToAdd from "./AdminOperatisonBox/AdminBoxInputToAdd";
+import AdminBoxInputToUpdate from "./AdminOperatisonBox/AdminBoxInputToUpdate";
 import { adminUpdateCompanyAction } from "../../../actions/actions-for-admin/actions-for-admin-for-company/adminUpdateCompanyAction";
 import { adminDeleteCompanyAction } from "../../../actions/actions-for-admin/actions-for-admin-for-company/adminDeleteCompanyAction";
 import { adminUpdateCustomerAction } from "../../../actions/actions-for-admin/actions-for-admin-for-customer/adminUpdateCustomerAction";
@@ -73,22 +73,22 @@ export const getAllCustomersBoxesFunc = (
 export const getCompanyBoxToAddFunc = (companyName, emailRef, passwordRef) => {
   return (
     <div>
-      <AdminBoxInputContainerAdd
+      <AdminBoxInputToAdd
         refTo={companyName}
         label={"Name :"}
         id="company-add-name"
-      ></AdminBoxInputContainerAdd>
-      <AdminBoxInputContainerAdd
+      ></AdminBoxInputToAdd>
+      <AdminBoxInputToAdd
         refTo={emailRef}
         label={"Email :"}
         id="company-add-email"
-      ></AdminBoxInputContainerAdd>
+      ></AdminBoxInputToAdd>
 
-      <AdminBoxInputContainerAdd
+      <AdminBoxInputToAdd
         refTo={passwordRef}
         label={"Password :"}
         id="company-add-password"
-      ></AdminBoxInputContainerAdd>
+      ></AdminBoxInputToAdd>
     </div>
   );
 };
@@ -111,23 +111,23 @@ export const getCompanyBoxToUpdateFunc = (
           </div>
         </div>
       </div>
-      <AdminBoxInputContainerUpdate
+      <AdminBoxInputToUpdate
         label={"Email: "}
         onChangeFunc={setEmailState}
         value={emailState}
         refTo={emailRef}
         idPrefix={"company-update-email-"}
         idSuffix={id}
-      ></AdminBoxInputContainerUpdate>
+      ></AdminBoxInputToUpdate>
 
-      <AdminBoxInputContainerUpdate
+      <AdminBoxInputToUpdate
         label={"Password: "}
         onChangeFunc={setPasswordState}
         value={passwordState}
         refTo={passwordRef}
         idPrefix={"company-update-password-"}
         idSuffix={id}
-      ></AdminBoxInputContainerUpdate>
+      ></AdminBoxInputToUpdate>
     </div>
   );
 };
@@ -320,26 +320,26 @@ export const getCustomerBoxToAddFunc = (
 ) => {
   return (
     <div>
-      <AdminBoxInputContainerAdd
+      <AdminBoxInputToAdd
         refTo={firstNameRef}
         label={"First name :"}
         id="customer-add-first-name"
-      ></AdminBoxInputContainerAdd>
-      <AdminBoxInputContainerAdd
+      ></AdminBoxInputToAdd>
+      <AdminBoxInputToAdd
         refTo={lastNameRef}
         label={"Last name :"}
         id="customer-add-last-name"
-      ></AdminBoxInputContainerAdd>
-      <AdminBoxInputContainerAdd
+      ></AdminBoxInputToAdd>
+      <AdminBoxInputToAdd
         refTo={emailRef}
         label={"Email :"}
         id="customer-add-email"
-      ></AdminBoxInputContainerAdd>
-      <AdminBoxInputContainerAdd
+      ></AdminBoxInputToAdd>
+      <AdminBoxInputToAdd
         refTo={passwordRef}
         label={"Password :"}
         id="customer-add-password"
-      ></AdminBoxInputContainerAdd>
+      ></AdminBoxInputToAdd>
     </div>
   );
 };
@@ -360,38 +360,38 @@ export const getCustomerBoxToUpdateFunc = (
 ) => {
   return (
     <div>
-      <AdminBoxInputContainerUpdate
+      <AdminBoxInputToUpdate
         label={"First name :"}
         onChangeFunc={setFirstNameState}
         value={firstNameState}
         refTo={firstNameRef}
         idPrefix={"customer-update-first-name-"}
         idSuffix={id}
-      ></AdminBoxInputContainerUpdate>
-      <AdminBoxInputContainerUpdate
+      ></AdminBoxInputToUpdate>
+      <AdminBoxInputToUpdate
         label={"Last name :"}
         onChangeFunc={setLastNameState}
         value={lastNameState}
         refTo={lastNameRef}
         idPrefix={"customer-update-last-name-"}
         idSuffix={id}
-      ></AdminBoxInputContainerUpdate>
-      <AdminBoxInputContainerUpdate
+      ></AdminBoxInputToUpdate>
+      <AdminBoxInputToUpdate
         label={"Email :"}
         onChangeFunc={setEmailState}
         value={emailState}
         refTo={emailRef}
         idPrefix={"customer-update-email-"}
         idSuffix={id}
-      ></AdminBoxInputContainerUpdate>
-      <AdminBoxInputContainerUpdate
+      ></AdminBoxInputToUpdate>
+      <AdminBoxInputToUpdate
         label={"Password :"}
         onChangeFunc={setPasswordState}
         value={passwordState}
         refTo={passwordRef}
         idPrefix={"customer-update-password-"}
         idSuffix={id}
-      ></AdminBoxInputContainerUpdate>
+      ></AdminBoxInputToUpdate>
     </div>
   );
 };
