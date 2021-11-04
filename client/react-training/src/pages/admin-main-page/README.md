@@ -46,11 +46,11 @@ button to appear
 returns `<AdminOperationsConatiner/>` that conatins conatainer of
 all the customers/companies with controllers for operations or nothing determine by `showOperationsFor`
 
-# ---
+# -----------------------------
 
-#### `ADMIN MAIN FUNCTIONS`
+# `ADMIN MAIN FUNCTIONS`
 
-# Methods :
+## Methods :
 
 `getMainSearchFormForCustomer` :
 returns `<MainSearchForm/>` with placeholder of customer.
