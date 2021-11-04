@@ -1,6 +1,6 @@
 ### `Main Search Form`
 
-# useSelcetors :
+# useSelectors :
 
 1. `allCompanies`: contains all companies.
 2. `allCustomers`: conatines all customers.
