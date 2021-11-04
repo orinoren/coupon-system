@@ -17,34 +17,34 @@
 
 ## useEffect :
 
-`First useEffect` : checking on every change of loginDetails.isLogged or loginDetails.role
-if isLogged is true and loginDetails.role is ADMIN if one of the condition
-is not satasfied useHistory routing the user to the Home page
+1. `First useEffect` : checking on every change of loginDetails.isLogged or loginDetails.role
+   if isLogged is true and loginDetails.role is ADMIN if one of the condition
+   is not satasfied useHistory routing the user to the Home page
 
-`Second useEffect` : on every change of succesfull addedCompany/addedCustomer,
-updatedCompany/updatedCustomer, deletedCompany/deletedCustomer
-getting all companies/customers from the databse
-and force rerender every time a successfull operation been made
+2. `Second useEffect` : on every change of succesfull addedCompany/addedCustomer,
+   updatedCompany/updatedCustomer, deletedCompany/deletedCustomer
+   getting all companies/customers from the databse
+   and force rerender every time a successfull operation been made
 
 ## Methods :
 
-`getMainSearchForm` : using the `showOperationsFor` to determine if the search form is
-for customer search or company search or coupon search
+1. `getMainSearchForm` : using the `showOperationsFor` to determine if the search form is
+   for customer search or company search or coupon search
 
-`getOperationsButtonForCompany` / `getOperationsButtonForCustomer` :
-using the `showOperationsFor` to force change of the button
-determine by `showOperationsFor` if `showOperationsFor`.company/customer
-the button wiil be for adding a company/customer
-if not so the button will change to company/customer opertaions
+2. `getOperationsButtonForCompany` / `getOperationsButtonForCustomer` :
+   using the `showOperationsFor` to force change of the button
+   determine by `showOperationsFor` if `showOperationsFor`.company/customer
+   the button wiil be for adding a company/customer
+   if not so the button will change to company/customer opertaions
 
-`getCloseOperationsButton` : using the `showOperationsFor` to check if one of the
-`showOperationsFor` parameter customer or company
-is activated and making the close opertaions
-button to appear
+3. `getCloseOperationsButton` : using the `showOperationsFor` to check if one of the
+   `showOperationsFor` parameter customer or company
+   is activated and making the close opertaions
+   button to appear
 
-`getAllCustomerOrCompaniesForOpertions`:
-returns `<AdminOperationsConatiner/>` that conatins conatainer of
-all the customers/companies with controllers for operations or nothing determine by `showOperationsFor`
+4. `getAllCustomerOrCompaniesForOpertions`:
+   returns `<AdminOperationsConatiner/>` that conatins conatainer of
+   all the customers/companies with controllers for operations or nothing determine by `showOperationsFor`
 
 # -----------------------------
 
@@ -52,14 +52,16 @@ all the customers/companies with controllers for operations or nothing determine
 
 ## Methods :
 
-`getMainSearchFormForCustomer` :
-returns `<MainSearchForm/>` with placeholder of customer.
+1. `getMainSearchFormForCustomer` :
+   returns `<MainSearchForm/>` with placeholder of customer.
 
-`getMainSearchFormForCompany` :
-returns `<MainSearchForm/>` with placeholder of company.
+2. `getMainSearchFormForCompany` :
+   returns `<MainSearchForm/>` with placeholder of company.
 
-`getCloseOperationButtonFunc` :
-returns `<OpertaionsButton/>` with onClick that activate.
+3. `getCloseOperationButtonFunc` :
+   returns `<OpertaionsButton/>` with onClick that activate.
+
+#
 
 1. reset Add mode
 2. reset `showOperationsFor` -> to close the `<AdminOperationsContainer/>`
