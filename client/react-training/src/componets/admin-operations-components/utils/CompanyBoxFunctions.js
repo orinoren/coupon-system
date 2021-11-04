@@ -1,5 +1,5 @@
-import AdminBoxInputToAdd from "../AdminOperationsContainer/AdminOperatisonBox/AdminBoxInputToAdd";
-import AdminBoxInputToUpdate from "../AdminOperationsContainer/AdminOperatisonBox/AdminBoxInputToUpdate";
+import AdminBoxInputToAdd from "../admin-operations-container/admin-operation-box/AdminBoxInputToAdd";
+import AdminBoxInputToUpdate from "../admin-operations-container/admin-operation-box/AdminBoxInputToUpdate";
 import { adminUpdateCompanyAction } from "../../../actions/actions-for-admin/actions-for-admin-for-company/adminUpdateCompanyAction";
 import { adminDeleteCompanyAction } from "../../../actions/actions-for-admin/actions-for-admin-for-company/adminDeleteCompanyAction";
 

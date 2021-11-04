@@ -1,5 +1,5 @@
 import React from "react";
-import CouponCardList from "../../componets/CouponCardComponents/CouponCardList";
+import CouponCardList from "../../componets/coupon-card-components/CouponCardList";
 
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";

@@ -1,12 +1,12 @@
 import React from "react";
-import AdminCompanyBox from "../AdminOperationsContainer/AdminOperatisonBox/AdminCompanyBox";
+import AdminCompanyBox from "./admin-operation-box/AdminCompanyBox";
 import { useSelector } from "react-redux";
-import AdminCustomerBox from "../AdminOperationsContainer/AdminOperatisonBox/AdminCustomerBox";
+import AdminCustomerBox from "./admin-operation-box/AdminCustomerBox";
 import {
   getAllCompaniesBoxesFunc,
   getAllCustomersBoxesFunc,
 } from "../utils/AdminOperationsFunctions";
-const AdminOperations = () => {
+const AdminOperationsContainer = () => {
   const showOperationsFor = useSelector(
     (state) => state.uiRootReducer.showOpForAdminReducer
   );
@@ -79,4 +79,4 @@ const AdminOperations = () => {
   );
 };
 
-export default AdminOperations;
+export default AdminOperationsContainer;

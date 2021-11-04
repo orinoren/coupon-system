@@ -1,5 +1,5 @@
-import MainSearchForm from "../../componets/SearchFormComponents/MainSearchForm";
-import OperationButton from "../../componets/OperationsButtonComponents/OperationsButton";
+import MainSearchForm from "../../componets/search-form-components/MainSearchForm";
+import OperationButton from "../../componets/operations-button-components/OperationsButton";
 import {
   resetOpAction,
   showCompanyOpAction,

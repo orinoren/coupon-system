@@ -1,7 +1,7 @@
 import { adminUpdateCustomerAction } from "../../../actions/actions-for-admin/actions-for-admin-for-customer/adminUpdateCustomerAction";
 import { adminDeleteCustomerAction } from "../../../actions/actions-for-admin/actions-for-admin-for-customer/adminDeleteCustomerAction";
-import AdminBoxInputToAdd from "../AdminOperationsContainer/AdminOperatisonBox/AdminBoxInputToAdd";
-import AdminBoxInputToUpdate from "../AdminOperationsContainer/AdminOperatisonBox/AdminBoxInputToUpdate";
+import AdminBoxInputToAdd from "../admin-operations-container/admin-operation-box/AdminBoxInputToAdd";
+import AdminBoxInputToUpdate from "../admin-operations-container/admin-operation-box/AdminBoxInputToUpdate";
 export const customerValidationToAdd = (
   firstNameRef,
   lastNameRef,

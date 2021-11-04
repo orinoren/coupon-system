@@ -3,7 +3,7 @@ import "./CompanyMain.css";
 import CompanyOperations from "../../componets/CompanyOperationsComponents/CompanyOperations";
 import MainSearchForm from "../../componets/SearchFormComponents/MainSearchForm";
 import OperationButton from "../../componets/OperationsButtonComponents/OperationsButton";
-import MainPageContent from "../../componets/MainPageContentComponent/MainPageContent";
+import MainPageContent from "../../componets/main-page-content-component/MainPageContent";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { useEffect } from "react";

@@ -1,7 +1,7 @@
 import React from "react";
 import "./MainPage.css";
 import MainSearchForm from "../../componets/SearchFormComponents/MainSearchForm";
-import MainPageContent from "../../componets/MainPageContentComponent/MainPageContent";
+import MainPageContent from "../../componets/main-page-content-component/MainPageContent";
 import { useDispatch, useSelector } from "react-redux";
 import { guestOrCustomerModeAction } from "../../actions/actions-for-ui/action-for-ui";
 import { useEffect } from "react";

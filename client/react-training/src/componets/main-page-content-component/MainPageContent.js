@@ -1,7 +1,7 @@
 import React from "react";
 
 import "./MainPageContent.css";
-import CouponCardListSection from "../CouponCardComponents/CouponCardListSection";
+import CouponCardListSection from "../coupon-card-components/CouponCardListSection";
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";

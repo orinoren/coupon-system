@@ -1,5 +1,5 @@
 import React from "react";
-import MainPageContent from "../../componets/MainPageContentComponent/MainPageContent";
+import MainPageContent from "../../componets/main-page-content-component/MainPageContent";
 import PurchaseCouponSection from "../../componets/PurchaseOptionComponents/PurchaseCouponSection";
 import "./PurchaseOption.css";
 const PurchaseOption = () => {

@@ -43,7 +43,7 @@ is activated and making the close opertaions
 button to appear
 
 `getAllCustomerOrCompaniesForOpertions`:
-returns `<AdminOperations/>` that conatins conatainer of
+returns `<AdminOperationsConatiner/>` that conatins conatainer of
 all the customers/companies with controllers for operations or nothing determine by `showOperationsFor`
 
 # ---
@@ -62,7 +62,7 @@ returns `<MainSearchForm/>` with placeholder of company.
 returns `<OpertaionsButton/>` with onClick that activate.
 
 1. reset Add mode
-2. reset `showOperationsFor` -> to close the `<AdminOperations/>`
+2. reset `showOperationsFor` -> to close the `<AdminOperationsContainer/>`
 3. resetSearchModeAction -> to reset the search details for future opertions to start clean.
 
 `getOperationsButtonForCustomerFunc` :  
@@ -71,13 +71,13 @@ returns `<OpertaionsButton/>` with onClick that activate:
 
 1. `handleOnAddCustomerClicked` -> adding a form to enter a new customer
 2. `resetSearchModeAction` -> to reset the search details for future opertions to start clean.
-3. `showCustomerOpAction` -> to show `<AdminOperations/>` for Cusotmer
+3. `showCustomerOpAction` -> to show `<AdminOperationsContainer/>` for Cusotmer
 
 if false returns `<OpertaionsButton/>` with onClick that activate:
 
 1. `reset Add Mode`
 2. `resetSearchModeAction` -> to reset the search details for future opertions to start clean.
-3. `showCustomerOpAction` -> to show `<AdminOperations/>` for Cusotmer
+3. `showCustomerOpAction` -> to show `<AdminOperationsContainer/>` for Cusotmer
 
 `getOperationsButtonForCompanyFunc` :  
  checks if isCompanyMode if true
@@ -85,10 +85,10 @@ returns `<OpertaionsButton/>` with onClick that activate:
 
 1. `handleOnAddCompanyClicked` -> adding a form to enter a new company
 2. `resetSearchModeAction` -> to reset the search details for future opertions to start clean.
-3. `showCompanyOpAction` -> to show `<AdminOperations/>` for Company
+3. `showCompanyOpAction` -> to show `<AdminOperationsContainer/>` for Company
 
 if false returns `<OpertaionsButton/>` with onClick that activate:
 
 1. `reset Add Mode`
 2. `resetSearchModeAction` -> to reset the search details for future opertions to start clean.
-3. `showCompanyOpAction` -> to show `<AdminOperations/>` for Cusotmer
+3. `showCompanyOpAction` -> to show `<AdminOperationsContainer/>` for Cusotmer

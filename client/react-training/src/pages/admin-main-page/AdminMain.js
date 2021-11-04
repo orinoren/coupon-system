@@ -9,9 +9,9 @@ import {
 } from "./AdminMainFunctions";
 import { adminGetAllCustomersAction } from "../../actions/actions-for-admin/actions-for-admin-for-customer/adminGetAllCustomersActions";
 import { adminGetAllCompaniesAction } from "../../actions/actions-for-admin/actions-for-admin-for-company/adminGetAllCompaniesAction";
-import AdminOperations from "../../componets/AdminOperationsComponents/AdminOperationsContainer/AdminOperationsContainer";
-import MainSearchForm from "../../componets/SearchFormComponents/MainSearchForm";
-import MainPageContent from "../../componets/MainPageContentComponent/MainPageContent";
+import AdminOperationsContainer from "../../componets/admin-operations-components/admin-operations-container/AdminOperationsContainer";
+import MainSearchForm from "../../componets/search-form-components/MainSearchForm";
+import MainPageContent from "../../componets/main-page-content-component/MainPageContent";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -113,9 +113,13 @@ const AdminMain = () => {
 
   const getAllCustomerOrCompaniesForOpertions = () => {
     if (showOperationsFor.companyOp) {
-      return <AdminOperations type="company"></AdminOperations>;
+      return (
+        <AdminOperationsContainer type="company"></AdminOperationsContainer>
+      );
     } else if (showOperationsFor.customerOp) {
-      return <AdminOperations type="customer"></AdminOperations>;
+      return (
+        <AdminOperationsContainer type="customer"></AdminOperationsContainer>
+      );
     } else {
       return "";
     }
