@@ -16,7 +16,7 @@ import {
   getCompanyBoxFunc,
   getCompanyBoxToAddFunc,
   getCompanyBoxToUpdateFunc,
-} from "../AdminOperationsFunctions";
+} from "../../utils/CompanyBoxFunctions";
 const AdminCompanyBox = (props) => {
   const [emailState, setEmailState] = useState(props.email);
   const [passwordState, setPasswordState] = useState(props.password);

@@ -5,7 +5,7 @@ import AdminCustomerBox from "../AdminOperationsContainer/AdminOperatisonBox/Adm
 import {
   getAllCompaniesBoxesFunc,
   getAllCustomersBoxesFunc,
-} from "./AdminOperationsFunctions";
+} from "../utils/AdminOperationsFunctions";
 const AdminOperations = () => {
   const showOperationsFor = useSelector(
     (state) => state.uiRootReducer.showOpForAdminReducer
