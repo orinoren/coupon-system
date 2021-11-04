@@ -1,13 +1,13 @@
 import React from "react";
-import "./AdminOperations.css";
+import "../../AdminOperations.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useRef, useState } from "react";
-import { adminAddCustomerAction } from "../../actions/actions-for-admin/actions-for-admin-for-customer/adminAddCustomerAction";
+import { adminAddCustomerAction } from "../../../../actions/actions-for-admin/actions-for-admin-for-customer/adminAddCustomerAction";
 import AdminBoxButtons from "./AdminBoxButtons";
 import {
   adminResetAddMode,
   adminCustomerUpdateMode,
-} from "../../actions/actions-for-ui/action-for-ui";
+} from "../../../../actions/actions-for-ui/action-for-ui";
 import {
   customerValidationToAdd,
   customerValidationToUpdate,
@@ -16,7 +16,7 @@ import {
   getCustomerBoxFunc,
   getCustomerBoxToAddFunc,
   getCustomerBoxToUpdateFunc,
-} from "./AdminOperationsFunctions";
+} from "../AdminOperationsFunctions";
 const AdminCustomerBox = (props) => {
   const isSearchMode = useSelector(
     (state) => state.uiRootReducer.searchModeReducer.searchMode
@@ -34,24 +34,7 @@ const AdminCustomerBox = (props) => {
   const [passwordState, setPasswordState] = useState(props.password);
 
   const submit = () => {
-    if (!updateMode) {
-      const isAddValid = customerValidationToAdd(
-        firstNameRef,
-        lastNameRef,
-        emailRef,
-        passwordRef
-      );
-      if (isAddValid) {
-        const customerObj = {
-          first_name: firstNameRef.current.value,
-          last_name: lastNameRef.current.value,
-          email: emailRef.current.value,
-          password: passwordRef.current.value,
-        };
-        dispatch(adminAddCustomerAction(customerObj));
-        dispatch(adminResetAddMode());
-      }
-    } else {
+    if (updateMode) {
       const isUpdateValid = customerValidationToUpdate(
         firstNameRef,
         lastNameRef,
@@ -74,6 +57,23 @@ const AdminCustomerBox = (props) => {
 
         dispatchUpdatedCustomer(customerObj, isSearchMode, dispatch);
         setUpdateMode(false);
+      }
+    } else {
+      const isAddValid = customerValidationToAdd(
+        firstNameRef,
+        lastNameRef,
+        emailRef,
+        passwordRef
+      );
+      if (isAddValid) {
+        const customerObj = {
+          first_name: firstNameRef.current.value,
+          last_name: lastNameRef.current.value,
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
+        };
+        dispatch(adminAddCustomerAction(customerObj));
+        dispatch(adminResetAddMode());
       }
     }
   };

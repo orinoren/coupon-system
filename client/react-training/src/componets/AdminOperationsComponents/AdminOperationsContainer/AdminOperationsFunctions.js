@@ -1,11 +1,11 @@
-import AdminCustomerBox from "./AdminCustomerBox";
-import AdminCompanyBox from "./AdminCompanyBox";
-import AdminBoxInputContainerAdd from "./AdminBoxInputContainerAdd";
-import AdminBoxInputContainerUpdate from "./AdminBoxInputContainerUpdate";
-import { adminUpdateCompanyAction } from "../../actions/actions-for-admin/actions-for-admin-for-company/adminUpdateCompanyAction";
-import { adminDeleteCompanyAction } from "../../actions/actions-for-admin/actions-for-admin-for-company/adminDeleteCompanyAction";
-import { adminUpdateCustomerAction } from "../../actions/actions-for-admin/actions-for-admin-for-customer/adminUpdateCustomerAction";
-import { adminDeleteCustomerAction } from "../../actions/actions-for-admin/actions-for-admin-for-customer/adminDeleteCustomerAction";
+import AdminCustomerBox from "../AdminOperationsContainer/AdminOperatisonBox/AdminCustomerBox";
+import AdminCompanyBox from "../AdminOperationsContainer/AdminOperatisonBox/AdminCompanyBox";
+import AdminBoxInputContainerAdd from "./AdminOperatisonBox/AdminBoxInputContainerAdd";
+import AdminBoxInputContainerUpdate from "./AdminOperatisonBox/AdminBoxInputContainerUpdate";
+import { adminUpdateCompanyAction } from "../../../actions/actions-for-admin/actions-for-admin-for-company/adminUpdateCompanyAction";
+import { adminDeleteCompanyAction } from "../../../actions/actions-for-admin/actions-for-admin-for-company/adminDeleteCompanyAction";
+import { adminUpdateCustomerAction } from "../../../actions/actions-for-admin/actions-for-admin-for-customer/adminUpdateCustomerAction";
+import { adminDeleteCustomerAction } from "../../../actions/actions-for-admin/actions-for-admin-for-customer/adminDeleteCustomerAction";
 export const getAllCompaniesBoxesFunc = (
   isSearchMode,
   allCompaniesSearchResult,

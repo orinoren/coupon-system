@@ -83,8 +83,7 @@ const CouponCardListSection = (props) => {
                 className="main-page-see-less"
                 onClick={() => handleSeeLessClicked()}
               >
-                {" "}
-                less{" "}
+                less
               </span>
               {props.searchMode || props.showCustomerCoupons ? (
                 <i

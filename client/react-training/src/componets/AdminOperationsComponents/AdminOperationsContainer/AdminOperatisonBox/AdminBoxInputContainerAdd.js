@@ -1,5 +1,5 @@
 import React from "react";
-import "./AdminOperations.css";
+import "../../AdminOperations.css";
 import { useSelector } from "react-redux";
 const AdminBoxInputContainerAdd = (props) => {
   const showOperationsFor = useSelector(

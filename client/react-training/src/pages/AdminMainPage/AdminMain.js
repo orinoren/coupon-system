@@ -9,7 +9,7 @@ import {
 } from "./AdminMainFunctions";
 import { adminGetAllCustomersAction } from "../../actions/actions-for-admin/actions-for-admin-for-customer/adminGetAllCustomersActions";
 import { adminGetAllCompaniesAction } from "../../actions/actions-for-admin/actions-for-admin-for-company/adminGetAllCompaniesAction";
-import AdminOperations from "../../componets/AdminOperationsComponents/AdminOperationsContainer";
+import AdminOperations from "../../componets/AdminOperationsComponents/AdminOperationsContainer/AdminOperationsContainer";
 import MainSearchForm from "../../componets/SearchFormComponents/MainSearchForm";
 import MainPageContent from "../../componets/MainPageContentComponent/MainPageContent";
 import { useEffect } from "react";
