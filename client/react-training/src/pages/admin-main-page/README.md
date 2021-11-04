@@ -1,6 +1,6 @@
-#### `AdminMain PAGE`
+# `AdminMain PAGE`
 
-# useSelectors :
+## useSelectors :
 
 1. `showOperationsFor` : determine of which operations to show for customers or companies .
 
@@ -26,7 +26,7 @@ updatedCompany/updatedCustomer, deletedCompany/deletedCustomer
 getting all companies/customers from the databse
 and force rerender every time a successfull operation been made
 
-### Methods :
+## Methods :
 
 `getMainSearchForm` : using the `showOperationsFor` to determine if the search form is
 for customer search or company search or coupon search
