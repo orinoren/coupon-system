@@ -24,21 +24,37 @@ const CartSummery = () => {
   const dispatch = useDispatch();
 
   const handlePurchaseBtnClicked = () => {
-    if (!userDetails.isLogged) {
-      history.push("/login");
-      dispatch(resetUserModeAction());
-    } else {
+    if (userDetails.isLogged) {
       const couponsIdArr = [];
       for (let i = 0; i < couponsToPurchase.length; i++) {
-        const coupon = couponsToPurchase[i];
-        for (let j = 0; j < coupon.couponCartAmount; j++) {
-          couponsIdArr.push(coupon.coupon_id);
+        for (let j = 0; j < couponsToPurchase[i].couponCartAmount; j++) {
+          couponsIdArr.push(couponsToPurchase[i].coupon_id);
         }
       }
       dispatch(purchaseCouponAction(couponsIdArr));
       dispatch(resetCartAction());
       dispatch(resetCartNotificationAction());
+      return;
     }
+    history.push("/login");
+    dispatch(resetUserModeAction());
+  };
+  const getPurchaseMsg = () => {
+    if (couponPurchaseDetails.purchaseSucceed) {
+      return (
+        <span className="text-success fw-bold text-center">
+          Purchase made succesfully
+        </span>
+      );
+    }
+    if (couponPurchaseDetails.purchaseFailed) {
+      return (
+        <span className="text-success fw-bold text-center">
+          Purchase failed
+        </span>
+      );
+    }
+    return "";
   };
   return (
     <div>
@@ -67,17 +83,7 @@ const CartSummery = () => {
                     Purcahse
                   </div>
                 </div>
-                {couponPurchaseDetails.purchaseSucceed ? (
-                  <span className="text-success fw-bold text-center">
-                    Purchase made succesfully
-                  </span>
-                ) : couponPurchaseDetails.purchaseFailed ? (
-                  <span className="text-success fw-bold text-center">
-                    Purchase failed
-                  </span>
-                ) : (
-                  ""
-                )}
+                {getPurchaseMsg()}
               </div>
             </div>
           </div>
