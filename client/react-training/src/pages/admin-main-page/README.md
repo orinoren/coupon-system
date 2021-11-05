@@ -59,19 +59,19 @@
    returns `<MainSearchForm/>` with placeholder of company.
 
 3. `getCloseOperationButtonFunc` :
-   returns `<OpertaionsButton/>` with onClick that activate.
+   returns `<OpertaionsButton/>` with onClick that activate:
 
-- reset Add mode
-- reset `showOperationsFor` -> to close the `<AdminOperationsContainer/>`
-- resetSearchModeAction -> to reset the search details for future opertions to start clean.
+   - `resetAddMode`
+   - reset `showOperationsFor` -> to close the `<AdminOperationsContainer/>`
+   - `resetSearchModeAction` -> to reset the search details for future opertions to start clean.
 
 4. `getOperationsButtonForCustomerFunc` :  
     checks if isCustomerMode if true
    returns `<OpertaionsButton/>` with onClick that activate:
 
-5. `handleOnAddCustomerClicked` -> adding a form to enter a new customer
-6. `resetSearchModeAction` -> to reset the search details for future opertions to start clean.
-7. `showCustomerOpAction` -> to show `<AdminOperationsContainer/>` for Cusotmer
+- `handleOnAddCustomerClicked` -> adding a form to enter a new customer
+- `resetSearchModeAction` -> to reset the search details for future opertions to start clean.
+- `showCustomerOpAction` -> to show `<AdminOperationsContainer/>` for Cusotmer
 
 if false returns `<OpertaionsButton/>` with onClick that activate:
 
@@ -79,16 +79,16 @@ if false returns `<OpertaionsButton/>` with onClick that activate:
 - `resetSearchModeAction` -> to reset the search details for future opertions to start clean.
 - `showCustomerOpAction` -> to show `<AdminOperationsContainer/>` for Cusotmer
 
-8. `getOperationsButtonForCompanyFunc` :  
+5. `getOperationsButtonForCompanyFunc` :  
     checks if isCompanyMode if true
    returns `<OpertaionsButton/>` with onClick that activate:
 
-1. `handleOnAddCompanyClicked` -> adding a form to enter a new company
-1. `resetSearchModeAction` -> to reset the search details for future opertions to start clean.
-1. `showCompanyOpAction` -> to show `<AdminOperationsContainer/>` for Company
+- `handleOnAddCompanyClicked` -> adding a form to enter a new company
+- `resetSearchModeAction` -> to reset the search details for future opertions to start clean.
+- `showCompanyOpAction` -> to show `<AdminOperationsContainer/>` for Company
 
 if false returns `<OpertaionsButton/>` with onClick that activate:
 
-1. `reset Add Mode`
-2. `resetSearchModeAction` -> to reset the search details for future opertions to start clean.
-3. `showCompanyOpAction` -> to show `<AdminOperationsContainer/>` for Cusotmer
+- `reset Add Mode`
+- `resetSearchModeAction` -> to reset the search details for future opertions to start clean.
+- `showCompanyOpAction` -> to show `<AdminOperationsContainer/>` for Cusotmer

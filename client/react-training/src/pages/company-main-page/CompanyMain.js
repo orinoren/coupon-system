@@ -67,14 +67,7 @@ const CompanyMain = () => {
       </div>
 
       {companyCouponAddMode || companyCouponUpdateMode ? (
-        companyCouponUpdateMode ? (
-          <CompanyOperations
-            couponAddMode={companyCouponAddMode}
-            couponToUpdate={companyCouponToUpdateObj}
-          />
-        ) : (
-          <CompanyOperations></CompanyOperations>
-        )
+        <CompanyOperations></CompanyOperations>
       ) : (
         ""
       )}

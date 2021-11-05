@@ -5,9 +5,15 @@ import CompanyOperationsForm from "./CompanyOperationsForm";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import defaultImage from "../../images/defaultImage.jpg";
-import { companyResetSubmitCoupon } from "../../actions/actions-for-ui/action-for-ui";
+import { handleOnCouponChangeFunc } from "./utils/CompanyOperationsFunctions";
 
-const CompanyOperations = (props) => {
+const CompanyOperations = () => {
+  const [categoryName, setCategoryName] = useState("Category");
+
+  const [imageView, setImageView] = useState(defaultImage);
+
+  const dispatch = useDispatch();
+
   const companyCouponUpdateMode = useSelector(
     (state) => state.uiRootReducer.companyUpdateCouponModeReducer.updateMode
   );
@@ -20,16 +26,12 @@ const CompanyOperations = (props) => {
     (state) => state.uiRootReducer.companyAddCouponModeReducer.addMode
   );
 
-  const [couponObj, setCouponObj] = useState({
-    title: "Title",
-    category_id: 0,
-    description: "description",
-    startDate: "2021-10-15",
-    endDate: "2022-10-20",
-    amount: "1",
-    price: "1",
-    couponImage: defaultImage,
-  });
+  const submitMsgView = useSelector(
+    (state) =>
+      state.uiRootReducer.companySubmitCouponReducer.companySubmitCoupon
+  );
+
+  const [couponObj, setCouponObj] = useState({});
   useEffect(() => {
     if (companyCouponUpdateMode) {
       setCouponObj({
@@ -39,6 +41,7 @@ const CompanyOperations = (props) => {
       });
       setImageView("data:image/*;base64," + companyCouponToUpdateObj.image);
       setCategoryName(companyCouponToUpdateObj.category_id);
+      return;
     }
     if (companyCouponAddMode) {
       setCouponObj({
@@ -56,84 +59,19 @@ const CompanyOperations = (props) => {
     return () => {};
   }, [companyCouponToUpdateObj, companyCouponAddMode]);
 
-  const submitMsgView = useSelector(
-    (state) =>
-      state.uiRootReducer.companySubmitCouponReducer.companySubmitCoupon
-  );
-  const dispatch = useDispatch();
-
-  const [categoryName, setCategoryName] = useState("Category");
-
-  const [imageView, setImageView] = useState(defaultImage);
   //--------------------------------------------------------------------------
   const handleOnCouponChange = (e, property) => {
-    switch (property) {
-      case "title":
-        setCouponObj({ ...couponObj, title: e.target.value });
-        break;
-      case "category":
-        if (e.target.value !== 0 && e.target.value !== "Choose...") {
-          const categoryName = document.getElementById(e.target.value);
-          setCategoryName(categoryName.textContent);
-          setCouponObj({ ...couponObj, category_id: e.target.value });
-        }
-        break;
-      case "description":
-        setCouponObj({ ...couponObj, description: e.target.value });
-        break;
-      case "startDate":
-        setCouponObj({ ...couponObj, startDate: e.target.value });
-        break;
-      case "endDate":
-        setCouponObj({ ...couponObj, endDate: e.target.value });
-        break;
-      case "amount":
-        setCouponObj({ ...couponObj, amount: e.target.value });
-        break;
-      case "price":
-        setCouponObj({ ...couponObj, price: e.target.value });
-        break;
-      case "image":
-        if (e.target.files.length > 0) {
-          const src = URL.createObjectURL(e.target.files[0]);
-          setImageView(src);
-          setCouponObj({
-            ...couponObj,
-            image: e.target.files[0],
-          });
-        }
-        break;
-
-      case "clear-form":
-        setCouponObj({
-          ...couponObj,
-          title: "Title",
-          category_id: 0,
-          description: "description",
-          startDate: "",
-          endDate: "",
-          amount: "",
-          price: "",
-        });
-        setImageView(defaultImage);
-        const allInputs = document.querySelectorAll(".form-control-coupon");
-        const allErrorInputsMsg = document.querySelectorAll(
-          ".coupon-input-error"
-        );
-        allErrorInputsMsg.forEach((msg) => (msg.textContent = ""));
-        allInputs.forEach((input) => (input.value = " "));
-        document.querySelector(
-          ".inline-form-custom-select-coupon"
-        ).selectedIndex = 0;
-        setCategoryName("Category");
-        if (submitMsgView) {
-          dispatch(companyResetSubmitCoupon());
-        }
-        break;
-
-      default:
-        break;
-    }
+    handleOnCouponChangeFunc(
+      e,
+      property,
+      couponObj,
+      setCouponObj,
+      setCategoryName,
+      setImageView,
+      defaultImage,
+      submitMsgView,
+      dispatch
+    );
   };
   //-----------------------------------------------------------------------------------------------------
   return (

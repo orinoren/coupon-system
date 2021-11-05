@@ -70,7 +70,7 @@ const CartSummery = () => {
                   <div className="d-flex justify-content-between">
                     <h5 className="card-title">Total price </h5>
                     <h5 className="card-title text-end">
-                      {cartSummery.toLocaleString()}{" "}
+                      {cartSummery.toLocaleString()}
                       <span className="text-success b">$</span>
                     </h5>
                   </div>
