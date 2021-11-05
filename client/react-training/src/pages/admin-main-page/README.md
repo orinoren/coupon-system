@@ -21,19 +21,19 @@
    if isLogged is true and userDetails.role is ADMIN if one of the condition
    is not satasfied useHistory routing the user to the Home page
 
-2. `Second useEffect` : on every change of succesfull addedCompany/addedCustomer,
+2. `Second useEffect` : first time getting all customers and companies. and on every succesfull addedCompany/addedCustomer,
    updatedCompany/updatedCustomer, deletedCompany/deletedCustomer
-   getting all companies/customers from the databse
-   and force rerender every time a successfull operation been made
+   getting all companies/customers from the database
+   and force rerender every time a successfull operation has been made
 
 ## Methods :
 
 1. `getMainSearchForm` : using the `showOperationsFor` to determine if the search form is
-   for customer search or company search or coupon search
+   for customer search or company search or coupon search and then calling `getMainSearchFormForCustomer` or `getMainSearchFormForCompany`
 
 2. `getOperationsButtonForCompany` / `getOperationsButtonForCustomer` :
    using the `showOperationsFor` to force change of the button
-   determine by `showOperationsFor` if `showOperationsFor`.company/customer
+   determine by `showOperationsFor` if `showOperationsFor` company/customer
    the button wiil be for adding a company/customer
    if not so the button will change to company/customer opertaions
 
