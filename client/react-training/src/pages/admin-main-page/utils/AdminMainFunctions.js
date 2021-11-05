@@ -1,5 +1,5 @@
-import MainSearchForm from "../../componets/search-form-components/MainSearchForm";
-import OperationButton from "../../componets/operations-button-components/OperationsButton";
+import MainSearchForm from "../../../componets/search-form-components/MainSearchForm";
+import OperationButton from "../../../componets/operations-button-components/OperationsButton";
 import {
   resetOpAction,
   showCompanyOpAction,
@@ -8,7 +8,7 @@ import {
   adminCompanyAddMode,
   adminCustomerAddMode,
   adminResetAddMode,
-} from "../../actions/actions-for-ui/action-for-ui";
+} from "../../../actions/actions-for-ui/action-for-ui";
 
 export const getMainSearchFormForCustomer = () => {
   return <MainSearchForm placeholder={"Search customer..."}></MainSearchForm>;

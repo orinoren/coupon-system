@@ -6,7 +6,7 @@ import {
   getOperationsButtonForCompanyFunc,
   getCloseOperationButtonFunc,
   getOperationsButtonForCustomerFunc,
-} from "./AdminMainFunctions";
+} from "./utils/AdminMainFunctions";
 import { adminGetAllCustomersAction } from "../../actions/actions-for-admin/actions-for-admin-for-customer/adminGetAllCustomersActions";
 import { adminGetAllCompaniesAction } from "../../actions/actions-for-admin/actions-for-admin-for-company/adminGetAllCompaniesAction";
 import AdminOperationsContainer from "../../componets/admin-operations-components/admin-operations-container/AdminOperationsContainer";
@@ -58,9 +58,16 @@ const AdminMain = () => {
   }, [userDetails.isLogged, userDetails.role, history]);
 
   useEffect(() => {
-    dispatch(adminGetAllCompaniesAction());
+    if (showOperationsFor.customerOp) {
+      dispatch(adminGetAllCustomersAction());
+      return;
+    }
+    if (showOperationsFor.companyOp) {
+      dispatch(adminGetAllCompaniesAction());
+      return;
+    }
     dispatch(adminGetAllCustomersAction());
-
+    dispatch(adminGetAllCompaniesAction());
     return () => {};
   }, [
     dispatch,
@@ -89,20 +96,15 @@ const AdminMain = () => {
         isCompanyOperationMode,
         dispatch
       );
-    } else {
-      return getOperationsButtonForCompanyFunc(
-        !isCompanyOperationMode,
-        dispatch
-      );
     }
+    return getOperationsButtonForCompanyFunc(!isCompanyOperationMode, dispatch);
   };
 
   const getOperationsButtonForCustomer = () => {
     if (showOperationsFor.customerOp) {
       return getOperationsButtonForCustomerFunc(true, dispatch);
-    } else {
-      return getOperationsButtonForCustomerFunc(false, dispatch);
     }
+    return getOperationsButtonForCustomerFunc(false, dispatch);
   };
   const getCloseOperationsButton = () => {
     if (showOperationsFor.companyOp || showOperationsFor.customerOp) {
