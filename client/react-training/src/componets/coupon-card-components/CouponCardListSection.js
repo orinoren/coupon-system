@@ -56,9 +56,10 @@ const CouponCardListSection = (props) => {
   const handleExitCouponListSectionButtonClicked = (title) => {
     if (title === "Result") {
       dispatch(resetSearchModeAction());
-    } else {
+      return;
+    } 
       dispatch(resetShowCustomerCouponsAction());
-    }
+    
   };
   return (
     <div>
