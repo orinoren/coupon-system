@@ -3,7 +3,6 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import {
-  companyCouponAddModeAction,
   resetCartAction,
   resetCartNotificationAction,
 } from "../../actions/actions-for-ui/action-for-ui";
@@ -13,24 +12,29 @@ import {
   resetSearchModeAction,
   resetUserModeAction,
   cartResetShowViewAction,
-  showCompanyOpAction,
-  showCustomerOpAction,
   companyCouponResetAddModeAction,
-  showCustomerCouponsAction,
   resetShowCustomerCouponsAction,
 } from "../../actions/actions-for-ui/action-for-ui";
+import {
+  getAdminNavBarItemsFunc,
+  getCartIconFunc,
+  getCompanyNavBarItemsFunc,
+  getCustomerNavBarItemsFunc,
+  getLoginButtonFunc,
+} from "./utils/NavBarFunctions";
 
 const NavBar = () => {
   const dispatch = useDispatch();
+
+  const history = useHistory();
+
   const cartNotificationAmount = useSelector(
     (state) => state.uiRootReducer.cartPropertisReducer.cartNotification
   );
   const guestOrCustomerMode = useSelector(
     (state) => state.uiRootReducer.globalModeReducer.guestOrCustomerMode
   );
-  const loginDetails = useSelector((state) => state.authReducer);
-
-  const history = useHistory();
+  const userDetails = useSelector((state) => state.authReducer);
 
   const handleCartIconClicked = () => {
     dispatch(cartShowViewAction());
@@ -61,6 +65,36 @@ const NavBar = () => {
   const handleLoginBtnClicked = () => {
     history.push("/login");
   };
+
+  const getNavBarItems = () => {
+    switch (userDetails.role) {
+      case "ADMIN":
+        return getAdminNavBarItemsFunc(dispatch);
+      case "COMPANY":
+        return getCompanyNavBarItemsFunc(dispatch);
+      case "CUSTOMER":
+        return getCustomerNavBarItemsFunc(dispatch);
+      default:
+        return (
+          <ul className="navbar-nav m-0 me-md-auto mb-2 mb-lg-0">
+            <li className="nav-item nav-link nav-li "></li>
+          </ul>
+        );
+    }
+  };
+  const getLoginButton = () => {
+    return getLoginButtonFunc(
+      userDetails.isLogged,
+      handleLogoutBtnClicked,
+      handleLoginBtnClicked
+    );
+  };
+  const getCartIcon = () => {
+    if (guestOrCustomerMode) {
+      return getCartIconFunc(handleCartIconClicked, cartNotificationAmount);
+    }
+    return "";
+  };
   return (
     <>
       <nav className="my-navbar navbar navbar-expand-md navbar-light bg-light">
@@ -83,88 +117,9 @@ const NavBar = () => {
             COUPON PROJECT
           </div>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav m-0 me-md-auto mb-2 mb-lg-0">
-              {loginDetails.isLogged ? (
-                <li className="nav-item nav-link active nav-li ">Home</li>
-              ) : (
-                ""
-              )}
-              {loginDetails.isLogged ? (
-                <li className="nav-item nav-link nav-li">
-                  {loginDetails.role === "ADMIN" ? (
-                    <span
-                      onClick={() => {
-                        dispatch(showCustomerOpAction());
-                      }}
-                    >
-                      Customer Op
-                    </span>
-                  ) : loginDetails.role === "COMPANY" ? (
-                    <span
-                      onClick={() => dispatch(companyCouponAddModeAction())}
-                    >
-                      Coupon OP
-                    </span>
-                  ) : loginDetails.role === "CUSTOMER" ? (
-                    <span onClick={() => dispatch(showCustomerCouponsAction())}>
-                      {/* Customer */}Your Coupons
-                    </span>
-                  ) : (
-                    ""
-                  )}
-                </li>
-              ) : (
-                ""
-              )}
-              {loginDetails.isLogged ? (
-                <li className="nav-item nav-link nav-li">
-                  {loginDetails.role === "ADMIN" ? (
-                    <span
-                      onClick={() => {
-                        dispatch(showCompanyOpAction());
-                      }}
-                    >
-                      Company Op
-                    </span>
-                  ) : (
-                    ""
-                  )}
-                </li>
-              ) : (
-                ""
-              )}
-            </ul>
-            {guestOrCustomerMode ? (
-              <div className="px-1 px-md-5 pt-4">
-                <span>
-                  <i
-                    onClick={() => {
-                      handleCartIconClicked();
-                    }}
-                    className="text-primary fs-2 fas fa-shopping-cart"
-                  >
-                    {cartNotificationAmount === 0 ? (
-                      ""
-                    ) : (
-                      <span className="cart-notification">
-                        {cartNotificationAmount}
-                      </span>
-                    )}
-                  </i>
-                </span>
-              </div>
-            ) : (
-              ""
-            )}
-            <form className="nav-item d-flex pt-4 ">
-              <button className="btn btn-outline-success" type="button">
-                {loginDetails.isLogged ? (
-                  <div onClick={() => handleLogoutBtnClicked()}>Log out</div>
-                ) : (
-                  <div onClick={() => handleLoginBtnClicked()}>Login</div>
-                )}
-              </button>
-            </form>
+            {getNavBarItems()}
+            {getCartIcon()}
+            {getLoginButton()}
           </div>
         </div>
       </nav>

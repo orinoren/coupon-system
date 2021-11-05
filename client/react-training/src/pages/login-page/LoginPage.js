@@ -1,83 +1,87 @@
 import React, { useRef } from "react";
 import "./LoginPage.css";
 import homePic from "../../images/tag.png";
-import fotterPic from "../../images/grass.png";
 import { useDispatch, useSelector } from "react-redux";
 import { loginAction } from "../../actions/loginAction";
 import { useHistory } from "react-router";
 import { useEffect, useState } from "react";
 import {
-  cartResetShowViewAction,
   resetSearchModeAction,
   resetUserModeAction,
 } from "../../actions/actions-for-ui/action-for-ui";
 import CompanyEmailPassList from "./CompanyEmailPassList";
 import CustomerEmailPassList from "./CustomerEmailPassList";
 const LoginPage = () => {
+  const [loginAttempt, setLoginAttempt] = useState(false);
+  const [loginFailed, setLoginFailed] = useState(false);
+
   const email = useRef();
   const password = useRef();
 
   const dispatch = useDispatch();
-
-  const [loginAttempt, setLoginAttempt] = useState(false);
-  const [loginSuccessed, setLoginSuccessed] = useState(false);
-  const [loginFailed, setLoginFailed] = useState(false);
 
   const userDetails = useSelector((state) => state.authReducer);
 
   const history = useHistory();
 
   const handleLoginBtnClicked = () => {
-    console.log(email.current.value);
-    console.log(password.current.value);
-
     if (email.current.value === "") {
       document.getElementById("emailError").style.visibility = "visible";
       document.getElementById("emailInput").style.border = "3px solid red";
       document.getElementById("emailError").textContent =
         "please enter an email";
-    } else if (!email.current.value.includes("@")) {
+      return;
+    }
+    if (!email.current.value.includes("@")) {
       document.getElementById("emailError").style.visibility = "visible";
       document.getElementById("emailInput").style.border = "3px solid red";
       document.getElementById("emailError").textContent = "@ is missing";
-    } else if (password.current.value === "") {
+      return;
+    }
+    if (password.current.value === "") {
       document.getElementById("passwordError").style.visibility = "visible";
       document.getElementById("passwordInput").style.border = "3px solid red";
       document.getElementById("passwordError").textContent =
         "please enter password";
-    } else {
-      const loginDetails = {
-        email: email.current.value,
-        password: password.current.value,
-      };
-      dispatch(loginAction(loginDetails));
-      setLoginAttempt(true);
+      return;
     }
+    const loginDetails = {
+      email: email.current.value,
+      password: password.current.value,
+    };
+    dispatch(loginAction(loginDetails));
+    setLoginAttempt(true);
   };
   useEffect(() => {
     dispatch(resetSearchModeAction());
     dispatch({ type: "LOGOUT" });
     setLoginAttempt(false);
     setLoginFailed(false);
-    setLoginSuccessed(false);
+
     return () => {};
   }, [dispatch]);
 
   useEffect(() => {
     if (loginAttempt) {
       if (userDetails.isLogged) {
-        if (userDetails.role === "ADMIN") {
-          dispatch(resetUserModeAction());
-          history.push("/admin");
-        } else if (userDetails.role === "COMPANY") {
-          history.push("/company");
-        } else if (userDetails.role === "CUSTOMER") {
-          history.push("/main");
+        switch (userDetails.role) {
+          case "ADMIN":
+            dispatch(resetUserModeAction());
+            history.push("/admin");
+            break;
+          case "COMPANY":
+            history.push("/company");
+            break;
+          case "CUSTOMER":
+            history.push("/main");
+            break;
+          default:
+            break;
         }
-      } else {
-        document.getElementById("passwordError").style.display = "none";
-        setLoginFailed(true);
+        return;
       }
+      document.getElementById("passwordError").style.display = "none";
+      setLoginFailed(true);
     }
 
     return () => {};

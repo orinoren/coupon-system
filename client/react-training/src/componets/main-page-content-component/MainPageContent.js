@@ -42,18 +42,19 @@ const MainPageContent = (props) => {
   const userDetails = useSelector((state) => state.authReducer);
 
   useEffect(() => {
-    if (userDetails.role === "COMPANY" || companyMode) {
-      dispatch(getAllCompanyCouponsAction());
-    } else if (
-      userDetails.role === "CUSTOMER" ||
-      userDetails.role === "ADMIN"
-    ) {
-      if (userDetails.role === "CUSTOMER") {
+    switch (userDetails.role) {
+      case "COMPANY":
+        dispatch(getAllCompanyCouponsAction());
+        break;
+      case "ADMIN":
+        dispatch(getAllCouponsAction());
+        break;
+      case "CUSTOMER":
         dispatch(getAllCustomerCouponsAction());
         dispatch(getAllCouponsAction());
-      }
-    } else {
-      dispatch(getAllCouponsAction());
+        break;
+      default:
+        break;
     }
     return () => {};
   }, [

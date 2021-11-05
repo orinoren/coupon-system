@@ -71,7 +71,9 @@ const CompanyOperationsCouponView = (props) => {
     if (!notValid) {
       if (addMode) {
         dispatch(companyAddCouponAction({ ...props.couponObject }));
-      } else if (updateMode) {
+        return;
+      }
+      if (updateMode) {
         dispatch(companyUpdateCouponAction({ ...props.couponObject }));
       }
     }

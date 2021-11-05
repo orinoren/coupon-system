@@ -18,13 +18,13 @@ const CartSummery = () => {
   const couponsToPurchase = useSelector(
     (state) => state.uiRootReducer.cartArrReducer
   );
-  const loginDetails = useSelector((state) => state.authReducer);
+  const userDetails = useSelector((state) => state.authReducer);
 
   const history = useHistory();
   const dispatch = useDispatch();
 
   const handlePurchaseBtnClicked = () => {
-    if (!loginDetails.isLogged) {
+    if (!userDetails.isLogged) {
       history.push("/login");
       dispatch(resetUserModeAction());
     } else {

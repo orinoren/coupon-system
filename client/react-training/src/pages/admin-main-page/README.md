@@ -11,14 +11,14 @@
    and assign in the dependency array of useEffect(seconed useEffect) to get all companies/customers
    from the databse and force rerender every time a successfull operation been made .
 
-3. `loginDetails` : contains all necessary details of the current login user
+3. `userDetails` : contains all necessary details of the current login user
    and assign in the dependency array of useEffect(first useEffect) to force render in
-   every change of loginDetails.isLogged or loginDetails.role
+   every change of userDetails.isLogged or userDetails.role
 
 ## useEffect :
 
-1. `First useEffect` : checking on every change of loginDetails.isLogged or loginDetails.role
-   if isLogged is true and loginDetails.role is ADMIN if one of the condition
+1. `First useEffect` : checking on every change of userDetails.isLogged or userDetails.role
+   if isLogged is true and userDetails.role is ADMIN if one of the condition
    is not satasfied useHistory routing the user to the Home page
 
 2. `Second useEffect` : on every change of succesfull addedCompany/addedCustomer,
@@ -59,33 +59,33 @@
    returns `<MainSearchForm/>` with placeholder of company.
 
 3. `getCloseOperationButtonFunc` :
-   returns `<OpertaionsButton/>` with onClick that activate
+   returns `<OpertaionsButton/>` with onClick that activate.
 
 - reset Add mode
 - reset `showOperationsFor` -> to close the `<AdminOperationsContainer/>`
 - resetSearchModeAction -> to reset the search details for future opertions to start clean.
 
-`getOperationsButtonForCustomerFunc` :  
- checks if isCustomerMode if true
-returns `<OpertaionsButton/>` with onClick that activate:
+4. `getOperationsButtonForCustomerFunc` :  
+    checks if isCustomerMode if true
+   returns `<OpertaionsButton/>` with onClick that activate:
 
-1. `handleOnAddCustomerClicked` -> adding a form to enter a new customer
-2. `resetSearchModeAction` -> to reset the search details for future opertions to start clean.
-3. `showCustomerOpAction` -> to show `<AdminOperationsContainer/>` for Cusotmer
+5. `handleOnAddCustomerClicked` -> adding a form to enter a new customer
+6. `resetSearchModeAction` -> to reset the search details for future opertions to start clean.
+7. `showCustomerOpAction` -> to show `<AdminOperationsContainer/>` for Cusotmer
 
 if false returns `<OpertaionsButton/>` with onClick that activate:
 
-1. `reset Add Mode`
-2. `resetSearchModeAction` -> to reset the search details for future opertions to start clean.
-3. `showCustomerOpAction` -> to show `<AdminOperationsContainer/>` for Cusotmer
+- `reset Add Mode`
+- `resetSearchModeAction` -> to reset the search details for future opertions to start clean.
+- `showCustomerOpAction` -> to show `<AdminOperationsContainer/>` for Cusotmer
 
-`getOperationsButtonForCompanyFunc` :  
- checks if isCompanyMode if true
-returns `<OpertaionsButton/>` with onClick that activate:
+8. `getOperationsButtonForCompanyFunc` :  
+    checks if isCompanyMode if true
+   returns `<OpertaionsButton/>` with onClick that activate:
 
 1. `handleOnAddCompanyClicked` -> adding a form to enter a new company
-2. `resetSearchModeAction` -> to reset the search details for future opertions to start clean.
-3. `showCompanyOpAction` -> to show `<AdminOperationsContainer/>` for Company
+1. `resetSearchModeAction` -> to reset the search details for future opertions to start clean.
+1. `showCompanyOpAction` -> to show `<AdminOperationsContainer/>` for Company
 
 if false returns `<OpertaionsButton/>` with onClick that activate:
 

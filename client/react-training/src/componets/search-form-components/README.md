@@ -7,7 +7,7 @@
 3. `allCoupons` : contains all coupons.
 4. `allCompanyCoupons` : contains all coupons of the current login company.
 5. `showOperationsFor` : determine of which operations to show for customers or companies and let us know on whice mode administrator is in .
-6. `loginDetails`: conatins all necessary details about the current login user .
+6. `userDetails`: conatins all necessary details about the current login user .
 
 # useState :
 

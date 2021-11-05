@@ -50,27 +50,26 @@ const AdminCustomerBox = (props) => {
           email: emailRef.current.value,
           password: passwordRef.current.value,
         };
-
         dispatchUpdatedCustomer(customerObj, isSearchMode, dispatch);
         setUpdateMode(false);
       }
-    } else {
-      const isAddValid = customerValidationToAdd(
-        firstNameRef,
-        lastNameRef,
-        emailRef,
-        passwordRef
-      );
-      if (isAddValid) {
-        const customerObj = {
-          first_name: firstNameRef.current.value,
-          last_name: lastNameRef.current.value,
-          email: emailRef.current.value,
-          password: passwordRef.current.value,
-        };
-        dispatch(adminAddCustomerAction(customerObj));
-        dispatch(adminResetAddMode());
-      }
+      return;
+    }
+    const isAddValid = customerValidationToAdd(
+      firstNameRef,
+      lastNameRef,
+      emailRef,
+      passwordRef
+    );
+    if (isAddValid) {
+      const customerObj = {
+        first_name: firstNameRef.current.value,
+        last_name: lastNameRef.current.value,
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+      };
+      dispatch(adminAddCustomerAction(customerObj));
+      dispatch(adminResetAddMode());
     }
   };
 

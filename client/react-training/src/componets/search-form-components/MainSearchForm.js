@@ -33,7 +33,7 @@ const MainSearchForm = (props) => {
     (state) =>
       state.companyRootReducer.companyGetAllCouponsReducer.companyCoupons
   );
-  const loginDetails = useSelector((state) => state.authReducer);
+  const userDetails = useSelector((state) => state.authReducer);
 
   const searchInput = useRef();
 
@@ -48,41 +48,43 @@ const MainSearchForm = (props) => {
         searchInput,
         checkedCategoryInputs,
         maxPrice,
-        loginDetails.role,
+        userDetails.role,
         dispatch
       );
       setShowSortBox(false);
-    } else {
-      //search without sort
-      switch (loginDetails.role) {
-        case "ADMIN":
-          if (showOperationsFor.companyOp) {
-            dispatchAdminSearchResultForCompanies(
-              allCompanies,
-              searchInput,
-              dispatch
-            );
-          } else if (showOperationsFor.customerOp) {
-            dispatchAdminSearchResultForCustomers(
-              allCustomers,
-              searchInput,
-              dispatch
-            );
-          } else {
-            dispatchSearchResultCouponList(allCoupons, searchInput, dispatch);
-          }
-          break;
-        case "COMPANY":
-          dispatchSearchResultCouponList(
-            allCompanyCoupons,
+      return;
+    }
+    //search without sort
+    switch (userDetails.role) {
+      case "ADMIN":
+        if (showOperationsFor.companyOp) {
+          dispatchAdminSearchResultForCompanies(
+            allCompanies,
             searchInput,
             dispatch
           );
-          break;
-        default:
-          dispatchSearchResultCouponList(allCoupons, searchInput, dispatch);
-          break;
-      }
+          return;
+        }
+        if (showOperationsFor.customerOp) {
+          dispatchAdminSearchResultForCustomers(
+            allCustomers,
+            searchInput,
+            dispatch
+          );
+          return;
+        }
+        dispatchSearchResultCouponList(allCoupons, searchInput, dispatch);
+        break;
+      case "COMPANY":
+        dispatchSearchResultCouponList(
+          allCompanyCoupons,
+          searchInput,
+          dispatch
+        );
+        break;
+      default:
+        dispatchSearchResultCouponList(allCoupons, searchInput, dispatch);
+        break;
     }
   };
   return (

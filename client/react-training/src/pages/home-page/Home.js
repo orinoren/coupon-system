@@ -20,10 +20,15 @@ const Home = () => {
   const handleGoToWebstieBtnClicked = () => {
     if (userDetails.role === "ADMIN") {
       history.push("/admin");
-    } else if (userDetails.role === "COMPANY") {
+      return;
+    }
+    if (userDetails.role === "COMPANY") {
       history.push("/company");
-    } else if (userDetails.role === "CUSTOMER") {
+      return;
+    }
+    if (userDetails.role === "CUSTOMER") {
       history.push("/main");
+      return;
     }
   };
 

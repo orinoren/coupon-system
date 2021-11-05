@@ -6,7 +6,6 @@ import defaultImage from "../../images/defaultImage.jpg";
 import { companyDeleteCouponAction } from "../../actions/actions-for-company/deleteCouponAction";
 
 import {
-  companyResetSubmitCoupon,
   companyCouponResetAddModeAction,
   companyCouponUpdateModeAction,
 } from "../../actions/actions-for-ui/action-for-ui";
@@ -27,10 +26,7 @@ const CouponCard = (props) => {
     (state) => state.uiRootReducer.companyAddCouponModeReducer.addMode
   );
 
-  const loginDetails = useSelector((state) => state.authReducer);
-  const companyGlobalMode = useSelector(
-    (state) => state.uiRootReducer.globalModeReducer.companyMode
-  );
+  const userDetails = useSelector((state) => state.authReducer);
 
   const handleEditBtnClicked = () => {
     if (companyCouponAddMode) {
@@ -106,7 +102,7 @@ const CouponCard = (props) => {
                   </div>
                 </div>
 
-                {loginDetails.role === "COMPANY" ? (
+                {userDetails.role === "COMPANY" ? (
                   <div>
                     <div className="d-flex mt-3 pt-2 border-top justify-content-between">
                       <div className="coupon-card-op-icon">
@@ -127,7 +123,7 @@ const CouponCard = (props) => {
                       </div>
                     </div>
                   </div>
-                ) : loginDetails.role === "ADMIN" ? (
+                ) : userDetails.role === "ADMIN" ? (
                   <div className="text-center border bg-primary text-white ">
                     {props.companyName}
                   </div>

@@ -54,7 +54,9 @@ const CouponControllers = (props) => {
           couponCartAmount: props.controlAmount,
         })
       );
-    } else if (addOrRemoveClicked.remove) {
+      return;
+    }
+    if (addOrRemoveClicked.remove) {
       dispatch(
         removeFromCartAction({
           ...props.coupon,

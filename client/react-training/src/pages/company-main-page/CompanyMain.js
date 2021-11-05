@@ -41,15 +41,15 @@ const CompanyMain = () => {
   );
 
   const history = useHistory();
-  const loginDetails = useSelector((state) => state.authReducer);
+  const userDetails = useSelector((state) => state.authReducer);
   useEffect(() => {
-    if (loginDetails.role !== "COMPANY" || loginDetails.isLogged === false) {
+    if (userDetails.role !== "COMPANY" || userDetails.isLogged === false) {
       history.push("/home");
     } else {
       dispatch(companyModeAction());
     }
     return () => {};
-  }, [dispatch, history, loginDetails.isLogged, loginDetails.role]);
+  }, [dispatch, history, userDetails.isLogged, userDetails.role]);
 
   return (
     <div>

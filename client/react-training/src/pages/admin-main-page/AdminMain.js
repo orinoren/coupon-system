@@ -47,15 +47,15 @@ const AdminMain = () => {
   const deletedCustomer = useSelector(
     (state) => state.adminRootReducer.adminDeleteCustomerReducer.customerId
   );
-  const loginDetails = useSelector((state) => state.authReducer);
+  const userDetails = useSelector((state) => state.authReducer);
 
   const history = useHistory();
 
   useEffect(() => {
-    if (loginDetails.role !== "ADMIN" || loginDetails.isLogged === false)
+    if (userDetails.role !== "ADMIN" || userDetails.isLogged === false)
       history.push("/home");
     return () => {};
-  }, [loginDetails.isLogged, loginDetails.role, history]);
+  }, [userDetails.isLogged, userDetails.role, history]);
 
   useEffect(() => {
     dispatch(adminGetAllCompaniesAction());
@@ -116,13 +116,13 @@ const AdminMain = () => {
       return (
         <AdminOperationsContainer type="company"></AdminOperationsContainer>
       );
-    } else if (showOperationsFor.customerOp) {
+    }
+    if (showOperationsFor.customerOp) {
       return (
         <AdminOperationsContainer type="customer"></AdminOperationsContainer>
       );
-    } else {
-      return "";
     }
+    return "";
   };
   return (
     <div>
