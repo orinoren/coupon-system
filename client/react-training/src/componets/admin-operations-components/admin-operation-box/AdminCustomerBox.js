@@ -43,10 +43,6 @@ const AdminCustomerBox = (props) => {
         props.id
       );
       if (isUpdateValid) {
-        setFirstNameState(firstNameRef.current.value);
-        setLastNameState(lastNameRef.current.value);
-        setEmailState(emailRef.current.value);
-        setPasswordState(passwordRef.current.value);
         const customerObj = {
           id: props.id,
           first_name: firstNameRef.current.value,

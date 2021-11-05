@@ -59,13 +59,11 @@
    returns `<MainSearchForm/>` with placeholder of company.
 
 3. `getCloseOperationButtonFunc` :
-   returns `<OpertaionsButton/>` with onClick that activate.
+   returns `<OpertaionsButton/>` with onClick that activate
 
-#
-
-1. reset Add mode
-2. reset `showOperationsFor` -> to close the `<AdminOperationsContainer/>`
-3. resetSearchModeAction -> to reset the search details for future opertions to start clean.
+- reset Add mode
+- reset `showOperationsFor` -> to close the `<AdminOperationsContainer/>`
+- resetSearchModeAction -> to reset the search details for future opertions to start clean.
 
 `getOperationsButtonForCustomerFunc` :  
  checks if isCustomerMode if true

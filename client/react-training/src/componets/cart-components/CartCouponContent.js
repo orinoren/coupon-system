@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "../../pages/CartPage/Cart.css";
+import "../../pages/cart-page/Cart.css";
 
 import { useState } from "react";
 import { useSelector } from "react-redux";

@@ -1,7 +1,7 @@
 import React from "react";
 import "./Cart.css";
-import CartCouponContent from "../../componets/CartComponents/CartCouponContent";
-import CartSummery from "../../componets/CartComponents/CartSummery";
+import CartCouponContent from "../../componets/cart-components/CartCouponContent";
+import CartSummery from "../../componets/cart-components/CartSummery";
 import { useSelector, useDispatch } from "react-redux";
 import { cartResetShowViewAction } from "../../actions/actions-for-ui/action-for-ui";
 const Cart = (props) => {

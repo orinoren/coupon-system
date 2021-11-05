@@ -1,5 +1,5 @@
 import React from "react";
-import "../../pages/CartPage/Cart.css";
+import "../../pages/cart-page/Cart.css";
 import { useSelector, useDispatch } from "react-redux";
 import { purchaseCouponAction } from "../../actions/actions-for-customer/purchaseCouponAction";
 import { useHistory } from "react-router";

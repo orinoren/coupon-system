@@ -1,12 +1,12 @@
 import React from "react";
-import Home from "./pages/HomePage/Home";
-import Main from "./pages/MainPage/Main";
-import NavBar from "./componets/NavBarComponents/NavBar";
-import Cart from "./pages/CartPage/Cart";
-import AdminMain from "./pages/AdminMainPage/AdminMain";
-import CompanyMain from "./pages/CompanyMainPage/CompanyMain";
+import Home from "./pages/home-page/Home";
+import Main from "./pages/main-page/Main";
+import NavBar from "./componets/navbar-components/NavBar";
+import Cart from "./pages/cart-page/Cart";
+import AdminMain from "./pages/admin-main-page/AdminMain";
+import CompanyMain from "./pages/company-main-page/CompanyMain";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import LoginPage from "./pages/LoginPage/LoginPage";
+import LoginPage from "./pages/login-page/LoginPage";
 
 const App = () => {
   return (
