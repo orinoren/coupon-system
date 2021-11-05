@@ -61,9 +61,9 @@
 3. `getCloseOperationButtonFunc` :
    returns `<OpertaionsButton/>` with onClick that activate:
 
-   - `resetAddMode`
-   - reset `showOperationsFor` -> to close the `<AdminOperationsContainer/>`
-   - `resetSearchModeAction` -> to reset the search details for future opertions to start clean.
+- `resetAddMode`
+- `resetOpAction` -> to close the `<AdminOperationsContainer/>`
+- `resetSearchModeAction` -> to reset the search details for future opertions to start clean.
 
 4. `getOperationsButtonForCustomerFunc` :  
     checks if isCustomerMode if true
@@ -75,7 +75,7 @@
 
 if false returns `<OpertaionsButton/>` with onClick that activate:
 
-- `reset Add Mode`
+- `resetAddMode`
 - `resetSearchModeAction` -> to reset the search details for future opertions to start clean.
 - `showCustomerOpAction` -> to show `<AdminOperationsContainer/>` for Cusotmer
 
@@ -89,6 +89,6 @@ if false returns `<OpertaionsButton/>` with onClick that activate:
 
 if false returns `<OpertaionsButton/>` with onClick that activate:
 
-- `reset Add Mode`
+- `resetAddMode`
 - `resetSearchModeAction` -> to reset the search details for future opertions to start clean.
 - `showCompanyOpAction` -> to show `<AdminOperationsContainer/>` for Cusotmer
