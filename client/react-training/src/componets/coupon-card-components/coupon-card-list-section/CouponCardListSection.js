@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   getCardListSectionControllersFunc,
   getCouponListFunc,
-} from "../utils/CouponCardComponentsFunctions";
+} from "../coupon-card-list-section/utils/CouponCardListSectionFunctions";
 
 const CouponCardListSection = (props) => {
   const [numberOfCouponsToShow, setNumberOfCouponsToShow] = useState(6);

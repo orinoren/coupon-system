@@ -1,22 +1,13 @@
 import React from "react";
-
 import "../CouponCard.css";
 import { useState, useEffect } from "react";
 import defaultImage from "../../../images/defaultImage.jpg";
-import { companyDeleteCouponAction } from "../../../actions/actions-for-company/deleteCouponAction";
-
-import {
-  companyCouponResetAddModeAction,
-  companyCouponUpdateModeAction,
-} from "../../../actions/actions-for-ui/action-for-ui";
 import { useSelector, useDispatch } from "react-redux";
-import CouponControllers from "../coupon-card-controllers/CouponControllers";
-
+import { getCouponCardFotterFunc } from "./utils/CouponCardFunctions";
 const CouponCard = (props) => {
   const dispatch = useDispatch();
   const [showAddToCartControlles, setShowAddToCartControlles] = useState(false);
 
-  const [endDateView, setEndDateView] = useState(props.endDate);
   const [couponAddToCartAmount, setCouponAddToCartAmount] = useState(0);
 
   const couponPurchaseDetails = useSelector(
@@ -28,25 +19,6 @@ const CouponCard = (props) => {
 
   const userDetails = useSelector((state) => state.authReducer);
 
-  const handleEditBtnClicked = () => {
-    if (companyCouponAddMode) {
-      dispatch(companyCouponResetAddModeAction());
-
-      dispatch(companyCouponUpdateModeAction(props));
-      return;
-    }
-    dispatch(companyCouponUpdateModeAction(props));
-  };
-  const handleDeleteBtnClicked = () => {
-    dispatch(companyDeleteCouponAction(props.coupon_id));
-  };
-  const hanldeAddToCartClicked = () => {
-    if (showAddToCartControlles) {
-      setShowAddToCartControlles(false);
-      return;
-    }
-    setShowAddToCartControlles(true);
-  };
   useEffect(() => {
     if (couponPurchaseDetails.purchaseSucceed) {
       setShowAddToCartControlles(false);
@@ -54,6 +26,19 @@ const CouponCard = (props) => {
     }
     return () => {};
   }, [couponPurchaseDetails]);
+
+  const getCouponCardFotter = () => {
+    return getCouponCardFotterFunc(
+      userDetails.role,
+      props,
+      companyCouponAddMode,
+      showAddToCartControlles,
+      setShowAddToCartControlles,
+      couponAddToCartAmount,
+      setCouponAddToCartAmount,
+      dispatch
+    );
+  };
   return (
     <div className="container mb-2 coupon-card-conatiner-border p-1 ">
       <div className="row">
@@ -80,14 +65,13 @@ const CouponCard = (props) => {
                     <div>
                       <div>
                         <span className=" fw-bold  fs-6 text-primary">
-                          {endDateView}
+                          {props.endDate}
                         </span>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div>
-                  {" "}
                   <div className="d-flex mt-1 justify-content-between">
                     <div className="coupon-card-p-text-font fs-6 fw-bolder text-success">
                       {props.price}
@@ -101,48 +85,7 @@ const CouponCard = (props) => {
                     </div>
                   </div>
                 </div>
-
-                {userDetails.role === "COMPANY" ? (
-                  <div>
-                    <div className="d-flex mt-3 pt-2 border-top justify-content-between">
-                      <div className="coupon-card-op-icon">
-                        <span>
-                          <i
-                            onClick={() => handleEditBtnClicked()}
-                            className="text-primary fs-3 fas fa-edit"
-                          ></i>
-                        </span>
-                      </div>
-                      <div className="coupon-card-op-icon">
-                        <span>
-                          <i
-                            onClick={() => handleDeleteBtnClicked()}
-                            className="text-danger fs-3 fas fa-trash-alt"
-                          ></i>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                ) : userDetails.role === "ADMIN" ? (
-                  <div className="text-center border bg-primary text-white ">
-                    {props.companyName}
-                  </div>
-                ) : (
-                  <div
-                    onClick={(e) => hanldeAddToCartClicked(e, props)}
-                    className="btn-primary w-100 mt-2 text-center"
-                  >
-                    {showAddToCartControlles ? (
-                      <CouponControllers
-                        coupon={props}
-                        controlAmount={couponAddToCartAmount}
-                        setControlAmount={setCouponAddToCartAmount}
-                      ></CouponControllers>
-                    ) : (
-                      <div>add to cart</div>
-                    )}
-                  </div>
-                )}
+                {getCouponCardFotter()}
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 import {
   resetSearchModeAction,
   resetShowCustomerCouponsAction,
-} from "../../../actions/actions-for-ui/action-for-ui";
+} from "../../../../actions/actions-for-ui/action-for-ui";
 
 export const getCouponListFunc = (
   title,
