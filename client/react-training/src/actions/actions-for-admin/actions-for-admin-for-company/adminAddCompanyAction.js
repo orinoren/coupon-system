@@ -7,6 +7,8 @@ export const adminAddCompanyAction =
       const res = await authenticatedAxios
         .getAuthenticatedAxios()
         .post(urlSuffix, companyObj);
-      dispatch({ type: "ADD-COMPANY", payload: res.data });
+      if (res.status === 201) {
+        dispatch({ type: "ADD-COMPANY", payload: res.data });
+      }
     } catch (error) {}
   };

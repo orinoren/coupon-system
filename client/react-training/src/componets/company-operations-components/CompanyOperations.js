@@ -8,6 +8,8 @@ import defaultImage from "../../images/defaultImage.jpg";
 import { handleOnCouponChangeFunc } from "./utils/CompanyOperationsFunctions";
 
 const CompanyOperations = () => {
+  const [couponObj, setCouponObj] = useState({});
+
   const [categoryName, setCategoryName] = useState("Category");
 
   const [imageView, setImageView] = useState(defaultImage);
@@ -18,12 +20,11 @@ const CompanyOperations = () => {
     (state) => state.uiRootReducer.companyUpdateCouponModeReducer.updateMode
   );
 
-  const companyCouponToUpdateObj = useSelector(
-    (state) => state.uiRootReducer.companyUpdateCouponModeReducer.couponObj
-  );
-
   const companyCouponAddMode = useSelector(
     (state) => state.uiRootReducer.companyAddCouponModeReducer.addMode
+  );
+  const companyCouponToUpdateObj = useSelector(
+    (state) => state.uiRootReducer.companyUpdateCouponModeReducer.couponObj
   );
 
   const submitMsgView = useSelector(
@@ -31,7 +32,6 @@ const CompanyOperations = () => {
       state.uiRootReducer.companySubmitCouponReducer.companySubmitCoupon
   );
 
-  const [couponObj, setCouponObj] = useState({});
   useEffect(() => {
     if (companyCouponUpdateMode) {
       setCouponObj({

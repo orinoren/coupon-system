@@ -5,16 +5,12 @@ import { useEffect } from "react";
 import { companyResetSubmitCoupon } from "../../actions/actions-for-ui/action-for-ui";
 const CompanyOperationsForm = (props) => {
   const dispatch = useDispatch();
-  const submitMsgView = useSelector(
+  const isCouponSubmitted = useSelector(
     (state) =>
       state.uiRootReducer.companySubmitCouponReducer.companySubmitCoupon
   );
   const companyCouponUpdateMode = useSelector(
     (state) => state.uiRootReducer.companyUpdateCouponModeReducer.updateMode
-  );
-
-  const companyCouponToUpdateObj = useSelector(
-    (state) => state.uiRootReducer.companyUpdateCouponModeReducer.couponObj
   );
 
   useEffect(() => {
@@ -40,7 +36,7 @@ const CompanyOperationsForm = (props) => {
                     document.getElementById(
                       "coupon-title-input-error"
                     ).textContent = " ";
-                    if (submitMsgView) {
+                    if (isCouponSubmitted) {
                       dispatch(companyResetSubmitCoupon());
                     }
                   }}
@@ -72,7 +68,7 @@ const CompanyOperationsForm = (props) => {
                       document.getElementById(
                         "coupon-category-input-error"
                       ).textContent = "";
-                      if (submitMsgView) {
+                      if (isCouponSubmitted) {
                         dispatch(companyResetSubmitCoupon());
                       }
                     }}
@@ -116,7 +112,9 @@ const CompanyOperationsForm = (props) => {
                 <textarea
                   value={props.couponToUpdateObj.description}
                   onFocus={(e) =>
-                    submitMsgView ? dispatch(companyResetSubmitCoupon()) : ""
+                    isCouponSubmitted
+                      ? dispatch(companyResetSubmitCoupon())
+                      : ""
                   }
                   onInput={(e) => props.couponViewFunc(e, "description")}
                   className="w-75 form-control form-control-coupon"
@@ -137,7 +135,7 @@ const CompanyOperationsForm = (props) => {
                     document.getElementById(
                       "coupon-start-date-input-error"
                     ).textContent = "";
-                    if (submitMsgView) {
+                    if (isCouponSubmitted) {
                       dispatch(companyResetSubmitCoupon());
                     }
                   }}
@@ -162,7 +160,7 @@ const CompanyOperationsForm = (props) => {
                     document.getElementById(
                       "coupon-end-date-input-error"
                     ).textContent = "";
-                    if (submitMsgView) {
+                    if (isCouponSubmitted) {
                       dispatch(companyResetSubmitCoupon());
                     }
                   }}
@@ -187,7 +185,7 @@ const CompanyOperationsForm = (props) => {
                     document.getElementById(
                       "coupon-amount-input-error"
                     ).textContent = "";
-                    if (submitMsgView) {
+                    if (isCouponSubmitted) {
                       dispatch(companyResetSubmitCoupon());
                     }
                   }}
@@ -212,7 +210,7 @@ const CompanyOperationsForm = (props) => {
                     document.getElementById(
                       "coupon-price-input-error"
                     ).textContent = "";
-                    if (submitMsgView) {
+                    if (isCouponSubmitted) {
                       dispatch(companyResetSubmitCoupon());
                     }
                   }}
@@ -237,7 +235,9 @@ const CompanyOperationsForm = (props) => {
                   }}
                   onChange={(e) => props.couponViewFunc(e, "image")}
                   onFocus={(e) =>
-                    submitMsgView ? dispatch(companyResetSubmitCoupon()) : ""
+                    isCouponSubmitted
+                      ? dispatch(companyResetSubmitCoupon())
+                      : ""
                   }
                   type="file"
                   className="form-control form-control-coupon-file"

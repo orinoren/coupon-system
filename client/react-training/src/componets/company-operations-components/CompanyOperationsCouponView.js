@@ -4,19 +4,17 @@ import "./CompanyOperations.css";
 import { useEffect } from "react";
 import { companyAddCouponAction } from "../../actions/actions-for-company/addCouponAction";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  companySumbitCoupon,
-  companyResetSubmitCoupon,
-} from "../../actions/actions-for-ui/action-for-ui";
+import { companyResetSubmitCoupon } from "../../actions/actions-for-ui/action-for-ui";
 import { companyUpdateCouponAction } from "../../actions/actions-for-company/updateCouponAction";
+import { couponValidation } from "./utils/CompanyOperationsFunctions";
 const CompanyOperationsCouponView = (props) => {
   const dispatch = useDispatch();
 
-  const submitMsgView = useSelector(
+  const isCouponSubmitted = useSelector(
     (state) =>
       state.uiRootReducer.companySubmitCouponReducer.companySubmitCoupon
   );
-  const errorMsg = useSelector(
+  const couponPurchaseDetails = useSelector(
     (state) => state.companyRootReducer.companyFailedCouponnOpReducer
   );
   const addMode = useSelector(
@@ -25,58 +23,31 @@ const CompanyOperationsCouponView = (props) => {
   const updateMode = useSelector(
     (state) => state.uiRootReducer.companyUpdateCouponModeReducer.updateMode
   );
+  const companyCouponToUpdateObj = useSelector(
+    (state) => state.uiRootReducer.companyUpdateCouponModeReducer.couponObj
+  );
 
   useEffect(() => {
     dispatch(companyResetSubmitCoupon());
 
     return () => {};
-  }, [updateMode]);
+  }, [companyCouponToUpdateObj, addMode]);
 
   const handleCouponSubmit = () => {
     dispatch({ type: "RESET-COUPON-OP-FAILED" });
-    const { title, category_id, startDate, endDate, amount, price } =
-      props.couponObject;
-    console.log(category_id);
-    console.log(title);
-    let notValid = false;
-    if (title === "") {
-      document.getElementById("coupon-title-input-error").textContent =
-        "please enter title";
-      notValid = true;
-    }
-    if (category_id === 0) {
-      document.getElementById("coupon-category-input-error").textContent =
-        "please enter category";
-      notValid = true;
-    }
-    if (startDate === "") {
-      document.getElementById("coupon-start-date-input-error").textContent =
-        "please enter date";
-      notValid = true;
-    }
-    if (endDate === "") {
-      document.getElementById("coupon-end-date-input-error").textContent =
-        "please enter date";
-      notValid = true;
-    }
-    if (amount <= 0) {
-      document.getElementById("coupon-amount-input-error").textContent =
-        "please enter amount bigger then 0";
-    }
-    if (price <= 0) {
-      document.getElementById("coupon-price-input-error").textContent =
-        "please price bigger then 0";
-      notValid = true;
-    }
-    if (!notValid) {
+    const isCouponValid = couponValidation(props.couponObject);
+    if (isCouponValid) {
       if (addMode) {
-        dispatch(companyAddCouponAction({ ...props.couponObject }));
+        dispatch(companyAddCouponAction(props.couponObject));
         return;
       }
       if (updateMode) {
-        dispatch(companyUpdateCouponAction({ ...props.couponObject }));
+        dispatch(companyUpdateCouponAction(props.couponObject));
       }
     }
+  };
+  const getCouponSubmitMsg = () => {
+    return getCouponSubmitMsgFunc(couponPurchaseDetails, addMode);
   };
   return (
     <div>
@@ -127,27 +98,7 @@ const CompanyOperationsCouponView = (props) => {
             />
           </div>
         </div>
-        {submitMsgView ? (
-          !errorMsg.failed ? (
-            <div className="row">
-              <div className="col-12 text-center">
-                {addMode ? (
-                  <span className="text-success w-100  p-1 fs-5 fw-bold">
-                    Coupon added successfully
-                  </span>
-                ) : (
-                  <span className="text-success w-100  p-1 fs-5 fw-bold">
-                    Coupon updated successfully
-                  </span>
-                )}
-              </div>
-            </div>
-          ) : (
-            <span className="m-2 fw-bold text-danger">{errorMsg.messege}</span>
-          )
-        ) : (
-          ""
-        )}
+        {isCouponSubmitted ? getCouponSubmitMsg() : " "}
       </div>
     </div>
   );

@@ -4,9 +4,11 @@ const urlSuffix = "admin/get-all-companies";
 export const adminGetAllCompaniesAction = () => async (dispatch, getState) => {
   try {
     const res = await authenticatedAxios.getAuthenticatedAxios().get(urlSuffix);
-    dispatch({
-      type: "GET-ALL-COMPANIES",
-      payload: res.data,
-    });
+    if (res.status === 200) {
+      dispatch({
+        type: "GET-ALL-COMPANIES",
+        payload: res.data,
+      });
+    }
   } catch (error) {}
 };

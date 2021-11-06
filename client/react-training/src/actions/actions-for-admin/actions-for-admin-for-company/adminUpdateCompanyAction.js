@@ -12,7 +12,9 @@ export const adminUpdateCompanyAction =
       const res = await authenticatedAxios
         .getAuthenticatedAxios()
         .put(urlSuffix, companyObj, updateConfig);
-      dispatch({ type: "UPDATE-COMPANY", payload: res.data });
+      if (res.status === 200) {
+        dispatch({ type: "UPDATE-COMPANY", payload: res.data });
+      }
     } catch (error) {
       console.log(error);
     }

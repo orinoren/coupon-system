@@ -12,7 +12,9 @@ export const companyDeleteCouponAction =
       params: { id: coupon_id },
     };
     try {
-      await axios.delete(url, deleteConfig);
-      dispatch({ type: "DELETE-COUPON", payload: coupon_id });
+      const res = await axios.delete(url, deleteConfig);
+      if (res.status === 200) {
+        dispatch({ type: "DELETE-COUPON", payload: coupon_id });
+      }
     } catch (error) {}
   };

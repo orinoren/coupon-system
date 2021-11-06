@@ -1,5 +1,5 @@
 import authenticatedAxios from "../../service/AuthenticatedAxios";
-import { companySumbitCoupon } from "../actions-for-ui/action-for-ui";
+import { companySubmitCoupon } from "../actions-for-ui/action-for-ui";
 const urlSuffix = "company/update-coupon";
 
 export const companyUpdateCouponAction =
@@ -16,14 +16,14 @@ export const companyUpdateCouponAction =
             });
           if (respo.status === 200) {
             dispatch({ type: "UPDATE-COUPON", payload: respo.data });
-            dispatch(companySumbitCoupon());
+            dispatch(companySubmitCoupon());
           }
         } catch (error) {
           dispatch({
             type: "COUPON-OP-FAILED",
             payload: error.response.data,
           });
-          dispatch(companySumbitCoupon());
+          dispatch(companySubmitCoupon());
         }
       } else {
         try {
@@ -34,11 +34,11 @@ export const companyUpdateCouponAction =
             });
           if (respo.status === 200) {
             dispatch({ type: "UPDATE-COUPON", payload: respo.data });
-            dispatch(companySumbitCoupon());
+            dispatch(companySubmitCoupon());
           }
         } catch (error) {
           dispatch({ type: "COUPON-OP-FAILED", payload: error.response.data });
-          dispatch(companySumbitCoupon());
+          dispatch(companySubmitCoupon());
         }
       }
     } catch (error) {}

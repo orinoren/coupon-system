@@ -1,18 +1,15 @@
 import React, { useEffect } from "react";
 import "../../pages/cart-page/Cart.css";
-
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import defaultImage from "../../images/defaultImage.jpg";
 const CartCouponContent = (props) => {
-  const [imageView, setimageView] = useState();
   const [endDateView, setEndDateView] = useState(props.endDate);
 
   const cartCouponsContent = useSelector(
     (state) => state.uiRootReducer.cartArrReducer
   );
   useEffect(() => {
-    setimageView(props.image);
     setEndDateView(endDateView.replaceAll("-", "/"));
     return () => {};
   }, [cartCouponsContent]);

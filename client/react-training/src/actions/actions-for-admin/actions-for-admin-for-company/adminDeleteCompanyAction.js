@@ -8,9 +8,11 @@ export const adminDeleteCompanyAction =
     };
     console.log(companyId);
     try {
-      await authenticatedAxios
+      const res = await authenticatedAxios
         .getAuthenticatedAxios()
         .delete(urlSuffix, deleteCompanyConfig);
-      dispatch({ type: "DELETE-COMPANY", payload: companyId });
+      if (res.status === 200) {
+        dispatch({ type: "DELETE-COMPANY", payload: companyId });
+      }
     } catch (error) {}
   };

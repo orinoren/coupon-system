@@ -7,6 +7,7 @@ export const adminAddCustomerAction =
       const res = await authenticatedAxios
         .getAuthenticatedAxios()
         .post(urlSuffix, customerObj);
-      dispatch({ type: "ADD-CUSTOMER", payload: res.data });
+      if (res.status === 201)
+        dispatch({ type: "ADD-CUSTOMER", payload: res.data });
     } catch (error) {}
   };

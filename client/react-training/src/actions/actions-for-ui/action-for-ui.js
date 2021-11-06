@@ -28,7 +28,7 @@ export const adminResetUpdateMode = () => {
     type: "ADMIN-RESET-UPDATE-MODE",
   };
 };
-export const companySumbitCoupon = () => {
+export const companySubmitCoupon = () => {
   return {
     type: "COMPANY-SUBMIT-COUPON",
   };

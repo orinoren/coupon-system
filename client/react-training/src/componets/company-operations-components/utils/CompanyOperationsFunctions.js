@@ -78,3 +78,72 @@ export const handleOnCouponChangeFunc = (
       break;
   }
 };
+export const couponValidation = ({
+  title,
+  category_id,
+  startDate,
+  endDate,
+  amount,
+  price,
+}) => {
+  let isValid = true;
+  if (title === "") {
+    document.getElementById("coupon-title-input-error").textContent =
+      "please enter title";
+    isValid = false;
+  }
+  if (category_id === 0) {
+    document.getElementById("coupon-category-input-error").textContent =
+      "please enter category";
+    isValid = false;
+  }
+  if (startDate === "") {
+    document.getElementById("coupon-start-date-input-error").textContent =
+      "please enter date";
+    isValid = false;
+  }
+  if (endDate === "") {
+    document.getElementById("coupon-end-date-input-error").textContent =
+      "please enter date";
+    isValid = false;
+  }
+  if (amount <= 0) {
+    document.getElementById("coupon-amount-input-error").textContent =
+      "please enter amount bigger then 0";
+  }
+  if (price <= 0) {
+    document.getElementById("coupon-price-input-error").textContent =
+      "please price bigger then 0";
+    isValid = false;
+  }
+  return isValid;
+};
+export const getCouponSubmitMsgFunc = (couponPurchaseDetails, addMode) => {
+  if (couponPurchaseDetails.failed) {
+    return (
+      <span className="m-2 fw-bold text-danger">
+        {couponPurchaseDetails.messege}
+      </span>
+    );
+  }
+  if (addMode) {
+    return (
+      <div className="row">
+        <div className="col-12 text-center">
+          <span className="text-success w-100  p-1 fs-5 fw-bold">
+            Coupon added successfully
+          </span>
+        </div>
+      </div>
+    );
+  }
+  return (
+    <div className="row">
+      <div className="col-12 text-center">
+        <span className="text-success w-100  p-1 fs-5 fw-bold">
+          Coupon updated successfully
+        </span>
+      </div>
+    </div>
+  );
+};

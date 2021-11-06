@@ -9,6 +9,8 @@ export const adminUpdateCustomerAction =
       const res = await authenticatedAxios
         .getAuthenticatedAxios()
         .put(urlSuffix, customerObj, updateConfig);
-      dispatch({ type: "UPDATE-CUSTOMER", payload: res.data });
+      if (res.status === 200) {
+        dispatch({ type: "UPDATE-CUSTOMER", payload: res.data });
+      }
     } catch (error) {}
   };

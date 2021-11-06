@@ -1,14 +1,17 @@
 import React from "react";
 import "../../pages/cart-page/Cart.css";
 import { useSelector, useDispatch } from "react-redux";
-import { purchaseCouponAction } from "../../actions/actions-for-customer/purchaseCouponAction";
 import { useHistory } from "react-router";
+import { resetUserModeAction } from "../../actions/actions-for-ui/action-for-ui";
 import {
-  resetCartAction,
-  resetCartNotificationAction,
-  resetUserModeAction,
-} from "../../actions/actions-for-ui/action-for-ui";
+  getPurchaseMsgFunc,
+  handlePurchaseBtnClickedFunc,
+} from "./utils/CartFunctions";
+
 const CartSummery = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
   const cartSummery = useSelector(
     (state) => state.uiRootReducer.cartPropertisReducer.cartSummery
   );
@@ -20,42 +23,16 @@ const CartSummery = () => {
   );
   const userDetails = useSelector((state) => state.authReducer);
 
-  const history = useHistory();
-  const dispatch = useDispatch();
-
   const handlePurchaseBtnClicked = () => {
     if (userDetails.isLogged) {
-      const couponsIdArr = [];
-      for (let i = 0; i < couponsToPurchase.length; i++) {
-        for (let j = 0; j < couponsToPurchase[i].couponCartAmount; j++) {
-          couponsIdArr.push(couponsToPurchase[i].coupon_id);
-        }
-      }
-      dispatch(purchaseCouponAction(couponsIdArr));
-      dispatch(resetCartAction());
-      dispatch(resetCartNotificationAction());
+      handlePurchaseBtnClickedFunc(couponsToPurchase, dispatch);
       return;
     }
     history.push("/login");
     dispatch(resetUserModeAction());
   };
-  const getPurchaseMsg = () => {
-    if (couponPurchaseDetails.purchaseSucceed) {
-      return (
-        <span className="text-success fw-bold text-center">
-          Purchase made succesfully
-        </span>
-      );
-    }
-    if (couponPurchaseDetails.purchaseFailed) {
-      return (
-        <span className="text-success fw-bold text-center">
-          Purchase failed
-        </span>
-      );
-    }
-    return "";
-  };
+
+  const getPurchaseMsg = () => getPurchaseMsgFunc(couponPurchaseDetails);
   return (
     <div>
       <div className="mt-2 mt-lg-0 col-12 col-lg-8 ">
