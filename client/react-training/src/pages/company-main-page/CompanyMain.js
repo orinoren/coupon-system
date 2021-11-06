@@ -20,12 +20,14 @@ const CompanyMain = () => {
   const handleButtonClick = (event) => {
     if (companyCouponUpdateMode) {
       dispatch(companyCouponResetUpdateModeAction());
+      return;
     }
     if (companyCouponAddMode) {
       dispatch(companyCouponResetAddModeAction());
-    } else {
-      dispatch(companyCouponAddModeAction());
-    }
+    return;
+    } 
+    dispatch(companyCouponAddModeAction());
+    
   };
   const companyCouponUpdateMode = useSelector(
     (state) => state.uiRootReducer.companyUpdateCouponModeReducer.updateMode

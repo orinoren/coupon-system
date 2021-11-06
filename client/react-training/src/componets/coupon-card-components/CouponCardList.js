@@ -21,9 +21,10 @@ const CouponCardList = (props) => {
       setSplitedSearchResultCouponList(
         searchResultCouponList.slice(0, props.numberOfCoupons)
       );
-    } else {
+      return;
+    } 
       setSplitedAllCoupons(props.couponList.slice(0, props.numberOfCoupons));
-    }
+    
     return () => {};
   }, [
     props.userRole,

@@ -33,9 +33,10 @@ const CouponCard = (props) => {
       dispatch(companyCouponResetAddModeAction());
 
       dispatch(companyCouponUpdateModeAction(props));
-    } else {
+      return;
+    } 
       dispatch(companyCouponUpdateModeAction(props));
-    }
+    
   };
   const handleDeleteBtnClicked = () => {
     dispatch(companyDeleteCouponAction(props.coupon_id));
@@ -43,9 +44,10 @@ const CouponCard = (props) => {
   const hanldeAddToCartClicked = () => {
     if (showAddToCartControlles) {
       setShowAddToCartControlles(false);
-    } else {
+    return;
+    } 
       setShowAddToCartControlles(true);
-    }
+    
   };
   useEffect(() => {
     if (couponPurchaseDetails.purchaseSucceed) {
