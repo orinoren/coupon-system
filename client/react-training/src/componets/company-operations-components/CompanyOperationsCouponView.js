@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { companyResetSubmitCoupon } from "../../actions/actions-for-ui/action-for-ui";
 import { companyUpdateCouponAction } from "../../actions/actions-for-company/updateCouponAction";
 import { couponValidation } from "./utils/CompanyOperationsFunctions";
+import { getCouponSubmitMsgFunc } from "./utils/CompanyOperationsFunctions";
 const CompanyOperationsCouponView = (props) => {
   const dispatch = useDispatch();
 

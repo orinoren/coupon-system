@@ -1,16 +1,16 @@
 import React from "react";
 
-import "./CouponCard.css";
+import "../CouponCard.css";
 import { useState, useEffect } from "react";
-import defaultImage from "../../images/defaultImage.jpg";
-import { companyDeleteCouponAction } from "../../actions/actions-for-company/deleteCouponAction";
+import defaultImage from "../../../images/defaultImage.jpg";
+import { companyDeleteCouponAction } from "../../../actions/actions-for-company/deleteCouponAction";
 
 import {
   companyCouponResetAddModeAction,
   companyCouponUpdateModeAction,
-} from "../../actions/actions-for-ui/action-for-ui";
+} from "../../../actions/actions-for-ui/action-for-ui";
 import { useSelector, useDispatch } from "react-redux";
-import CouponControllers from "./CouponControllers";
+import CouponControllers from "../coupon-card-controllers/CouponControllers";
 
 const CouponCard = (props) => {
   const dispatch = useDispatch();
@@ -34,9 +34,8 @@ const CouponCard = (props) => {
 
       dispatch(companyCouponUpdateModeAction(props));
       return;
-    } 
-      dispatch(companyCouponUpdateModeAction(props));
-    
+    }
+    dispatch(companyCouponUpdateModeAction(props));
   };
   const handleDeleteBtnClicked = () => {
     dispatch(companyDeleteCouponAction(props.coupon_id));
@@ -44,10 +43,9 @@ const CouponCard = (props) => {
   const hanldeAddToCartClicked = () => {
     if (showAddToCartControlles) {
       setShowAddToCartControlles(false);
-    return;
-    } 
-      setShowAddToCartControlles(true);
-    
+      return;
+    }
+    setShowAddToCartControlles(true);
   };
   useEffect(() => {
     if (couponPurchaseDetails.purchaseSucceed) {

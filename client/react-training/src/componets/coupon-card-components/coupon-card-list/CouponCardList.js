@@ -1,4 +1,4 @@
-import CouponCard from "./CouponCard";
+import CouponCard from "../coupon-card/CouponCard";
 import React from "react";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
@@ -22,9 +22,9 @@ const CouponCardList = (props) => {
         searchResultCouponList.slice(0, props.numberOfCoupons)
       );
       return;
-    } 
-      setSplitedAllCoupons(props.couponList.slice(0, props.numberOfCoupons));
-    
+    }
+    setSplitedAllCoupons(props.couponList.slice(0, props.numberOfCoupons));
+
     return () => {};
   }, [
     props.userRole,

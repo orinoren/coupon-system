@@ -4,7 +4,7 @@ import {
   decrementCartNotificationAction,
   removeFromCartAction,
   addToCartAction,
-} from "../../actions/actions-for-ui/action-for-ui";
+} from "../../../actions/actions-for-ui/action-for-ui";
 
 import { useDispatch } from "react-redux";
 

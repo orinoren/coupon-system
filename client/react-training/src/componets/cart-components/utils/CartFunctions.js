@@ -1,8 +1,8 @@
+import { purchaseCouponAction } from "../../../actions/actions-for-customer/purchaseCouponAction";
 import {
-  purchaseCouponAction,
   resetCartAction,
   resetCartNotificationAction,
-} from "../../../actions/actions-for-customer/purchaseCouponAction";
+} from "../../../actions/actions-for-ui/action-for-ui";
 export const handlePurchaseBtnClickedFunc = (couponsToPurchase, dispatch) => {
   const couponsIdArr = [];
   for (let i = 0; i < couponsToPurchase.length; i++) {
