@@ -7,7 +7,8 @@ export const getCouponListFunc = (
   title,
   allCoupons,
   allCompanyCoupons,
-  allCustomerCoupons
+  allCustomerCoupons,
+  searchResultCouponList
 ) => {
   switch (title) {
     case "TOP COUPONS":
@@ -20,6 +21,8 @@ export const getCouponListFunc = (
       return allCoupons.filter((coupon) => coupon.category_id === 1);
     case "VACATION":
       return allCoupons.filter((coupon) => coupon.category_id === 4);
+    case "Result":
+      return searchResultCouponList;
     default:
       break;
   }

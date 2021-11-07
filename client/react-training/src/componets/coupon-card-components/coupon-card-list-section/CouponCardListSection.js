@@ -22,9 +22,10 @@ const CouponCardListSection = (props) => {
     (state) =>
       state.customerRootReducer.customerGetAllCouponsReducer.customerCoupons
   );
-  const updatedCoupon = useSelector(
-    (state) => state.companyRootReducer.companyUpdateCouponReducer
+  const searchResultCouponList = useSelector(
+    (state) => state.uiRootReducer.searchResultCouponListReducer.couponList
   );
+
   const userDetails = useSelector((state) => state.authReducer);
 
   const getCouponList = () =>
@@ -32,10 +33,11 @@ const CouponCardListSection = (props) => {
       props.title,
       allCoupons,
       allCompanyCoupons,
-      allCustomerCoupons
+      allCustomerCoupons,
+      searchResultCouponList
     );
 
-  const getCardListSectionControllers = () =>
+  const getCardListSectionSeeControllers = () =>
     getCardListSectionControllersFunc(
       setNumberOfCouponsToShow,
       numberOfCouponsToShow,
@@ -44,6 +46,8 @@ const CouponCardListSection = (props) => {
       props.title,
       dispatch
     );
+  console.log("card list section render");
+  console.log(props.title);
 
   return (
     <div>
@@ -55,7 +59,7 @@ const CouponCardListSection = (props) => {
               : props.title}
           </div>
           <div className="mb-2 align-self-end p-0  text-center col-2  ">
-            {getCardListSectionControllers()}
+            {getCardListSectionSeeControllers()}
           </div>
         </div>
         <div className="row card-list-section">
@@ -66,7 +70,6 @@ const CouponCardListSection = (props) => {
               showCustomerCoupons={props.showCustomerCoupons}
               numberOfCoupons={numberOfCouponsToShow}
               userRole={userDetails.role}
-              updatedCoupon={updatedCoupon}
             ></CouponCardList>
           </div>
         </div>

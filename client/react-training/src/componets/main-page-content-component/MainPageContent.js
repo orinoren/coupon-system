@@ -13,7 +13,7 @@ const MainPageContent = (props) => {
   const showSearchMode = useSelector(
     (state) => state.uiRootReducer.searchModeReducer.searchMode
   );
-  const showOp = useSelector(
+  const showOperationsFor = useSelector(
     (state) => state.uiRootReducer.showOpForAdminReducer
   );
 
@@ -36,9 +36,7 @@ const MainPageContent = (props) => {
   const deletedCoupon = useSelector(
     (state) => state.companyRootReducer.companyDeleteCouponReducer
   );
-  const companyMode = useSelector(
-    (state) => state.uiRootReducer.globalModeReducer.companyMode
-  );
+
   const userDetails = useSelector((state) => state.authReducer);
 
   useEffect(() => {
@@ -65,10 +63,13 @@ const MainPageContent = (props) => {
     userDetails,
     dispatch,
   ]);
+  console.log("main page render");
   return (
     <div className="mt-2 mt-md-4">
       <div className="row m-0 m-md-1  main-content-top-margin">
-        {showSearchMode && !showOp.customerOp && !showOp.companyOp ? (
+        {showSearchMode &&
+        !showOperationsFor.customerOp &&
+        !showOperationsFor.companyOp ? (
           <div className="m-0 m-md-1">
             <CouponCardListSection
               searchMode={showSearchMode}

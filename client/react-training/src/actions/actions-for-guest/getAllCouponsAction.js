@@ -6,7 +6,6 @@ export const getAllCouponsAction = () => async (dispatch, getState) => {
     const res = await axios.get(url);
 
     const allCoupons = res.data;
-    console.log(allCoupons);
     const allCouponWithImages = [];
     for (let i = 0; i < allCoupons.length; i++) {
       for (let j = 0; j < allCoupons[i].length; j += 3) {
@@ -43,7 +42,6 @@ export const getAllCouponsAction = () => async (dispatch, getState) => {
       type: "GET-ALL-COUPONS",
       payload: allCouponWithImages,
     });
-    console.log(allCouponWithImages);
   } catch (error) {
     console.log("ERRE");
   }
