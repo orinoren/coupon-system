@@ -16,5 +16,5 @@
 1. `getAllCompaniesBoxes` : return `getAllCompaniesBoxesFunc()` to retrive the wanted all companies
 2. `getAllCustomersBoxes` : return `getAllCustomersBoxesFunc()` to retrive the wanted all customers
 
-<!-- 3. `getAddBox` : if `showCompanyBoxToAdd` and `showOperationsFor.companyOp`\ returns `<AdminCompanyBox addCompanyMode={true} />` to let the component know its need to be an add box.
-   if `showCustomerBoxToAdd` and `showOperationsFor.customerOp`\ returns `<AdminCustomerBox addCustomerMode={true} />` to let the component know its need to be an add box -->
+3. `getAddBox` : if `showCompanyBoxToAdd` and `showOperationsFor.companyOp`\ returns `<AdminCompanyBox addCompanyMode={true} />` to let the component know its need to be an add box.
+   if `showCustomerBoxToAdd` and `showOperationsFor.customerOp`\ returns `<AdminCustomerBox addCustomerMode={true} />` to let the component know its need to be an add box
