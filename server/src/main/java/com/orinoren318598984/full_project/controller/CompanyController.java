@@ -44,7 +44,6 @@ public class CompanyController {
 			couponObj = objectMapper.readValue(coupon, Coupon.class);
 		} catch (JsonProcessingException e) {
 			log.info("error");
-			e.printStackTrace();
 		}
 		Coupon addedCoupon = companyService.addCoupon(couponObj, file);
 		return ResponseEntity.status(HttpStatus.CREATED).body(addedCoupon);

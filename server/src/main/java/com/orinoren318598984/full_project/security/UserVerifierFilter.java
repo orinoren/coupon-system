@@ -49,8 +49,10 @@ public class UserVerifierFilter implements Filter {
 			Jws<Claims> jwtAfterParse = null;
 			if (token != null) {
 				try {
+					log.info("token not null");
 					String tokenToParse = token.substring(7);
 					jwtAfterParse = myJwt.parseJWS(tokenToParse);
+					log.info("parse token");
 				} catch (Exception e) {
 					if (!httpResponse.isCommitted()) {
 						httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "TOKEN NOT APPROVED");
