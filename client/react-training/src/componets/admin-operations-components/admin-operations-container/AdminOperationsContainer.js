@@ -49,24 +49,22 @@ const AdminOperationsContainer = () => {
       allCustomers
     );
   };
+  const getAddBox = () => {
+    if (showCompanyBoxToAdd && showOperationsFor.companyOp) {
+      return <AdminCompanyBox addCompanyMode={true} />;
+    }
+    if (showCustomerBoxToAdd && showOperationsFor.customerOp) {
+      return <AdminCustomerBox addCustomerMode={true} />;
+    }
+    return "";
+  };
 
   return (
     <div>
       <div className="container-fluid bg-light mt-1 mt-md-5">
         <div className="row justify-content-center ">
           <div className="col-12">
-            <div>
-              {showCompanyBoxToAdd && showOperationsFor.companyOp ? (
-                <AdminCompanyBox addCompanyMode={true} />
-              ) : (
-                " "
-              )}
-              {showCustomerBoxToAdd && showOperationsFor.customerOp ? (
-                <AdminCustomerBox addCustomerMode={true} />
-              ) : (
-                " "
-              )}
-            </div>
+            {getAddBox()}
             <div>
               {showOperationsFor.companyOp
                 ? getAllCompaniesBoxes()
