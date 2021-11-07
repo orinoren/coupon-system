@@ -2,7 +2,7 @@
 
 ## useSelectors
 
-1. `showOperationsFor`:`showOperationsFor` : determine of which operations to show for customers or companies and let us know on whice mode administrator is in .
+1. `showOperationsFor`: determine of which operations to show for customers or companies and let us know on whice mode administrator is in .
 2. `allCompanies` : contains all companies.
 3. `allCustomers` : contains all customers.
 4. `isSearchMode` : determine if admin is on search mode to show the search result .
