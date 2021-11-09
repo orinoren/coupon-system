@@ -5,5 +5,3 @@
 
 2. all companies or customers show in a form of one container
    that hold every company or customer data in seperate box.
-
-3. `utils` folder contains methods that are used in admin-operations main component

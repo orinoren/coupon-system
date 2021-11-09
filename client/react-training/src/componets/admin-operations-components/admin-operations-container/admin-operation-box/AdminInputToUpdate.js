@@ -12,20 +12,20 @@ const AdminBoxInputToUpdate = (props) => {
       document.getElementById(
         "company-update-password-" + props.idSuffix
       ).textContent = "";
-    } else {
-      document.getElementById(
-        "customer-update-first-name-" + props.idSuffix
-      ).textContent = "";
-      document.getElementById(
-        "customer-update-last-name-" + props.idSuffix
-      ).textContent = "";
-      document.getElementById(
-        "customer-update-email-" + props.idSuffix
-      ).textContent = "";
-      document.getElementById(
-        "customer-update-password-" + props.idSuffix
-      ).textContent = "";
+      return;
     }
+    document.getElementById(
+      "customer-update-first-name-" + props.idSuffix
+    ).textContent = "";
+    document.getElementById(
+      "customer-update-last-name-" + props.idSuffix
+    ).textContent = "";
+    document.getElementById(
+      "customer-update-email-" + props.idSuffix
+    ).textContent = "";
+    document.getElementById(
+      "customer-update-password-" + props.idSuffix
+    ).textContent = "";
   };
 
   return (

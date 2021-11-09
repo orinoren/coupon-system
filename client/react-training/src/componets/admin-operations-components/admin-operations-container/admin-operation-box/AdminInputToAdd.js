@@ -10,12 +10,12 @@ const AdminBoxInputToAdd = (props) => {
       document.getElementById("company-add-name").textContent = "";
       document.getElementById("company-add-email").textContent = "";
       document.getElementById("company-add-password").textContent = "";
-    } else {
-      document.getElementById("customer-add-first-name").textContent = "";
-      document.getElementById("customer-add-last-name").textContent = "";
-      document.getElementById("customer-add-email").textContent = "";
-      document.getElementById("customer-add-password").textContent = "";
+      return;
     }
+    document.getElementById("customer-add-first-name").textContent = "";
+    document.getElementById("customer-add-last-name").textContent = "";
+    document.getElementById("customer-add-email").textContent = "";
+    document.getElementById("customer-add-password").textContent = "";
   };
 
   return (
