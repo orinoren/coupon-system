@@ -4,7 +4,7 @@
 
 this componet is one input on the add box
 with a label of the props.label(name , email ,password etc.) that determine
-in the <AdminCompanyBox/> or <AdminCustomerBox/>,
+in the `<AdminCompanyBox/>` or `<AdminCustomerBox/>`,
 and a space for error messege with unique id of the current input
 details
 
@@ -24,7 +24,7 @@ details
 
 this componet is one input on the update box
 with a label of the props.label(name , email ,password etc.) that determine
-in the <AdminCompanyBox/> or <AdminCustomerBox/>,
+in the `<AdminCompanyBox/>` or `<AdminCustomerBox/>`,
 and a space for error messege with unique id
 **which consists of a combination of the input details (idPrefix) and id of the company or customer(idSuffix)**
 
