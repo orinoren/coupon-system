@@ -1,5 +1,5 @@
-import { adminUpdateCustomerAction } from "../../../../../actions/actions-for-admin/actions-for-admin-for-customer/adminUpdateCustomerAction";
-import { adminDeleteCustomerAction } from "../../../../../actions/actions-for-admin/actions-for-admin-for-customer/adminDeleteCustomerAction";
+import { adminUpdateCustomerAction } from "../../../../../../actions/actions-for-admin/actions-for-admin-for-customer/adminUpdateCustomerAction";
+import { adminDeleteCustomerAction } from "../../../../../../actions/actions-for-admin/actions-for-admin-for-customer/adminDeleteCustomerAction";
 import AdminBoxInputToAdd from "../../AdminBoxInputToAdd";
 import AdminBoxInputToUpdate from "../../AdminBoxInputToUpdate";
 export const customerValidationToAdd = (

@@ -1,13 +1,13 @@
 import React from "react";
-import "../../AdminOperations.css";
+import "../../../AdminOperations.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useRef, useState } from "react";
-import { adminAddCompanyAction } from "../../../../actions/actions-for-admin/actions-for-admin-for-company/adminAddCompanyAction";
-import AdminBoxButtons from "../AdminBoxButtons";
+import { adminAddCompanyAction } from "../../../../../actions/actions-for-admin/actions-for-admin-for-company/adminAddCompanyAction";
+import AdminBoxButtons from "../../../admin-operations-container/admin-operation-box/AdminBoxButtons";
 import {
   adminResetAddMode,
   adminCompanyUpdateMode,
-} from "../../../../actions/actions-for-ui/action-for-ui";
+} from "../../../../../actions/actions-for-ui/action-for-ui";
 import {
   companyValidationToAdd,
   companyValidationToUpdate,

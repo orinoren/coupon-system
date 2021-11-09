@@ -1,5 +1,5 @@
-import AdminCustomerBox from "../../admin-operation-box/admin-customer-box/AdminCustomerBox";
-import AdminCompanyBox from "../../admin-operation-box/admin-company-box/AdminCompanyBox";
+import AdminCustomerBox from "../admin-operation-box/admin-customer-box/AdminCustomerBox";
+import AdminCompanyBox from "../admin-operation-box/admin-company-box/AdminCompanyBox";
 
 export const getAllCompaniesBoxesFunc = (
   isSearchMode,
