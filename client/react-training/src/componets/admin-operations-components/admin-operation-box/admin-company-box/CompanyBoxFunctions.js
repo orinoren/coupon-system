@@ -1,7 +1,7 @@
-import AdminBoxInputToAdd from "../admin-operation-box/AdminBoxInputToAdd";
-import AdminBoxInputToUpdate from "../admin-operation-box/AdminBoxInputToUpdate";
-import { adminUpdateCompanyAction } from "../../../actions/actions-for-admin/actions-for-admin-for-company/adminUpdateCompanyAction";
-import { adminDeleteCompanyAction } from "../../../actions/actions-for-admin/actions-for-admin-for-company/adminDeleteCompanyAction";
+import AdminBoxInputToAdd from "../../admin-operation-box/AdminBoxInputToAdd";
+import AdminBoxInputToUpdate from "../../admin-operation-box/AdminBoxInputToUpdate";
+import { adminUpdateCompanyAction } from "../../../../actions/actions-for-admin/actions-for-admin-for-company/adminUpdateCompanyAction";
+import { adminDeleteCompanyAction } from "../../../../actions/actions-for-admin/actions-for-admin-for-company/adminDeleteCompanyAction";
 
 export const getCompanyBoxToAddFunc = (companyName, emailRef, passwordRef) => {
   return (
