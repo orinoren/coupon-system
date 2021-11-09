@@ -1,7 +1,7 @@
 import React from "react";
 import "../../../AdminOperations.css";
 import { useSelector, useDispatch } from "react-redux";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { adminAddCompanyAction } from "../../../../../actions/actions-for-admin/actions-for-admin-for-company/adminAddCompanyAction";
 import AdminBoxButtons from "../../../admin-operations-container/admin-operation-box/AdminBoxButtons";
 import {
@@ -29,10 +29,6 @@ const AdminCompanyBox = (props) => {
   );
 
   const submit = () => {
-    console.log(props?.id);
-    console.log(companyNameState);
-    console.log(emailState);
-    console.log(passwordState);
     if (updateMode) {
       const isUpdateValid = companyValidationToUpdate(
         emailState,
@@ -49,21 +45,21 @@ const AdminCompanyBox = (props) => {
         dispatchUpdatedCompany(companyObj, isSearchMode, dispatch);
         setUpdateMode(false);
       }
-    } else {
-      const isAddValid = companyValidationToAdd(
-        companyNameState,
-        emailState,
-        passwordState
-      );
-      if (isAddValid) {
-        const companyObj = {
-          name: companyNameState,
-          email: emailState,
-          password: passwordState,
-        };
-        dispatch(adminAddCompanyAction(companyObj));
-        dispatch(adminResetAddMode());
-      }
+      return;
+    }
+    const isAddValid = companyValidationToAdd(
+      companyNameState,
+      emailState,
+      passwordState
+    );
+    if (isAddValid) {
+      const companyObj = {
+        name: companyNameState,
+        email: emailState,
+        password: passwordState,
+      };
+      dispatch(adminAddCompanyAction(companyObj));
+      dispatch(adminResetAddMode());
     }
   };
 
@@ -87,13 +83,13 @@ const AdminCompanyBox = (props) => {
       props.name,
       emailState,
       setEmailState,
-      props.id,
       passwordState,
-      setPasswordState
+      setPasswordState,
+      props.id
     );
   };
   const getCompanyBox = () =>
-    getCompanyBoxFunc(props.name, emailState, passwordState);
+    getCompanyBoxFunc(companyNameState, emailState, passwordState);
 
   return (
     <div className="container-fluid p-0 p-sm-1 mt-2">

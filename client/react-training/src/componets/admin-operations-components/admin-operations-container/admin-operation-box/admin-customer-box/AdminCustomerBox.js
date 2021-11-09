@@ -30,10 +30,6 @@ const AdminCustomerBox = (props) => {
   const dispatch = useDispatch();
 
   const submit = () => {
-    console.log(firstNameState);
-    console.log(lastNameState);
-    console.log(emailState);
-    console.log(passwordState);
     if (updateMode) {
       const isUpdateValid = customerValidationToUpdate(
         firstNameState,

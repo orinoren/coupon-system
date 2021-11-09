@@ -33,9 +33,9 @@ export const getCompanyBoxToUpdateFunc = (
   companyNameState,
   emailState,
   setEmailState,
-  id,
   passwordState,
-  setPasswordState
+  setPasswordState,
+  id
 ) => {
   return (
     <div>
