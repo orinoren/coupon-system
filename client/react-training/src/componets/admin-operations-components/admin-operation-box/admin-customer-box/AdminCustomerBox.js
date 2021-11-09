@@ -16,7 +16,7 @@ import {
   getCustomerBoxFunc,
   getCustomerBoxToAddFunc,
   getCustomerBoxToUpdateFunc,
-} from "../admin-customer-box/CustomerBoxFunctions";
+} from "./utils/CustomerBoxFunctions";
 const AdminCustomerBox = (props) => {
   const isSearchMode = useSelector(
     (state) => state.uiRootReducer.searchModeReducer.searchMode
