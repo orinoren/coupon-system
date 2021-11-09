@@ -27,7 +27,7 @@ const AdminBoxInputToAdd = (props) => {
         <div className="col-5 my-2 my-sm-0">
           <input
             onFocus={() => handleOnFocusInput()}
-            ref={props.refTo}
+            onChange={(e) => props.onChangeFunc(e.target.value)}
             className=""
             type="text"
             id="fname"

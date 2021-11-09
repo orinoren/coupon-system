@@ -1,7 +1,7 @@
 import React from "react";
 import "../../../AdminOperations.css";
 import { useSelector, useDispatch } from "react-redux";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { adminAddCustomerAction } from "../../../../../actions/actions-for-admin/actions-for-admin-for-customer/adminAddCustomerAction";
 import AdminBoxButtons from "../AdminBoxButtons";
 import {
@@ -18,37 +18,37 @@ import {
   getCustomerBoxToUpdateFunc,
 } from "./utils/CustomerBoxFunctions";
 const AdminCustomerBox = (props) => {
-  const isSearchMode = useSelector(
-    (state) => state.uiRootReducer.searchModeReducer.searchMode
-  );
-  const [updateMode, setUpdateMode] = useState(false);
-  const dispatch = useDispatch();
-  const firstNameRef = useRef();
-  const lastNameRef = useRef();
-  const emailRef = useRef();
-  const passwordRef = useRef();
-
   const [firstNameState, setFirstNameState] = useState(props.firstName);
   const [lastNameState, setLastNameState] = useState(props.lastName);
   const [emailState, setEmailState] = useState(props.email);
   const [passwordState, setPasswordState] = useState(props.password);
 
+  const isSearchMode = useSelector(
+    (state) => state.uiRootReducer.searchModeReducer.searchMode
+  );
+  const [updateMode, setUpdateMode] = useState(false);
+  const dispatch = useDispatch();
+
   const submit = () => {
+    console.log(firstNameState);
+    console.log(lastNameState);
+    console.log(emailState);
+    console.log(passwordState);
     if (updateMode) {
       const isUpdateValid = customerValidationToUpdate(
-        firstNameRef,
-        lastNameRef,
-        emailRef,
-        passwordRef,
+        firstNameState,
+        lastNameState,
+        emailState,
+        passwordState,
         props.id
       );
       if (isUpdateValid) {
         const customerObj = {
           id: props.id,
-          first_name: firstNameRef.current.value,
-          last_name: lastNameRef.current.value,
-          email: emailRef.current.value,
-          password: passwordRef.current.value,
+          first_name: firstNameState,
+          last_name: lastNameState,
+          email: emailState,
+          password: passwordState,
         };
         dispatchUpdatedCustomer(customerObj, isSearchMode, dispatch);
         setUpdateMode(false);
@@ -56,17 +56,17 @@ const AdminCustomerBox = (props) => {
       return;
     }
     const isAddValid = customerValidationToAdd(
-      firstNameRef,
-      lastNameRef,
-      emailRef,
-      passwordRef
+      firstNameState,
+      lastNameState,
+      emailState,
+      passwordState
     );
     if (isAddValid) {
       const customerObj = {
-        first_name: firstNameRef.current.value,
-        last_name: lastNameRef.current.value,
-        email: emailRef.current.value,
-        password: passwordRef.current.value,
+        first_name: firstNameState,
+        last_name: lastNameState,
+        email: emailState,
+        password: passwordState,
       };
       dispatch(adminAddCustomerAction(customerObj));
       dispatch(adminResetAddMode());
@@ -82,23 +82,24 @@ const AdminCustomerBox = (props) => {
     dispatchDeletedCustomer(idToDelete, isSearchMode, dispatch);
   };
   const getCustomerBoxToAdd = () =>
-    getCustomerBoxToAddFunc(firstNameRef, lastNameRef, emailRef, passwordRef);
+    getCustomerBoxToAddFunc(
+      setFirstNameState,
+      setLastNameState,
+      setEmailState,
+      setPasswordState
+    );
 
   const getCustomerBoxToUpdate = () =>
     getCustomerBoxToUpdateFunc(
       setFirstNameState,
       firstNameState,
-      firstNameRef,
-      props.id,
       setLastNameState,
       lastNameState,
-      lastNameRef,
       setEmailState,
       emailState,
-      emailRef,
       setPasswordState,
       passwordState,
-      passwordRef
+      props.id
     );
 
   const getCustomerBox = () =>

@@ -49,8 +49,6 @@ const CouponCardListSection = (props) => {
       props.title,
       dispatch
     );
-  console.log("card list section render");
-  console.log(props.title);
 
   return (
     <div>

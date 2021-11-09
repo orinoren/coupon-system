@@ -1,38 +1,40 @@
-import AdminBoxInputToAdd from "../../AdminBoxInputToAdd";
-import AdminBoxInputToUpdate from "../../AdminBoxInputToUpdate";
+import AdminInputToAdd from "../../AdminInputToAdd";
+import AdminInputToUpdate from "../../AdminInputToUpdate";
 import { adminUpdateCompanyAction } from "../../../../../../actions/actions-for-admin/actions-for-admin-for-company/adminUpdateCompanyAction";
 import { adminDeleteCompanyAction } from "../../../../../../actions/actions-for-admin/actions-for-admin-for-company/adminDeleteCompanyAction";
 
-export const getCompanyBoxToAddFunc = (companyName, emailRef, passwordRef) => {
+export const getCompanyBoxToAddFunc = (
+  setNameState,
+  setEmailState,
+  setPasswordState
+) => {
   return (
     <div>
-      <AdminBoxInputToAdd
-        refTo={companyName}
+      <AdminInputToAdd
+        onChangeFunc={setNameState}
         label={"Name :"}
         id="company-add-name"
-      ></AdminBoxInputToAdd>
-      <AdminBoxInputToAdd
-        refTo={emailRef}
+      ></AdminInputToAdd>
+      <AdminInputToAdd
+        onChangeFunc={setEmailState}
         label={"Email :"}
         id="company-add-email"
-      ></AdminBoxInputToAdd>
+      ></AdminInputToAdd>
 
-      <AdminBoxInputToAdd
-        refTo={passwordRef}
+      <AdminInputToAdd
+        onChangeFunc={setPasswordState}
         label={"Password :"}
         id="company-add-password"
-      ></AdminBoxInputToAdd>
+      ></AdminInputToAdd>
     </div>
   );
 };
 export const getCompanyBoxToUpdateFunc = (
   companyNameState,
   emailState,
-  emailRef,
   setEmailState,
   id,
   passwordState,
-  passwordRef,
   setPasswordState
 ) => {
   return (
@@ -44,23 +46,21 @@ export const getCompanyBoxToUpdateFunc = (
           </div>
         </div>
       </div>
-      <AdminBoxInputToUpdate
+      <AdminInputToUpdate
         label={"Email: "}
         onChangeFunc={setEmailState}
         value={emailState}
-        refTo={emailRef}
         idPrefix={"company-update-email-"}
         idSuffix={id}
-      ></AdminBoxInputToUpdate>
+      ></AdminInputToUpdate>
 
-      <AdminBoxInputToUpdate
+      <AdminInputToUpdate
         label={"Password: "}
         onChangeFunc={setPasswordState}
         value={passwordState}
-        refTo={passwordRef}
         idPrefix={"company-update-password-"}
         idSuffix={id}
-      ></AdminBoxInputToUpdate>
+      ></AdminInputToUpdate>
     </div>
   );
 };
@@ -97,21 +97,21 @@ export const getCompanyBoxFunc = (
   );
 };
 export const companyValidationToAdd = (companyName, email, password) => {
-  if (companyName.current.value === "") {
+  if (companyName === "") {
     document.getElementById("company-add-name").textContent =
       "please enter name";
     return false;
   }
-  if (email.current.value === "") {
+  if (email === "") {
     document.getElementById("company-add-email").textContent =
       "please enter email";
     return false;
   }
-  if (!email.current.value.includes("@")) {
+  if (!email.includes("@")) {
     document.getElementById("company-add-email").textContent = "@ is missing ";
     return false;
   }
-  if (password.current.value === "") {
+  if (password.value === "") {
     document.getElementById("company-add-password").textContent =
       "please enter password";
     return false;
@@ -119,17 +119,17 @@ export const companyValidationToAdd = (companyName, email, password) => {
   return true;
 };
 export const companyValidationToUpdate = (email, password, company_id) => {
-  if (email.current.value === "") {
+  if (email === "") {
     document.getElementById("company-update-email-" + company_id).textContent =
       "please enter email";
     return false;
   }
-  if (!email.current.value.includes("@")) {
+  if (!email.includes("@")) {
     document.getElementById("company-update-email-" + company_id).textContent =
       "@ is missing ";
     return false;
   }
-  if (password.current.value === "") {
+  if (password === "") {
     document.getElementById(
       "company-update-password-" + company_id
     ).textContent = "please enter password";

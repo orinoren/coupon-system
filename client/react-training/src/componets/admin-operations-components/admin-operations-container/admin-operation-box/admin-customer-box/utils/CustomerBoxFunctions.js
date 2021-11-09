@@ -1,33 +1,33 @@
 import { adminUpdateCustomerAction } from "../../../../../../actions/actions-for-admin/actions-for-admin-for-customer/adminUpdateCustomerAction";
 import { adminDeleteCustomerAction } from "../../../../../../actions/actions-for-admin/actions-for-admin-for-customer/adminDeleteCustomerAction";
-import AdminBoxInputToAdd from "../../AdminBoxInputToAdd";
-import AdminBoxInputToUpdate from "../../AdminBoxInputToUpdate";
+import AdminInputToAdd from "../../AdminInputToAdd";
+import AdminInputToUpdate from "../../AdminInputToUpdate";
 export const customerValidationToAdd = (
-  firstNameRef,
-  lastNameRef,
-  emailRef,
-  passwordRef
+  firstName,
+  lastName,
+  email,
+  password
 ) => {
-  if (firstNameRef.current.value === "") {
+  if (firstName === "") {
     document.getElementById("customer-add-first-name").textContent =
       "please enter first name";
     return false;
   }
-  if (lastNameRef.current.value === "") {
+  if (lastName === "") {
     document.getElementById("customer-add-last-name").textContent =
       "please enter last name";
     return false;
   }
-  if (emailRef.current.value === "") {
+  if (email === "") {
     document.getElementById("customer-add-email").textContent =
       "please enter email";
     return false;
   }
-  if (!emailRef.current.value.includes("@")) {
+  if (!email.includes("@")) {
     document.getElementById("customer-add-email").textContent = "@ is missing ";
     return false;
   }
-  if (passwordRef.current.value === "") {
+  if (password === "") {
     document.getElementById("customer-add-password").textContent =
       "please enter password";
     return false;
@@ -36,37 +36,37 @@ export const customerValidationToAdd = (
   return true;
 };
 export const customerValidationToUpdate = (
-  firstNameRef,
-  lastNameRef,
-  emailRef,
-  passwordRef,
+  firstName,
+  lastName,
+  email,
+  password,
   customer_id
 ) => {
-  if (firstNameRef.current.value === "") {
+  if (firstName === "") {
     document.getElementById(
       "customer-update-first-name-" + customer_id
     ).textContent = "please enter first name";
     return false;
   }
-  if (lastNameRef.current.value === "") {
+  if (lastName === "") {
     document.getElementById(
       "customer-update-last-name-" + customer_id
     ).textContent = "please enter last name";
     return false;
   }
-  if (emailRef.current.value === "") {
+  if (email === "") {
     document.getElementById(
       "customer-update-email-" + customer_id
     ).textContent = "please enter email";
     return false;
   }
-  if (!emailRef.current.value.includes("@")) {
+  if (!email.includes("@")) {
     document.getElementById(
       "customer-update-email-" + customer_id
     ).textContent = "@ is missing ";
     return false;
   }
-  if (passwordRef.current.value === "") {
+  if (password === "") {
     document.getElementById(
       "customer-update-password-" + customer_id
     ).textContent = "please enter password";
@@ -99,85 +99,77 @@ export const dispatchDeletedCustomer = (idToDelete, isSearchMode, dispatch) => {
   dispatch(adminDeleteCustomerAction(idToDelete));
 };
 export const getCustomerBoxToAddFunc = (
-  firstNameRef,
-  lastNameRef,
-  emailRef,
-  passwordRef
+  setFirstNameState,
+  setLastNameState,
+  setEmailState,
+  setPasswordState
 ) => {
   return (
     <div>
-      <AdminBoxInputToAdd
-        refTo={firstNameRef}
+      <AdminInputToAdd
+        onChangeFunc={setFirstNameState}
         label={"First name :"}
         id="customer-add-first-name"
-      ></AdminBoxInputToAdd>
-      <AdminBoxInputToAdd
-        refTo={lastNameRef}
+      ></AdminInputToAdd>
+      <AdminInputToAdd
+        onChangeFunc={setLastNameState}
         label={"Last name :"}
         id="customer-add-last-name"
-      ></AdminBoxInputToAdd>
-      <AdminBoxInputToAdd
-        refTo={emailRef}
+      ></AdminInputToAdd>
+      <AdminInputToAdd
+        onChangeFunc={setEmailState}
         label={"Email :"}
         id="customer-add-email"
-      ></AdminBoxInputToAdd>
-      <AdminBoxInputToAdd
-        refTo={passwordRef}
+      ></AdminInputToAdd>
+      <AdminInputToAdd
+        onChangeFunc={setPasswordState}
         label={"Password :"}
         id="customer-add-password"
-      ></AdminBoxInputToAdd>
+      ></AdminInputToAdd>
     </div>
   );
 };
 export const getCustomerBoxToUpdateFunc = (
   setFirstNameState,
   firstNameState,
-  firstNameRef,
-  id,
   setLastNameState,
   lastNameState,
-  lastNameRef,
   setEmailState,
   emailState,
-  emailRef,
   setPasswordState,
   passwordState,
-  passwordRef
+  id
 ) => {
   return (
     <div>
-      <AdminBoxInputToUpdate
+      <AdminInputToUpdate
         label={"First name :"}
         onChangeFunc={setFirstNameState}
         value={firstNameState}
-        refTo={firstNameRef}
         idPrefix={"customer-update-first-name-"}
         idSuffix={id}
-      ></AdminBoxInputToUpdate>
-      <AdminBoxInputToUpdate
+      ></AdminInputToUpdate>
+      <AdminInputToUpdate
         label={"Last name :"}
         onChangeFunc={setLastNameState}
         value={lastNameState}
-        refTo={lastNameRef}
         idPrefix={"customer-update-last-name-"}
         idSuffix={id}
-      ></AdminBoxInputToUpdate>
-      <AdminBoxInputToUpdate
+      ></AdminInputToUpdate>
+      <AdminInputToUpdate
         label={"Email :"}
         onChangeFunc={setEmailState}
         value={emailState}
-        refTo={emailRef}
         idPrefix={"customer-update-email-"}
         idSuffix={id}
-      ></AdminBoxInputToUpdate>
-      <AdminBoxInputToUpdate
+      ></AdminInputToUpdate>
+      <AdminInputToUpdate
         label={"Password :"}
         onChangeFunc={setPasswordState}
         value={passwordState}
-        refTo={passwordRef}
         idPrefix={"customer-update-password-"}
         idSuffix={id}
-      ></AdminBoxInputToUpdate>
+      ></AdminInputToUpdate>
     </div>
   );
 };

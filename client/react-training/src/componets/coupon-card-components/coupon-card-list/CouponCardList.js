@@ -17,7 +17,6 @@ const CouponCardList = (props) => {
   const getAllCouponsCards = () =>
     getAllCouponsCardsFunc(props.searchMode, splitedAllCoupons);
 
-  console.log("card list render");
   return (
     <div>
       <div className="row main-page-content-margin-top align-items-start ">

@@ -18,6 +18,7 @@ import {
   getCompanyBoxToUpdateFunc,
 } from "./utils/CompanyBoxFunctions";
 const AdminCompanyBox = (props) => {
+  const [companyNameState, setCompanyNameState] = useState(props.name);
   const [emailState, setEmailState] = useState(props.email);
   const [passwordState, setPasswordState] = useState(props.password);
   const [updateMode, setUpdateMode] = useState(false);
@@ -26,38 +27,39 @@ const AdminCompanyBox = (props) => {
   const isSearchMode = useSelector(
     (state) => state.uiRootReducer.searchModeReducer.searchMode
   );
-  const companyName = useRef();
-  const emailRef = useRef();
-  const passwordRef = useRef();
 
   const submit = () => {
+    console.log(props?.id);
+    console.log(companyNameState);
+    console.log(emailState);
+    console.log(passwordState);
     if (updateMode) {
       const isUpdateValid = companyValidationToUpdate(
-        emailRef,
-        passwordRef,
+        emailState,
+        passwordState,
         props.id
       );
       if (isUpdateValid) {
         const companyObj = {
           company_id: props.id,
           name: props.name,
-          email: emailRef.current.value,
-          password: passwordRef.current.value,
+          email: emailState,
+          password: passwordState,
         };
         dispatchUpdatedCompany(companyObj, isSearchMode, dispatch);
         setUpdateMode(false);
       }
     } else {
       const isAddValid = companyValidationToAdd(
-        companyName,
-        emailRef,
-        passwordRef
+        companyNameState,
+        emailState,
+        passwordState
       );
       if (isAddValid) {
         const companyObj = {
-          name: companyName.current.value,
-          email: emailRef.current.value,
-          password: passwordRef.current.value,
+          name: companyNameState,
+          email: emailState,
+          password: passwordState,
         };
         dispatch(adminAddCompanyAction(companyObj));
         dispatch(adminResetAddMode());
@@ -74,17 +76,19 @@ const AdminCompanyBox = (props) => {
     dispatchDeletedCompany(idToDelete, isSearchMode, dispatch);
   };
   const getCompanyBoxToAdd = () =>
-    getCompanyBoxToAddFunc(companyName, emailRef, passwordRef);
+    getCompanyBoxToAddFunc(
+      setCompanyNameState,
+      setEmailState,
+      setPasswordState
+    );
 
   const getCompanyBoxToUpdate = () => {
     return getCompanyBoxToUpdateFunc(
       props.name,
       emailState,
-      emailRef,
       setEmailState,
       props.id,
       passwordState,
-      passwordRef,
       setPasswordState
     );
   };

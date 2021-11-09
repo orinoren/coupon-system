@@ -41,7 +41,6 @@ const AdminBoxInputToUpdate = (props) => {
             }}
             onFocus={() => handleOnFocusInput()}
             value={props.value}
-            ref={props.refTo}
             className=""
             type="text"
             id="fname"
