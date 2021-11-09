@@ -76,14 +76,22 @@ const handleSeeMoreClicked = (
   setNumberOfCouponsToShow,
   numberOfCouponsToShow
 ) => {
-  setNumberOfCouponsToShow(numberOfCouponsToShow + 6);
+  setNumberOfCouponsToShow({
+    ...numberOfCouponsToShow,
+    clicked: true,
+    amount: numberOfCouponsToShow.amount + 6,
+  });
 };
 const handleSeeLessClicked = (
   setNumberOfCouponsToShow,
   numberOfCouponsToShow
 ) => {
-  if (numberOfCouponsToShow !== 6) {
-    setNumberOfCouponsToShow(numberOfCouponsToShow - 6);
+  if (numberOfCouponsToShow.amount !== 6) {
+    setNumberOfCouponsToShow({
+      ...numberOfCouponsToShow,
+      clicked: true,
+      amount: numberOfCouponsToShow.amount - 6,
+    });
   }
 };
 const handleExitCouponListSectionButtonClicked = (title, dispatch) => {

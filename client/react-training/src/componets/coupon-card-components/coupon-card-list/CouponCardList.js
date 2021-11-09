@@ -3,17 +3,16 @@ import { useState, useEffect } from "react";
 import { getAllCouponsCardsFunc } from "./utils/CouponCardListFunctions";
 const CouponCardList = (props) => {
   const [splitedAllCoupons, setSplitedAllCoupons] = useState([
-    ...props.couponList.slice(0, props.numberOfCoupons),
+    ...props.couponList.slice(0, props.numberOfCoupons.amount),
   ]);
 
   useEffect(() => {
-    if (splitedAllCoupons.length > 0 && props.searchMode) {
-      setSplitedAllCoupons([
-        ...props.couponList.slice(0, props.numberOfCoupons),
-      ]);
-    }
+    setSplitedAllCoupons([
+      ...props.couponList.slice(0, props.numberOfCoupons.amount),
+    ]);
+
     return () => {};
-  }, [props.numberOfCoupons, props.couponList]);
+  }, [props.numberOfCoupons.amount, props.couponList]);
 
   const getAllCouponsCards = () =>
     getAllCouponsCardsFunc(props.searchMode, splitedAllCoupons);

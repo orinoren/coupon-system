@@ -8,7 +8,10 @@ import {
 } from "../coupon-card-list-section/utils/CouponCardListSectionFunctions";
 
 const CouponCardListSection = (props) => {
-  const [numberOfCouponsToShow, setNumberOfCouponsToShow] = useState(6);
+  const [numberOfCouponsToShow, setNumberOfCouponsToShow] = useState({
+    clicked: false,
+    amount: 6,
+  });
 
   const dispatch = useDispatch();
   const allCompanyCoupons = useSelector(

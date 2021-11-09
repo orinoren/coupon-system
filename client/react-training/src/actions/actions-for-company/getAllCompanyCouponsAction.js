@@ -16,7 +16,7 @@ export const getAllCompanyCouponsAction = () => async (dispatch, getState) => {
         let startDateForCoupon =
           startDate.getFullYear() +
           "-" +
-          ("0" + (startDate.getMonth() + 1)).slice(-2) +
+          ("0" + startDate.getMonth()).slice(-2) +
           "-" +
           ("0" + startDate.getDate()).slice(-2);
         let endDate = new Date(...coupon.endDate);
@@ -24,7 +24,7 @@ export const getAllCompanyCouponsAction = () => async (dispatch, getState) => {
         let endDateForCoupon =
           endDate.getFullYear() +
           "-" +
-          ("0" + (endDate.getMonth() + 1)).slice(-2) +
+          ("0" + endDate.getMonth()).slice(-2) +
           "-" +
           ("0" + endDate.getDate()).slice(-2);
 

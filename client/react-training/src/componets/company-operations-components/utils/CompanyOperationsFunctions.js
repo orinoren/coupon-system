@@ -15,6 +15,7 @@ export const handleOnCouponChangeFunc = (
       setCouponObj({ ...couponObj, title: e.target.value });
       break;
     case "category":
+      console.log(e.target.value);
       if (e.target.value !== 0 && e.target.value !== "Choose...") {
         const categoryName = document.getElementById(e.target.value);
         setCategoryName(categoryName.textContent);
@@ -92,6 +93,7 @@ export const couponValidation = ({
       "please enter title";
     isValid = false;
   }
+  console.log(category_id);
   if (category_id === 0) {
     document.getElementById("coupon-category-input-error").textContent =
       "please enter category";
@@ -110,6 +112,7 @@ export const couponValidation = ({
   if (amount <= 0) {
     document.getElementById("coupon-amount-input-error").textContent =
       "please enter amount bigger then 0";
+    isValid = false;
   }
   if (price <= 0) {
     document.getElementById("coupon-price-input-error").textContent =
