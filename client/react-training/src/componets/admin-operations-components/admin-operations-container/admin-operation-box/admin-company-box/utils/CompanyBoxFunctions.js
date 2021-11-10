@@ -97,21 +97,24 @@ export const getCompanyBoxFunc = (
   );
 };
 export const companyValidationToAdd = (companyName, email, password) => {
-  if (companyName === "") {
+  console.log(companyName);
+  console.log(email);
+  console.log(password);
+  if (companyName === "" || companyName === undefined) {
     document.getElementById("company-add-name").textContent =
       "please enter name";
     return false;
   }
-  if (email === "") {
+  if (email === "" || email === undefined) {
     document.getElementById("company-add-email").textContent =
       "please enter email";
     return false;
   }
-  if (!email.includes("@")) {
+  if (!email?.includes("@")) {
     document.getElementById("company-add-email").textContent = "@ is missing ";
     return false;
   }
-  if (password.value === "") {
+  if (password === "" || password === undefined) {
     document.getElementById("company-add-password").textContent =
       "please enter password";
     return false;
@@ -129,7 +132,7 @@ export const companyValidationToUpdate = (email, password, company_id) => {
       "@ is missing ";
     return false;
   }
-  if (password === "") {
+  if (password === " ") {
     document.getElementById(
       "company-update-password-" + company_id
     ).textContent = "please enter password";

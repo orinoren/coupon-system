@@ -22,11 +22,11 @@ const AdminCustomerBox = (props) => {
   const [lastNameState, setLastNameState] = useState(props.lastName);
   const [emailState, setEmailState] = useState(props.email);
   const [passwordState, setPasswordState] = useState(props.password);
+  const [updateMode, setUpdateMode] = useState(false);
 
   const isSearchMode = useSelector(
     (state) => state.uiRootReducer.searchModeReducer.searchMode
   );
-  const [updateMode, setUpdateMode] = useState(false);
   const dispatch = useDispatch();
 
   const submit = () => {
@@ -125,7 +125,7 @@ const AdminCustomerBox = (props) => {
               </div>
               <div className="col-3">
                 <AdminBoxButtons
-                  addCustomerMode={props.addCustomerMode}
+                  addMode={props.addCustomerMode}
                   updateMode={updateMode}
                   onClickSave={submit}
                   onClickUpdate={handleUpdateClicked}

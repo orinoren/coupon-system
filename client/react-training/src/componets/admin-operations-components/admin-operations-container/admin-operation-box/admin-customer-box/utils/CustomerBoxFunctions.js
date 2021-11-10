@@ -8,17 +8,17 @@ export const customerValidationToAdd = (
   email,
   password
 ) => {
-  if (firstName === "") {
+  if (firstName === "" || firstName === undefined) {
     document.getElementById("customer-add-first-name").textContent =
       "please enter first name";
     return false;
   }
-  if (lastName === "") {
+  if (lastName === "" || lastName === undefined) {
     document.getElementById("customer-add-last-name").textContent =
       "please enter last name";
     return false;
   }
-  if (email === "") {
+  if (email === "" || email === undefined) {
     document.getElementById("customer-add-email").textContent =
       "please enter email";
     return false;
@@ -27,7 +27,7 @@ export const customerValidationToAdd = (
     document.getElementById("customer-add-email").textContent = "@ is missing ";
     return false;
   }
-  if (password === "") {
+  if (password === "" || password === undefined) {
     document.getElementById("customer-add-password").textContent =
       "please enter password";
     return false;

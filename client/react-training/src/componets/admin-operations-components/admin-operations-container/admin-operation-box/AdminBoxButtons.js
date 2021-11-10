@@ -3,11 +3,11 @@ import "../../AdminOperations.css";
 const AdminBoxButtons = (props) => {
   return (
     <div className="container-fluid p-0 m-0 h-100">
-      {props.addCustomerMode || props.updateMode ? (
+      {props.addMode || props.updateMode ? (
         <div className="row  h-100  align-items-center m-0 p-0 ">
           <div
             onClick={() => props.onClickSave()}
-            className="col-12 col-sm-7 text-center col-lg-3  admin-company-box-update-button "
+            className="col-12 col-sm-7 text-center col-lg-12 w-75  admin-company-box-update-button "
           >
             Save
           </div>

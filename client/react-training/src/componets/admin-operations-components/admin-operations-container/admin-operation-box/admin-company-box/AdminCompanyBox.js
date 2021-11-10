@@ -22,11 +22,12 @@ const AdminCompanyBox = (props) => {
   const [emailState, setEmailState] = useState(props.email);
   const [passwordState, setPasswordState] = useState(props.password);
   const [updateMode, setUpdateMode] = useState(false);
-  const dispatch = useDispatch();
 
   const isSearchMode = useSelector(
     (state) => state.uiRootReducer.searchModeReducer.searchMode
   );
+
+  const dispatch = useDispatch();
 
   const submit = () => {
     if (updateMode) {
@@ -110,7 +111,7 @@ const AdminCompanyBox = (props) => {
               </div>
               <div className="col-3 px-1 px-lg-2 ">
                 <AdminBoxButtons
-                  addCustomerMode={props.addCompanyMode}
+                  addMode={props.addCompanyMode}
                   updateMode={updateMode}
                   onClickSave={submit}
                   onClickUpdate={handleUpdateClicked}
