@@ -94,7 +94,7 @@ public class CustomerService implements ClientService, CustomerServiceInter {
 
 	@Override
 	public List<Object> getCustomerCouponsWithImages() {
-		
+		System.out.println("hihihihihi");
 		return couponDao.findByCouponPurchaseCustomerPurchaseIdWithImages(getCustomerDetails());
 	}
 

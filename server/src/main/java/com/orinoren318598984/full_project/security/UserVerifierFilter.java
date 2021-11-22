@@ -78,7 +78,8 @@ public class UserVerifierFilter implements Filter {
 				}
 
 			}
-		}log.info("-------------------------------------------------------------------------------------------");
+		}
+		log.info("-------------------------------------------------------------------------------------------");
 		if (!httpResponse.isCommitted()) {
 			chain.doFilter(httpRequest, httpResponse);
 		}

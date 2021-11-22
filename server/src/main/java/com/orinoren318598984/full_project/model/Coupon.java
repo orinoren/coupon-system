@@ -31,7 +31,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "coupon")
 @Data
-@JsonPropertyOrder({ "coupon_id", "company_id", "category_id" })
 public class Coupon {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
@@ -39,15 +38,9 @@ public class Coupon {
 	private Long id;
 	@ManyToOne
 	@JoinColumn(name = "company_id")
-	@JsonIgnoreProperties({ "name", "email", "password", "couponsOfCompany " })
-	@JsonUnwrapped
-	@JsonProperty("company_id")
 	private Company companyOfCoupon;
 	@ManyToOne
 	@JoinColumn(name = "category_id")
-	@JsonIgnoreProperties({ "name", "coupons" })
-	@JsonUnwrapped
-	@JsonProperty("category")
 	private Category categoryOfCoupon;
 	@Column(name = "TITLE")
 	private String title;
@@ -65,14 +58,8 @@ public class Coupon {
 
 	private Long couponImage;
 
-	@JsonIgnore
 	@OneToMany(mappedBy = "couponPurchaseId", cascade = CascadeType.REMOVE)
 	private List<CouponPurchase> couponPurchase ;
-
-	@JsonProperty("coupon_id")
-	public Long getId() {
-		return this.id;
-	}
 
 	@Override
 	public String toString() {

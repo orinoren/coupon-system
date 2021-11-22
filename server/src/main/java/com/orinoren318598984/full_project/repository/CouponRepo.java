@@ -27,7 +27,7 @@ public interface CouponRepo extends JpaRepository<Coupon, Long> {
 	@Query(value = "select c ,ci.image from Coupon c inner join CouponImage ci on c.couponImage = ci.id and c.companyOfCoupon.id=?1 and c.price=?2")
 	List<Object> findByCompanyOfCouponIdAndPriceLessThanWithImages(Long companyId, Double maxPrice);
 
-	@Query(value = "select c , ci.image from Coupon c join c.couponPurchase as cp on cp.customerPurchaseId=?1 join CouponImage as ci on c.couponImage=ci.id")
+	@Query(value = "select c , ci.image,count(*) from Coupon c join c.couponPurchase as cp on cp.customerPurchaseId=?1 join CouponImage as ci on c.couponImage=ci.id group by c.id")
 	List<Object> findByCouponPurchaseCustomerPurchaseIdWithImages(Customer customerId);
 	@Query(value = "select c ,ci.image from Coupon c ,CouponPurchase as cp inner join CouponImage ci on c.couponImage = ci.id and cp.customerPurchaseId=?1 and c.categoryOfCoupon=?2")
 	List<Object> findByCouponPurchaseCustomerPurchaseIdAndCategoryOfCouponIdWithImages(Long customerId, Long categoryId);
