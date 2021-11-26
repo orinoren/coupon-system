@@ -59,7 +59,7 @@ public class CouponValid {
 		} else {
 			for (Coupon couponIter : companyCoupons) {
 				if (couponIter.getTitle().equalsIgnoreCase(title) && !couponIter.getId().equals(coupon.getId())) {
-					throw new CouponTitleException("TITLE MUST BE UNIQUE(duplicate coupon title)");
+					throw new CouponTitleException("TITLE MUST BE UNIQUE (duplicate coupon title)");
 				}
 			}
 		}

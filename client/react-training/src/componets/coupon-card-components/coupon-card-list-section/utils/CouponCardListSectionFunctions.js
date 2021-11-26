@@ -18,9 +18,9 @@ export const getCouponListFunc = (
     case "Your Coupons(CUSTOMER)":
       return allCustomerCoupons;
     case "FOOD":
-      return allCoupons.filter((coupon) => coupon.category_id === 1);
+      return allCoupons.filter((coupon) => coupon.category === 1);
     case "VACATION":
-      return allCoupons.filter((coupon) => coupon.category_id === 4);
+      return allCoupons.filter((coupon) => coupon.category === 4);
     case "Result":
       return searchResultCouponList;
     default:

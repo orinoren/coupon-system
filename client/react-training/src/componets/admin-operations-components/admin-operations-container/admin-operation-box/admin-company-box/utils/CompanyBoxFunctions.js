@@ -26,6 +26,7 @@ export const getCompanyBoxToAddFunc = (
         label={"Password :"}
         id="company-add-password"
       ></AdminInputToAdd>
+      <div className="text-danger" id="server-error-for-add-company"></div>
     </div>
   );
 };
@@ -61,6 +62,7 @@ export const getCompanyBoxToUpdateFunc = (
         idPrefix={"company-update-password-"}
         idSuffix={id}
       ></AdminInputToUpdate>
+      <div className="text-danger" id="server-error-for-update-company"></div>
     </div>
   );
 };
@@ -97,9 +99,6 @@ export const getCompanyBoxFunc = (
   );
 };
 export const companyValidationToAdd = (companyName, email, password) => {
-  console.log(companyName);
-  console.log(email);
-  console.log(password);
   if (companyName === "" || companyName === undefined) {
     document.getElementById("company-add-name").textContent =
       "please enter name";
@@ -140,7 +139,12 @@ export const companyValidationToUpdate = (email, password, company_id) => {
   }
   return true;
 };
-export const dispatchUpdatedCompany = (companyObj, isSearchMode, dispatch) => {
+export const dispatchUpdatedCompany = (
+  companyObj,
+  isSearchMode,
+  dispatch,
+  setUpdateMode
+) => {
   if (isSearchMode) {
     console.log("in search mode");
     dispatch({
@@ -150,8 +154,8 @@ export const dispatchUpdatedCompany = (companyObj, isSearchMode, dispatch) => {
       },
     });
   }
-  console.log("update");
-  dispatch(adminUpdateCompanyAction(companyObj));
+
+  dispatch(adminUpdateCompanyAction(companyObj, setUpdateMode));
 };
 export const dispatchDeletedCompany = (idToDelete, isSearchMode, dispatch) => {
   if (isSearchMode) {

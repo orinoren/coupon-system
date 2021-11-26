@@ -38,10 +38,10 @@ public class Coupon {
 	private Long id;
 	@ManyToOne
 	@JoinColumn(name = "company_id")
-	private Company companyOfCoupon;
+	private Company company;
 	@ManyToOne
 	@JoinColumn(name = "category_id")
-	private Category categoryOfCoupon;
+	private Category category;
 	@Column(name = "TITLE")
 	private String title;
 	@Column(name = "DESCRIPTION")
@@ -64,7 +64,7 @@ public class Coupon {
 	@Override
 	public String toString() {
 		return String.format("%s  %s  %s  %s  %s  %s  %s  %s  %s", "Coupon: " + id,
-				"companyId: " + companyOfCoupon.getId(), "categoryId: " + categoryOfCoupon.getId(), "title: " + title,
+				"companyId: " + company.getId(), "categoryId: " + category.getId(), "title: " + title,
 				"description: " + description, "start date: " + startDate, "end date: " + endDate, "amount: " + amount,
 				"price: " + price);
 	}

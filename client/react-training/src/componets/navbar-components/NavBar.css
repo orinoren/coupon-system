@@ -11,6 +11,12 @@
 .nav-li {
   cursor: pointer;
 }
+.nav-login-logut-button {
+  color: green;
+  padding: 5px 15px;
+  background-color: #f8f9fa;
+  border: 2px solid green;
+}
 
 .fa-shopping-cart {
   position: relative;
@@ -29,4 +35,12 @@
   width: auto;
   text-align: center;
   padding: 4px;
+}
+.forcolp {
+  width: 200px;
+}
+@media (max-width: 768px) {
+  .forcolp {
+    display: none;
+  }
 }

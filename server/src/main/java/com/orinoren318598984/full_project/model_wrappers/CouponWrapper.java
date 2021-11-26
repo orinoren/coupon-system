@@ -18,7 +18,7 @@ public abstract class CouponWrapper {
 
     private Long companyId;
 
-    private Long categoryId;
+    private Long category;
 
     private String title;
 
@@ -35,6 +35,7 @@ public abstract class CouponWrapper {
     private Long ImageId;
 
     private byte[] Image;
+
 
     public abstract List<? extends CouponWrapper> convertMultiDimensionListToOneDimensionArray(List<Object> listOfObject);
 }

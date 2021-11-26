@@ -38,7 +38,7 @@ public class Company {
 	private String email;
 	@Column(name = "COMPANY_PASSWORD")
 	private String password;
-	@OneToMany(mappedBy = "companyOfCoupon", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private final List<Coupon> couponsOfCompany = new ArrayList<Coupon>();
 

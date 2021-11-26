@@ -1,5 +1,6 @@
 import authenticatedAxios from "../../../service/AuthenticatedAxios";
-const urlSuffix = "admin/add-customer";
+import { adminResetAddMode } from "../../actions-for-ui/action-for-ui";
+const urlSuffix = "admin/customer";
 
 export const adminAddCustomerAction =
   (customerObj) => async (dispatch, getState) => {
@@ -9,5 +10,9 @@ export const adminAddCustomerAction =
         .post(urlSuffix, customerObj);
       if (res.status === 201)
         dispatch({ type: "ADD-CUSTOMER", payload: res.data });
-    } catch (error) {}
+      dispatch(adminResetAddMode());
+    } catch (error) {
+      document.getElementById("server-error-for-add-customer").textContent =
+        error.response.data;
+    }
   };

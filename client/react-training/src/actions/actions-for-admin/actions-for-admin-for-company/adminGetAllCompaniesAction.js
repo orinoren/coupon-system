@@ -1,5 +1,5 @@
 import authenticatedAxios from "../../../service/AuthenticatedAxios";
-const urlSuffix = "admin/get-all-companies";
+const urlSuffix = "admin/companies";
 
 export const adminGetAllCompaniesAction = () => async (dispatch, getState) => {
   try {

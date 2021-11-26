@@ -1,11 +1,10 @@
 import React from "react";
 import homePic from "../../images/tag.png";
 import fotterPic from "../../images/grass.png";
-import "./Header.css";
+import "./Home.css";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { resetUserModeAction } from "../../actions/actions-for-ui/action-for-ui";
 import { getAllCouponsAction } from "../../actions/actions-for-guest/getAllCouponsAction";
 
 const Home = () => {
@@ -39,17 +38,14 @@ const Home = () => {
   }, [dispatch]);
   return (
     <div className="container-fluid container-bg">
-      <div className="row pt-5">
-        <div className="h1 text-center text-lg-left  text-md-left col-12 col-md-5 col-lg-5 ml-1 text-success d-inline-block">
-          MY COUPON PROJECT
-        </div>
-        <div className="col-md-4 col-lg-7 mt-3 justify-self-center ">
+      <div className="row justify-content-end pt-1 pt-lg-5">
+        <div className="col-md-4 col-lg-7 mt-1 mt-lg-3 justify-self-center ">
           <div className="row justify-content-center">
             {userDetails.isLogged ? (
               <button
                 onClick={() => handleGoToWebstieBtnClicked()}
                 className="btn home-login-btn 
-              col-12 col-lg-2 offset-lg-3
+              col-12 col-lg-2 
           "
                 type="button"
               >
@@ -68,9 +64,7 @@ const Home = () => {
                 </button>
                 <button
                   onClick={() => handleLoginUserBtnClicked()}
-                  className="btn home-login-btn col-12 
-          col-lg-2 offset-lg-1
-          "
+                  className="btn home-login-btn col-12  col-lg-2 offset-lg-1"
                   type="button"
                 >
                   Login User
@@ -81,8 +75,8 @@ const Home = () => {
         </div>
       </div>
       <div className="row align-items-end">
-        <div className="col-md-5 col-11  ">
-          <h2 className="mb-5 text-end">
+        <div className="col-md-5 col-12 mt-2 ">
+          <h2 className="mb-2 mb-lg-5 text-start text-lg-end">
             My final project by
             <span className="text-warning"> orin oren </span>
           </h2>

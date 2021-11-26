@@ -8,16 +8,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+
 import java.util.List;
 
 @NoArgsConstructor
 @Data
 public class CouponWrapperForCompany extends CouponWrapper {
 
-    public CouponWrapperForCompany(Long id, Long companyId, Long categoryId, String title, String description, LocalDate startDate, LocalDate endDate, Integer amount, Double price, Long ImageId, byte[] Image) {
-        super(id, companyId, categoryId, title, description, startDate, endDate, amount, price, ImageId, Image);
+    public CouponWrapperForCompany(Long id, Long companyId, Long category, String title, String description, LocalDate startDate, LocalDate endDate, Integer amount, Double price, Long imageId, byte[] image) {
+        super(id, companyId, category, title, description, startDate, endDate, amount, price, imageId, image);
     }
+
+
 
     @Override
     public List<CouponWrapperForCompany> convertMultiDimensionListToOneDimensionArray(List<Object> listOfObjects) {

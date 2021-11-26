@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.orinoren318598984.full_project.repository.CouponRepo;
 
 @Service
-public class UniversalService implements UniversalServiceInter {
+public class GlobalService implements GlobalServiceInter {
 	@Autowired
 	private CouponRepo couponDao;
 
@@ -16,7 +16,7 @@ public class UniversalService implements UniversalServiceInter {
 	
 	@Override
 	public List<Object> getAllCoupons() {
-		return couponDao.findAllCouponAndImages();
+		return couponDao.findAllCouponsAndImages();
 	}
 
 

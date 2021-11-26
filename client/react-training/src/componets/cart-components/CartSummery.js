@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../pages/cart-page/Cart.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
@@ -9,6 +9,8 @@ import {
 } from "./utils/CartFunctions";
 
 const CartSummery = () => {
+  const [showAlreadyPurchaseCouponMsg, setShowAlreadyPurchaseCouponMsg] =
+    useState({ couponPurchaseFoundTitle: "", couponPurchaseFound: false });
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -21,17 +23,55 @@ const CartSummery = () => {
   const couponsToPurchase = useSelector(
     (state) => state.uiRootReducer.cartArrReducer
   );
+  const customerCoupons = useSelector(
+    (state) =>
+      state.customerRootReducer.customerGetAllCouponsReducer.customerCoupons
+  );
   const userDetails = useSelector((state) => state.authReducer);
 
   const handlePurchaseBtnClicked = () => {
     if (userDetails.isLogged) {
-      handlePurchaseBtnClickedFunc(couponsToPurchase, dispatch);
+      let notPurchased = true;
+      let couponPurchaseFoundTitleMsg = "";
+      for (let i = 0; i < customerCoupons.length && notPurchased; i++) {
+        const coupon = customerCoupons[i];
+        for (let j = 0; j < couponsToPurchase.length && notPurchased; j++) {
+          const couponToPurchase = couponsToPurchase[j];
+          console.log(couponToPurchase);
+          if (coupon.id === couponToPurchase.id) {
+            notPurchased = false;
+            couponPurchaseFoundTitleMsg = couponToPurchase.title;
+          }
+        }
+      }
+      if (notPurchased) {
+        handlePurchaseBtnClickedFunc(couponsToPurchase, dispatch);
+        return;
+      }
+      setShowAlreadyPurchaseCouponMsg({
+        couponPurchaseFoundTitle: couponPurchaseFoundTitleMsg,
+        couponPurchaseFound: true,
+      });
       return;
     }
     history.push("/login");
     dispatch(resetUserModeAction());
   };
 
+  const handleYesClicked = () => {
+    setShowAlreadyPurchaseCouponMsg({
+      couponPurchaseFoundTitle: "",
+      couponPurchaseFound: false,
+    });
+    handlePurchaseBtnClickedFunc(couponsToPurchase, dispatch);
+  };
+
+  const handleNoClicked = () => {
+    setShowAlreadyPurchaseCouponMsg({
+      couponPurchaseFoundTitle: "",
+      couponPurchaseFound: false,
+    });
+  };
   const getPurchaseMsg = () => getPurchaseMsgFunc(couponPurchaseDetails);
   return (
     <div>
@@ -59,6 +99,29 @@ const CartSummery = () => {
                   >
                     Purcahse
                   </div>
+                  {showAlreadyPurchaseCouponMsg.couponPurchaseFound ? (
+                    <div className="text-start fw-bold ">
+                      You already purchase{" "}
+                      <span className="text-danger">
+                        {showAlreadyPurchaseCouponMsg.couponPurchaseFoundTitle}{" "}
+                      </span>
+                      coupon are you sure you want you purchase?{" "}
+                      <span
+                        onClick={() => handleYesClicked()}
+                        className="border mx-1 px-2 already-purchased-msg-choice-yes "
+                      >
+                        Yes
+                      </span>
+                      <span
+                        onClick={() => handleNoClicked()}
+                        className="px-2 border already-purchased-msg-choice-no "
+                      >
+                        No
+                      </span>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
                 {getPurchaseMsg()}
               </div>

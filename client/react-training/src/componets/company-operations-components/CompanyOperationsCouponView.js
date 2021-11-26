@@ -37,13 +37,30 @@ const CompanyOperationsCouponView = (props) => {
   const handleCouponSubmit = () => {
     dispatch({ type: "RESET-COUPON-OP-FAILED" });
     const isCouponValid = couponValidation(props.couponObject);
+    console.log(props.couponObject);
+
     if (isCouponValid) {
+      let couponObj = {
+        id: props.couponObject.id,
+        title: props.couponObject.title,
+        description: props.couponObject.description,
+        category: props.couponObject.category,
+        startDate: props.couponObject.startDate,
+        endDate: props.couponObject.endDate,
+        amount: props.couponObject.amount,
+        price: props.couponObject.price,
+      };
       if (addMode) {
-        dispatch(companyAddCouponAction(props.couponObject));
+        dispatch(companyAddCouponAction(couponObj, props.couponObject.image));
         return;
       }
       if (updateMode) {
-        dispatch(companyUpdateCouponAction(props.couponObject));
+        dispatch(
+          companyUpdateCouponAction(
+            { ...couponObj, imageId: props.couponObject.couponImage },
+            props.couponObject.image
+          )
+        );
       }
     }
   };
@@ -68,9 +85,9 @@ const CompanyOperationsCouponView = (props) => {
               <div className="card-body border">
                 <div className="d-flex justify-content-between">
                   <h5 className="card-title">{props.couponObject.title}</h5>
-                  {!props.categoryName.isNaN && props.categoryName > 0
-                    ? document.getElementById(props.categoryName).textContent
-                    : props.categoryName}
+                  {!props.category.isNaN && props.category > 0
+                    ? document.getElementById(props.category).textContent
+                    : props.category}
                 </div>
               </div>
               <p className="card-text p-2">{props.couponObject.description}</p>

@@ -4,7 +4,7 @@ export const handleOnCouponChangeFunc = (
   property,
   couponObj,
   setCouponObj,
-  setCategoryName,
+  setCategory,
   setImageView,
   defaultImage,
   submitMsgView,
@@ -18,8 +18,8 @@ export const handleOnCouponChangeFunc = (
       console.log(e.target.value);
       if (e.target.value !== 0 && e.target.value !== "Choose...") {
         const categoryName = document.getElementById(e.target.value);
-        setCategoryName(categoryName.textContent);
-        setCouponObj({ ...couponObj, category_id: e.target.value });
+        setCategory(categoryName.textContent);
+        setCouponObj({ ...couponObj, category: e.target.value });
       }
       break;
     case "description":
@@ -52,12 +52,12 @@ export const handleOnCouponChangeFunc = (
       setCouponObj({
         ...couponObj,
         title: "Title",
-        category_id: 0,
+        category: "Choose...",
         description: "description",
-        startDate: "",
-        endDate: "",
-        amount: "",
-        price: "",
+        startDate: "2021-11-15",
+        endDate: "2021-12-15",
+        amount: "1",
+        price: "1",
       });
       setImageView(defaultImage);
       const allInputs = document.querySelectorAll(".form-control-coupon");
@@ -69,7 +69,7 @@ export const handleOnCouponChangeFunc = (
       document.querySelector(
         ".inline-form-custom-select-coupon"
       ).selectedIndex = 0;
-      setCategoryName("Category");
+      setCategory("Category");
       if (submitMsgView) {
         dispatch(companyResetSubmitCoupon());
       }
@@ -81,7 +81,7 @@ export const handleOnCouponChangeFunc = (
 };
 export const couponValidation = ({
   title,
-  category_id,
+  category,
   startDate,
   endDate,
   amount,
@@ -93,8 +93,8 @@ export const couponValidation = ({
       "please enter title";
     isValid = false;
   }
-  console.log(category_id);
-  if (category_id === 0) {
+
+  if (category === 0 || category === "Choose...") {
     document.getElementById("coupon-category-input-error").textContent =
       "please enter category";
     isValid = false;
@@ -124,7 +124,7 @@ export const couponValidation = ({
 export const getCouponSubmitMsgFunc = (couponPurchaseDetails, addMode) => {
   if (couponPurchaseDetails.failed) {
     return (
-      <span className="m-2 fw-bold text-danger">
+      <span className="m-2 overflow-auto text-danger">
         {couponPurchaseDetails.messege}
       </span>
     );

@@ -84,7 +84,7 @@ public class CustomerService implements ClientService, CustomerServiceInter {
 
 	@Override
 	public List<Coupon> getCustomerCoupons(Long categoryId) {
-		return couponDao.findByCouponPurchaseCustomerPurchaseIdAndCategoryOfCouponId(getCustomerId(), categoryId);
+		return couponDao.findByCouponPurchaseCustomerPurchaseIdAndCategoryId(getCustomerId(), categoryId);
 	}
 
 	@Override
@@ -94,14 +94,14 @@ public class CustomerService implements ClientService, CustomerServiceInter {
 
 	@Override
 	public List<Object> getCustomerCouponsWithImages() {
-		System.out.println("hihihihihi");
+
 		return couponDao.findByCouponPurchaseCustomerPurchaseIdWithImages(getCustomerDetails());
 	}
 
 	@Override
 	public List<Object> getCustomerCouponsWithImages(Long categoryId) {
 	
-		return couponDao.findByCouponPurchaseCustomerPurchaseIdAndCategoryOfCouponIdWithImages(getCustomerId(), categoryId);
+		return couponDao.findByCouponPurchaseCustomerPurchaseIdAndCategoryIdIdWithImages(getCustomerId(), categoryId);
 	}
 
 	@Override

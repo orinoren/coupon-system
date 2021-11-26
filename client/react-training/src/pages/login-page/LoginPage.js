@@ -93,8 +93,8 @@ const LoginPage = () => {
         <div className="col-12 mt-2 col-lg-3 order-2 order-lg-1">
           <CompanyEmailPassList></CompanyEmailPassList>
         </div>
-        <div className="col-12 col-lg-6 order-1 order-lg-2">
-          <div className="container w-75 container-login-form">
+        <div className="col-12 col-lg-6 p-2 p-md-5 order-1 order-lg-2">
+          <div className="container w-100 container-login-form">
             <div className="row ">
               <div className="col-12 col-sm-6">
                 <form

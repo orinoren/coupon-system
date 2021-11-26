@@ -203,7 +203,7 @@ export const cartArrReducer = (state = cartArr, action) => {
   switch (action.type) {
     case "ADD-TO-CART":
       for (let i = 0; i < state.length && notFound; i++) {
-        if (action.payload.coupon_id === state[i].coupon_id) {
+        if (action.payload.id === state[i].id) {
           notFound = false;
           state[i].couponCartAmount++;
           return [...state];
@@ -213,7 +213,7 @@ export const cartArrReducer = (state = cartArr, action) => {
 
     case "REMOVE-FROM-CART":
       const index = state.findIndex(
-        (coupon) => coupon.coupon_id === action.payload.coupon_id
+        (coupon) => coupon.id === action.payload.id
       );
       state[index].couponCartAmount--;
       if (state[index].couponCartAmount === 0) {

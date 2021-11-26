@@ -47,6 +47,13 @@ export const getCouponCardFotterFunc = (
       </div>
     );
   }
+  if (props.showCustomerCoupons) {
+    return (
+      <div className="text-center border bg-primary text-white ">
+        see details
+      </div>
+    );
+  }
   return (
     <div
       onClick={() =>
@@ -79,7 +86,7 @@ const handleEditBtnClicked = (companyCouponAddMode, props, dispatch) => {
   dispatch(companyCouponUpdateModeAction(props));
 };
 const handleDeleteBtnClicked = (props, dispatch) => {
-  dispatch(companyDeleteCouponAction(props.coupon_id));
+  dispatch(companyDeleteCouponAction(props.id));
 };
 const hanldeAddToCartClicked = (
   showAddToCartControlles,

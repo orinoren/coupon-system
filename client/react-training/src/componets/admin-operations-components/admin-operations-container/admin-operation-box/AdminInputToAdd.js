@@ -10,10 +10,15 @@ const AdminBoxInputToAdd = (props) => {
 
   const handleOnFocusInput = () => {
     if (showOperationsFor.companyOp) {
+      document.getElementById("server-error-for-add-company").textContent = "";
       errorMsg.current.textContent = "";
       return;
     }
-    errorMsg.current.textContent = "";
+    if (showOperationsFor.customerOp) {
+      document.getElementById("server-error-for-add-customer").textContent = "";
+      errorMsg.current.textContent = "";
+      return;
+    }
   };
 
   return (

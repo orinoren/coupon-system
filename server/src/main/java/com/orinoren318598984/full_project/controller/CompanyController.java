@@ -8,13 +8,7 @@ import com.orinoren318598984.full_project.service.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -35,44 +29,44 @@ public class CompanyController {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @PostMapping("add-coupon")
-    public ResponseEntity<Coupon> addCoupon(@RequestParam(value = "file", required = false) MultipartFile file, @RequestParam("coupon") String coupon) {
-        Coupon couponObj = null;
-        try {
+    @PostMapping("coupon")
+    public ResponseEntity<Coupon> addCoupon(@RequestParam(value = "file", required = false) MultipartFile file, @RequestParam("coupon") String coupon)  {
+        CouponWrapperForCompany couponObjWrapper=null;
             if (file == null) {
                 log.info("isnull");
             }
             log.info(coupon);
-            couponObj = objectMapper.readValue(coupon, Coupon.class);
+        try {
+            couponObjWrapper = objectMapper.readValue(coupon, CouponWrapperForCompany.class);
         } catch (JsonProcessingException e) {
-            log.info("error");
+            e.printStackTrace();
         }
-        Coupon addedCoupon = companyService.addCoupon(couponObj, file);
-        return ResponseEntity.status(HttpStatus.CREATED).body(addedCoupon);
+        Coupon addedCoupon = companyService.addCoupon(couponObjWrapper, file);
+       return ResponseEntity.status(HttpStatus.CREATED).body(addedCoupon);
     }
 
-    @PutMapping("update-coupon")
+    @PutMapping("coupon")
     public ResponseEntity<Coupon> updateCoupon(@RequestParam(value = "file", required = false) MultipartFile file, @RequestParam("coupon") String coupon) {
-        Coupon couponObj = null;
+        CouponWrapperForCompany couponWrapperObj = null;
         try {
-            couponObj = objectMapper.readValue(coupon, Coupon.class);
+            couponWrapperObj = objectMapper.readValue(coupon, CouponWrapperForCompany.class);
         } catch (JsonProcessingException e) {
             log.info("error");
             e.printStackTrace();
         }
-        Coupon updatedCoupon = companyService.updateCoupon(couponObj, file);
+        Coupon updatedCoupon = companyService.updateCoupon(couponWrapperObj, file);
         return ResponseEntity.ok(updatedCoupon);
 
     }
 
-    @DeleteMapping("delete-coupon")
+    @DeleteMapping("coupon")
     public ResponseEntity<String> deleteCoupon(@RequestParam("id") Long couponId) {
         companyService.deleteCoupon(couponId);
         return ResponseEntity.ok("Coupon with id : " + couponId + " Deleted successfully");
 
     }
 
-    @GetMapping("get-company-coupons")
+    @GetMapping("coupons")
     public ResponseEntity<List<CouponWrapperForCompany>> getCompanyCoupons() {
         CouponWrapper wrapper = new CouponWrapperForCompany();
         List<Object> couponObjectList = companyService.getCompanyCouponsWithImages();
@@ -81,22 +75,21 @@ public class CompanyController {
 
     }
 
-    @GetMapping("get-company-coupons-by-category")
-    public ResponseEntity<List<Object>> getCompanyCouponsByCategory(@RequestParam("categoryId") Long categoryId) {
+    @GetMapping("coupons/{category}")
+    public ResponseEntity<List<Object>> getCompanyCouponsByCategory(@PathVariable("category") Long categoryId) {
         List<Object> companyCouponsByCategory = companyService.getCompanyCouponsByCategoryWithImages(categoryId);
         return ResponseEntity.ok(companyCouponsByCategory);
     }
 
-    @GetMapping("get-company-by-max-price")
-    public ResponseEntity<List<Object>> getCompanyCouponsByMaxPrice(@RequestParam("maxPrice") Double maxPrice) {
+    @GetMapping(path = "coupons",params = "price")
+    public ResponseEntity<List<Object>> getCompanyCouponsByMaxPrice(@RequestParam("price") Double maxPrice) {
         List<Object> companyCouponsByMaxPrice = companyService.getCompanyCouponsByMaxPriceWithImages(maxPrice);
         return ResponseEntity.ok(companyCouponsByMaxPrice);
     }
 
-    @GetMapping("153")
+    @GetMapping("details")
     public ResponseEntity<Company> getCompanyDetails() {
-        companyService.getCompanyDetails();
-        return null;
+        return ResponseEntity.ok(companyService.getCompanyDetails());
     }
 
 }

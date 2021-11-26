@@ -1,18 +1,18 @@
 import authenticatedAxios from "../../../service/AuthenticatedAxios";
-const urlSuffix = "admin/delete-company";
+const urlSuffix = "admin/company";
 
 export const adminDeleteCompanyAction =
-  (companyId) => async (dispatch, getState) => {
+  (company_id) => async (dispatch, getState) => {
     const deleteCompanyConfig = {
-      params: { id: companyId },
+      params: { id: company_id },
     };
-    console.log(companyId);
+    console.log(company_id);
     try {
       const res = await authenticatedAxios
         .getAuthenticatedAxios()
         .delete(urlSuffix, deleteCompanyConfig);
       if (res.status === 200) {
-        dispatch({ type: "DELETE-COMPANY", payload: companyId });
+        dispatch({ type: "DELETE-COMPANY", payload: company_id });
       }
     } catch (error) {}
   };

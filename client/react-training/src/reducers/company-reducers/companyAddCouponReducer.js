@@ -1,6 +1,6 @@
 const initialState = {
   title: "",
-  category_id: "",
+  category: "",
   description: "",
   startDate: "",
   endDate: "",

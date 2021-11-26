@@ -1,7 +1,7 @@
 const initialState = {
-  coupon_id: "",
+  id: "",
   title: "",
-  category_id: "",
+  category: "",
   description: "",
   startDate: "",
   endDate: "",

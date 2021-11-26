@@ -26,7 +26,6 @@ const AdminCompanyBox = (props) => {
   const isSearchMode = useSelector(
     (state) => state.uiRootReducer.searchModeReducer.searchMode
   );
-
   const dispatch = useDispatch();
 
   const submit = () => {
@@ -43,8 +42,12 @@ const AdminCompanyBox = (props) => {
           email: emailState,
           password: passwordState,
         };
-        dispatchUpdatedCompany(companyObj, isSearchMode, dispatch);
-        setUpdateMode(false);
+        dispatchUpdatedCompany(
+          companyObj,
+          isSearchMode,
+          dispatch,
+          setUpdateMode
+        );
       }
       return;
     }
@@ -60,7 +63,6 @@ const AdminCompanyBox = (props) => {
         password: passwordState,
       };
       dispatch(adminAddCompanyAction(companyObj));
-      dispatch(adminResetAddMode());
     }
   };
 

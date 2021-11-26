@@ -15,7 +15,11 @@ const CouponCardList = (props) => {
   }, [props.numberOfCoupons.amount, props.couponList]);
 
   const getAllCouponsCards = () =>
-    getAllCouponsCardsFunc(props.searchMode, splitedAllCoupons);
+    getAllCouponsCardsFunc(
+      props.searchMode,
+      splitedAllCoupons,
+      props.showCustomerCoupons
+    );
 
   return (
     <div>

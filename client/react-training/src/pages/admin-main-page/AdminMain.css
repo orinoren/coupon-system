@@ -4,19 +4,17 @@
   height: 170px;
   text-align: center;
   cursor: pointer;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 25px;
-  background-color: rgb(40, 189, 40);
-  color: white;
-  box-shadow: 0px 0px 5px 5px green;
+  font-style: italic;
+  background-color: #f8f9fa;
+  color: rgb(71, 197, 39);
+  border: 1px solid green;
 }
 .admin-main-op-badge:hover {
   border: 10px;
-  background-color: rgb(40, 189, 40);
-  color: white;
-  box-shadow: 0px 0px 10px 10px green;
+  box-shadow: 0px 0px 5px 5px green;
   border: white;
-  font-style: oblique;
 }
 @media (max-width: 770px) {
   .admin-main-op-badge {

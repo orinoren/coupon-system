@@ -14,9 +14,11 @@ const CompanyOperationsForm = (props) => {
   );
 
   useEffect(() => {
-    document.getElementById(props.categoryName)?.removeAttribute("selected");
+    document.getElementById(props.category)?.removeAttribute("selected");
     return () => {};
   }, [companyCouponUpdateMode]);
+  console.log(props.couponToUpdateObj);
+  console.log(props);
   return (
     <div>
       <div className="container company-operation-border">
@@ -77,12 +79,12 @@ const CompanyOperationsForm = (props) => {
                   >
                     <option defaultValue>
                       {companyCouponUpdateMode &&
-                      !props.categoryName.isNaN &&
-                      props.categoryName > 0
+                      !props.category.isNaN &&
+                      props.category > 0
                         ? document
-                            .getElementById(props.categoryName)
+                            .getElementById(props.category)
                             .setAttribute("selected", "")
-                        : "Choose..."}
+                        : props.couponToUpdateObj.category}
                     </option>
                     <option id="1" value="1">
                       Food
@@ -114,7 +116,7 @@ const CompanyOperationsForm = (props) => {
                   onFocus={(e) =>
                     isCouponSubmitted
                       ? dispatch(companyResetSubmitCoupon())
-                      : ""
+                      : " "
                   }
                   onInput={(e) => props.couponViewFunc(e, "description")}
                   className="w-75 form-control form-control-coupon"
@@ -222,7 +224,6 @@ const CompanyOperationsForm = (props) => {
                 />
               </div>
               <div className="form-group mt-3 d-flex justify-content-between">
-                {/*------------------------------------------------------  */}
                 <label
                   className="form-image-label p-2"
                   htmlFor="form-image-input"
@@ -244,7 +245,6 @@ const CompanyOperationsForm = (props) => {
                   id="form-image-input"
                   accept="image/*"
                 />
-                {/*------------------------------------------------------  */}
                 <div
                   onClick={(e) => {
                     props.couponViewFunc(e, "clear-form");

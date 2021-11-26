@@ -5,7 +5,7 @@ import {
   companyCouponAddModeAction,
 } from "../../../actions/actions-for-ui/action-for-ui";
 export const getAdminNavBarItemsFunc = (dispatch) => (
-  <ul className="navbar-nav m-0 me-md-auto mb-2 mb-lg-0">
+  <ul className="text-start navbar-nav m-0 me-md-auto mb-2 mb-lg-0">
     <li className="nav-item nav-link active nav-li ">Home</li>
     <li className="nav-item nav-link nav-li">
       <span
@@ -52,7 +52,7 @@ export const getCartIconFunc = (
   cartNotificationAmount
 ) => {
   return (
-    <div className="px-1 px-md-5 pt-4">
+    <span>
       <span>
         <i
           onClick={() => {
@@ -67,7 +67,7 @@ export const getCartIconFunc = (
           )}
         </i>
       </span>
-    </div>
+    </span>
   );
 };
 export const getLoginButtonFunc = (
@@ -76,14 +76,18 @@ export const getLoginButtonFunc = (
   handleLoginBtnClicked
 ) => {
   return (
-    <form className="nav-item d-flex pt-4 ">
-      <button className="btn btn-outline-success" type="button">
-        {isLogged ? (
-          <div onClick={() => handleLogoutBtnClicked()}>Log out</div>
-        ) : (
-          <div onClick={() => handleLoginBtnClicked()}>Login</div>
-        )}
+    <span>
+      <button
+        onClick={
+          isLogged
+            ? () => handleLogoutBtnClicked()
+            : () => handleLoginBtnClicked()
+        }
+        className="nav-login-logut-button"
+        type="button"
+      >
+        {isLogged ? <div>Log out</div> : <div>Login</div>}
       </button>
-    </form>
+    </span>
   );
 };

@@ -1,5 +1,5 @@
 import authenticatedAxios from "../../../service/AuthenticatedAxios";
-const urlSuffix = "admin/delete-customer";
+const urlSuffix = "admin/customer";
 export const adminDeleteCustomerAction =
   (customerId) => async (dispatch, getState) => {
     const updateConfig = {

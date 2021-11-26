@@ -6,10 +6,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { getCouponCardFotterFunc } from "./utils/CouponCardFunctions";
 const CouponCard = (props) => {
   const dispatch = useDispatch();
+
   const [showAddToCartControlles, setShowAddToCartControlles] = useState(false);
 
   const [couponAddToCartAmount, setCouponAddToCartAmount] = useState(0);
-
   const couponPurchaseDetails = useSelector(
     (state) => state.customerRootReducer.purchaseCouponReducer
   );
@@ -39,6 +39,7 @@ const CouponCard = (props) => {
       dispatch
     );
   };
+
   return (
     <div className="container mb-2 coupon-card-conatiner-border p-1 ">
       <div className="row">
@@ -57,6 +58,10 @@ const CouponCard = (props) => {
               />
               <div className="card-body mt-2 p-0">
                 <h5 className="card-title  coupon-card-title-text-font ">
+                  {props.showCustomerCoupons
+                    ? ` Purchased ${props.sameCouponAmount}`
+                    : ""}
+                  <br />
                   {props.title}
                 </h5>
                 <div className="d-flex justify-content-between">
@@ -65,7 +70,7 @@ const CouponCard = (props) => {
                     <div>
                       <div>
                         <span className=" fw-bold  fs-6 text-primary">
-                          {props.endDate}
+                          {props.endDate.replaceAll("-", "/")}
                         </span>
                       </div>
                     </div>

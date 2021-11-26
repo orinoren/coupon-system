@@ -2,6 +2,7 @@ package com.orinoren318598984.full_project.service;
 
 import java.util.List;
 
+import com.orinoren318598984.full_project.model_wrappers.CouponWrapperForCompany;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.orinoren318598984.full_project.model.Company;
@@ -9,9 +10,9 @@ import com.orinoren318598984.full_project.model.Coupon;
 
 public interface CompanyServiceInter {
 
-	public Coupon addCoupon(Coupon coupon,MultipartFile file);
+	public Coupon addCoupon(CouponWrapperForCompany coupon, MultipartFile file);
 
-	public Coupon updateCoupon(Coupon coupon,MultipartFile file);
+	public Coupon updateCoupon(CouponWrapperForCompany coupon,MultipartFile file);
 
 	public void deleteCoupon(Long couponId);
 

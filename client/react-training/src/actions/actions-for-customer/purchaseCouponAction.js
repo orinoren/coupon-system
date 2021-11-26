@@ -1,12 +1,13 @@
 import authenticatedAxios from "../../service/AuthenticatedAxios";
 
-const urlSuffix = "customer/purchase-coupon";
+const urlSuffix = "customer/coupon";
 export const purchaseCouponAction =
   (couponsIdArr) => async (dispatch, getState) => {
     try {
       const res = await authenticatedAxios
         .getAuthenticatedAxios()
         .post(urlSuffix, couponsIdArr);
+      console.log(res);
       if (res.status === 200) {
         dispatch({ type: "PURCHASE-COUPON-SUCCEED" });
       }

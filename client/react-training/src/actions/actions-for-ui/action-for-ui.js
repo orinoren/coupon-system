@@ -39,12 +39,13 @@ export const companyResetSubmitCoupon = () => {
   };
 };
 export const companyCouponUpdateModeAction = (coupon) => {
+  console.log(coupon);
   return {
     type: "COMPANY-COUPON-UPDATE-MODE",
     payload: {
-      coupon_id: coupon.coupon_id,
+      id: coupon.id,
       title: coupon.title,
-      category_id: coupon.category_id,
+      category: coupon.category,
       description: coupon.description,
       startDate: coupon.startDate,
       endDate: coupon.endDate,

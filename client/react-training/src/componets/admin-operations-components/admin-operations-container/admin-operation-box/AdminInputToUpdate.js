@@ -6,6 +6,8 @@ const AdminBoxInputToUpdate = (props) => {
   );
   const handleOnFocusInput = () => {
     if (showOperationsFor.companyOp) {
+      document.getElementById("server-error-for-update-company").textContent =
+        " ";
       document.getElementById(
         "company-update-email-" + props.idSuffix
       ).textContent = "";
@@ -14,6 +16,9 @@ const AdminBoxInputToUpdate = (props) => {
       ).textContent = "";
       return;
     }
+    document.getElementById("server-error-for-update-customer").textContent =
+      "";
+
     document.getElementById(
       "customer-update-first-name-" + props.idSuffix
     ).textContent = "";

@@ -59,7 +59,7 @@ const CouponCardListSection = (props) => {
               ? props.title.substring(0, 12)
               : props.title}
           </div>
-          <div className="mb-2 align-self-end p-0  text-center col-2  ">
+          <div className="mb-2 align-self-end p-0  text-end col-6 col-md-2  ">
             {getCardListSectionSeeControllers()}
           </div>
         </div>

@@ -1,5 +1,6 @@
 import authenticatedAxios from "../../../service/AuthenticatedAxios";
-const urlSuffix = "admin/add-company";
+import { adminResetAddMode } from "../../actions-for-ui/action-for-ui";
+const urlSuffix = "admin/company";
 
 export const adminAddCompanyAction =
   (companyObj) => async (dispatch, getState) => {
@@ -9,6 +10,11 @@ export const adminAddCompanyAction =
         .post(urlSuffix, companyObj);
       if (res.status === 201) {
         dispatch({ type: "ADD-COMPANY", payload: res.data });
+        dispatch(adminResetAddMode());
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error.response.data);
+      document.getElementById("server-error-for-add-company").textContent =
+        error.response.data;
+    }
   };

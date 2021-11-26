@@ -1,6 +1,10 @@
 import CouponCard from "../../coupon-card/CouponCard";
 
-export const getAllCouponsCardsFunc = (searchMode, splitedAllCoupons) => {
+export const getAllCouponsCardsFunc = (
+  searchMode,
+  splitedAllCoupons,
+  showCustomerCoupons
+) => {
   if (searchMode && splitedAllCoupons.length === 0) {
     return (
       <span className="fs-2 fw-bolder text-success text-center p-3">
@@ -9,20 +13,22 @@ export const getAllCouponsCardsFunc = (searchMode, splitedAllCoupons) => {
     );
   }
   return splitedAllCoupons.map((coupon) => (
-    <div key={coupon.coupon_id} className="col-6  col-sm-4 col-lg-2  ">
+    <div key={coupon.id} className="col-6  col-sm-4 col-lg-2  ">
       <CouponCard
-        coupon_id={coupon.coupon_id}
+        id={coupon.id}
         company_id={coupon.company_id}
-        category_id={coupon.category_id}
+        category={coupon.category}
         title={coupon.title}
         description={coupon.description}
         startDate={coupon.startDate}
         endDate={coupon.endDate}
         amount={coupon.amount}
         price={coupon.price}
-        image={coupon.imageSrc}
-        couponImage={coupon.couponImage}
+        image={coupon.image}
+        couponImage={coupon.imageId}
         companyName={coupon.companyName}
+        sameCouponAmount={coupon.sameCouponAmount}
+        showCustomerCoupons={showCustomerCoupons}
       />
     </div>
   ));

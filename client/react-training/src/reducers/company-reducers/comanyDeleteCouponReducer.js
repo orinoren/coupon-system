@@ -1,11 +1,11 @@
 const initialState = {
-  coupon_id: "",
+  id: "",
 };
 
 const companyDeleteCouponReducer = (state = initialState, action) => {
   switch (action.type) {
     case "DELETE-COUPON":
-      return { ...state, coupon_id: action.payload };
+      return { ...state, id: action.payload };
 
     default:
       return state;

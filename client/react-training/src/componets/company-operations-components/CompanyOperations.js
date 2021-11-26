@@ -8,9 +8,18 @@ import defaultImage from "../../images/defaultImage.jpg";
 import { handleOnCouponChangeFunc } from "./utils/CompanyOperationsFunctions";
 
 const CompanyOperations = () => {
-  const [couponObj, setCouponObj] = useState({});
+  const [couponObj, setCouponObj] = useState({
+    title: "Title",
+    category: "Choose...",
+    description: "description",
+    startDate: "2021-11-15",
+    endDate: "2021-11-20",
+    amount: "1",
+    price: "1",
+    couponImage: defaultImage,
+  });
 
-  const [categoryName, setCategoryName] = useState("Category");
+  const [category, setCategory] = useState("Category");
 
   const [imageView, setImageView] = useState(defaultImage);
 
@@ -40,22 +49,12 @@ const CompanyOperations = () => {
         endDate: companyCouponToUpdateObj.endDate,
       });
       setImageView("data:image/*;base64," + companyCouponToUpdateObj.image);
-      setCategoryName(companyCouponToUpdateObj.category_id);
+      setCategory(companyCouponToUpdateObj.category);
       return;
     }
-    if (companyCouponAddMode) {
-      setCouponObj({
-        title: "Title",
-        category_id: 0,
-        description: "description",
-        startDate: "2021-11-15",
-        endDate: "2021-11-20",
-        amount: "1",
-        price: "1",
-        couponImage: defaultImage,
-      });
-      setImageView(defaultImage);
-    }
+
+    setImageView(defaultImage);
+
     return () => {};
   }, [companyCouponToUpdateObj, companyCouponAddMode]);
 
@@ -66,7 +65,7 @@ const CompanyOperations = () => {
       property,
       couponObj,
       setCouponObj,
-      setCategoryName,
+      setCategory,
       setImageView,
       defaultImage,
       submitMsgView,
@@ -74,6 +73,7 @@ const CompanyOperations = () => {
     );
   };
   //-----------------------------------------------------------------------------------------------------
+
   return (
     <div>
       <div className="container mt-1 mt-lg-5 p-1 p-md-5 company-operations-bg">
@@ -82,14 +82,14 @@ const CompanyOperations = () => {
             <CompanyOperationsForm
               couponViewFunc={handleOnCouponChange}
               couponToUpdateObj={couponObj}
-              categoryName={categoryName}
+              category={category}
             ></CompanyOperationsForm>
           </div>
           <div className="col-12 col-lg-4 mt-5 mt-lg-0 ">
             <CompanyOperationsCouponView
               addMode={companyCouponAddMode}
               imgView={imageView}
-              categoryName={categoryName}
+              category={category}
               couponObject={couponObj}
             ></CompanyOperationsCouponView>
           </div>

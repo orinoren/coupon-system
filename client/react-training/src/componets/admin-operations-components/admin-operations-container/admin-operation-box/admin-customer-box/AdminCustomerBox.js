@@ -46,8 +46,12 @@ const AdminCustomerBox = (props) => {
           email: emailState,
           password: passwordState,
         };
-        dispatchUpdatedCustomer(customerObj, isSearchMode, dispatch);
-        setUpdateMode(false);
+        dispatchUpdatedCustomer(
+          customerObj,
+          isSearchMode,
+          dispatch,
+          setUpdateMode
+        );
       }
       return;
     }
@@ -65,7 +69,6 @@ const AdminCustomerBox = (props) => {
         password: passwordState,
       };
       dispatch(adminAddCustomerAction(customerObj));
-      dispatch(adminResetAddMode());
     }
   };
 

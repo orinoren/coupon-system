@@ -77,7 +77,8 @@ export const customerValidationToUpdate = (
 export const dispatchUpdatedCustomer = (
   customerObj,
   isSearchMode,
-  dispatch
+  dispatch,
+  setUpdateMode
 ) => {
   if (isSearchMode) {
     dispatch({
@@ -87,7 +88,7 @@ export const dispatchUpdatedCustomer = (
       },
     });
   }
-  dispatch(adminUpdateCustomerAction(customerObj));
+  dispatch(adminUpdateCustomerAction(customerObj, setUpdateMode));
 };
 export const dispatchDeletedCustomer = (idToDelete, isSearchMode, dispatch) => {
   if (isSearchMode) {
@@ -126,6 +127,7 @@ export const getCustomerBoxToAddFunc = (
         label={"Password :"}
         id="customer-add-password"
       ></AdminInputToAdd>
+      <div className="text-danger" id="server-error-for-add-customer"></div>
     </div>
   );
 };
@@ -170,6 +172,7 @@ export const getCustomerBoxToUpdateFunc = (
         idPrefix={"customer-update-password-"}
         idSuffix={id}
       ></AdminInputToUpdate>
+      <div className="text-danger" id="server-error-for-update-customer"></div>
     </div>
   );
 };

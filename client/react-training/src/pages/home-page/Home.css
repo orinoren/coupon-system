@@ -6,6 +6,7 @@
   );
 }
 .rotate {
+  padding-top: 5px;
   transform: rotate(-15deg);
 }
 .home-login-btn {

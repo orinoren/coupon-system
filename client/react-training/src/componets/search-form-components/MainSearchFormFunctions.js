@@ -42,7 +42,7 @@ export const dispatchSortedSearchResultCouponList = (
         coupon.title
           .toLowerCase()
           .includes(searchInput.current.value.toLowerCase()) &&
-        checkedCategoryInputs.includes(coupon.category_id) &&
+        checkedCategoryInputs.includes(coupon.category) &&
         coupon.price <= maxPrice
     );
     dispatch({
@@ -55,7 +55,7 @@ export const dispatchSortedSearchResultCouponList = (
         coupon.title
           .toLowerCase()
           .includes(searchInput.current.value.toLowerCase()) &&
-        checkedCategoryInputs.includes(coupon.category_id + "") &&
+        checkedCategoryInputs.includes(coupon.category + "") &&
         coupon.price <= maxPrice
     );
 

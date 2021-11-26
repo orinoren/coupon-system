@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllCompanyCouponsAction } from "../../actions/actions-for-company/getAllCompanyCouponsAction";
 import { getAllCouponsAction } from "../../actions/actions-for-guest/getAllCouponsAction";
 import { getAllCustomerCouponsAction } from "../../actions/actions-for-customer/getCustomerCoupons";
-const MainPageContent = (props) => {
+const MainPageContent = () => {
   const dispatch = useDispatch();
   const showSearchMode = useSelector(
     (state) => state.uiRootReducer.searchModeReducer.searchMode

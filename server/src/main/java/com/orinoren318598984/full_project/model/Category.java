@@ -16,10 +16,11 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-
+@AllArgsConstructor
 @Entity
 @Table(name = "category")
 public class Category {
@@ -32,7 +33,7 @@ public class Category {
 	@Column(name = "NAME", insertable = false)
 	private CategoryEnum name;
 
-	@OneToMany(mappedBy = "categoryOfCoupon")
+	@OneToMany(mappedBy = "category")
 	@JsonIgnore
 	private List<Coupon> coupons = new ArrayList<Coupon>();
 

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class WrapperUtils{
+public class WrapperUtils {
 
     public List<? extends CouponWrapper> convertMultiDimensionListToOneDimensionArray(List<Object> couponObjectList, Role role) {
         Object[] couponOuterObjectArray = couponObjectList.toArray();
@@ -22,62 +22,19 @@ public class WrapperUtils{
     }
 
     private Optional<? extends CouponWrapper> getCouponWrapperForRelaventRole(Role role, Object[] couponInnerObjectArray) {
-        switch (role) {
-            case COMPANY:
-                CouponWrapperForCompany couponWrapperCompany;
-                couponWrapperCompany =
-                        (CouponWrapperForCompany) convertArrayToCouponWrapper(couponInnerObjectArray, Role.COMPANY, couponInnerObjectArray.length).get();
-                return Optional.of(couponWrapperCompany);
-            case CUSTOMER:
-                CouponWrapperForCustomer couponWrapperCustomer;
-                couponWrapperCustomer =
-                        (CouponWrapperForCustomer) convertArrayToCouponWrapper(couponInnerObjectArray,Role.CUSTOMER, couponInnerObjectArray.length).get();
-                return Optional.of(couponWrapperCustomer);
-            case ADMIN:
-                CouponWrapperForAdmin couponWrapperAdmin;
-                couponWrapperAdmin =
-                        (CouponWrapperForAdmin) convertArrayToCouponWrapper(couponInnerObjectArray,Role.ADMIN, couponInnerObjectArray.length).get();
-                return Optional.of(couponWrapperAdmin);
-            default:
-                return Optional.empty();
-        }
+        return Optional.of(convertArrayToCouponWrapper(couponInnerObjectArray, role).get());
     }
 
-    private Optional<? extends CouponWrapper> convertArrayToCouponWrapper(Object[] couponInnerObjectArray,Role role, int innerArrayLength) {
-        CouponWrapper couponWrapper = null;
-        for (int j = 0; j < couponInnerObjectArray.length; j = j + innerArrayLength) {
+    private Optional<? extends CouponWrapper> convertArrayToCouponWrapper(Object[] couponInnerObjectArray, Role role) {
             Coupon coupon = (Coupon) couponInnerObjectArray[0];
-            byte[] image = (byte[]) couponInnerObjectArray[1];
-            switch (role){
-                case ADMIN:
-                 return Optional.of(new CouponWrapperForAdmin(coupon.getId(),
-                         coupon.getCompanyOfCoupon().getId(),
-                         coupon.getCategoryOfCoupon().getId(),
-                         coupon.getTitle(),
-                         coupon.getDescription(),
-                         coupon.getStartDate(),
-                         coupon.getEndDate(),
-                         coupon.getAmount(),
-                         coupon.getPrice(),
-                         coupon.getCouponImage(),
-                         image,
-                         (String) couponInnerObjectArray[2]));
-                case COMPANY:
-                    return Optional.of(new CouponWrapperForCompany(coupon.getId(),
-                            coupon.getCompanyOfCoupon().getId(),
-                            coupon.getCategoryOfCoupon().getId(),
-                            coupon.getTitle(),
-                            coupon.getDescription(),
-                            coupon.getStartDate(),
-                            coupon.getEndDate(),
-                            coupon.getAmount(),
-                            coupon.getPrice(),
-                            coupon.getCouponImage(),
-                            image));
-                case CUSTOMER:
-                    return Optional.of(new CouponWrapperForCustomer(coupon.getId(),
-                            coupon.getCompanyOfCoupon().getId(),
-                            coupon.getCategoryOfCoupon().getId(),
+            switch (role) {
+                case GLOBAL:
+                    String companyName = (String) couponInnerObjectArray[1];
+                    byte[] image = (byte[]) couponInnerObjectArray[2];
+                    Long numberOfPurchases = (Long) couponInnerObjectArray[3];
+                    return Optional.of(new CouponWrapperForGlobal(coupon.getId(),
+                            coupon.getCompany().getId(),
+                            coupon.getCategory().getId(),
                             coupon.getTitle(),
                             coupon.getDescription(),
                             coupon.getStartDate(),
@@ -86,10 +43,39 @@ public class WrapperUtils{
                             coupon.getPrice(),
                             coupon.getCouponImage(),
                             image,
-                            (Long)couponInnerObjectArray[2]));
+                            companyName,
+                            numberOfPurchases));
+                case COMPANY:
+                    byte[] imageForCompany = (byte[]) couponInnerObjectArray[1];
+                    return Optional.of(new CouponWrapperForCompany(coupon.getId(),
+                            coupon.getCompany().getId(),
+                            coupon.getCategory().getId(),
+                            coupon.getTitle(),
+                            coupon.getDescription(),
+                            coupon.getStartDate(),
+                            coupon.getEndDate(),
+                            coupon.getAmount(),
+                            coupon.getPrice(),
+                            coupon.getCouponImage(),
+                            imageForCompany));
+                case CUSTOMER:
+                    byte[] imageForCustomer = (byte[]) couponInnerObjectArray[1];
+                    Long sameCouponAmount=(Long)couponInnerObjectArray[2];
+                    return Optional.of(new CouponWrapperForCustomer(coupon.getId(),
+                            coupon.getCompany().getId(),
+                            coupon.getCategory().getId(),
+                            coupon.getTitle(),
+                            coupon.getDescription(),
+                            coupon.getStartDate(),
+                            coupon.getEndDate(),
+                            coupon.getAmount(),
+                            coupon.getPrice(),
+                            coupon.getCouponImage(),
+                            imageForCustomer,
+                            sameCouponAmount));
 
             }
-        }
+
         return Optional.empty();
     }
 

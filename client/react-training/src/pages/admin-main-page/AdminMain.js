@@ -41,7 +41,7 @@ const AdminMain = () => {
   );
 
   const deletedCompany = useSelector(
-    (state) => state.adminRootReducer.adminDeleteCompanyReducer.companyId
+    (state) => state.adminRootReducer.adminDeleteCompanyReducer.company_id
   );
 
   const deletedCustomer = useSelector(
