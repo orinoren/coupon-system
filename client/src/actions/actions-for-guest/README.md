@@ -3,7 +3,7 @@
 ### `Get all coupons action`
 
 1. Making a get http request
-2. Assign the data from the response to `allCoupns` as an array.
+2. Assign the data from the response to `allCoupons` as an array.
 3. Looping through `allCoupons` to convert that date details.
    from and array form to date form.
 4. Insert the value of `allCoupons` to redux store.
