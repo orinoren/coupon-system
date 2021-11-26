@@ -1,18 +1,18 @@
 ## `actions-for-admin-for-customer`
 
-All actions using using `AuthenticatedAxios` that contain the prefix for the url and the user jwt for authentication in the backend
+- All actions using using `AuthenticatedAxios` that contain the prefix for the url and the user jwt for authentication in the backend
+- All actions are made inside a try catch block
 
 ### `adminAddCusotmerAction`
 
-1. Open a try catch block
-2. Inside the try block making a post request with the `customerObj` that
+1. Inside the try block making a post request with the `customerObj` that
    recevied from the form of add `<AddCustomerBox/>`
-3. If response status is 201 (created) then the add made successfuly and
+2. If response status is 201 (created) then the add made successfuly and
 
    - Trigger the redux store state to rerender and getting all the customers immediatly
    - Reset the add mode to close the `<AddCustomerBox/>` component
 
-4. If response status is not 201 then add is failed and inside the catch block error messege trigger for the user to try again
+3. If response status is not 201 then add is failed and inside the catch block error messege trigger for the user to try again
 
 ### `adminDeleteCusotmerAction`
 
@@ -28,12 +28,11 @@ All actions using using `AuthenticatedAxios` that contain the prefix for the url
 
 ### `adminUpdateCusotmerAction`
 
-1. Open a try catch block
-2. Inside the try block making a put request with the `CusotmerObj` that
+1. Inside the try block making a put request with the `CusotmerObj` that
    recevied from the form of add `<UpdateCusotmerBox/>`
-3. If response status is 201 (created) then the add made successfuly and
+2. If response status is 201 (created) then the add made successfuly and
    - Trigger the redux store state to rerender and getting all the customers immediatly
    - Reset the Update mode
    - Set updateMode to false to close only the relavent `<UpdateCusotmerBox/>` component
-4. If response status is not 201 then add is failed and inside the catch block error messege
+3. If response status is not 201 then add is failed and inside the catch block error messege
    trigger for the user to try again
