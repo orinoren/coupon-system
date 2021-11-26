@@ -13,7 +13,6 @@ import {
   companyCouponResetAddModeAction,
   companyCouponResetUpdateModeAction,
 } from "../../actions/actions-for-ui/action-for-ui";
-import { getAllCompanyCouponsAction } from "../../actions/actions-for-company/getAllCompanyCouponsAction";
 const CompanyMain = () => {
   const dispatch = useDispatch();
 
@@ -24,10 +23,9 @@ const CompanyMain = () => {
     }
     if (companyCouponAddMode) {
       dispatch(companyCouponResetAddModeAction());
-    return;
-    } 
+      return;
+    }
     dispatch(companyCouponAddModeAction());
-    
   };
   const companyCouponUpdateMode = useSelector(
     (state) => state.uiRootReducer.companyUpdateCouponModeReducer.updateMode

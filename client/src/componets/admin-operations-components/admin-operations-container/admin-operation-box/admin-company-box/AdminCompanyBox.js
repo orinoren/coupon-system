@@ -4,10 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { adminAddCompanyAction } from "../../../../../actions/actions-for-admin/actions-for-admin-for-company/adminAddCompanyAction";
 import AdminBoxButtons from "../../../admin-operations-container/admin-operation-box/AdminBoxButtons";
-import {
-  adminResetAddMode,
-  adminCompanyUpdateMode,
-} from "../../../../../actions/actions-for-ui/action-for-ui";
+import { adminCompanyUpdateMode } from "../../../../../actions/actions-for-ui/action-for-ui";
 import {
   companyValidationToAdd,
   companyValidationToUpdate,
