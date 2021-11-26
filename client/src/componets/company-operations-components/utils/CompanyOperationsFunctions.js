@@ -4,7 +4,6 @@ export const handleOnCouponChangeFunc = (
   property,
   couponObj,
   setCouponObj,
-  setCategory,
   setImageView,
   defaultImage,
   submitMsgView,
@@ -15,12 +14,7 @@ export const handleOnCouponChangeFunc = (
       setCouponObj({ ...couponObj, title: e.target.value });
       break;
     case "category":
-      console.log(e.target.value);
-      if (e.target.value !== 0 && e.target.value !== "Choose...") {
-        const categoryName = document.getElementById(e.target.value);
-        setCategory(categoryName.textContent);
-        setCouponObj({ ...couponObj, category: e.target.value });
-      }
+      setCouponObj({ ...couponObj, category: e.target.value });
       break;
     case "description":
       setCouponObj({ ...couponObj, description: e.target.value });
@@ -39,8 +33,8 @@ export const handleOnCouponChangeFunc = (
       break;
     case "image":
       if (e.target.files.length > 0) {
-        const src = URL.createObjectURL(e.target.files[0]);
-        setImageView(src);
+        const imageSrc = URL.createObjectURL(e.target.files[0]);
+        setImageView(imageSrc);
         setCouponObj({
           ...couponObj,
           image: e.target.files[0],
@@ -58,6 +52,7 @@ export const handleOnCouponChangeFunc = (
         endDate: "2021-12-15",
         amount: "1",
         price: "1",
+        image: defaultImage,
       });
       setImageView(defaultImage);
       const allInputs = document.querySelectorAll(".form-control-coupon");
@@ -69,7 +64,6 @@ export const handleOnCouponChangeFunc = (
       document.querySelector(
         ".inline-form-custom-select-coupon"
       ).selectedIndex = 0;
-      setCategory("Category");
       if (submitMsgView) {
         dispatch(companyResetSubmitCoupon());
       }

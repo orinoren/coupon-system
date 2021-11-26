@@ -16,10 +16,8 @@ const CompanyOperations = () => {
     endDate: "2021-11-20",
     amount: "1",
     price: "1",
-    couponImage: defaultImage,
+    image: defaultImage,
   });
-
-  const [category, setCategory] = useState("Category");
 
   const [imageView, setImageView] = useState(defaultImage);
 
@@ -47,9 +45,13 @@ const CompanyOperations = () => {
         ...companyCouponToUpdateObj,
         startDate: companyCouponToUpdateObj.startDate,
         endDate: companyCouponToUpdateObj.endDate,
+        category: companyCouponToUpdateObj.category,
+        image: "data:image/*;base64," + companyCouponToUpdateObj.image,
       });
       setImageView("data:image/*;base64," + companyCouponToUpdateObj.image);
-      setCategory(companyCouponToUpdateObj.category);
+      document
+        .getElementById(`coupon-category-${companyCouponToUpdateObj.category}`)
+        .setAttribute("selected", "");
       return;
     }
 
@@ -65,7 +67,6 @@ const CompanyOperations = () => {
       property,
       couponObj,
       setCouponObj,
-      setCategory,
       setImageView,
       defaultImage,
       submitMsgView,
@@ -81,15 +82,13 @@ const CompanyOperations = () => {
           <div className="col-12  col-lg-6 m-0 p-0 m-lg-1 p-lg-1 ">
             <CompanyOperationsForm
               couponViewFunc={handleOnCouponChange}
-              couponToUpdateObj={couponObj}
-              category={category}
+              couponObject={couponObj}
             ></CompanyOperationsForm>
           </div>
           <div className="col-12 col-lg-4 mt-5 mt-lg-0 ">
             <CompanyOperationsCouponView
               addMode={companyCouponAddMode}
               imgView={imageView}
-              category={category}
               couponObject={couponObj}
             ></CompanyOperationsCouponView>
           </div>

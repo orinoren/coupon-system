@@ -1,24 +1,16 @@
 import React from "react";
 import "./CompanyOperations.css";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+
 import { companyResetSubmitCoupon } from "../../actions/actions-for-ui/action-for-ui";
 const CompanyOperationsForm = (props) => {
   const dispatch = useDispatch();
+
   const isCouponSubmitted = useSelector(
     (state) =>
       state.uiRootReducer.companySubmitCouponReducer.companySubmitCoupon
   );
-  const companyCouponUpdateMode = useSelector(
-    (state) => state.uiRootReducer.companyUpdateCouponModeReducer.updateMode
-  );
 
-  useEffect(() => {
-    document.getElementById(props.category)?.removeAttribute("selected");
-    return () => {};
-  }, [companyCouponUpdateMode]);
-  console.log(props.couponToUpdateObj);
-  console.log(props);
   return (
     <div>
       <div className="container company-operation-border">
@@ -34,7 +26,7 @@ const CompanyOperationsForm = (props) => {
                   className="text-danger mx-2 coupon-input-error"
                 ></span>
                 <input
-                  onFocus={(e) => {
+                  onFocus={() => {
                     document.getElementById(
                       "coupon-title-input-error"
                     ).textContent = " ";
@@ -43,7 +35,7 @@ const CompanyOperationsForm = (props) => {
                     }
                   }}
                   onChange={(e) => props.couponViewFunc(e, "title")}
-                  value={props.couponToUpdateObj.title}
+                  value={props.couponObject.title}
                   type="text"
                   className="form-control form-control-coupon w-75"
                   id="formGroupExampleInput"
@@ -66,7 +58,7 @@ const CompanyOperationsForm = (props) => {
                   </div>
                   <select
                     onChange={(e) => props.couponViewFunc(e, "category")}
-                    onFocus={(e) => {
+                    onFocus={() => {
                       document.getElementById(
                         "coupon-category-input-error"
                       ).textContent = "";
@@ -77,28 +69,20 @@ const CompanyOperationsForm = (props) => {
                     className="my-2 custom-select inline-form-custom-select-coupon"
                     id="categoryOptions"
                   >
-                    <option defaultValue>
-                      {companyCouponUpdateMode &&
-                      !props.category.isNaN &&
-                      props.category > 0
-                        ? document
-                            .getElementById(props.category)
-                            .setAttribute("selected", "")
-                        : props.couponToUpdateObj.category}
-                    </option>
-                    <option id="1" value="1">
+                    <option defaultValue>Choose...</option>
+                    <option id="coupon-category-1" value="1">
                       Food
                     </option>
-                    <option id="2" value="2">
+                    <option id="coupon-category-2" value="2">
                       Electricty
                     </option>
-                    <option id="3" value="3">
+                    <option id="coupon-category-3" value="3">
                       Restaurant
                     </option>
-                    <option id="4" value="4">
+                    <option id="coupon-category-4" value="4">
                       Vacation
                     </option>
-                    <option id="5" value="5">
+                    <option id="coupon-category-5" value="5">
                       Home Products
                     </option>
                     <option id="6" value="6">
@@ -112,8 +96,8 @@ const CompanyOperationsForm = (props) => {
                   Description
                 </label>
                 <textarea
-                  value={props.couponToUpdateObj.description}
-                  onFocus={(e) =>
+                  value={props.couponObject.description}
+                  onFocus={() =>
                     isCouponSubmitted
                       ? dispatch(companyResetSubmitCoupon())
                       : " "
@@ -133,7 +117,7 @@ const CompanyOperationsForm = (props) => {
                 ></span>
                 <input
                   onChange={(e) => props.couponViewFunc(e, "startDate")}
-                  onFocus={(e) => {
+                  onFocus={() => {
                     document.getElementById(
                       "coupon-start-date-input-error"
                     ).textContent = "";
@@ -141,7 +125,7 @@ const CompanyOperationsForm = (props) => {
                       dispatch(companyResetSubmitCoupon());
                     }
                   }}
-                  value={props.couponToUpdateObj.startDate}
+                  value={props.couponObject.startDate}
                   type="date"
                   className=" w-50 form-control form-control-coupon-date form-control-coupon"
                   id="formStartDateInput"
@@ -158,7 +142,7 @@ const CompanyOperationsForm = (props) => {
                 ></span>
                 <input
                   onChange={(e) => props.couponViewFunc(e, "endDate")}
-                  onFocus={(e) => {
+                  onFocus={() => {
                     document.getElementById(
                       "coupon-end-date-input-error"
                     ).textContent = "";
@@ -166,7 +150,7 @@ const CompanyOperationsForm = (props) => {
                       dispatch(companyResetSubmitCoupon());
                     }
                   }}
-                  value={props.couponToUpdateObj.endDate}
+                  value={props.couponObject.endDate}
                   type="date"
                   className="w-50 form-control form-control-coupon-date form-control-coupon"
                   id="formEndDateInput"
@@ -183,7 +167,7 @@ const CompanyOperationsForm = (props) => {
                 ></span>
                 <input
                   onChange={(e) => props.couponViewFunc(e, "amount")}
-                  onFocus={(e) => {
+                  onFocus={() => {
                     document.getElementById(
                       "coupon-amount-input-error"
                     ).textContent = "";
@@ -192,8 +176,8 @@ const CompanyOperationsForm = (props) => {
                     }
                   }}
                   type="number"
-                  value={props.couponToUpdateObj.amount}
-                  className="w-25 form-control form-control-coupon"
+                  value={props.couponObject.amount}
+                  className="w-25 form-cntrol form-control-coupon"
                   id="formGroupExampleInput"
                   min="1"
                 />
@@ -208,7 +192,7 @@ const CompanyOperationsForm = (props) => {
                 ></span>
                 <input
                   onChange={(e) => props.couponViewFunc(e, "price")}
-                  onFocus={(e) => {
+                  onFocus={() => {
                     document.getElementById(
                       "coupon-price-input-error"
                     ).textContent = "";
@@ -217,8 +201,8 @@ const CompanyOperationsForm = (props) => {
                     }
                   }}
                   type="number"
-                  value={props.couponToUpdateObj.price}
-                  className="w-25 form-control form-control-coupon"
+                  value={props.couponObject.price}
+                  className="w-25 form-cntrol form-control-coupon"
                   id="imageInputForm"
                   min="0"
                 />
@@ -235,7 +219,7 @@ const CompanyOperationsForm = (props) => {
                     e.target.value = null;
                   }}
                   onChange={(e) => props.couponViewFunc(e, "image")}
-                  onFocus={(e) =>
+                  onFocus={() =>
                     isCouponSubmitted
                       ? dispatch(companyResetSubmitCoupon())
                       : ""

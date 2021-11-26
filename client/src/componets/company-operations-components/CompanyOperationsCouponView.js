@@ -30,7 +30,6 @@ const CompanyOperationsCouponView = (props) => {
 
   useEffect(() => {
     dispatch(companyResetSubmitCoupon());
-
     return () => {};
   }, [companyCouponToUpdateObj, addMode]);
 
@@ -85,9 +84,11 @@ const CompanyOperationsCouponView = (props) => {
               <div className="card-body border">
                 <div className="d-flex justify-content-between">
                   <h5 className="card-title">{props.couponObject.title}</h5>
-                  {!props.category.isNaN && props.category > 0
-                    ? document.getElementById(props.category).textContent
-                    : props.category}
+                  {props.couponObject.category !== "Choose..."
+                    ? document.getElementById(
+                        `coupon-category-${props.couponObject.category}`
+                      ).textContent
+                    : "Category"}
                 </div>
               </div>
               <p className="card-text p-2">{props.couponObject.description}</p>

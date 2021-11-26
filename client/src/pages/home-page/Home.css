@@ -17,7 +17,6 @@
   font-size: 1em;
 }
 .home-login-btn:hover {
-  border: green 2px solid;
   background-color: white;
   color: #000;
 }

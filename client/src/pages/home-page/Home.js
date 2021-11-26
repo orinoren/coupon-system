@@ -55,9 +55,7 @@ const Home = () => {
               <div>
                 <button
                   onClick={() => handleEnterAsGuestBtnClicked()}
-                  className="btn home-login-btn col-12 
-          col-lg-2 offset-lg-6
-          "
+                  className="btn home-login-btn col-12 col-lg-2 offset-lg-6"
                   type="button"
                 >
                   Enter As Guest
