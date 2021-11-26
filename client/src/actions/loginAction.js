@@ -3,7 +3,7 @@ import authenticatedAxios from "../service/AuthenticatedAxios";
 
 const url = "http://localhost:8081/login";
 
-export const loginAction = (loginDetails) => async (dispatch, getState) => {
+export const loginAction = (loginDetails) => async (dispatch) => {
   try {
     const res = await axios.post(url, loginDetails, {
       headers: {

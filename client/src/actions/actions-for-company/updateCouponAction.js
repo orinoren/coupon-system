@@ -4,7 +4,6 @@ const urlSuffix = "company/coupon";
 
 export const companyUpdateCouponAction =
   (couponObj, image) => async (dispatch, getState) => {
-    console.log(couponObj);
     try {
       if (image instanceof File) {
         const formData = new FormData();
