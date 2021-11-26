@@ -1,9 +1,9 @@
 ## `actions-for-admin-for-company`
 
-### `adminAddCompanyAction`
+- ### `adminAddCompanyAction`
 
-### `adminDeleteCompanyAction`
+- ### `adminDeleteCompanyAction`
 
-### `adminGetAllCompaniesAction`
+- ### `adminGetAllCompaniesAction`
 
-### `adminUpdateCompanyAction`
+- ### `adminUpdateCompanyAction`
