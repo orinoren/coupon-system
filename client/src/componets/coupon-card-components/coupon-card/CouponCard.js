@@ -6,9 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { getCouponCardFotterFunc } from "./utils/CouponCardFunctions";
 const CouponCard = (props) => {
   const dispatch = useDispatch();
-
   const [showAddToCartControlles, setShowAddToCartControlles] = useState(false);
-
+  const [showDescription, setShowDescription] = useState(false);
   const [couponAddToCartAmount, setCouponAddToCartAmount] = useState(0);
   const couponPurchaseDetails = useSelector(
     (state) => state.customerRootReducer.purchaseCouponReducer
@@ -40,8 +39,14 @@ const CouponCard = (props) => {
     );
   };
 
+  const handleCouponClicked = () => {
+    setShowDescription(!showDescription);
+  };
   return (
-    <div className="container mb-2 coupon-card-conatiner-border p-1 ">
+    <div
+      onClick={() => handleCouponClicked()}
+      className="container mb-2 coupon-card-conatiner-border p-1 "
+    >
       <div className="row">
         <div className="col-12 h-100">
           <div className="coupon-card-margin-top">
@@ -64,6 +69,19 @@ const CouponCard = (props) => {
                   <br />
                   {props.title}
                 </h5>
+                {showDescription && (
+                  <div className="d-flex justify-content-between">
+                    <div className="coupon-card-p-text-font ">
+                      <div>
+                        <div>
+                          <span className="text-success fw-bold">
+                            {props.description}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
                 <div className="d-flex justify-content-between">
                   <div className="coupon-card-p-text-font ">
                     {`Ends at : `}

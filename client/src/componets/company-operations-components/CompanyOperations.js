@@ -49,9 +49,7 @@ const CompanyOperations = () => {
         image: "data:image/*;base64," + companyCouponToUpdateObj.image,
       });
       setImageView("data:image/*;base64," + companyCouponToUpdateObj.image);
-      document
-        .getElementById(`coupon-category-${companyCouponToUpdateObj.category}`)
-        .setAttribute("selected", "");
+
       return;
     }
 

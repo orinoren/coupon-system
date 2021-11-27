@@ -21,9 +21,14 @@ export const getCouponCardFotterFunc = (
           <div className="coupon-card-op-icon">
             <span>
               <i
-                onClick={() =>
-                  handleEditBtnClicked(companyCouponAddMode, props, dispatch)
-                }
+                onClick={(e) => {
+                  handleEditBtnClicked(
+                    companyCouponAddMode,
+                    props,
+                    dispatch,
+                    e
+                  );
+                }}
                 className="text-primary fs-3 fas fa-edit"
               ></i>
             </span>
@@ -31,7 +36,7 @@ export const getCouponCardFotterFunc = (
           <div className="coupon-card-op-icon">
             <span>
               <i
-                onClick={() => handleDeleteBtnClicked(props, dispatch)}
+                onClick={(e) => handleDeleteBtnClicked(props, dispatch, e)}
                 className="text-danger fs-3 fas fa-trash-alt"
               ></i>
             </span>
@@ -77,15 +82,15 @@ export const getCouponCardFotterFunc = (
   );
 };
 
-const handleEditBtnClicked = (companyCouponAddMode, props, dispatch) => {
+const handleEditBtnClicked = (companyCouponAddMode, props, dispatch, e) => {
+  e.stopPropagation();
   if (companyCouponAddMode) {
     dispatch(companyCouponResetAddModeAction());
-    dispatch(companyCouponUpdateModeAction(props));
-    return;
   }
   dispatch(companyCouponUpdateModeAction(props));
 };
-const handleDeleteBtnClicked = (props, dispatch) => {
+const handleDeleteBtnClicked = (props, dispatch, e) => {
+  e.stopPropagation();
   dispatch(companyDeleteCouponAction(props.id));
 };
 const hanldeAddToCartClicked = (

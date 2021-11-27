@@ -2,16 +2,12 @@
 
 ## useState
 
-1. `splitedSearchResultCouponList` : contains all of the
-   coupons that match the user search input
-2. `splitedAllCoupons` :
-
-## useSelector
-
-1. `searchResultCouponList` :
+2. `splitedAllCoupons` : contains first 6 of the coupons
 
 ## useEffect
 
+Every time a change made in the coupon list or the the amount of coupon to show that trigger by see more or see less button the size of `splitedAllCoupons` resizing accordingly
+
 ## Methods
 
-1. `getAllCouponsCards` :
+1. `getAllCouponsCards` : getting the relavent coupon card .
