@@ -11,13 +11,6 @@ const CompanyOperationsForm = (props) => {
       state.uiRootReducer.companySubmitCouponReducer.companySubmitCoupon
   );
 
-  const isSelected = (categoryId) => {
-    if (props.couponObject.category === categoryId) {
-      return true;
-    }
-    return false;
-  };
-
   return (
     <div>
       <div className="container company-operation-border">
@@ -64,6 +57,7 @@ const CompanyOperationsForm = (props) => {
                     ></span>
                   </div>
                   <select
+                    value={props.couponObject.category}
                     onChange={(e) => props.couponViewFunc(e, "category")}
                     onFocus={() => {
                       document.getElementById(
@@ -76,47 +70,23 @@ const CompanyOperationsForm = (props) => {
                     className="my-2 custom-select inline-form-custom-select-coupon"
                     id="categoryOptions"
                   >
-                    <option defaultValue>Choose...</option>
-                    <option
-                      selected={isSelected(1)}
-                      id="coupon-category-1"
-                      value="1"
-                    >
+                    <option disabled>Choose...</option>
+                    <option id="coupon-category-1" value="1">
                       Food
                     </option>
-                    <option
-                      selected={isSelected(2)}
-                      id="coupon-category-2"
-                      value="2"
-                    >
+                    <option id="coupon-category-2" value="2">
                       Electricty
                     </option>
-                    <option
-                      selected={isSelected(3)}
-                      id="coupon-category-3"
-                      value="3"
-                    >
+                    <option id="coupon-category-3" value="3">
                       Restaurant
                     </option>
-                    <option
-                      selected={isSelected(4)}
-                      id="coupon-category-4"
-                      value="4"
-                    >
+                    <option id="coupon-category-4" value="4">
                       Vacation
                     </option>
-                    <option
-                      selected={isSelected(5)}
-                      id="coupon-category-5"
-                      value="5"
-                    >
+                    <option id="coupon-category-5" value="5">
                       Home Products
                     </option>
-                    <option
-                      selected={isSelected(6)}
-                      id="coupon-category-6"
-                      value="6"
-                    >
+                    <option id="coupon-category-6" value="6">
                       Clothing products
                     </option>
                   </select>

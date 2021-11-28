@@ -5,7 +5,6 @@ export const getAllCustomerCouponsAction = () => async (dispatch) => {
   try {
     const res = await authenticatedAxios.getAuthenticatedAxios().get(urlSuffix);
     const allCustomerCoupons = res.data;
-    console.log(allCustomerCoupons);
     for (let i = 0; i < allCustomerCoupons.length; i++) {
       const coupon = allCustomerCoupons[i];
       coupon.startDate = converArrayToDate(coupon.startDate);
@@ -15,7 +14,5 @@ export const getAllCustomerCouponsAction = () => async (dispatch) => {
         payload: allCustomerCoupons,
       });
     }
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };

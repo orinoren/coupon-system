@@ -146,7 +146,6 @@ export const dispatchUpdatedCompany = (
   setUpdateMode
 ) => {
   if (isSearchMode) {
-    console.log("in search mode");
     dispatch({
       type: "UPDATE-FROM-SEARCH-RESULT-COMPANY-LIST",
       payload: {

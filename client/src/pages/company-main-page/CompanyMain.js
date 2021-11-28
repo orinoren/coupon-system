@@ -13,10 +13,11 @@ import {
   companyCouponResetAddModeAction,
   companyCouponResetUpdateModeAction,
 } from "../../actions/actions-for-ui/action-for-ui";
+import { getAllCompanyCouponsAction } from "../../actions/actions-for-company/getAllCompanyCouponsAction";
 const CompanyMain = () => {
   const dispatch = useDispatch();
 
-  const handleButtonClick = (event) => {
+  const handleButtonClick = () => {
     if (companyCouponUpdateMode) {
       dispatch(companyCouponResetUpdateModeAction());
       return;
@@ -33,15 +34,20 @@ const CompanyMain = () => {
   const companyCouponAddMode = useSelector(
     (state) => state.uiRootReducer.companyAddCouponModeReducer.addMode
   );
-  const companyCouponToUpdateObj = useSelector(
-    (state) => state.uiRootReducer.companyUpdateCouponModeReducer.couponObj
-  );
-  const showSearch = useSelector(
-    (state) => state.uiRootReducer.searchModeReducer.searchMode
-  );
+
+  const userDetails = useSelector((state) => state.authReducer);
 
   const history = useHistory();
-  const userDetails = useSelector((state) => state.authReducer);
+
+  const getOperationButtonTitle = () => {
+    if (companyCouponAddMode) {
+      return "Close Add Mode";
+    }
+    if (companyCouponUpdateMode) {
+      return "Close Update Mode";
+    }
+    return "Add Coupon";
+  };
   useEffect(() => {
     if (userDetails.role !== "COMPANY" || userDetails.isLogged === false) {
       history.push("/home");
@@ -59,7 +65,7 @@ const CompanyMain = () => {
           <div className="p-0 p-md-1 col-12 col-md-2">
             <div className="" onClick={handleButtonClick}>
               <OperationButton
-                name={companyCouponAddMode ? "Close Add Mode" : "Add Coupon"}
+                name={getOperationButtonTitle()}
               ></OperationButton>
             </div>
           </div>

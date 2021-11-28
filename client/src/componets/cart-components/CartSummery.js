@@ -37,7 +37,6 @@ const CartSummery = () => {
         const coupon = customerCoupons[i];
         for (let j = 0; j < couponsToPurchase.length && notPurchased; j++) {
           const couponToPurchase = couponsToPurchase[j];
-          console.log(couponToPurchase);
           if (coupon.id === couponToPurchase.id) {
             notPurchased = false;
             couponPurchaseFoundTitleMsg = couponToPurchase.title;

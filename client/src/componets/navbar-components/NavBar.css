@@ -36,11 +36,11 @@
   text-align: center;
   padding: 4px;
 }
-.forcolp {
+.for-collapse {
   width: 200px;
 }
 @media (max-width: 768px) {
-  .forcolp {
+  .for-collapse {
     display: none;
   }
 }

@@ -2,7 +2,7 @@
 
 ## useState
 
-2. `splitedAllCoupons` : contains first 6 of the coupons
+1. `splitedAllCoupons` : contains first 6 of the coupons
 
 ## useEffect
 

@@ -61,10 +61,11 @@ export const getCouponCardFotterFunc = (
   }
   return (
     <div
-      onClick={() =>
+      onClick={(e) =>
         hanldeAddToCartClicked(
           showAddToCartControlles,
-          setShowAddToCartControlles
+          setShowAddToCartControlles,
+          e
         )
       }
       className="btn-primary w-100 mt-2 text-center"
@@ -95,8 +96,10 @@ const handleDeleteBtnClicked = (props, dispatch, e) => {
 };
 const hanldeAddToCartClicked = (
   showAddToCartControlles,
-  setShowAddToCartControlles
+  setShowAddToCartControlles,
+  e
 ) => {
+  e.stopPropagation();
   if (showAddToCartControlles) {
     setShowAddToCartControlles(false);
     return;

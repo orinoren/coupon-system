@@ -81,6 +81,7 @@ const CompanyOperations = () => {
             <CompanyOperationsForm
               couponViewFunc={handleOnCouponChange}
               couponObject={couponObj}
+              addMode={companyCouponAddMode}
             ></CompanyOperationsForm>
           </div>
           <div className="col-12 col-lg-4 mt-5 mt-lg-0 ">

@@ -36,7 +36,6 @@ const CompanyOperationsCouponView = (props) => {
   const handleCouponSubmit = () => {
     dispatch({ type: "RESET-COUPON-OP-FAILED" });
     const isCouponValid = couponValidation(props.couponObject);
-    console.log(props.couponObject);
 
     if (isCouponValid) {
       let couponObj = {

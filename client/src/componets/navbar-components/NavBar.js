@@ -138,7 +138,7 @@ const NavBar = () => {
               </div>
             </div>
             <div className="col-8 p-0 col-lg-9">
-              <div className="container-fluid p-0 h-100 w-100 forcolp">
+              <div className="container-fluid p-0 h-100 w-100 for-collapse">
                 <div className="row m-0 pt-2">
                   <div className="col-8 p-0">{getNavBarItems()}</div>
                   <div className="col-2 pt-2 text-end"> {getCartIcon()}</div>
@@ -154,7 +154,6 @@ const NavBar = () => {
                   <div className="row">
                     <div className="col-12">{getNavBarItems()}</div>
                     <div className="col-12 text-start py-2">
-                      {" "}
                       {getCartIcon()}
                     </div>
                     <div className="col-12 text-start"> {getLoginButton()}</div>

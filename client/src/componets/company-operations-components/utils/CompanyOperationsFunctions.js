@@ -48,22 +48,17 @@ export const handleOnCouponChangeFunc = (
         title: "Title",
         category: "Choose...",
         description: "description",
-        startDate: "2021-11-15",
-        endDate: "2021-12-15",
+        startDate: "2022-01-15",
+        endDate: "2022-02-15",
         amount: "1",
         price: "1",
         image: defaultImage,
       });
       setImageView(defaultImage);
-      const allInputs = document.querySelectorAll(".form-control-coupon");
       const allErrorInputsMsg = document.querySelectorAll(
         ".coupon-input-error"
       );
       allErrorInputsMsg.forEach((msg) => (msg.textContent = ""));
-      allInputs.forEach((input) => (input.value = " "));
-      document.querySelector(
-        ".inline-form-custom-select-coupon"
-      ).selectedIndex = 0;
       if (submitMsgView) {
         dispatch(companyResetSubmitCoupon());
       }

@@ -63,7 +63,6 @@ const MainPageContent = () => {
     userDetails,
     dispatch,
   ]);
-  console.log("main page render");
   return (
     <div className="mt-2 mt-md-4">
       <div className="row m-0 m-md-1  main-content-top-margin">
