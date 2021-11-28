@@ -1,7 +1,8 @@
 import authenticatedAxios from "../../../service/AuthenticatedAxios";
 const urlSuffix = "admin/customer";
 export const adminUpdateCustomerAction =
-  (customerObj, setUpdateMode) => async (dispatch, getState) => {
+  (customerObj, setUpdateMode, server_error_for_update_customer) =>
+  async (dispatch) => {
     try {
       const res = await authenticatedAxios
         .getAuthenticatedAxios()
@@ -11,7 +12,7 @@ export const adminUpdateCustomerAction =
         setUpdateMode(false);
       }
     } catch (error) {
-      document.getElementById("server-error-for-update-customer").textContent =
+      server_error_for_update_customer.current.textContent =
         error.response.data;
     }
   };

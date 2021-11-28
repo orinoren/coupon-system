@@ -6,7 +6,11 @@ import { adminDeleteCompanyAction } from "../../../../../../actions/actions-for-
 export const getCompanyBoxToAddFunc = (
   setNameState,
   setEmailState,
-  setPasswordState
+  setPasswordState,
+  server_error_for_add_company,
+  company_add_name_error_messege,
+  company_add_email_error_messege,
+  company_add_password_error_messege
 ) => {
   return (
     <div>
@@ -14,19 +18,29 @@ export const getCompanyBoxToAddFunc = (
         onChangeFunc={setNameState}
         label={"Name :"}
         id="company-add-name"
+        errorMessege={company_add_name_error_messege}
+        serverErrorMessege={server_error_for_add_company}
       ></AdminInputToAdd>
       <AdminInputToAdd
         onChangeFunc={setEmailState}
         label={"Email :"}
         id="company-add-email"
+        errorMessege={company_add_email_error_messege}
+        serverErrorMessege={server_error_for_add_company}
       ></AdminInputToAdd>
 
       <AdminInputToAdd
         onChangeFunc={setPasswordState}
         label={"Password :"}
         id="company-add-password"
+        errorMessege={company_add_password_error_messege}
+        serverErrorMessege={server_error_for_add_company}
       ></AdminInputToAdd>
-      <div className="text-danger" id="server-error-for-add-company"></div>
+      <div
+        ref={server_error_for_add_company}
+        className="text-danger"
+        id="server-error-for-add-company"
+      ></div>
     </div>
   );
 };
@@ -36,7 +50,10 @@ export const getCompanyBoxToUpdateFunc = (
   setEmailState,
   passwordState,
   setPasswordState,
-  id
+  id,
+  server_error_for_update_company,
+  company_update_email_error_messege,
+  company_update_password_error_messege
 ) => {
   return (
     <div>
@@ -53,6 +70,8 @@ export const getCompanyBoxToUpdateFunc = (
         value={emailState}
         idPrefix={"company-update-email-"}
         idSuffix={id}
+        serverErrorMessege={server_error_for_update_company}
+        errorMessege={company_update_email_error_messege}
       ></AdminInputToUpdate>
 
       <AdminInputToUpdate
@@ -61,8 +80,14 @@ export const getCompanyBoxToUpdateFunc = (
         value={passwordState}
         idPrefix={"company-update-password-"}
         idSuffix={id}
+        serverErrorMessege={server_error_for_update_company}
+        errorMessege={company_update_password_error_messege}
       ></AdminInputToUpdate>
-      <div className="text-danger" id="server-error-for-update-company"></div>
+      <div
+        ref={server_error_for_update_company}
+        className="text-danger"
+        id="server-error-for-update-company"
+      ></div>
     </div>
   );
 };
@@ -98,43 +123,51 @@ export const getCompanyBoxFunc = (
     </div>
   );
 };
-export const companyValidationToAdd = (companyName, email, password) => {
+export const companyValidationToAdd = (
+  companyName,
+  email,
+  password,
+  company_add_name_error_messege,
+  company_add_email_error_messege,
+  company_add_password_error_messege
+) => {
   if (companyName === "" || companyName === undefined) {
-    document.getElementById("company-add-name").textContent =
-      "please enter name";
+    company_add_name_error_messege.current.textContent = "please enter name";
     return false;
   }
   if (email === "" || email === undefined) {
-    document.getElementById("company-add-email").textContent =
-      "please enter email";
+    company_add_email_error_messege.current.textContent = "please enter email";
     return false;
   }
   if (!email?.includes("@")) {
-    document.getElementById("company-add-email").textContent = "@ is missing ";
+    company_add_email_error_messege.current.textContent = "@ is missing ";
     return false;
   }
   if (password === "" || password === undefined) {
-    document.getElementById("company-add-password").textContent =
+    company_add_password_error_messege.current.textContent =
       "please enter password";
     return false;
   }
   return true;
 };
-export const companyValidationToUpdate = (email, password, company_id) => {
+export const companyValidationToUpdate = (
+  email,
+  password,
+  company_update_email_error_messege,
+  company_update_password_error_messege
+) => {
   if (email === "") {
-    document.getElementById("company-update-email-" + company_id).textContent =
+    company_update_email_error_messege.current.textContent =
       "please enter email";
     return false;
   }
   if (!email.includes("@")) {
-    document.getElementById("company-update-email-" + company_id).textContent =
-      "@ is missing ";
+    company_update_email_error_messege.current.textContent = "@ is missing ";
     return false;
   }
-  if (password === " ") {
-    document.getElementById(
-      "company-update-password-" + company_id
-    ).textContent = "please enter password";
+  if (password === "") {
+    company_update_password_error_messege.current.textContent =
+      "please enter password";
     return false;
   }
   return true;
@@ -143,7 +176,8 @@ export const dispatchUpdatedCompany = (
   companyObj,
   isSearchMode,
   dispatch,
-  setUpdateMode
+  setUpdateMode,
+  server_error_for_update_company
 ) => {
   if (isSearchMode) {
     dispatch({
@@ -154,7 +188,13 @@ export const dispatchUpdatedCompany = (
     });
   }
 
-  dispatch(adminUpdateCompanyAction(companyObj, setUpdateMode));
+  dispatch(
+    adminUpdateCompanyAction(
+      companyObj,
+      setUpdateMode,
+      server_error_for_update_company
+    )
+  );
 };
 export const dispatchDeletedCompany = (idToDelete, isSearchMode, dispatch) => {
   if (isSearchMode) {

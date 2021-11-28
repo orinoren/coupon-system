@@ -3,7 +3,8 @@ import { adminResetUpdateMode } from "../../actions-for-ui/action-for-ui";
 const urlSuffix = "admin/company";
 
 export const adminUpdateCompanyAction =
-  (companyObj, setUpdateMode) => async (dispatch, getState) => {
+  (companyObj, setUpdateMode, server_error_for_update_company) =>
+  async (dispatch, getState) => {
     try {
       const res = await authenticatedAxios
         .getAuthenticatedAxios()
@@ -14,7 +15,6 @@ export const adminUpdateCompanyAction =
         setUpdateMode(false);
       }
     } catch (error) {
-      document.getElementById("server-error-for-update-company").textContent =
-        error.response.data;
+      server_error_for_update_company.current.textContent = error.response.data;
     }
   };

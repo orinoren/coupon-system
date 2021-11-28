@@ -1,13 +1,10 @@
 import React from "react";
 import "../../../AdminOperations.css";
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { adminAddCustomerAction } from "../../../../../actions/actions-for-admin/actions-for-admin-for-customer/adminAddCustomerAction";
 import AdminBoxButtons from "../AdminBoxButtons";
-import {
-  adminResetAddMode,
-  adminCustomerUpdateMode,
-} from "../../../../../actions/actions-for-ui/action-for-ui";
+import { adminCustomerUpdateMode } from "../../../../../actions/actions-for-ui/action-for-ui";
 import {
   customerValidationToAdd,
   customerValidationToUpdate,
@@ -24,6 +21,18 @@ const AdminCustomerBox = (props) => {
   const [passwordState, setPasswordState] = useState(props.password);
   const [updateMode, setUpdateMode] = useState(false);
 
+  const server_error_for_add_customer = useRef("");
+  const server_error_for_update_customer = useRef("");
+  const customer_update_first_name_error_messege = useRef("");
+  const customer_update_last_name_error_messege = useRef("");
+  const customer_update_email_error_messege = useRef("");
+  const customer_update_password_error_messege = useRef("");
+
+  const customer_add_first_name_error_messege = useRef("");
+  const customer_add_last_name_error_messege = useRef("");
+  const customer_add_email_error_messege = useRef("");
+  const customer_add_password_error_messege = useRef("");
+
   const isSearchMode = useSelector(
     (state) => state.uiRootReducer.searchModeReducer.searchMode
   );
@@ -36,7 +45,11 @@ const AdminCustomerBox = (props) => {
         lastNameState,
         emailState,
         passwordState,
-        props.id
+        props.id,
+        customer_update_first_name_error_messege,
+        customer_update_last_name_error_messege,
+        customer_update_email_error_messege,
+        customer_update_password_error_messege
       );
       if (isUpdateValid) {
         const customerObj = {
@@ -50,7 +63,8 @@ const AdminCustomerBox = (props) => {
           customerObj,
           isSearchMode,
           dispatch,
-          setUpdateMode
+          setUpdateMode,
+          server_error_for_update_customer
         );
       }
       return;
@@ -59,7 +73,11 @@ const AdminCustomerBox = (props) => {
       firstNameState,
       lastNameState,
       emailState,
-      passwordState
+      passwordState,
+      customer_add_first_name_error_messege,
+      customer_add_last_name_error_messege,
+      customer_add_email_error_messege,
+      customer_add_password_error_messege
     );
     if (isAddValid) {
       const customerObj = {
@@ -68,7 +86,9 @@ const AdminCustomerBox = (props) => {
         email: emailState,
         password: passwordState,
       };
-      dispatch(adminAddCustomerAction(customerObj));
+      dispatch(
+        adminAddCustomerAction(customerObj, server_error_for_add_customer)
+      );
     }
   };
 
@@ -85,7 +105,12 @@ const AdminCustomerBox = (props) => {
       setFirstNameState,
       setLastNameState,
       setEmailState,
-      setPasswordState
+      setPasswordState,
+      server_error_for_add_customer,
+      customer_add_first_name_error_messege,
+      customer_add_last_name_error_messege,
+      customer_add_email_error_messege,
+      customer_add_password_error_messege
     );
 
   const getCustomerBoxToUpdate = () =>
@@ -98,7 +123,12 @@ const AdminCustomerBox = (props) => {
       emailState,
       setPasswordState,
       passwordState,
-      props.id
+      props.id,
+      server_error_for_update_customer,
+      customer_update_first_name_error_messege,
+      customer_update_last_name_error_messege,
+      customer_update_email_error_messege,
+      customer_update_password_error_messege
     );
 
   const getCustomerBox = () =>

@@ -6,29 +6,32 @@ export const customerValidationToAdd = (
   firstName,
   lastName,
   email,
-  password
+  password,
+  customer_add_first_name_error_messege,
+  customer_add_last_name_error_messege,
+  customer_add_email_error_messege,
+  customer_add_password_error_messege
 ) => {
   if (firstName === "" || firstName === undefined) {
-    document.getElementById("customer-add-first-name").textContent =
+    customer_add_first_name_error_messege.current.textContent =
       "please enter first name";
     return false;
   }
   if (lastName === "" || lastName === undefined) {
-    document.getElementById("customer-add-last-name").textContent =
+    customer_add_last_name_error_messege.current.textContent =
       "please enter last name";
     return false;
   }
   if (email === "" || email === undefined) {
-    document.getElementById("customer-add-email").textContent =
-      "please enter email";
+    customer_add_email_error_messege.current.textContent = "please enter email";
     return false;
   }
   if (!email.includes("@")) {
-    document.getElementById("customer-add-email").textContent = "@ is missing ";
+    customer_add_first_name_error_messege.current.textContent = "@ is missing ";
     return false;
   }
   if (password === "" || password === undefined) {
-    document.getElementById("customer-add-password").textContent =
+    customer_add_password_error_messege.current.textContent =
       "please enter password";
     return false;
   }
@@ -40,36 +43,34 @@ export const customerValidationToUpdate = (
   lastName,
   email,
   password,
-  customer_id
+  customer_id,
+  customer_update_first_name_error_messege,
+  customer_update_last_name_error_messege,
+  customer_update_email_error_messege,
+  customer_update_password_error_messege
 ) => {
   if (firstName === "") {
-    document.getElementById(
-      "customer-update-first-name-" + customer_id
-    ).textContent = "please enter first name";
+    customer_update_first_name_error_messege.current.textContent =
+      "please enter first name";
     return false;
   }
   if (lastName === "") {
-    document.getElementById(
-      "customer-update-last-name-" + customer_id
-    ).textContent = "please enter last name";
+    customer_update_last_name_error_messege.current.textContent =
+      "please enter last name";
     return false;
   }
   if (email === "") {
-    document.getElementById(
-      "customer-update-email-" + customer_id
-    ).textContent = "please enter email";
+    customer_update_email_error_messege.current.textContent =
+      "please enter email";
     return false;
   }
   if (!email.includes("@")) {
-    document.getElementById(
-      "customer-update-email-" + customer_id
-    ).textContent = "@ is missing ";
+    customer_update_email_error_messege.current.textContent = "@ is missing ";
     return false;
   }
   if (password === "") {
-    document.getElementById(
-      "customer-update-password-" + customer_id
-    ).textContent = "please enter password";
+    customer_update_password_error_messege.current.textContent =
+      "please enter password";
     return false;
   }
   return true;
@@ -78,7 +79,8 @@ export const dispatchUpdatedCustomer = (
   customerObj,
   isSearchMode,
   dispatch,
-  setUpdateMode
+  setUpdateMode,
+  server_error_for_update_customer
 ) => {
   if (isSearchMode) {
     dispatch({
@@ -88,7 +90,13 @@ export const dispatchUpdatedCustomer = (
       },
     });
   }
-  dispatch(adminUpdateCustomerAction(customerObj, setUpdateMode));
+  dispatch(
+    adminUpdateCustomerAction(
+      customerObj,
+      setUpdateMode,
+      server_error_for_update_customer
+    )
+  );
 };
 export const dispatchDeletedCustomer = (idToDelete, isSearchMode, dispatch) => {
   if (isSearchMode) {
@@ -103,7 +111,12 @@ export const getCustomerBoxToAddFunc = (
   setFirstNameState,
   setLastNameState,
   setEmailState,
-  setPasswordState
+  setPasswordState,
+  server_error_for_add_customer,
+  customer_add_first_name_error_messege,
+  customer_add_last_name_error_messege,
+  customer_add_email_error_messege,
+  customer_add_password_error_messege
 ) => {
   return (
     <div>
@@ -111,23 +124,35 @@ export const getCustomerBoxToAddFunc = (
         onChangeFunc={setFirstNameState}
         label={"First name :"}
         id="customer-add-first-name"
+        serverErrorForCustomer={server_error_for_add_customer}
+        errorMessege={customer_add_first_name_error_messege}
       ></AdminInputToAdd>
       <AdminInputToAdd
         onChangeFunc={setLastNameState}
         label={"Last name :"}
         id="customer-add-last-name"
+        serverErrorForCustomer={server_error_for_add_customer}
+        errorMessege={customer_add_last_name_error_messege}
       ></AdminInputToAdd>
       <AdminInputToAdd
         onChangeFunc={setEmailState}
         label={"Email :"}
         id="customer-add-email"
+        serverErrorForCustomer={server_error_for_add_customer}
+        errorMessege={customer_add_email_error_messege}
       ></AdminInputToAdd>
       <AdminInputToAdd
         onChangeFunc={setPasswordState}
         label={"Password :"}
         id="customer-add-password"
+        serverErrorForCustomer={server_error_for_add_customer}
+        errorMessege={customer_add_password_error_messege}
       ></AdminInputToAdd>
-      <div className="text-danger" id="server-error-for-add-customer"></div>
+      <div
+        ref={server_error_for_add_customer}
+        className="text-danger"
+        id="server-error-for-add-customer"
+      ></div>
     </div>
   );
 };
@@ -140,7 +165,12 @@ export const getCustomerBoxToUpdateFunc = (
   emailState,
   setPasswordState,
   passwordState,
-  id
+  id,
+  server_error_for_update_customer,
+  customer_update_first_name_error_messege,
+  customer_update_last_name_error_messege,
+  customer_update_email_error_messege,
+  customer_update_password_error_messege
 ) => {
   return (
     <div>
@@ -150,6 +180,8 @@ export const getCustomerBoxToUpdateFunc = (
         value={firstNameState}
         idPrefix={"customer-update-first-name-"}
         idSuffix={id}
+        serverError={server_error_for_update_customer}
+        errorMessege={customer_update_first_name_error_messege}
       ></AdminInputToUpdate>
       <AdminInputToUpdate
         label={"Last name :"}
@@ -157,6 +189,8 @@ export const getCustomerBoxToUpdateFunc = (
         value={lastNameState}
         idPrefix={"customer-update-last-name-"}
         idSuffix={id}
+        serverError={server_error_for_update_customer}
+        errorMessege={customer_update_last_name_error_messege}
       ></AdminInputToUpdate>
       <AdminInputToUpdate
         label={"Email :"}
@@ -164,6 +198,8 @@ export const getCustomerBoxToUpdateFunc = (
         value={emailState}
         idPrefix={"customer-update-email-"}
         idSuffix={id}
+        serverError={server_error_for_update_customer}
+        errorMessege={customer_update_email_error_messege}
       ></AdminInputToUpdate>
       <AdminInputToUpdate
         label={"Password :"}
@@ -171,8 +207,14 @@ export const getCustomerBoxToUpdateFunc = (
         value={passwordState}
         idPrefix={"customer-update-password-"}
         idSuffix={id}
+        serverError={server_error_for_update_customer}
+        errorMessege={customer_update_password_error_messege}
       ></AdminInputToUpdate>
-      <div className="text-danger" id="server-error-for-update-customer"></div>
+      <div
+        ref={server_error_for_update_customer}
+        className="text-danger"
+        id="server-error-for-update-customer"
+      ></div>
     </div>
   );
 };

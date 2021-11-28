@@ -1,24 +1,9 @@
 import React, { useRef } from "react";
 import "../../AdminOperations.css";
-import { useSelector } from "react-redux";
 const AdminBoxInputToAdd = (props) => {
-  const showOperationsFor = useSelector(
-    (state) => state.uiRootReducer.showOpForAdminReducer
-  );
-
-  const errorMsg = useRef();
-
   const handleOnFocusInput = () => {
-    if (showOperationsFor.companyOp) {
-      document.getElementById("server-error-for-add-company").textContent = "";
-      errorMsg.current.textContent = "";
-      return;
-    }
-    if (showOperationsFor.customerOp) {
-      document.getElementById("server-error-for-add-customer").textContent = "";
-      errorMsg.current.textContent = "";
-      return;
-    }
+    props.serverErrorMessege.current.textContent = "";
+    props.errorMessege.current.textContent = "";
   };
 
   return (
@@ -40,7 +25,7 @@ const AdminBoxInputToAdd = (props) => {
         </div>
         <div className="col-12 col-md-4 p-0">
           <span
-            ref={errorMsg}
+            ref={props.errorMessege}
             id={props.id}
             className="error-messege-for-admin text-danger"
           ></span>

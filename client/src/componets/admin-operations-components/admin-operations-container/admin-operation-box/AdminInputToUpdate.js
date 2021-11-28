@@ -1,36 +1,8 @@
 import React from "react";
-import { useSelector } from "react-redux";
 const AdminBoxInputToUpdate = (props) => {
-  const showOperationsFor = useSelector(
-    (state) => state.uiRootReducer.showOpForAdminReducer
-  );
   const handleOnFocusInput = () => {
-    if (showOperationsFor.companyOp) {
-      document.getElementById("server-error-for-update-company").textContent =
-        " ";
-      document.getElementById(
-        "company-update-email-" + props.idSuffix
-      ).textContent = "";
-      document.getElementById(
-        "company-update-password-" + props.idSuffix
-      ).textContent = "";
-      return;
-    }
-    document.getElementById("server-error-for-update-customer").textContent =
-      "";
-
-    document.getElementById(
-      "customer-update-first-name-" + props.idSuffix
-    ).textContent = "";
-    document.getElementById(
-      "customer-update-last-name-" + props.idSuffix
-    ).textContent = "";
-    document.getElementById(
-      "customer-update-email-" + props.idSuffix
-    ).textContent = "";
-    document.getElementById(
-      "customer-update-password-" + props.idSuffix
-    ).textContent = "";
+    props.serverErrorMessege.current.textContent = "";
+    props.errorMessege.current.textContent = "";
   };
 
   return (
@@ -55,6 +27,7 @@ const AdminBoxInputToUpdate = (props) => {
         </div>
         <div className="col-12 col-md-4 p-0">
           <span
+            ref={props.errorMessege}
             id={props.idPrefix + props.idSuffix}
             className="text-danger"
           ></span>

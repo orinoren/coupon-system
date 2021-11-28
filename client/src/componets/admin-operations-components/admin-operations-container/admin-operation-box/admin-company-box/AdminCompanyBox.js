@@ -5,6 +5,7 @@ import { useState } from "react";
 import { adminAddCompanyAction } from "../../../../../actions/actions-for-admin/actions-for-admin-for-company/adminAddCompanyAction";
 import AdminBoxButtons from "../../../admin-operations-container/admin-operation-box/AdminBoxButtons";
 import { adminCompanyUpdateMode } from "../../../../../actions/actions-for-ui/action-for-ui";
+import { useRef } from "react";
 import {
   companyValidationToAdd,
   companyValidationToUpdate,
@@ -20,6 +21,13 @@ const AdminCompanyBox = (props) => {
   const [passwordState, setPasswordState] = useState(props.password);
   const [updateMode, setUpdateMode] = useState(false);
 
+  const server_error_for_add_company = useRef(" ");
+  const server_error_for_update_company = useRef(" ");
+  const company_update_email_error_messege = useRef("");
+  const company_update_password_error_messege = useRef("");
+  const company_add_name_error_messege = useRef("");
+  const company_add_email_error_messege = useRef("");
+  const company_add_password_error_messege = useRef("");
   const isSearchMode = useSelector(
     (state) => state.uiRootReducer.searchModeReducer.searchMode
   );
@@ -30,7 +38,8 @@ const AdminCompanyBox = (props) => {
       const isUpdateValid = companyValidationToUpdate(
         emailState,
         passwordState,
-        props.id
+        company_update_email_error_messege,
+        company_update_password_error_messege
       );
       if (isUpdateValid) {
         const companyObj = {
@@ -43,7 +52,8 @@ const AdminCompanyBox = (props) => {
           companyObj,
           isSearchMode,
           dispatch,
-          setUpdateMode
+          setUpdateMode,
+          server_error_for_update_company
         );
       }
       return;
@@ -51,7 +61,10 @@ const AdminCompanyBox = (props) => {
     const isAddValid = companyValidationToAdd(
       companyNameState,
       emailState,
-      passwordState
+      passwordState,
+      company_add_name_error_messege,
+      company_add_email_error_messege,
+      company_add_password_error_messege
     );
     if (isAddValid) {
       const companyObj = {
@@ -59,7 +72,7 @@ const AdminCompanyBox = (props) => {
         email: emailState,
         password: passwordState,
       };
-      dispatch(adminAddCompanyAction(companyObj));
+      dispatch(adminAddCompanyAction(companyObj, server_error_for_add_company));
     }
   };
 
@@ -75,7 +88,11 @@ const AdminCompanyBox = (props) => {
     getCompanyBoxToAddFunc(
       setCompanyNameState,
       setEmailState,
-      setPasswordState
+      setPasswordState,
+      server_error_for_add_company,
+      company_add_name_error_messege,
+      company_add_email_error_messege,
+      company_add_password_error_messege
     );
 
   const getCompanyBoxToUpdate = () => {
@@ -85,7 +102,10 @@ const AdminCompanyBox = (props) => {
       setEmailState,
       passwordState,
       setPasswordState,
-      props.id
+      props.id,
+      server_error_for_update_company,
+      company_update_email_error_messege,
+      company_update_password_error_messege
     );
   };
   const getCompanyBox = () =>
