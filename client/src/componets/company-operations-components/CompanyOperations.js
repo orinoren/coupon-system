@@ -2,7 +2,7 @@ import React from "react";
 import "./CompanyOperations.css";
 import CompanyOperationsCouponView from "./CompanyOperationsCouponView";
 import CompanyOperationsForm from "./CompanyOperationsForm";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import defaultImage from "../../images/defaultImage.jpg";
 import { handleOnCouponChangeFunc } from "./utils/CompanyOperationsFunctions";
@@ -20,6 +20,14 @@ const CompanyOperations = () => {
   });
 
   const [imageView, setImageView] = useState(defaultImage);
+
+  const categoryInputRef = useRef("");
+  const titleErrorRef = useRef(" ");
+  const categoryErrorRef = useRef(" ");
+  const starDateErrorRef = useRef(" ");
+  const endDateErrorRef = useRef(" ");
+  const amountErrorRef = useRef(" ");
+  const priceErrorRef = useRef(" ");
 
   const dispatch = useDispatch();
 
@@ -82,6 +90,13 @@ const CompanyOperations = () => {
               couponViewFunc={handleOnCouponChange}
               couponObject={couponObj}
               addMode={companyCouponAddMode}
+              categoryInputRef={categoryInputRef}
+              titleErrorRef={titleErrorRef}
+              categoryErrorRef={categoryErrorRef}
+              startDateErrorRef={starDateErrorRef}
+              endDateErrorRef={endDateErrorRef}
+              amountErrorRef={amountErrorRef}
+              priceErrorRef={priceErrorRef}
             ></CompanyOperationsForm>
           </div>
           <div className="col-12 col-lg-4 mt-5 mt-lg-0 ">
@@ -89,6 +104,13 @@ const CompanyOperations = () => {
               addMode={companyCouponAddMode}
               imgView={imageView}
               couponObject={couponObj}
+              titleErrorRef={titleErrorRef}
+              categoryInputRef={categoryInputRef}
+              categoryErrorRef={categoryErrorRef}
+              startDateErrorRef={starDateErrorRef}
+              endDateErrorRef={endDateErrorRef}
+              amountErrorRef={amountErrorRef}
+              priceErrorRef={priceErrorRef}
             ></CompanyOperationsCouponView>
           </div>
         </div>

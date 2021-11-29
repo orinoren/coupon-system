@@ -1,7 +1,7 @@
 import React from "react";
 import "./MainSearchForm.css";
 import { useState } from "react";
-const SortBox = () => {
+const SortBox = (props) => {
   const [maxPrice, setMaxPrice] = useState(0);
 
   const handleMaxPriceInputChange = (e) => {
@@ -79,8 +79,9 @@ const SortBox = () => {
                 onChange={(e) => handleMaxPriceInputChange(e)}
                 type="range"
                 min="0"
-                max="1000"
+                max="500"
                 id="max-price-input"
+                ref={props.maxPriceRef}
               />
               <span className="px-2 fs-5 text-success fw-bold ">
                 {maxPrice}$

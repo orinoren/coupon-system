@@ -68,44 +68,39 @@ export const handleOnCouponChangeFunc = (
       break;
   }
 };
-export const couponValidation = ({
-  title,
-  category,
-  startDate,
-  endDate,
-  amount,
-  price,
-}) => {
+export const couponValidation = (
+  { title, category, startDate, endDate, amount, price },
+  titleErrorRef,
+  categoryErrorRef,
+  startDateErrorRef,
+  endDateErrorRef,
+  amountErrorRef,
+  priceErrorRef
+) => {
   let isValid = true;
   if (title === "") {
-    document.getElementById("coupon-title-input-error").textContent =
-      "please enter title";
+    titleErrorRef.current.textContent = "please enter title";
     isValid = false;
   }
 
   if (category === 0 || category === "Choose...") {
-    document.getElementById("coupon-category-input-error").textContent =
-      "please enter category";
+    categoryErrorRef.current.textContent = "please enter category";
     isValid = false;
   }
   if (startDate === "") {
-    document.getElementById("coupon-start-date-input-error").textContent =
-      "please enter date";
+    startDateErrorRef.current.textContent = "please enter date";
     isValid = false;
   }
   if (endDate === "") {
-    document.getElementById("coupon-end-date-input-error").textContent =
-      "please enter date";
+    endDateErrorRef.current.textContent = "please enter date";
     isValid = false;
   }
   if (amount <= 0) {
-    document.getElementById("coupon-amount-input-error").textContent =
-      "please enter amount bigger then 0";
+    amountErrorRef.current.textContent = "please enter amount bigger then 0";
     isValid = false;
   }
   if (price <= 0) {
-    document.getElementById("coupon-price-input-error").textContent =
-      "please price bigger then 0";
+    priceErrorRef.current.textContent = "please price bigger then 0";
     isValid = false;
   }
   return isValid;

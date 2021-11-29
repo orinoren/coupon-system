@@ -35,8 +35,15 @@ const CompanyOperationsCouponView = (props) => {
 
   const handleCouponSubmit = () => {
     dispatch({ type: "RESET-COUPON-OP-FAILED" });
-    const isCouponValid = couponValidation(props.couponObject);
-
+    const isCouponValid = couponValidation(
+      props.couponObject,
+      props.titleErrorRef,
+      props.categoryErrorRef,
+      props.startDateErrorRef,
+      props.endDateErrorRef,
+      props.amountErrorRef,
+      props.priceErrorRef
+    );
     if (isCouponValid) {
       let couponObj = {
         id: props.couponObject.id,
@@ -80,13 +87,13 @@ const CompanyOperationsCouponView = (props) => {
                 />
               </div>
               {/* ------------------------------------------------ */}
+
               <div className="card-body border">
                 <div className="d-flex justify-content-between">
                   <h5 className="card-title">{props.couponObject.title}</h5>
                   {props.couponObject.category !== "Choose..."
-                    ? document.getElementById(
-                        `coupon-category-${props.couponObject.category}`
-                      ).textContent
+                    ? props.categoryInputRef.current.selectedOptions[0]
+                        .textContent
                     : "Category"}
                 </div>
               </div>

@@ -24,12 +24,11 @@ const CompanyOperationsForm = (props) => {
                 <span
                   id="coupon-title-input-error"
                   className="text-danger mx-2 coupon-input-error"
+                  ref={props.titleErrorRef}
                 ></span>
                 <input
                   onFocus={() => {
-                    document.getElementById(
-                      "coupon-title-input-error"
-                    ).textContent = " ";
+                    props.titleErrorRef.current.textContent = " ";
                     if (isCouponSubmitted) {
                       dispatch(companyResetSubmitCoupon());
                     }
@@ -54,21 +53,21 @@ const CompanyOperationsForm = (props) => {
                     <span
                       id="coupon-category-input-error"
                       className="text-danger mx-2 coupon-input-error"
+                      ref={props.categoryErrorRef}
                     ></span>
                   </div>
                   <select
                     value={props.couponObject.category}
                     onChange={(e) => props.couponViewFunc(e, "category")}
                     onFocus={() => {
-                      document.getElementById(
-                        "coupon-category-input-error"
-                      ).textContent = "";
+                      props.categoryErrorRef.current.textContent = "";
                       if (isCouponSubmitted) {
                         dispatch(companyResetSubmitCoupon());
                       }
                     }}
                     className="my-2 custom-select inline-form-custom-select-coupon"
                     id="categoryOptions"
+                    ref={props.categoryInputRef}
                   >
                     <option disabled>Choose...</option>
                     <option id="coupon-category-1" value="1">
@@ -115,13 +114,12 @@ const CompanyOperationsForm = (props) => {
                 <span
                   id="coupon-start-date-input-error"
                   className="text-danger mx-2 coupon-input-error"
+                  ref={props.startDateErrorRef}
                 ></span>
                 <input
                   onChange={(e) => props.couponViewFunc(e, "startDate")}
                   onFocus={() => {
-                    document.getElementById(
-                      "coupon-start-date-input-error"
-                    ).textContent = "";
+                    props.startDateErrorRef.current.textContent = "";
                     if (isCouponSubmitted) {
                       dispatch(companyResetSubmitCoupon());
                     }
@@ -140,13 +138,12 @@ const CompanyOperationsForm = (props) => {
                   id="coupon-end-date-input-error"
                   className="text-danger mx-2 
                   coupon-input-error"
+                  ref={props.endDateErrorRef}
                 ></span>
                 <input
                   onChange={(e) => props.couponViewFunc(e, "endDate")}
                   onFocus={() => {
-                    document.getElementById(
-                      "coupon-end-date-input-error"
-                    ).textContent = "";
+                    props.endDateErrorRef.current.textContent = "";
                     if (isCouponSubmitted) {
                       dispatch(companyResetSubmitCoupon());
                     }
@@ -165,13 +162,12 @@ const CompanyOperationsForm = (props) => {
                   id="coupon-amount-input-error"
                   className="text-danger mx-2
                   coupon-input-error"
+                  ref={props.amountErrorRef}
                 ></span>
                 <input
                   onChange={(e) => props.couponViewFunc(e, "amount")}
                   onFocus={() => {
-                    document.getElementById(
-                      "coupon-amount-input-error"
-                    ).textContent = "";
+                    props.amountErrorRef.current.textContent = "";
                     if (isCouponSubmitted) {
                       dispatch(companyResetSubmitCoupon());
                     }
@@ -190,13 +186,12 @@ const CompanyOperationsForm = (props) => {
                 <span
                   id="coupon-price-input-error"
                   className="text-danger mx-2 coupon-input-error"
+                  ref={props.priceErrorRef}
                 ></span>
                 <input
                   onChange={(e) => props.couponViewFunc(e, "price")}
                   onFocus={() => {
-                    document.getElementById(
-                      "coupon-price-input-error"
-                    ).textContent = "";
+                    props.priceErrorRef.current.textContent = "";
                     if (isCouponSubmitted) {
                       dispatch(companyResetSubmitCoupon());
                     }

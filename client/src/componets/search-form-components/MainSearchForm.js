@@ -36,12 +36,12 @@ const MainSearchForm = (props) => {
   const userDetails = useSelector((state) => state.authReducer);
 
   const searchInput = useRef();
-
+  const maxPriceRef = useRef();
   const handleSearchButtonClicked = () => {
     dispatch(searchModeAction());
     let { isSearchWithSort, checkedCategoryInputs } = checkIfSearchWithSort();
-    if (isSearchWithSort) {
-      const maxPrice = document.getElementById("max-price-input")?.value;
+    if (isSearchWithSort || maxPriceRef.current.value > 0) {
+      const maxPrice = maxPriceRef.current.value;
       dispatchSortedSearchResultCouponList(
         allCompanyCoupons,
         allCoupons,
@@ -104,7 +104,7 @@ const MainSearchForm = (props) => {
           >
             Sort
           </button>
-          {showSortBox ? <SortBox></SortBox> : ""}
+          {showSortBox ? <SortBox maxPriceRef={maxPriceRef}></SortBox> : ""}
         </div>
         <div className="d-none d-md-inline col-2 col-xl-1">
           <button

@@ -17,6 +17,8 @@ const LoginPage = () => {
 
   const email = useRef();
   const password = useRef();
+  const emailError = useRef();
+  const passwordError = useRef();
 
   const dispatch = useDispatch();
 
@@ -26,23 +28,21 @@ const LoginPage = () => {
 
   const handleLoginBtnClicked = () => {
     if (email.current.value === "") {
-      document.getElementById("emailError").style.visibility = "visible";
-      document.getElementById("emailInput").style.border = "3px solid red";
-      document.getElementById("emailError").textContent =
-        "please enter an email";
+      emailError.current.style.visibility = "visible";
+      email.current.style.border = "3px solid red";
+      emailError.current.textContent = "please enter an email";
       return;
     }
     if (!email.current.value.includes("@")) {
-      document.getElementById("emailError").style.visibility = "visible";
-      document.getElementById("emailInput").style.border = "3px solid red";
-      document.getElementById("emailError").textContent = "@ is missing";
+      emailError.current.visibility = "visible";
+      email.current.style.border = "3px solid red";
+      emailError.current.textContent = "@ is missing";
       return;
     }
     if (password.current.value === "") {
-      document.getElementById("passwordError").style.visibility = "visible";
-      document.getElementById("passwordInput").style.border = "3px solid red";
-      document.getElementById("passwordError").textContent =
-        "please enter password";
+      passwordError.current.style.visibility = "visible";
+      password.current.style.border = "3px solid red";
+      passwordError.current.textContent = "please enter password";
       return;
     }
     const loginDetails = {
@@ -80,7 +80,7 @@ const LoginPage = () => {
         }
         return;
       }
-      document.getElementById("passwordError").style.display = "none";
+      passwordError.current.style.display = "none";
       setLoginFailed(true);
     }
 
@@ -114,8 +114,7 @@ const LoginPage = () => {
                         setLoginFailed(false);
 
                         e.target.style.border = "none";
-                        document.getElementById("emailError").style.visibility =
-                          "hidden";
+                        emailError.current.style.visibility = "hidden";
                       }}
                       ref={email}
                       type="text"
@@ -124,7 +123,11 @@ const LoginPage = () => {
                       aria-describedby="emailHelp"
                       autoComplete="off"
                     />
-                    <span className="text-danger" id="emailError">
+                    <span
+                      ref={emailError}
+                      className="text-danger"
+                      id="emailError"
+                    >
                       error
                     </span>
                   </div>
@@ -140,18 +143,19 @@ const LoginPage = () => {
                       onFocus={(e) => {
                         setLoginFailed(false);
                         e.target.style.border = "none";
-                        document.getElementById(
-                          "passwordError"
-                        ).style.visibility = "hidden";
-                        document.getElementById("passwordError").style.display =
-                          "block";
+                        passwordError.current.style.visibility = "hidden";
+                        passwordError.current.style.display = "block";
                       }}
                       ref={password}
                       type="password"
                       className=" form-control"
                       id="passwordInput"
                     />
-                    <span id="passwordError" className="text-danger">
+                    <span
+                      ref={passwordError}
+                      id="passwordError"
+                      className="text-danger"
+                    >
                       error
                     </span>
                   </div>
