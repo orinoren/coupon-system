@@ -96,7 +96,6 @@ const MainPageContent = () => {
             <div className="m-0 m-md-1">
               <CouponCardListSection title="TOP COUPONS"></CouponCardListSection>
             </div>
-
             <div className="m-0 m-md-1">
               <CouponCardListSection title="FOOD"></CouponCardListSection>
             </div>
