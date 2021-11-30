@@ -19,7 +19,7 @@ const LoginPage = () => {
   const password = useRef();
   const emailError = useRef();
   const passwordError = useRef();
-
+  const usernamePasswordErrorRef = useRef();
   const dispatch = useDispatch();
 
   const userDetails = useSelector((state) => state.authReducer);
@@ -34,7 +34,7 @@ const LoginPage = () => {
       return;
     }
     if (!email.current.value.includes("@")) {
-      emailError.current.visibility = "visible";
+      emailError.current.style.visibility = "visible";
       email.current.style.border = "3px solid red";
       emailError.current.textContent = "@ is missing";
       return;
@@ -64,6 +64,7 @@ const LoginPage = () => {
   useEffect(() => {
     if (loginAttempt) {
       if (userDetails.isLogged) {
+        console.log("hii");
         switch (userDetails.role) {
           case "ADMIN":
             dispatch(resetUserModeAction());
@@ -81,9 +82,10 @@ const LoginPage = () => {
         return;
       }
       passwordError.current.style.display = "none";
-      setLoginFailed(true);
+      usernamePasswordErrorRef.current.style.visibility = "visible";
+    } else {
+      usernamePasswordErrorRef.current.style.visibility = "hidden";
     }
-
     return () => {};
   }, [userDetails, history]);
 
@@ -111,7 +113,8 @@ const LoginPage = () => {
                     </label>
                     <input
                       onFocus={(e) => {
-                        setLoginFailed(false);
+                        usernamePasswordErrorRef.current.style.visibility =
+                          "hidden";
 
                         e.target.style.border = "none";
                         emailError.current.style.visibility = "hidden";
@@ -141,7 +144,8 @@ const LoginPage = () => {
                     </label>
                     <input
                       onFocus={(e) => {
-                        setLoginFailed(false);
+                        usernamePasswordErrorRef.current.style.visibility =
+                          "hidden";
                         e.target.style.border = "none";
                         passwordError.current.style.visibility = "hidden";
                         passwordError.current.style.display = "block";
@@ -159,19 +163,18 @@ const LoginPage = () => {
                       error
                     </span>
                   </div>
-                  {loginFailed ? (
-                    <span className=" text-center fw-bold text-danger ">
-                      Email or password inncorect
-                    </span>
-                  ) : (
-                    ""
-                  )}
+                  <div
+                    ref={usernamePasswordErrorRef}
+                    className="my-2 fw-bold text-danger "
+                  >
+                    Email or password inncorect
+                  </div>
                   <button
                     onClick={() => {
                       handleLoginBtnClicked();
                     }}
                     type="submit"
-                    className="btn btn-success"
+                    className="p-2 px-4 btn btn-success"
                   >
                     Login
                   </button>

@@ -16,7 +16,7 @@ const CompanyOperationsForm = (props) => {
       <div className="container company-operation-border">
         <div className="row p-2">
           <div className="col-12">
-            <form>
+            <form ref={props.serverErrorRef}>
               <div className="my-2 form-group">
                 <label className="h6" htmlFor="formGroupExampleInput">
                   Title
@@ -69,7 +69,9 @@ const CompanyOperationsForm = (props) => {
                     id="categoryOptions"
                     ref={props.categoryInputRef}
                   >
-                    <option disabled>Choose...</option>
+                    <option unselectable="true" disabled>
+                      Choose...
+                    </option>
                     <option id="coupon-category-1" value="1">
                       Food
                     </option>

@@ -3,12 +3,12 @@ import companyAddCouponReducer from "./companyAddCouponReducer";
 import companyGetAllCouponsReducer from "./companyGetAllCouponsReducer";
 import companyUpdateCouponReducer from "./companyUpdateCouponReducer";
 import companyDeleteCouponReducer from "./comanyDeleteCouponReducer";
-import companyFailedCouponnOpReducer from "./companyFailedCouponnOpReducer";
+import companyFailedCouponOpReducer from "./companyFailedCouponOpReducer";
 const companyRootReducer = combineReducers({
   companyAddCouponReducer,
   companyGetAllCouponsReducer,
   companyUpdateCouponReducer,
   companyDeleteCouponReducer,
-  companyFailedCouponnOpReducer,
+  companyFailedCouponOpReducer,
 });
 export default companyRootReducer;

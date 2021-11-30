@@ -3,7 +3,7 @@ const initialState = {
   messege: "",
 };
 
-const companyFailedCouponnOpReducer = (
+const companyFailedCouponOpReducer = (
   state = initialState,
   { type, payload }
 ) => {
@@ -17,4 +17,4 @@ const companyFailedCouponnOpReducer = (
       return state;
   }
 };
-export default companyFailedCouponnOpReducer;
+export default companyFailedCouponOpReducer;

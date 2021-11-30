@@ -1,7 +1,8 @@
-export const checkIfSearchWithSort = () => {
+export const checkIfSearchWithSort = (sortInputRef) => {
   let isSearchWithSort = false;
   const checkedCategoryInputs = [];
-  const categorySortInputs = document.querySelectorAll(".sort-input");
+  const categorySortInputs =
+    sortInputRef.current.querySelectorAll(".sort-input");
 
   for (let i = 0; i < categorySortInputs.length; i++) {
     const input = categorySortInputs[i];

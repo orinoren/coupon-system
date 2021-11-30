@@ -11,27 +11,21 @@ import { getCouponSubmitMsgFunc } from "./utils/CompanyOperationsFunctions";
 const CompanyOperationsCouponView = (props) => {
   const dispatch = useDispatch();
 
-  const isCouponSubmitted = useSelector(
-    (state) =>
-      state.uiRootReducer.companySubmitCouponReducer.companySubmitCoupon
+  const couponOperationsDetails = useSelector(
+    (state) => state.companyRootReducer.companyFailedCouponOpReducer
   );
-  const couponPurchaseDetails = useSelector(
-    (state) => state.companyRootReducer.companyFailedCouponnOpReducer
-  );
-  const addMode = useSelector(
-    (state) => state.uiRootReducer.companyAddCouponModeReducer.addMode
-  );
-  const updateMode = useSelector(
-    (state) => state.uiRootReducer.companyUpdateCouponModeReducer.updateMode
-  );
-  const companyCouponToUpdateObj = useSelector(
-    (state) => state.uiRootReducer.companyUpdateCouponModeReducer.couponObj
-  );
-
   useEffect(() => {
     dispatch(companyResetSubmitCoupon());
     return () => {};
-  }, [companyCouponToUpdateObj, addMode]);
+  }, [props.couponObject, props.addMode]);
+
+  const getCatgeoryForView = () => {
+    const categoryDefaultValue = "Choose...";
+    if (props.couponObject.category === categoryDefaultValue) {
+      return "Category";
+    }
+    return props.categoryInputRef.current.selectedOptions[0].textContent;
+  };
 
   const handleCouponSubmit = () => {
     dispatch({ type: "RESET-COUPON-OP-FAILED" });
@@ -55,11 +49,11 @@ const CompanyOperationsCouponView = (props) => {
         amount: props.couponObject.amount,
         price: props.couponObject.price,
       };
-      if (addMode) {
+      if (props.addMode) {
         dispatch(companyAddCouponAction(couponObj, props.couponObject.image));
         return;
       }
-      if (updateMode) {
+      if (props.updateMode) {
         dispatch(
           companyUpdateCouponAction(
             { ...couponObj, imageId: props.couponObject.couponImage },
@@ -70,7 +64,7 @@ const CompanyOperationsCouponView = (props) => {
     }
   };
   const getCouponSubmitMsg = () => {
-    return getCouponSubmitMsgFunc(couponPurchaseDetails, addMode);
+    return getCouponSubmitMsgFunc(couponOperationsDetails, props.addMode);
   };
   return (
     <div>
@@ -91,10 +85,7 @@ const CompanyOperationsCouponView = (props) => {
               <div className="card-body border">
                 <div className="d-flex justify-content-between">
                   <h5 className="card-title">{props.couponObject.title}</h5>
-                  {props.couponObject.category !== "Choose..."
-                    ? props.categoryInputRef.current.selectedOptions[0]
-                        .textContent
-                    : "Category"}
+                  {getCatgeoryForView()}
                 </div>
               </div>
               <p className="card-text p-2">{props.couponObject.description}</p>
@@ -123,7 +114,7 @@ const CompanyOperationsCouponView = (props) => {
             />
           </div>
         </div>
-        {isCouponSubmitted ? getCouponSubmitMsg() : " "}
+        {props.isCouponSubmitted ? getCouponSubmitMsg() : " "}
       </div>
     </div>
   );

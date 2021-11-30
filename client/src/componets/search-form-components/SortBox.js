@@ -13,7 +13,7 @@ const SortBox = (props) => {
         <div className="col-12">
           <div className="sort-form">
             Category:
-            <fieldset>
+            <fieldset ref={props.sortInputRef}>
               <label className="p-2" htmlFor="1">
                 Food
               </label>

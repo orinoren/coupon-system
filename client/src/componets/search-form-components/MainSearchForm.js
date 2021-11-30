@@ -37,9 +37,11 @@ const MainSearchForm = (props) => {
 
   const searchInput = useRef();
   const maxPriceRef = useRef();
+  const sortInputRef = useRef();
   const handleSearchButtonClicked = () => {
     dispatch(searchModeAction());
-    let { isSearchWithSort, checkedCategoryInputs } = checkIfSearchWithSort();
+    let { isSearchWithSort, checkedCategoryInputs } =
+      checkIfSearchWithSort(sortInputRef);
     if (isSearchWithSort || maxPriceRef.current.value > 0) {
       const maxPrice = maxPriceRef.current.value;
       dispatchSortedSearchResultCouponList(
@@ -104,7 +106,14 @@ const MainSearchForm = (props) => {
           >
             Sort
           </button>
-          {showSortBox ? <SortBox maxPriceRef={maxPriceRef}></SortBox> : ""}
+          {showSortBox ? (
+            <SortBox
+              sortInputRef={sortInputRef}
+              maxPriceRef={maxPriceRef}
+            ></SortBox>
+          ) : (
+            ""
+          )}
         </div>
         <div className="d-none d-md-inline col-2 col-xl-1">
           <button

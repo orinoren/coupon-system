@@ -7,7 +7,8 @@ export const handleOnCouponChangeFunc = (
   setImageView,
   defaultImage,
   submitMsgView,
-  dispatch
+  dispatch,
+  serverErrorRef
 ) => {
   switch (property) {
     case "title":
@@ -55,9 +56,10 @@ export const handleOnCouponChangeFunc = (
         image: defaultImage,
       });
       setImageView(defaultImage);
-      const allErrorInputsMsg = document.querySelectorAll(
+      const allErrorInputsMsg = serverErrorRef.current.querySelectorAll(
         ".coupon-input-error"
       );
+
       allErrorInputsMsg.forEach((msg) => (msg.textContent = ""));
       if (submitMsgView) {
         dispatch(companyResetSubmitCoupon());
@@ -105,11 +107,11 @@ export const couponValidation = (
   }
   return isValid;
 };
-export const getCouponSubmitMsgFunc = (couponPurchaseDetails, addMode) => {
-  if (couponPurchaseDetails.failed) {
+export const getCouponSubmitMsgFunc = (couponOperationsDetails, addMode) => {
+  if (couponOperationsDetails.failed) {
     return (
       <span className="m-2 overflow-auto text-danger">
-        {couponPurchaseDetails.messege}
+        {couponOperationsDetails.messege}
       </span>
     );
   }

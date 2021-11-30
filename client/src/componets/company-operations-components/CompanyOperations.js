@@ -20,8 +20,8 @@ const CompanyOperations = () => {
   });
 
   const [imageView, setImageView] = useState(defaultImage);
-
-  const categoryInputRef = useRef("");
+  const serverErrorRef = useRef();
+  const categoryInputRef = useRef();
   const titleErrorRef = useRef(" ");
   const categoryErrorRef = useRef(" ");
   const starDateErrorRef = useRef(" ");
@@ -51,13 +51,9 @@ const CompanyOperations = () => {
     if (companyCouponUpdateMode) {
       setCouponObj({
         ...companyCouponToUpdateObj,
-        startDate: companyCouponToUpdateObj.startDate,
-        endDate: companyCouponToUpdateObj.endDate,
-        category: companyCouponToUpdateObj.category,
-        image: "data:image/*;base64," + companyCouponToUpdateObj.image,
       });
       setImageView("data:image/*;base64," + companyCouponToUpdateObj.image);
-
+      categoryInputRef.current.value = companyCouponToUpdateObj.category;
       return;
     }
 
@@ -76,7 +72,8 @@ const CompanyOperations = () => {
       setImageView,
       defaultImage,
       submitMsgView,
-      dispatch
+      dispatch,
+      serverErrorRef
     );
   };
   //-----------------------------------------------------------------------------------------------------
@@ -97,11 +94,13 @@ const CompanyOperations = () => {
               endDateErrorRef={endDateErrorRef}
               amountErrorRef={amountErrorRef}
               priceErrorRef={priceErrorRef}
+              serverErrorRef={serverErrorRef}
             ></CompanyOperationsForm>
           </div>
           <div className="col-12 col-lg-4 mt-5 mt-lg-0 ">
             <CompanyOperationsCouponView
               addMode={companyCouponAddMode}
+              updateMode={companyCouponUpdateMode}
               imgView={imageView}
               couponObject={couponObj}
               titleErrorRef={titleErrorRef}
@@ -111,6 +110,7 @@ const CompanyOperations = () => {
               endDateErrorRef={endDateErrorRef}
               amountErrorRef={amountErrorRef}
               priceErrorRef={priceErrorRef}
+              isCouponSubmitted={submitMsgView}
             ></CompanyOperationsCouponView>
           </div>
         </div>
