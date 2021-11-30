@@ -64,15 +64,22 @@ dispatch `companyResetSubmitCoupon` action to reset the submit coupon messege.
 
 - Checks if the coupon is valid by passing the current coupon object to
   `couponValidation` from the utile folder .
+
 - if coupon is valid.
-- making a json object without the image .
-- Checks if the company is in add mode to determine if the coupon need to be added .
+
+1. making a json object without the image .
+2. Checks if the company is in add mode to determine if the coupon need to be added .
+
 - if true
-- dispatch `companyAddCouponAction` with the coupon object and the coupon image seperatly and exit the function.
+
+1. dispatch `companyAddCouponAction` with the coupon object and the coupon image seperatly and exit the function.
+
 - Checks if company in update mode.
 - if true
-- dispatch `companyUpdateCouponAction`
-  with
+
+1. dispatch `companyUpdateCouponAction`
+   with
+
 - coupon Object with the coupon image id
 - coupon image seperatly.
 
