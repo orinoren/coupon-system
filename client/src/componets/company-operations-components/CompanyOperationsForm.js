@@ -1,15 +1,10 @@
 import React from "react";
 import "./CompanyOperations.css";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { companyResetSubmitCoupon } from "../../actions/actions-for-ui/action-for-ui";
 const CompanyOperationsForm = (props) => {
   const dispatch = useDispatch();
-
-  const isCouponSubmitted = useSelector(
-    (state) =>
-      state.uiRootReducer.companySubmitCouponReducer.companySubmitCoupon
-  );
 
   return (
     <div>
@@ -29,7 +24,7 @@ const CompanyOperationsForm = (props) => {
                 <input
                   onFocus={() => {
                     props.titleErrorRef.current.textContent = " ";
-                    if (isCouponSubmitted) {
+                    if (props.isCouponSubmitted) {
                       dispatch(companyResetSubmitCoupon());
                     }
                   }}
@@ -61,7 +56,7 @@ const CompanyOperationsForm = (props) => {
                     onChange={(e) => props.couponViewFunc(e, "category")}
                     onFocus={() => {
                       props.categoryErrorRef.current.textContent = "";
-                      if (isCouponSubmitted) {
+                      if (props.isCouponSubmitted) {
                         dispatch(companyResetSubmitCoupon());
                       }
                     }}
@@ -100,7 +95,7 @@ const CompanyOperationsForm = (props) => {
                 <textarea
                   value={props.couponObject.description}
                   onFocus={() =>
-                    isCouponSubmitted
+                    props.isCouponSubmitted
                       ? dispatch(companyResetSubmitCoupon())
                       : " "
                   }
@@ -122,7 +117,7 @@ const CompanyOperationsForm = (props) => {
                   onChange={(e) => props.couponViewFunc(e, "startDate")}
                   onFocus={() => {
                     props.startDateErrorRef.current.textContent = "";
-                    if (isCouponSubmitted) {
+                    if (props.isCouponSubmitted) {
                       dispatch(companyResetSubmitCoupon());
                     }
                   }}
@@ -146,7 +141,7 @@ const CompanyOperationsForm = (props) => {
                   onChange={(e) => props.couponViewFunc(e, "endDate")}
                   onFocus={() => {
                     props.endDateErrorRef.current.textContent = "";
-                    if (isCouponSubmitted) {
+                    if (props.isCouponSubmitted) {
                       dispatch(companyResetSubmitCoupon());
                     }
                   }}
@@ -170,7 +165,7 @@ const CompanyOperationsForm = (props) => {
                   onChange={(e) => props.couponViewFunc(e, "amount")}
                   onFocus={() => {
                     props.amountErrorRef.current.textContent = "";
-                    if (isCouponSubmitted) {
+                    if (props.isCouponSubmitted) {
                       dispatch(companyResetSubmitCoupon());
                     }
                   }}
@@ -194,7 +189,7 @@ const CompanyOperationsForm = (props) => {
                   onChange={(e) => props.couponViewFunc(e, "price")}
                   onFocus={() => {
                     props.priceErrorRef.current.textContent = "";
-                    if (isCouponSubmitted) {
+                    if (props.isCouponSubmitted) {
                       dispatch(companyResetSubmitCoupon());
                     }
                   }}
@@ -218,7 +213,7 @@ const CompanyOperationsForm = (props) => {
                   }}
                   onChange={(e) => props.couponViewFunc(e, "image")}
                   onFocus={() =>
-                    isCouponSubmitted
+                    props.isCouponSubmitted
                       ? dispatch(companyResetSubmitCoupon())
                       : ""
                   }

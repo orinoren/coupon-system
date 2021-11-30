@@ -95,6 +95,7 @@ const CompanyOperations = () => {
               amountErrorRef={amountErrorRef}
               priceErrorRef={priceErrorRef}
               serverErrorRef={serverErrorRef}
+              isCouponSubmitted={submitMsgView}
             ></CompanyOperationsForm>
           </div>
           <div className="col-12 col-lg-4 mt-5 mt-lg-0 ">

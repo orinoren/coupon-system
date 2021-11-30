@@ -63,7 +63,7 @@ dispatch `companyResetSubmitCoupon` action to reset the submit coupon messege.
 2. `handleCouponSubmit`:
 
 - Checks if the coupon is valid by passing the current coupon object to
-  `couponValidation` from the utile folder .
+  `couponValidation` from the utils folder .
 
 - if coupon is valid.
 
@@ -85,4 +85,22 @@ dispatch `companyResetSubmitCoupon` action to reset the submit coupon messege.
 
 ### `Company operations form `
 
+## Render
+
+1. On every element there is an onFocus event that making is relevant error messeg
+   to clear and if the coupon is submitted
+   dispatch `companyResetSubmitCoupon` to clear the server error messege.
+2. On every element there is an onChange event that calls `couponViewFunc` with the element details to make the changes on the `</CompanyOperationsCouponView>` component.
+3. image has a also an onClick event to make the target null on every click to make the onChange works without history image.
+4. clear element has only onClick event to clear all the details of the form to start fresh.
+
 ### `Utils`
+
+1. `handleOnCouponChangeFunc` :
+
+1. - Enter a switch case block
+1. - dasdsa
+1. - adasdaa
+
+1. `couponValidation` :
+1. `getCouponSubmitMsgFunc` :
