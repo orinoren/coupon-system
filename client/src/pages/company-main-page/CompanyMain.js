@@ -13,9 +13,17 @@ import {
   companyCouponResetAddModeAction,
   companyCouponResetUpdateModeAction,
 } from "../../actions/actions-for-ui/action-for-ui";
-import { getAllCompanyCouponsAction } from "../../actions/actions-for-company/getAllCompanyCouponsAction";
 const CompanyMain = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const companyCouponUpdateMode = useSelector(
+    (state) => state.uiRootReducer.companyUpdateCouponModeReducer.updateMode
+  );
+  const companyCouponAddMode = useSelector(
+    (state) => state.uiRootReducer.companyAddCouponModeReducer.addMode
+  );
+
+  const userDetails = useSelector((state) => state.authReducer);
 
   const handleButtonClick = () => {
     if (companyCouponUpdateMode) {
@@ -28,16 +36,6 @@ const CompanyMain = () => {
     }
     dispatch(companyCouponAddModeAction());
   };
-  const companyCouponUpdateMode = useSelector(
-    (state) => state.uiRootReducer.companyUpdateCouponModeReducer.updateMode
-  );
-  const companyCouponAddMode = useSelector(
-    (state) => state.uiRootReducer.companyAddCouponModeReducer.addMode
-  );
-
-  const userDetails = useSelector((state) => state.authReducer);
-
-  const history = useHistory();
 
   const getOperationButtonTitle = () => {
     if (companyCouponAddMode) {

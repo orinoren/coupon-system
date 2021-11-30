@@ -8,8 +8,11 @@ import { useEffect } from "react";
 import { getAllCouponsAction } from "../../actions/actions-for-guest/getAllCouponsAction";
 
 const Home = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
+
   const userDetails = useSelector((state) => state.authReducer);
+
   const handleEnterAsGuestBtnClicked = () => {
     history.push("/main");
   };
@@ -31,7 +34,6 @@ const Home = () => {
     }
   };
 
-  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllCouponsAction());
     return () => {};

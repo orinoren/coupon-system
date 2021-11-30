@@ -11,14 +11,14 @@ import {
 } from "../../actions/actions-for-ui/action-for-ui";
 import CompanyEmailPassList from "./CompanyEmailPassList";
 import CustomerEmailPassList from "./CustomerEmailPassList";
+import { loginDetailsValidation } from "./utils/loginPageFunctions";
 const LoginPage = () => {
   const [loginAttempt, setLoginAttempt] = useState(false);
-  const [loginFailed, setLoginFailed] = useState(false);
 
-  const email = useRef();
-  const password = useRef();
-  const emailError = useRef();
-  const passwordError = useRef();
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
+  const emailErrorRef = useRef();
+  const passwordErrorRef = useRef();
   const usernamePasswordErrorRef = useRef();
   const dispatch = useDispatch();
 
@@ -26,38 +26,9 @@ const LoginPage = () => {
 
   const history = useHistory();
 
-  const handleLoginBtnClicked = () => {
-    if (email.current.value === "") {
-      emailError.current.style.visibility = "visible";
-      email.current.style.border = "3px solid red";
-      emailError.current.textContent = "please enter an email";
-      return;
-    }
-    if (!email.current.value.includes("@")) {
-      emailError.current.style.visibility = "visible";
-      email.current.style.border = "3px solid red";
-      emailError.current.textContent = "@ is missing";
-      return;
-    }
-    if (password.current.value === "") {
-      passwordError.current.style.visibility = "visible";
-      password.current.style.border = "3px solid red";
-      passwordError.current.textContent = "please enter password";
-      return;
-    }
-    const loginDetails = {
-      email: email.current.value,
-      password: password.current.value,
-    };
-    dispatch(loginAction(loginDetails));
-    setLoginAttempt(true);
-  };
   useEffect(() => {
     dispatch(resetSearchModeAction());
     dispatch({ type: "LOGOUT" });
-    setLoginAttempt(false);
-    setLoginFailed(false);
-
     return () => {};
   }, [dispatch]);
 
@@ -81,13 +52,30 @@ const LoginPage = () => {
         }
         return;
       }
-      passwordError.current.style.display = "none";
-      usernamePasswordErrorRef.current.style.visibility = "visible";
+      passwordErrorRef.current.style.display = "none";
+      usernamePasswordErrorRef.current.style.display = "block";
     } else {
-      usernamePasswordErrorRef.current.style.visibility = "hidden";
+      usernamePasswordErrorRef.current.style.display = "none";
     }
     return () => {};
   }, [userDetails, history]);
+
+  const handleLoginBtnClicked = () => {
+    const isLoginDetailsValid = loginDetailsValidation(
+      emailInputRef,
+      emailErrorRef,
+      passwordInputRef,
+      passwordErrorRef
+    );
+    if (isLoginDetailsValid) {
+      const loginDetails = {
+        email: emailInputRef.current.value,
+        password: passwordInputRef.current.value,
+      };
+      dispatch(loginAction(loginDetails));
+      setLoginAttempt(true);
+    }
+  };
 
   return (
     <div className="container-fluid  container-login-page-bg">
@@ -113,13 +101,13 @@ const LoginPage = () => {
                     </label>
                     <input
                       onFocus={(e) => {
-                        usernamePasswordErrorRef.current.style.visibility =
-                          "hidden";
-
+                        usernamePasswordErrorRef.current.style.display = "none";
                         e.target.style.border = "none";
-                        emailError.current.style.visibility = "hidden";
+                        emailErrorRef.current.style.visibility = "hidden";
+                        passwordErrorRef.current.style.display = "block";
+                        passwordErrorRef.current.style.visibility = "hidden";
                       }}
-                      ref={email}
+                      ref={emailInputRef}
                       type="text"
                       className=" form-control"
                       id="emailInput"
@@ -127,8 +115,8 @@ const LoginPage = () => {
                       autoComplete="off"
                     />
                     <span
-                      ref={emailError}
-                      className="text-danger"
+                      ref={emailErrorRef}
+                      className="text-danger fw-bold"
                       id="emailError"
                     >
                       error
@@ -144,21 +132,20 @@ const LoginPage = () => {
                     </label>
                     <input
                       onFocus={(e) => {
-                        usernamePasswordErrorRef.current.style.visibility =
-                          "hidden";
+                        usernamePasswordErrorRef.current.style.display = "none";
                         e.target.style.border = "none";
-                        passwordError.current.style.visibility = "hidden";
-                        passwordError.current.style.display = "block";
+                        passwordErrorRef.current.style.display = "block";
+                        passwordErrorRef.current.style.visibility = "hidden";
                       }}
-                      ref={password}
+                      ref={passwordInputRef}
                       type="password"
                       className=" form-control"
                       id="passwordInput"
                     />
                     <span
-                      ref={passwordError}
+                      ref={passwordErrorRef}
                       id="passwordError"
-                      className="text-danger"
+                      className="text-danger fw-bold my-2"
                     >
                       error
                     </span>
