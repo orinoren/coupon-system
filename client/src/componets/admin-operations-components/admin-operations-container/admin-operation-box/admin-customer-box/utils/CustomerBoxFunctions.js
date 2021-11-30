@@ -124,28 +124,28 @@ export const getCustomerBoxToAddFunc = (
         onChangeFunc={setFirstNameState}
         label={"First name :"}
         id="customer-add-first-name"
-        serverErrorForCustomer={server_error_for_add_customer}
+        serverErrorMessege={server_error_for_add_customer}
         errorMessege={customer_add_first_name_error_messege}
       ></AdminInputToAdd>
       <AdminInputToAdd
         onChangeFunc={setLastNameState}
         label={"Last name :"}
         id="customer-add-last-name"
-        serverErrorForCustomer={server_error_for_add_customer}
+        serverErrorMessege={server_error_for_add_customer}
         errorMessege={customer_add_last_name_error_messege}
       ></AdminInputToAdd>
       <AdminInputToAdd
         onChangeFunc={setEmailState}
         label={"Email :"}
         id="customer-add-email"
-        serverErrorForCustomer={server_error_for_add_customer}
+        serverErrorMessege={server_error_for_add_customer}
         errorMessege={customer_add_email_error_messege}
       ></AdminInputToAdd>
       <AdminInputToAdd
         onChangeFunc={setPasswordState}
         label={"Password :"}
         id="customer-add-password"
-        serverErrorForCustomer={server_error_for_add_customer}
+        serverErrorMessege={server_error_for_add_customer}
         errorMessege={customer_add_password_error_messege}
       ></AdminInputToAdd>
       <div

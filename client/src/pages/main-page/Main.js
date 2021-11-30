@@ -14,13 +14,17 @@ const Main = () => {
   const showCart = useSelector(
     (state) => state.uiRootReducer.showCartModeReducer.showCartMode
   );
-
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(guestOrCustomerModeAction());
+    return () => {};
+  }, []);
+
+  useEffect(() => {
     dispatch({ type: "PURCHASE-COUPON-RESET-MSG" });
     return () => {};
   }, [dispatch, cartCouponsContent]);
+
   return (
     <div>
       <div className="container-fluid main-container-bg m-0 mt-md-2 p-0 p-md-3  ">

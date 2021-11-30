@@ -7,7 +7,7 @@ export const adminGetAllCompaniesAction = () => async (dispatch, getState) => {
     if (res.status === 200) {
       dispatch({
         type: "GET-ALL-COMPANIES",
-        payload: res.data,
+        payload: res.data.reverse(),
       });
     }
   } catch (error) {}

@@ -10,6 +10,7 @@ export const getAllCompanyCouponsAction = () => async (dispatch) => {
       coupon.startDate = converArrayToDate(coupon.startDate);
       coupon.endDate = converArrayToDate(coupon.endDate);
     }
+
     dispatch({
       type: "GET-ALL-COMPANY-COUPONS",
       payload: allCompanyCoupons,
