@@ -13,6 +13,8 @@ export const loginAction = (loginDetails) => async (dispatch) => {
 
     if (res.status === 200) {
       authenticatedAxios.setUserToken(res.headers.authorization);
+      localStorage.setItem("Jwt", res.headers.authorization);
+      localStorage.setItem("Role", res.headers.role);
       dispatch({
         type: "LOGIN-SUCCEED",
         payload: {

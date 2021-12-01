@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllCompanyCouponsAction } from "../../actions/actions-for-company/getAllCompanyCouponsAction";
 import { getAllCouponsAction } from "../../actions/actions-for-guest/getAllCouponsAction";
 import { getAllCustomerCouponsAction } from "../../actions/actions-for-customer/getCustomerCoupons";
+import authenticatedAxiosObj from "../../service/AuthenticatedAxios";
 const MainPageContent = () => {
   const dispatch = useDispatch();
   const showSearchMode = useSelector(
@@ -52,6 +53,17 @@ const MainPageContent = () => {
         dispatch(getAllCouponsAction());
         break;
       default:
+        if (localStorage.getItem("Jwt")) {
+          dispatch({
+            type: "LOGIN-SUCCEED",
+            payload: {
+              token: localStorage.getItem("Jwt"),
+              role: localStorage.getItem("Role"),
+            },
+          });
+          authenticatedAxiosObj.setUserToken(localStorage.getItem("Jwt"));
+        }
+        dispatch(getAllCouponsAction());
         break;
     }
     return () => {};

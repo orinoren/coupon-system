@@ -50,6 +50,8 @@ const NavBar = () => {
   };
 
   const handleLogoutBtnClicked = () => {
+    localStorage.removeItem("Jwt");
+    localStorage.removeItem("Role");
     let userWasLogged = userDetails.role;
     dispatch({ type: "LOGOUT" });
     dispatch(resetUserModeAction());
