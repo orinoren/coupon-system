@@ -7,6 +7,5 @@
 
 ### useEffect
 
-1. `First useEffect` : disaptch `guestOrCustomerModeAction()` only once.
-2. `Second useEffect` : on every change in coupon cart content dispatch `({ type: "PURCHASE-COUPON-RESET-MSG" })` to reset the purchase coupon messege.
+1. On every change in coupon cart content dispatch `({ type: "PURCHASE-COUPON-RESET-MSG" })` to reset the purchase coupon messege.
    `

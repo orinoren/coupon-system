@@ -70,16 +70,7 @@ export const companyCouponResetAddModeAction = () => {
     type: "COMPANY-COUPON-RESET-ADD-MODE",
   };
 };
-export const companyModeAction = () => {
-  return {
-    type: "COMPANY-MODE",
-  };
-};
-export const guestOrCustomerModeAction = () => {
-  return {
-    type: "GUEST-OR-CUSTOMER-MODE",
-  };
-};
+
 export const resetUserModeAction = () => {
   return {
     type: "RESET-USER-MODE",

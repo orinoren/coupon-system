@@ -20,6 +20,7 @@ export const loginAction = (loginDetails) => async (dispatch) => {
         payload: {
           token: res.headers.authorization,
           role: res.headers.role,
+          isLogged: true,
         },
       });
     }

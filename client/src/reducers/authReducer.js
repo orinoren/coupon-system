@@ -11,7 +11,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         role: action.payload.role,
         token: action.payload.token,
-        isLogged: true,
+        isLogged: action.payload.isLogged,
       };
     case "LOGIN-FAILED":
       return { ...state };

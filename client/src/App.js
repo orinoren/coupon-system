@@ -7,6 +7,7 @@ import AdminMain from "./pages/admin-main-page/AdminMain";
 import CompanyMain from "./pages/company-main-page/CompanyMain";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LoginPage from "./pages/login-page/LoginPage";
+import NotFoundPage from "./pages/not-found-page/NotFoundPage";
 
 const App = () => {
   return (
@@ -34,6 +35,9 @@ const App = () => {
           </Route>
           <Route path="/login">
             <LoginPage />
+          </Route>
+          <Route path="/*">
+            <NotFoundPage />
           </Route>
         </Switch>
       </Router>

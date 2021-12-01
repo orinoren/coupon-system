@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { useEffect } from "react";
 import {
-  companyModeAction,
   companyCouponAddModeAction,
   companyCouponResetAddModeAction,
   companyCouponResetUpdateModeAction,
@@ -46,14 +45,6 @@ const CompanyMain = () => {
     }
     return "Add Coupon";
   };
-  useEffect(() => {
-    if (userDetails.role !== "COMPANY" || userDetails.isLogged === false) {
-      history.push("/home");
-    } else {
-      dispatch(companyModeAction());
-    }
-    return () => {};
-  }, [dispatch, history, userDetails.isLogged, userDetails.role]);
 
   return (
     <div>

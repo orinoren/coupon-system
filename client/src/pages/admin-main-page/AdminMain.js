@@ -52,12 +52,6 @@ const AdminMain = () => {
   const history = useHistory();
 
   useEffect(() => {
-    if (userDetails.role !== "ADMIN" || userDetails.isLogged === false)
-      history.push("/home");
-    return () => {};
-  }, [userDetails.isLogged, userDetails.role, history]);
-
-  useEffect(() => {
     if (showOperationsFor.customerOp) {
       dispatch(adminGetAllCustomersAction());
       return;

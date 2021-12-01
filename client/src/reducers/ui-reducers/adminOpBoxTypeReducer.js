@@ -133,37 +133,6 @@ export const companyAddCouponModeReducer = (state = addCouponMode, action) => {
   }
 };
 //---------------------------------------------------------------------
-const globalMode = {
-  guestOrCustomerMode: false,
-  companyMode: false,
-};
-
-export const globalModeReducer = (state = globalMode, action) => {
-  switch (action.type) {
-    case "COMPANY-MODE":
-      return {
-        ...state,
-        guestOrCustomerMode: false,
-        companyMode: true,
-      };
-    case "GUEST-OR-CUSTOMER-MODE":
-      return {
-        ...state,
-        companyMode: false,
-        guestOrCustomerMode: true,
-      };
-    case "RESET-USER-MODE":
-      return {
-        ...state,
-        companyMode: false,
-        guestOrCustomerMode: false,
-      };
-
-    default:
-      return state;
-  }
-};
-//---------------------------------------------------------------------
 const cartProperties = {
   cartNotification: 0,
   cartSummery: 0,

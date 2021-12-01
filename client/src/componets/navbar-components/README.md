@@ -7,8 +7,8 @@
 ### `useSelector`
 
 1. `cartNotificationAmount`: holds the amount of products in the cart.
-2. `guestOrCustomerMode`:determine if the use is customer or guest.
-3. `userDetails`:holds the details of the current login user.
+
+2. `userDetails`:holds the details of the current login user.
 
 ### `Methods`
 
@@ -28,6 +28,6 @@
 - if customer calls `getCustomerNavBarItemsFunc()`;
 
 6. `getLoginButton` : calls `getLoginButtonFunc()`
-7. `getCartIcon` : checks if `guestOrCustomerMode` is true
+7. `getCartIcon` : checks if `userDetails.role` is guest or customer
 
 - if true calls `getCartIconFunc()` else return nothing.

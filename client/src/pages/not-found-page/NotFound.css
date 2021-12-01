@@ -1,0 +1,12 @@
+.main-content-hight {
+  height: 90.2%;
+}
+.go-home-button {
+  border: 2px dotted white;
+  color: white;
+}
+.go-home-button:hover {
+  background-color: white;
+  cursor: pointer;
+  color: rgb(43, 160, 58);
+}

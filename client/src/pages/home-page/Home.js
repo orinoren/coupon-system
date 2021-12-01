@@ -14,6 +14,15 @@ const Home = () => {
   const userDetails = useSelector((state) => state.authReducer);
 
   const handleEnterAsGuestBtnClicked = () => {
+    dispatch({
+      type: "LOGIN-SUCCEED",
+      payload: {
+        token: "",
+        role: "GUEST",
+        isLogged: false,
+      },
+    });
+
     history.push("/main");
   };
   const handleLoginUserBtnClicked = () => {

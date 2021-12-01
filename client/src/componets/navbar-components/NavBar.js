@@ -33,9 +33,7 @@ const NavBar = () => {
   const cartNotificationAmount = useSelector(
     (state) => state.uiRootReducer.cartPropertisReducer.cartNotification
   );
-  const guestOrCustomerMode = useSelector(
-    (state) => state.uiRootReducer.globalModeReducer.guestOrCustomerMode
-  );
+
   const userDetails = useSelector((state) => state.authReducer);
 
   const handleCartIconClicked = () => {
@@ -105,7 +103,7 @@ const NavBar = () => {
     );
   };
   const getCartIcon = () => {
-    if (guestOrCustomerMode) {
+    if (userDetails.role === "CUSTOMER" || userDetails.role === "GUEST") {
       return getCartIconFunc(handleCartIconClicked, cartNotificationAmount);
     }
     return "";

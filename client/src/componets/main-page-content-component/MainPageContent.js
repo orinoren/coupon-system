@@ -39,7 +39,7 @@ const MainPageContent = () => {
   );
 
   const userDetails = useSelector((state) => state.authReducer);
-
+  console.log(userDetails);
   useEffect(() => {
     switch (userDetails.role) {
       case "COMPANY":
@@ -53,15 +53,18 @@ const MainPageContent = () => {
         dispatch(getAllCouponsAction());
         break;
       default:
-        if (localStorage.getItem("Jwt")) {
-          dispatch({
-            type: "LOGIN-SUCCEED",
-            payload: {
-              token: localStorage.getItem("Jwt"),
-              role: localStorage.getItem("Role"),
-            },
-          });
-          authenticatedAxiosObj.setUserToken(localStorage.getItem("Jwt"));
+        if (userDetails.role !== "GUEST") {
+          if (localStorage.getItem("Jwt")) {
+            dispatch({
+              type: "LOGIN-SUCCEED",
+              payload: {
+                token: localStorage.getItem("Jwt"),
+                role: localStorage.getItem("Role"),
+                isLogged: true,
+              },
+            });
+            authenticatedAxiosObj.setUserToken(localStorage.getItem("Jwt"));
+          }
         }
         dispatch(getAllCouponsAction());
         break;
