@@ -2,6 +2,7 @@ package com.orinoren318598984.full_project.controller;
 
 import java.util.Map;
 
+import com.orinoren318598984.full_project.utils.StringResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,12 +31,12 @@ public class AuthenticationManagerController {
 
 
 	@PostMapping("login")
-	public ResponseEntity<String> login(@RequestBody Map<String, String> userDetails) {
+	public ResponseEntity<Void> login(@RequestBody Map<String, String> userDetails) {
 		String email = userDetails.get("email");
 		String password = userDetails.get("password");
 		UserDetailsService user = authenticationManager.login(email, password);
 		String userJwt = myJwtToken.createJWT(user);
-		return ResponseEntity.status(HttpStatus.OK).header("Authorization",jwtConfig.getJwtPrefix() +userJwt).header("Role",user.getRole().name()).body(" login succssfull");
+		return ResponseEntity.status(HttpStatus.OK).header("Authorization",jwtConfig.getJwtPrefix() +userJwt).header("Role",user.getRole().name()).build();
 
 	}
 }

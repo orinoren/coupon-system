@@ -3,11 +3,15 @@ package com.orinoren318598984.full_project.model_wrappers;
 
 import com.orinoren318598984.full_project.model.Coupon;
 import com.orinoren318598984.full_project.service.Role;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class WrapperUtils {
 
     public List<? extends CouponWrapper> convertMultiDimensionListToOneDimensionArray(List<Object> couponObjectList, Role role) {

@@ -16,7 +16,10 @@ export const companyAddCouponAction =
         dispatch(companySubmitCoupon());
       }
     } catch (error) {
-      dispatch({ type: "COUPON-OP-FAILED", payload: error.response.data });
+      dispatch({
+        type: "COUPON-OP-FAILED",
+        payload: error.response.data.messege,
+      });
       dispatch(companySubmitCoupon());
     }
   };

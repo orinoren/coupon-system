@@ -5,6 +5,7 @@ import java.util.List;
 import com.orinoren318598984.full_project.model_wrappers.CouponWrapper;
 import com.orinoren318598984.full_project.model_wrappers.CouponWrapperForCustomer;
 import com.orinoren318598984.full_project.service.Role;
+import com.orinoren318598984.full_project.utils.StringResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,19 +21,19 @@ public class CustomerController {
     @Autowired
     private CustomerServiceInter customerService;
 
+    @Autowired
+    private StringResponse stringResponse;
     @PostMapping("coupon")
-    public ResponseEntity<String> PurchaseCoupon(@RequestBody List<Long> couponsId) {
-        System.out.println(couponsId);
+    public ResponseEntity<StringResponse> PurchaseCoupon(@RequestBody List<Long> couponsId) {
         customerService.PurchaseCoupon(couponsId);
-        return ResponseEntity.ok("coupon purchase made successfully");
+        stringResponse.setMessege("coupon purchase made successfully");
+        return ResponseEntity.ok(stringResponse);
     }
 
     @GetMapping("coupons")
     public ResponseEntity<List<CouponWrapperForCustomer>> getCustomerCoupons() {
-        CouponWrapper wrapper = new CouponWrapperForCustomer();
-        List<Object> customerCoupons = customerService.getCustomerCouponsWithImages();
-        List<CouponWrapperForCustomer> couponWrapperList =(List<CouponWrapperForCustomer>)wrapper.convertMultiDimensionListToOneDimensionArray(customerCoupons);
-        return ResponseEntity.ok(couponWrapperList);
+
+        return ResponseEntity.ok(customerService.getCustomerCouponsWithImages());
     }
 
     @GetMapping("coupons/{category}")

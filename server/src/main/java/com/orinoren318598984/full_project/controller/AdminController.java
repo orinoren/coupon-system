@@ -2,6 +2,7 @@ package com.orinoren318598984.full_project.controller;
 
 import java.util.List;
 
+import com.orinoren318598984.full_project.utils.StringResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -29,24 +30,27 @@ public class AdminController {
 	@Autowired
 	private AdminServiceInter adminService;
 
+	@Autowired
+	private StringResponse stringResponse;
+
 	@PostMapping(path="company" ,consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Company> addCompany(@RequestBody Company company) {
-		log.info(company.toString());
 		Company companyAdded = adminService.addCompany(company);
 		return ResponseEntity.status(HttpStatus.CREATED).body(companyAdded);
 	}
 
 	@PutMapping("company")
-	public ResponseEntity<String> updateCompany(@RequestBody Company company) {
-		System.out.println(company);
+	public ResponseEntity<StringResponse> updateCompany(@RequestBody Company company) {
 		adminService.updateCompany(company);
-		return ResponseEntity.ok(company + " Updated succescfully");
+		stringResponse.setMessege(company + " Updated successfully");
+		return ResponseEntity.ok(stringResponse);
 	}
 
 	@DeleteMapping("company")
-	public ResponseEntity<String> deleteCompany(@RequestParam("id") Long companyId) {
+	public ResponseEntity<StringResponse> deleteCompany(@RequestParam("id") Long companyId) {
 		adminService.deleteCompany(companyId);
-		return ResponseEntity.ok("Company with id :" + companyId + " Deleted succesfully ");
+		stringResponse.setMessege("Company with id :" + companyId + " Deleted successfully ");
+		return ResponseEntity.ok(stringResponse);
 	}
 		
 	@GetMapping("companies")
@@ -69,15 +73,17 @@ public class AdminController {
 	}
 
 	@PutMapping("customer")
-	public ResponseEntity<String> updateCustomer(@RequestBody Customer customer) {
+	public ResponseEntity<StringResponse> updateCustomer(@RequestBody Customer customer) {
 		adminService.updateCustomer(customer);
-		return ResponseEntity.ok(customer + " Updated succesfully");
+		stringResponse.setMessege(customer + " Updated successfully");
+		return ResponseEntity.ok(stringResponse);
 	}
 
 	@DeleteMapping("customer")
-	public ResponseEntity<String> deleteCustomer(@RequestParam("id") Long customerId) {
+	public ResponseEntity<StringResponse> deleteCustomer(@RequestParam("id") Long customerId) {
 		adminService.deleteCustomer(customerId);
-		return ResponseEntity.ok("Customer with id : " + customerId + " Deleted succesfully");
+		stringResponse.setMessege("Customer with id : " + customerId + " Deleted successfully");
+		return ResponseEntity.ok(stringResponse);
 	}
 
 	@GetMapping("customers")

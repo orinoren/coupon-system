@@ -13,7 +13,7 @@ const App = () => {
   return (
     <>
       <Router>
-        <Route path="/(home|admin|company|main|login)">
+        <Route path="/(home|admin|company|main|login|)">
           <NavBar></NavBar>
         </Route>
         <Switch>

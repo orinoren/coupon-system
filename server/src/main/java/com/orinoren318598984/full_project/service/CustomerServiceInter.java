@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.orinoren318598984.full_project.model.Coupon;
 import com.orinoren318598984.full_project.model.Customer;
+import com.orinoren318598984.full_project.model_wrappers.CouponWrapperForCustomer;
 
 public interface CustomerServiceInter {
 
@@ -17,7 +18,7 @@ public interface CustomerServiceInter {
 
 	public List<Coupon> getCustomerCoupons(Double maxPrice);
 
-	public List<Object> getCustomerCouponsWithImages();
+	public List<CouponWrapperForCustomer> getCustomerCouponsWithImages();
 
 	public List<Object> getCustomerCouponsWithImages(Long categoryId);
 

@@ -13,6 +13,6 @@ export const adminUpdateCustomerAction =
       }
     } catch (error) {
       server_error_for_update_customer.current.textContent =
-        error.response.data;
+        error.response.data.messege;
     }
   };

@@ -21,7 +21,7 @@ export const companyUpdateCouponAction =
         } catch (error) {
           dispatch({
             type: "COUPON-OP-FAILED",
-            payload: error.response.data,
+            payload: error.response.data.messege,
           });
           dispatch(companySubmitCoupon());
         }
@@ -37,7 +37,10 @@ export const companyUpdateCouponAction =
             dispatch(companySubmitCoupon());
           }
         } catch (error) {
-          dispatch({ type: "COUPON-OP-FAILED", payload: error.response.data });
+          dispatch({
+            type: "COUPON-OP-FAILED",
+            payload: error.response.data.messege,
+          });
           dispatch(companySubmitCoupon());
         }
       }

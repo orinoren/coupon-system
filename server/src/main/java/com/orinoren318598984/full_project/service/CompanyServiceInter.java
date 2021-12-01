@@ -10,9 +10,9 @@ import com.orinoren318598984.full_project.model.Coupon;
 
 public interface CompanyServiceInter {
 
-	public Coupon addCoupon(CouponWrapperForCompany coupon, MultipartFile file);
+	public Coupon addCoupon(String coupon, MultipartFile file);
 
-	public Coupon updateCoupon(CouponWrapperForCompany coupon,MultipartFile file);
+	public Coupon updateCoupon(String coupon,MultipartFile file);
 
 	public void deleteCoupon(Long couponId);
 
@@ -22,7 +22,7 @@ public interface CompanyServiceInter {
 
 	public List<Coupon> getCompanyCouponsByMaxPrice(Double maxPrice);
 
-	public List<Object> getCompanyCouponsWithImages();
+	public List<CouponWrapperForCompany> getCompanyCouponsWithImages();
 
 	public List<Object> getCompanyCouponsByCategoryWithImages(Long categoryId);
 

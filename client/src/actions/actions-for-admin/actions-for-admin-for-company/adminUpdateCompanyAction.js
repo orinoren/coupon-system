@@ -15,6 +15,7 @@ export const adminUpdateCompanyAction =
         setUpdateMode(false);
       }
     } catch (error) {
-      server_error_for_update_company.current.textContent = error.response.data;
+      server_error_for_update_company.current.textContent =
+        error.response.data.messege;
     }
   };

@@ -28,17 +28,14 @@ const UnauthorizedPage = () => {
                   <div className="container">
                     <div className="row gy-3 justify-content-center">
                       <div className="col-12">
-                        <div className="h1">401</div>
-                      </div>
-                      <div className="col-12">
-                        <div className="h2">
+                        <div className="h1">
                           This page needs a login details...
                         </div>
                       </div>
                       <div className="col-12 col-lg-5">
                         <div
                           onClick={() => history.push("/login")}
-                          className="go-home-button  text-center fs-2 fw-bolder"
+                          className="go-home-button px-2 text-center fs-2 fw-bolder"
                         >
                           Go to login
                         </div>

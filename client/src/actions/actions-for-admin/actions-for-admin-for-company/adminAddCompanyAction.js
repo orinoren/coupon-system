@@ -13,6 +13,7 @@ export const adminAddCompanyAction =
         dispatch(adminResetAddMode());
       }
     } catch (error) {
-      server_error_for_add_company.current.textContent = error.response.data;
+      server_error_for_add_company.current.textContent =
+        error.response.data.messege;
     }
   };

@@ -18,14 +18,12 @@ import com.orinoren318598984.full_project.service.GlobalServiceInter;
 public class GlobalController {
 
 	@Autowired
-	private GlobalServiceInter universal;
+	private GlobalServiceInter global;
 
 	@GetMapping("coupons")
 	public ResponseEntity<List<CouponWrapperForGlobal>> getAllCoupons() {
-		CouponWrapper wrapper =new CouponWrapperForGlobal();
-		List<Object> allCoupons = universal.getAllCoupons();
-		List<CouponWrapperForGlobal> couponWrappers = (List<CouponWrapperForGlobal>) wrapper.convertMultiDimensionListToOneDimensionArray(allCoupons);
-		return ResponseEntity.ok(couponWrappers);
+
+		return ResponseEntity.ok(global.getAllCoupons());
 	}
 
 }

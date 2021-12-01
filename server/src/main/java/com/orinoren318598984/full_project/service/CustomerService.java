@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import com.orinoren318598984.full_project.model_wrappers.CouponWrapper;
+import com.orinoren318598984.full_project.model_wrappers.CouponWrapperForCustomer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +37,9 @@ public class CustomerService implements ClientService, CustomerServiceInter {
 
 	@Autowired
 	private UserDetailsService userDetails;
+
+	@Autowired
+	private CouponWrapperForCustomer wrapper;
 
 	@Override
 	public Optional<Customer> login(String email, String password) {
@@ -93,9 +98,10 @@ public class CustomerService implements ClientService, CustomerServiceInter {
 	}
 
 	@Override
-	public List<Object> getCustomerCouponsWithImages() {
+	public List<CouponWrapperForCustomer> getCustomerCouponsWithImages() {
 
-		return couponDao.findByCouponPurchaseCustomerPurchaseIdWithImages(getCustomerDetails());
+		List<CouponWrapperForCustomer> couponWrapperList =(List<CouponWrapperForCustomer>)wrapper.convertMultiDimensionListToOneDimensionArray(couponDao.findByCouponPurchaseCustomerPurchaseIdWithImages(getCustomerDetails()));
+		return  couponWrapperList;
 	}
 
 	@Override
