@@ -13,9 +13,23 @@ const Main = () => {
   const showCart = useSelector(
     (state) => state.uiRootReducer.showCartModeReducer.showCartMode
   );
+  const userDetails = useSelector((state) => state.authReducer);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (userDetails.role !== "CUSTOMER" || userDetails.isLogged === false) {
+      if (localStorage.getItem("Role") !== "CUSTOMER") {
+        dispatch({
+          type: "LOGIN-SUCCEED",
+          payload: {
+            token: "",
+            role: "GUEST",
+            isLogged: false,
+          },
+        });
+      }
+    }
     dispatch({ type: "PURCHASE-COUPON-RESET-MSG" });
     return () => {};
   }, [dispatch, cartCouponsContent]);

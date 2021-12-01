@@ -2,18 +2,20 @@ import React from "react";
 import Home from "./pages/home-page/Home";
 import Main from "./pages/main-page/Main";
 import NavBar from "./componets/navbar-components/NavBar";
-import Cart from "./pages/cart-page/Cart";
+
 import AdminMain from "./pages/admin-main-page/AdminMain";
 import CompanyMain from "./pages/company-main-page/CompanyMain";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LoginPage from "./pages/login-page/LoginPage";
 import NotFoundPage from "./pages/not-found-page/NotFoundPage";
-
+import UnauthorizedPage from "./pages/unauthorized-page/UnauthorizedPage";
 const App = () => {
   return (
     <>
       <Router>
-        <NavBar></NavBar>
+        <Route path="/(home|admin|company|main|login)">
+          <NavBar></NavBar>
+        </Route>
         <Switch>
           <Route exact path="/">
             <Home />
@@ -27,14 +29,14 @@ const App = () => {
           <Route path="/company">
             <CompanyMain></CompanyMain>
           </Route>
-          <Route path="/cart">
-            <Cart />
-          </Route>
           <Route path="/main">
             <Main />
           </Route>
           <Route path="/login">
             <LoginPage />
+          </Route>
+          <Route exact path="/unauthorized">
+            <UnauthorizedPage />
           </Route>
           <Route path="/*">
             <NotFoundPage />

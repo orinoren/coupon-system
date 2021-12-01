@@ -52,6 +52,14 @@ const AdminMain = () => {
   const history = useHistory();
 
   useEffect(() => {
+    if (userDetails.role !== "ADMIN" || userDetails.isLogged === false)
+      if (localStorage.getItem("Role") !== "ADMIN") {
+        history.push("/unauthorized");
+      }
+    return () => {};
+  }, [userDetails.isLogged, userDetails.role, history]);
+
+  useEffect(() => {
     if (showOperationsFor.customerOp) {
       dispatch(adminGetAllCustomersAction());
       return;

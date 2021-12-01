@@ -46,6 +46,15 @@ const CompanyMain = () => {
     return "Add Coupon";
   };
 
+  useEffect(() => {
+    if (userDetails.role !== "COMPANY" || userDetails.isLogged === false) {
+      if (localStorage.getItem("Role") !== "COMPANY") {
+        history.push("/unauthorized");
+      }
+    }
+    return () => {};
+  }, [dispatch, history, userDetails.isLogged, userDetails.role]);
+
   return (
     <div>
       <MainSearchForm placeholder={"Search coupon..."}></MainSearchForm>

@@ -14,6 +14,9 @@ const Home = () => {
   const userDetails = useSelector((state) => state.authReducer);
 
   const handleEnterAsGuestBtnClicked = () => {
+    localStorage.removeItem("Jwt");
+    localStorage.removeItem("Role");
+
     dispatch({
       type: "LOGIN-SUCCEED",
       payload: {
