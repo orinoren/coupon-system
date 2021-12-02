@@ -60,7 +60,7 @@ const CompanyOperations = () => {
     setImageView(defaultImage);
 
     return () => {};
-  }, [companyCouponToUpdateObj, companyCouponAddMode]);
+  }, [companyCouponToUpdateObj, companyCouponAddMode, companyCouponUpdateMode]);
 
   //--------------------------------------------------------------------------
   const handleOnCouponChange = (e, property) => {

@@ -20,28 +20,6 @@ const CouponControllers = (props) => {
     add: false,
     remove: false,
   });
-
-  useEffect(() => {
-    if (addOrRemoveClicked.add) {
-      dispatch(
-        addToCartAction({
-          ...props.coupon,
-          couponCartAmount: props.controlAmount,
-        })
-      );
-      return;
-    }
-    if (addOrRemoveClicked.remove) {
-      dispatch(
-        removeFromCartAction({
-          ...props.coupon,
-          couponCartAmount: props.controlAmount,
-        })
-      );
-    }
-    return () => {};
-  }, [props.controlAmount, addOrRemoveClicked, dispatch]);
-
   const handleIncrementCouponToCartClicked = (e) => {
     e.stopPropagation();
     if (couponAddToCartAmount < props.coupon.amount) {
@@ -68,6 +46,36 @@ const CouponControllers = (props) => {
       });
     }
   };
+  useEffect(() => {
+    if (addOrRemoveClicked.add) {
+      dispatch(
+        addToCartAction({
+          ...props.coupon,
+          couponCartAmount: props.controlAmount,
+        })
+      );
+      setAddOrRemoveClicked({
+        ...addOrRemoveClicked,
+        add: false,
+        remove: false,
+      });
+      return;
+    }
+    if (addOrRemoveClicked.remove) {
+      dispatch(
+        removeFromCartAction({
+          ...props.coupon,
+          couponCartAmount: props.controlAmount,
+        })
+      );
+      setAddOrRemoveClicked({
+        ...addOrRemoveClicked,
+        add: false,
+        remove: false,
+      });
+    }
+    return () => {};
+  }, [props.controlAmount, addOrRemoveClicked, props.coupon, dispatch]);
   return (
     <div>
       <div className="container-fluid">

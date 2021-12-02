@@ -17,7 +17,7 @@ const CompanyOperationsCouponView = (props) => {
   useEffect(() => {
     dispatch(companyResetSubmitCoupon());
     return () => {};
-  }, [props.couponObject, props.addMode]);
+  }, [props.couponObject, props.addMode, dispatch]);
 
   const getCatgeoryForView = () => {
     const categoryDefaultValue = "Choose...";

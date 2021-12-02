@@ -68,7 +68,7 @@ const NavBar = () => {
         dispatch(companyCouponResetUpdateModeAction()); //company
         dispatch({ type: "RESET-COMPANY-COUPONS" }); //company
         dispatch(resetSearchModeAction()); //all
-
+        break;
       default:
         dispatch(resetSearchModeAction()); //all
         break;

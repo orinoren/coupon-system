@@ -39,7 +39,6 @@ const MainPageContent = () => {
   );
 
   const userDetails = useSelector((state) => state.authReducer);
-  console.log(userDetails);
   useEffect(() => {
     switch (userDetails.role) {
       case "COMPANY":

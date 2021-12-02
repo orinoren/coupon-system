@@ -1,18 +1,7 @@
-import React, { useEffect } from "react";
 import "../../pages/cart-page/Cart.css";
-import { useState } from "react";
-import { useSelector } from "react-redux";
+
 import defaultImage from "../../images/defaultImage.jpg";
 const CartCouponContent = (props) => {
-  const [endDateView, setEndDateView] = useState(props.endDate);
-
-  const cartCouponsContent = useSelector(
-    (state) => state.uiRootReducer.cartArrReducer
-  );
-  useEffect(() => {
-    setEndDateView(endDateView.replaceAll("-", "/"));
-    return () => {};
-  }, [cartCouponsContent]);
   return (
     <div className="container-fluid p-0 my-3 cart-content-bg ">
       <div className="row m-0">
@@ -43,7 +32,7 @@ const CartCouponContent = (props) => {
                           <div className="h4 p-1">{props.title}</div>
                         </div>
                         <div className="col-6 text-end fw-bold fs-6 text-danger">
-                          expired date : {endDateView}
+                          expired date : {props.endDate.replaceAll("-", "/")}
                         </div>
                       </div>
                       <div

@@ -79,6 +79,8 @@ const AdminMain = () => {
     updatedCompany,
     deletedCustomer,
     deletedCompany,
+    showOperationsFor.companyOp,
+    showOperationsFor.customerOp,
   ]);
 
   const getMainSearchForm = () => {

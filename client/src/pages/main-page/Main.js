@@ -32,7 +32,7 @@ const Main = () => {
     }
     dispatch({ type: "PURCHASE-COUPON-RESET-MSG" });
     return () => {};
-  }, [dispatch, cartCouponsContent]);
+  }, [dispatch, cartCouponsContent, userDetails]);
 
   return (
     <div>

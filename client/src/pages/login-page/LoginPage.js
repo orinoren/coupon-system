@@ -14,7 +14,6 @@ import CustomerEmailPassList from "./CustomerEmailPassList";
 import { loginDetailsValidation } from "./utils/loginPageFunctions";
 const LoginPage = () => {
   const [loginAttempt, setLoginAttempt] = useState(false);
-
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const emailErrorRef = useRef();
@@ -27,6 +26,7 @@ const LoginPage = () => {
   const history = useHistory();
 
   useEffect(() => {
+    usernamePasswordErrorRef.current.style.display = "none";
     dispatch(resetSearchModeAction());
     dispatch({ type: "LOGOUT" });
     return () => {};
@@ -34,31 +34,39 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (loginAttempt) {
-      if (userDetails.isLogged) {
-        console.log("hii");
-        switch (userDetails.role) {
-          case "ADMIN":
-            dispatch(resetUserModeAction());
-            history.push("/admin");
-            break;
-          case "COMPANY":
-            history.push("/company");
-            break;
-          case "CUSTOMER":
-            history.push("/main");
-            break;
-          default:
-            break;
-        }
-        return;
-      }
-      passwordErrorRef.current.style.display = "none";
-      usernamePasswordErrorRef.current.style.display = "block";
-    } else {
-      usernamePasswordErrorRef.current.style.display = "none";
+      const loginDetails = {
+        email: emailInputRef.current.value,
+        password: passwordInputRef.current.value,
+      };
+      dispatch(loginAction(loginDetails));
     }
     return () => {};
-  }, [userDetails, history]);
+  }, [loginAttempt, dispatch]);
+
+  useEffect(() => {
+    if (userDetails.isLogged) {
+      switch (userDetails.role) {
+        case "ADMIN":
+          dispatch(resetUserModeAction());
+          history.push("/admin");
+          break;
+        case "COMPANY":
+          history.push("/company");
+          break;
+        case "CUSTOMER":
+          history.push("/main");
+          break;
+        default:
+          break;
+      }
+    }
+    if (userDetails.loginFailed) {
+      passwordErrorRef.current.style.display = "none";
+      usernamePasswordErrorRef.current.style.display = "block";
+      setLoginAttempt(false);
+    }
+    return () => {};
+  }, [userDetails, history, dispatch]);
 
   const handleLoginBtnClicked = () => {
     const isLoginDetailsValid = loginDetailsValidation(
@@ -68,11 +76,6 @@ const LoginPage = () => {
       passwordErrorRef
     );
     if (isLoginDetailsValid) {
-      const loginDetails = {
-        email: emailInputRef.current.value,
-        password: passwordInputRef.current.value,
-      };
-      dispatch(loginAction(loginDetails));
       setLoginAttempt(true);
     }
   };
