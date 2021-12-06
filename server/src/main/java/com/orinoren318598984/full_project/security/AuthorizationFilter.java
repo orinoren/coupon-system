@@ -28,8 +28,8 @@ public class AuthorizationFilter implements Filter {
 			if (token != null && token.startsWith("Bearer ")) {
 				log.info("token passed");
 			} else {
-				log.info("here");
-				httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthrized please login");
+				log.info("needs to login");
+				httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized please login");
 			}
 		}
 		log.info("-------------------------------------------------------------------------");

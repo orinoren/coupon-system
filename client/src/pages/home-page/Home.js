@@ -5,7 +5,8 @@ import "./Home.css";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getAllCouponsAction } from "../../actions/actions-for-guest/getAllCouponsAction";
+import { getAllCouponsAction } from "../../actions/actions-for-global/getAllCouponsAction";
+import { getAllCategoriesAction } from "../../actions/actions-for-global/getAllCategoriesAction";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -47,6 +48,7 @@ const Home = () => {
   };
 
   useEffect(() => {
+    dispatch(getAllCategoriesAction());
     dispatch(getAllCouponsAction());
     return () => {};
   }, [dispatch]);

@@ -238,30 +238,6 @@ export const searchModeReducer = (state = searchModeInit, action) => {
   }
 };
 //----------------------------------------------------------------
-const searchResultCouponList = {
-  couponList: [],
-};
-
-export const searchResultCouponListReducer = (
-  state = searchResultCouponList,
-  action
-) => {
-  switch (action.type) {
-    case "SEARCH-RESULT-COUPON-LIST":
-      return {
-        ...state,
-        couponList: action.payload,
-      };
-    case "RESET-SEARCH-RESULT-COUPON-LIST":
-      return {
-        ...state,
-        couponList: [],
-      };
-    default:
-      return state;
-  }
-};
-//----------------------------------------------------------------
 const searchResultCustomerList = {
   customerList: [],
 };

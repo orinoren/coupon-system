@@ -7,6 +7,7 @@ import java.util.Optional;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.orinoren318598984.full_project.model_wrappers.CouponWrapperForCompany;
+import com.orinoren318598984.full_project.model_wrappers.CouponWrapperForGlobal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +28,8 @@ import com.orinoren318598984.full_project.utils.CouponValid;
 
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+import javax.persistence.EntityManager;
 
 @Slf4j
 @Service
@@ -58,6 +61,11 @@ public class CompanyService implements ClientService, CompanyServiceInter {
     @Autowired
     private CouponWrapperForCompany wrapper;
 
+    @Autowired
+    private EntityManager entityManager;
+
+    @Autowired
+    private QueryUtils queryUtils;
     @Override
     public Optional<Company> login(String email, String password) {
         Optional<Company> optionalCompany = companyDao.findByEmailAndPassword(email, password);
@@ -95,7 +103,7 @@ public class CompanyService implements ClientService, CompanyServiceInter {
     @Override
     @Transactional(readOnly = false)
     public Coupon addCoupon(String coupon, MultipartFile file) {
-        CouponWrapperForCompany couponObjWrapper=null;
+        CouponWrapperForCompany couponObjWrapper = null;
         try {
             couponObjWrapper = objectMapper.readValue(coupon, CouponWrapperForCompany.class);
         } catch (JsonProcessingException e) {
@@ -141,16 +149,16 @@ public class CompanyService implements ClientService, CompanyServiceInter {
             log.info("error");
             e.printStackTrace();
         }
-        Coupon couponBuilder=null;
+        Coupon couponBuilder = null;
         Optional<Coupon> optionalCoupon = couponDao.findById(couponObjWrapper.getId());
         if (optionalCoupon.isPresent() && optionalCoupon.get().getCompany().getId() == getCompanyId()) {
             if (couponObjWrapper.getCategory() != null) {
                 Optional<Category> optionalCategory = categoryDao.findById(couponObjWrapper.getCategory());
                 if (optionalCategory.isPresent()) {
-                     couponBuilder = Coupon.builder()
+                    couponBuilder = Coupon.builder()
                             .id(couponObjWrapper.getId())
                             .category(optionalCategory.get())
-                             .couponImage(couponObjWrapper.getImageId())
+                            .couponImage(couponObjWrapper.getImageId())
                             .company(getCompanyDetails())
                             .title(couponObjWrapper.getTitle())
                             .description(couponObjWrapper.getDescription())
@@ -249,4 +257,15 @@ public class CompanyService implements ClientService, CompanyServiceInter {
         return user.getUserId();
     }
 
+    @Override
+    public List<CouponWrapperForCompany> getCompanyCouponsSearchResult(String searchInput, Optional<Double> maxPriceSearch, Optional<List<Integer>> categorySearch) {
+        String query = "select c ,ci.image from Coupon c\n" +
+                "inner join CouponImage ci on c.couponImage = ci.id and c.company.id=" + getCompanyId() +
+                "\nwhere\n";
+        query+=queryUtils.getSearchQuery(categorySearch,maxPriceSearch,searchInput);
+        System.out.println(query);
+        List resultList = entityManager.createQuery(query).getResultList();
+        List<CouponWrapperForCompany> list = (List<CouponWrapperForCompany>) wrapper.convertMultiDimensionListToOneDimensionArray(resultList);
+        return list;
+    }
 }

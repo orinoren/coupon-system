@@ -1,9 +1,8 @@
 package com.orinoren318598984.full_project.model_wrappers;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.orinoren318598984.full_project.service.Role;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,10 +14,8 @@ import java.util.List;
 @Data
 @Component
 public class CouponWrapperForGlobal extends CouponWrapper {
-
     private String companyName;
     private Long numberOfPurchased;
-
     @Autowired
     private WrapperUtils wrapperUtils;
 

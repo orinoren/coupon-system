@@ -17,12 +17,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "category")
+@Data
 public class Category {
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,7 +43,7 @@ public class Category {
 		super();
 		this.name = name;
 	}
-	@JsonProperty("category_id")
+//	@JsonProperty("category_id")
 	public Long getId() {
 		return id;
 	}

@@ -6,7 +6,7 @@ import CouponCardListSection from "../coupon-card-components/coupon-card-list-se
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCompanyCouponsAction } from "../../actions/actions-for-company/getAllCompanyCouponsAction";
-import { getAllCouponsAction } from "../../actions/actions-for-guest/getAllCouponsAction";
+import { getAllCouponsAction } from "../../actions/actions-for-global/getAllCouponsAction";
 import { getAllCustomerCouponsAction } from "../../actions/actions-for-customer/getCustomerCoupons";
 import authenticatedAxiosObj from "../../service/AuthenticatedAxios";
 const MainPageContent = () => {

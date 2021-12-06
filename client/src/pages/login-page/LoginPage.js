@@ -79,7 +79,6 @@ const LoginPage = () => {
       setLoginAttempt(true);
     }
   };
-
   return (
     <div className="container-fluid  container-login-page-bg">
       <div className="row h-100 pt-5 align-items-center justify-content-between">

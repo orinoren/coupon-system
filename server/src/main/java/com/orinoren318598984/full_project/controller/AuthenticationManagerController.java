@@ -16,6 +16,10 @@ import com.orinoren318598984.full_project.login.AuthenticationManager;
 import com.orinoren318598984.full_project.security.Jwt;
 import com.orinoren318598984.full_project.service.UserDetailsService;
 
+/**
+ * REST API FOR Authentication
+ * Triggers when a user try to login to the website.
+ */
 @RestController
 @RequestMapping("/")
 public class AuthenticationManagerController {
@@ -29,7 +33,13 @@ public class AuthenticationManagerController {
 	@Autowired
 	private JwtConfig jwtConfig;
 
-
+	/**
+	 * When a login made from the client the userDetails Map contains the email and the password of the user.
+	 * with those details {@link com.orinoren318598984.full_project.login.AuthenticationManager#login(email, password)} that returns <code>UserDetailsService</code> .
+	 * creating a jwtToken with the userDetailsService.
+	 * @param  userDetails 
+	 * @return ResponseEntity with Authorization header that contains the JwtToken and a Role header that conatins the user Role.
+	 */
 	@PostMapping("login")
 	public ResponseEntity<Void> login(@RequestBody Map<String, String> userDetails) {
 		String email = userDetails.get("email");

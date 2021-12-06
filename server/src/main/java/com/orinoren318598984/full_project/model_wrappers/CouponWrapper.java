@@ -36,6 +36,5 @@ public abstract class CouponWrapper {
 
     private byte[] Image;
 
-
     public abstract List<? extends CouponWrapper> convertMultiDimensionListToOneDimensionArray(List<Object> listOfObject);
 }

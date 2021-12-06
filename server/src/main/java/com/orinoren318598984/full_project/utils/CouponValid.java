@@ -39,13 +39,11 @@ public class CouponValid {
 		endDateValidCheck(coupon);
 		amountValidCheck(coupon);
 		priceValidCheck(coupon);
-//		imageValidCheck(coupon);
-
 	}
 
 	/**
 	 * validation for coupon title ; 1 : coupon title is unique by searching if is
-	 * not found in {@link com.dao.CompaniesDBDAO#getAllCompanyCoupons} 2 : input is
+	 * not found in {@link com.orinoren318598984.full_project.repository.CompanyRepo@getAllCompanyCoupons} 2 : input is
 	 * less 255 char ;
 	 * 
 	 * @param coupon
@@ -57,8 +55,8 @@ public class CouponValid {
 			throw new CouponTitleException("COUPON TITLE NOT VALID (length must be 1...255 characters");
 
 		} else {
-			for (Coupon couponIter : companyCoupons) {
-				if (couponIter.getTitle().equalsIgnoreCase(title) && !couponIter.getId().equals(coupon.getId())) {
+			for (Coupon couponIterator : companyCoupons) {
+				if (couponIterator.getTitle().equalsIgnoreCase(title) && !couponIterator.getId().equals(coupon.getId())) {
 					throw new CouponTitleException("TITLE MUST BE UNIQUE (duplicate coupon title)");
 				}
 			}
@@ -97,9 +95,8 @@ public class CouponValid {
 	}
 
 	/**
-	 * validation for coupon start date ; : date format is not found by the
-	 * <code>Matcher</code> 2 : date is not a real date 3 : date is before start
-	 * date
+	 * validation for coupon end date ;
+	 * 1 :If end date is before start date.
 	 * 
 	 * @param coupon
 	 * @throws CouponDateException
@@ -113,9 +110,7 @@ public class CouponValid {
 	}
 
 	/**
-	 * validation for coupon amount ; calls
-	 * {@link com.loginsystem.MenuUtils#intValidCheck}
-	 * 
+	 * validation for coupon amount ;
 	 * @param coupon
 	 * @throws CouponAmountException
 	 */
@@ -140,18 +135,7 @@ public class CouponValid {
 		}
 	}
 
-//	/**
-//	 * validation for coupon title ; : until input is less 255 char ;
-//	 * 
-//	 * @param coupon
-//	 */
-//	public void imageValidCheck(Coupon coupon) {
-//		String image = coupon.getImage();
-//
-//		if (image.length() > 255) {
-//			System.out.println("COUPON IMAGE NOT VALID (length must be under 255 characters");
-//		}
-//	}
+
 
 
 }

@@ -21,6 +21,10 @@ import com.orinoren318598984.full_project.exepction.NameException;
 import com.orinoren318598984.full_project.exepction.NotFoundException;
 import com.orinoren318598984.full_project.exepction.PasswordException;
 
+/**
+ * ControllerExceptionHandler
+ * responsible for sending ResponseEntity with <code>StringResponse</code> when an exception made in the server/
+ */
 @ControllerAdvice
 public class ControllerExceptionHandler {
     @Autowired

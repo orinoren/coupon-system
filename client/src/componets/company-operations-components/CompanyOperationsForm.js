@@ -1,11 +1,13 @@
 import React from "react";
 import "./CompanyOperations.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { companyResetSubmitCoupon } from "../../actions/actions-for-ui/action-for-ui";
 const CompanyOperationsForm = (props) => {
   const dispatch = useDispatch();
-
+  const allCategories = useSelector(
+    (state) => state.getAllCategoriesReducer.allCategories
+  );
   return (
     <div>
       <div className="container company-operation-border">
@@ -67,24 +69,15 @@ const CompanyOperationsForm = (props) => {
                     <option unselectable="true" disabled>
                       Choose...
                     </option>
-                    <option id="coupon-category-1" value="1">
-                      Food
-                    </option>
-                    <option id="coupon-category-2" value="2">
-                      Electricty
-                    </option>
-                    <option id="coupon-category-3" value="3">
-                      Restaurant
-                    </option>
-                    <option id="coupon-category-4" value="4">
-                      Vacation
-                    </option>
-                    <option id="coupon-category-5" value="5">
-                      Home Products
-                    </option>
-                    <option id="coupon-category-6" value="6">
-                      Clothing products
-                    </option>
+                    {allCategories.map((category) => (
+                      <option
+                        key={category.id}
+                        id={category.id}
+                        value={category.id}
+                      >
+                        {category.name}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>

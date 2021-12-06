@@ -26,7 +26,7 @@ const CouponCardListSection = (props) => {
       state.customerRootReducer.customerGetAllCouponsReducer.customerCoupons
   );
   const searchResultCouponList = useSelector(
-    (state) => state.uiRootReducer.searchResultCouponListReducer.couponList
+    (state) => state.getSearchResultCouponsReducer.couponList
   );
 
   const userDetails = useSelector((state) => state.authReducer);

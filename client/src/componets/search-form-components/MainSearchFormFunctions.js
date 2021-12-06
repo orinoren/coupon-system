@@ -1,17 +1,24 @@
-export const checkIfSearchWithSort = (sortInputRef) => {
-  let isSearchWithSort = false;
+import { getSearchCompanyCouponsAction } from "../../actions/actions-for-company/getSearchCompanyCouponsAction";
+import { getSearchCouponsAction } from "../../actions/actions-for-global/getSearchCouponsAction";
+export const checkIfSearchWithSort = (sortInputRef, maxPriceRef) => {
   const checkedCategoryInputs = [];
-  const categorySortInputs =
-    sortInputRef.current.querySelectorAll(".sort-input");
+  if (maxPriceRef.current?.value > 0) {
+    let isSearchWithSort = false;
 
-  for (let i = 0; i < categorySortInputs.length; i++) {
-    const input = categorySortInputs[i];
-    if (input.checked) {
-      isSearchWithSort = true;
-      checkedCategoryInputs.push(input.id);
+    const categorySortInputs =
+      sortInputRef.current?.querySelectorAll(".sort-input");
+    if (categorySortInputs) {
+      for (let i = 0; i < categorySortInputs.length; i++) {
+        const input = categorySortInputs[i];
+        if (input.checked) {
+          isSearchWithSort = true;
+          checkedCategoryInputs.push(input.id);
+        }
+      }
+      return { isSearchWithSort, checkedCategoryInputs };
     }
   }
-  return { isSearchWithSort, checkedCategoryInputs };
+  return { isSearchWithSort: false, checkedCategoryInputs };
 };
 
 export const dispatchSearchResultCouponList = (
@@ -29,8 +36,6 @@ export const dispatchSearchResultCouponList = (
 };
 
 export const dispatchSortedSearchResultCouponList = (
-  companyCouponList,
-  couponList,
   searchInput,
   checkedCategoryInputs,
   maxPrice,
@@ -38,32 +43,21 @@ export const dispatchSortedSearchResultCouponList = (
   dispatch
 ) => {
   if (role === "COMPANY") {
-    const searchResultCompanyCouponsList = companyCouponList.filter(
-      (coupon) =>
-        coupon.title
-          .toLowerCase()
-          .includes(searchInput.current.value.toLowerCase()) &&
-        checkedCategoryInputs.includes(coupon.category) &&
-        coupon.price <= maxPrice
+    dispatch(
+      getSearchCompanyCouponsAction(
+        searchInput.current.value,
+        maxPrice,
+        checkedCategoryInputs
+      )
     );
-    dispatch({
-      type: "SEARCH-RESULT-COUPON-LIST",
-      payload: searchResultCompanyCouponsList,
-    });
   } else {
-    const searchResultCouponsList = couponList.filter(
-      (coupon) =>
-        coupon.title
-          .toLowerCase()
-          .includes(searchInput.current.value.toLowerCase()) &&
-        checkedCategoryInputs.includes(coupon.category + "") &&
-        coupon.price <= maxPrice
+    dispatch(
+      getSearchCouponsAction(
+        searchInput.current.value,
+        maxPrice,
+        checkedCategoryInputs
+      )
     );
-
-    dispatch({
-      type: "SEARCH-RESULT-COUPON-LIST",
-      payload: searchResultCouponsList,
-    });
   }
 };
 export const dispatchAdminSearchResultForCompanies = (

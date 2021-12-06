@@ -54,7 +54,6 @@ public class Coupon {
 	private Integer amount;
 	@Column(name = "PRICE")
 	private Double price;
-   
 
 	private Long couponImage;
 

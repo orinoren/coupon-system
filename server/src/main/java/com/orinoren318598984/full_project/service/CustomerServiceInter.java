@@ -8,7 +8,7 @@ import com.orinoren318598984.full_project.model_wrappers.CouponWrapperForCustome
 
 public interface CustomerServiceInter {
 
-	public void PurchaseCoupon(List<Long> couponsId);
+	public void purchaseCoupon(List<Long> couponsId);
 
 	public List<Coupon> getAllCoupons();
 

@@ -1,5 +1,5 @@
 import authenticatedAxios from "../../service/AuthenticatedAxios";
-import { converArrayToDate } from "../actions-for-guest/getAllCouponsAction";
+import { convertArrayToDate } from "../actions-for-global/getAllCouponsAction";
 const urlSuffix = "customer/coupons";
 export const getAllCustomerCouponsAction = () => async (dispatch) => {
   try {
@@ -7,8 +7,8 @@ export const getAllCustomerCouponsAction = () => async (dispatch) => {
     const allCustomerCoupons = res.data;
     for (let i = 0; i < allCustomerCoupons.length; i++) {
       const coupon = allCustomerCoupons[i];
-      coupon.startDate = converArrayToDate(coupon.startDate);
-      coupon.endDate = converArrayToDate(coupon.endDate);
+      coupon.startDate = convertArrayToDate(coupon.startDate);
+      coupon.endDate = convertArrayToDate(coupon.endDate);
       dispatch({
         type: "GET-ALL-CUSTOMER-COUPONS",
         payload: allCustomerCoupons,

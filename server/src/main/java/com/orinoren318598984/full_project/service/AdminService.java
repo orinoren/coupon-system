@@ -88,7 +88,6 @@ public class AdminService implements ClientService, AdminServiceInter {
 	public Customer addCustomer(Customer customer) {
 		customerValid.customerValidCheck(customer, this.getAllCustomers());
 		Customer customerAdded = customerDao.save(customer);
-		System.out.println(customerAdded + "\nAdded succesfully");
 		return customerAdded;
 	}
 

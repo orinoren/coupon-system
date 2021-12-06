@@ -10,7 +10,12 @@ import io.jsonwebtoken.security.Keys;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+/**
+ * Configuration for Jwt token .
+ * 1. All properties place in application.properties file an injected to this JwtConfig instance.
+ * 2. SecretKey : create a bean of SecretKey that Creates a new SecretKey instance for use with
+ *    HMAC-SHA algorithms based on the secret key property byte array.
+ * */
 @Configuration
 @NoArgsConstructor
 @Data
@@ -26,7 +31,7 @@ public class JwtConfig {
 	private String issuer ;
 
 	@Bean
-	public SecretKey secertKeyForSign() {
+	public SecretKey secretKeyForSign() {
 		SecretKey secretKeyForSigning = Keys.hmacShaKeyFor(secretKey.getBytes());
 		return secretKeyForSigning;
 	}

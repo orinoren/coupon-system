@@ -52,8 +52,7 @@ public class CustomerService implements ClientService, CustomerServiceInter {
 
 	@Override
 	@Transactional(readOnly = false)
-	public synchronized void PurchaseCoupon(List<Long> couponsId) throws NotFoundException {
-		System.out.println(getCustomerId());
+	public synchronized void purchaseCoupon(List<Long> couponsId) throws NotFoundException {
 		Customer thisCustomer = customerDao.findById(getCustomerId()).get();
 		for (Long couponId : couponsId) {
 			Optional<Coupon> optionalCoupon = couponDao.findById(couponId);

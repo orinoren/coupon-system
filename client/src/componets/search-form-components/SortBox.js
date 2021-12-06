@@ -1,9 +1,13 @@
 import React from "react";
 import "./MainSearchForm.css";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 const SortBox = (props) => {
-  const [maxPrice, setMaxPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(100);
 
+  const allCategories = useSelector(
+    (state) => state.getAllCategoriesReducer.allCategories
+  );
   const handleMaxPriceInputChange = (e) => {
     setMaxPrice(e.target.value);
   };
@@ -11,82 +15,47 @@ const SortBox = (props) => {
     <div className="container-fluid sort-box">
       <div className="row">
         <div className="col-12">
-          <div className="sort-form">
-            Category:
-            <fieldset ref={props.sortInputRef}>
-              <label className="p-2" htmlFor="1">
-                Food
-              </label>
-              <input
-                className="sort-input"
-                type="checkbox"
-                name="Food"
-                id="1"
-              />
-              <label className="p-2" htmlFor="2">
-                Electricty
-              </label>
-              <input
-                className="sort-input"
-                type="checkbox"
-                name="Electricity"
-                id="2"
-              />
-              <label className="p-2" htmlFor="3">
-                Restaurant
-              </label>
-              <input
-                className="sort-input"
-                type="checkbox"
-                name="restaurant"
-                id="3"
-              />
-
-              <label className="p-2" htmlFor="4">
-                Vacataion
-              </label>
-              <input
-                className="sort-input"
-                type="checkbox"
-                name="Vacataion"
-                id="4"
-              />
-              <label className="p-2" htmlFor="5">
-                Home products
-              </label>
-              <input
-                className="sort-input"
-                type="checkbox"
-                name="Home products"
-                id="5"
-              />
-              <label className="p-2" htmlFor="6">
-                Clothing products
-              </label>
-              <input
-                className="sort-input"
-                type="checkbox"
-                name="Clothing products"
-                id="6"
-              />
-            </fieldset>
-            <br />
-            Max price:
-            <br />
-            <span className="py-5 ">
-              <input
-                className="w-75"
-                onChange={(e) => handleMaxPriceInputChange(e)}
-                type="range"
-                min="0"
-                max="500"
-                id="max-price-input"
-                ref={props.maxPriceRef}
-              />
-              <span className="px-2 fs-5 text-success fw-bold ">
-                {maxPrice}$
-              </span>
-            </span>
+          <div className="container-fluid p-0 m-0">
+            <div className="row">
+              <div className="col-12">
+                <div className="sort-form fw-bolder">
+                  <span className="fs-5">Category:</span>
+                  <fieldset ref={props.sortInputRef}>
+                    {allCategories.map((category) => (
+                      <span>
+                        <label className="p-2" htmlFor={category.id}>
+                          {category.name}
+                        </label>
+                        <input
+                          className="sort-input"
+                          type="checkbox"
+                          name={category.name}
+                          id={category.id}
+                        />
+                      </span>
+                    ))}
+                  </fieldset>
+                  <br />
+                  Max price:
+                  <br />
+                  <span className="">
+                    <input
+                      className="w-75"
+                      onChange={(e) => handleMaxPriceInputChange(e)}
+                      type="range"
+                      min="0"
+                      max="500"
+                      id="max-price-input"
+                      ref={props.maxPriceRef}
+                      value={maxPrice}
+                    />
+                    <span className="px-2 fs-5 text-success fw-bold ">
+                      {maxPrice}$
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

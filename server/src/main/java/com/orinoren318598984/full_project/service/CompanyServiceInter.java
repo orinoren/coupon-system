@@ -1,6 +1,7 @@
 package com.orinoren318598984.full_project.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.orinoren318598984.full_project.model_wrappers.CouponWrapperForCompany;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,4 +34,5 @@ public interface CompanyServiceInter {
 	Long addCouponImage(MultipartFile file);
 
 	Long updateCouponImage(MultipartFile file,Long id);
+	List<CouponWrapperForCompany> getCompanyCouponsSearchResult(String searchInput, Optional<Double> maxPriceSearch , Optional<List<Integer>> categorySearch);
 }

@@ -1,7 +1,6 @@
 import React from "react";
 import "./MainSearchForm.css";
 import { useDispatch, useSelector } from "react-redux";
-import { searchModeAction } from "../../actions/actions-for-ui/action-for-ui";
 import { useRef } from "react";
 import SortBox from "./SortBox";
 import { useState } from "react";
@@ -12,6 +11,8 @@ import {
   dispatchSearchResultCouponList,
   dispatchSortedSearchResultCouponList,
 } from "./MainSearchFormFunctions";
+import { getSearchCouponsAction } from "../../actions/actions-for-global/getSearchCouponsAction";
+import { getSearchCompanyCouponsAction } from "../../actions/actions-for-company/getSearchCompanyCouponsAction";
 const MainSearchForm = (props) => {
   const dispatch = useDispatch();
 
@@ -29,24 +30,20 @@ const MainSearchForm = (props) => {
   const showOperationsFor = useSelector(
     (state) => state.uiRootReducer.showOpForAdminReducer
   );
-  const allCompanyCoupons = useSelector(
-    (state) =>
-      state.companyRootReducer.companyGetAllCouponsReducer.companyCoupons
-  );
   const userDetails = useSelector((state) => state.authReducer);
 
   const searchInput = useRef();
   const maxPriceRef = useRef();
   const sortInputRef = useRef();
+
   const handleSearchButtonClicked = () => {
-    dispatch(searchModeAction());
-    let { isSearchWithSort, checkedCategoryInputs } =
-      checkIfSearchWithSort(sortInputRef);
-    if (isSearchWithSort || maxPriceRef.current.value > 0) {
+    const { isSearchWithSort, checkedCategoryInputs } = checkIfSearchWithSort(
+      sortInputRef,
+      maxPriceRef
+    );
+    if (isSearchWithSort) {
       const maxPrice = maxPriceRef.current.value;
       dispatchSortedSearchResultCouponList(
-        allCompanyCoupons,
-        allCoupons,
         searchInput,
         checkedCategoryInputs,
         maxPrice,
@@ -56,9 +53,11 @@ const MainSearchForm = (props) => {
       setShowSortBox(false);
       return;
     }
+
     //search without sort
     switch (userDetails.role) {
       case "ADMIN":
+        //admin search for company
         if (showOperationsFor.companyOp) {
           dispatchAdminSearchResultForCompanies(
             allCompanies,
@@ -67,6 +66,7 @@ const MainSearchForm = (props) => {
           );
           return;
         }
+        //admin search for customer
         if (showOperationsFor.customerOp) {
           dispatchAdminSearchResultForCustomers(
             allCustomers,
@@ -78,22 +78,22 @@ const MainSearchForm = (props) => {
         dispatchSearchResultCouponList(allCoupons, searchInput, dispatch);
         break;
       case "COMPANY":
-        dispatchSearchResultCouponList(
-          allCompanyCoupons,
-          searchInput,
-          dispatch
-        );
+        //company search in their coupons
+        dispatch(getSearchCompanyCouponsAction(searchInput.current.value));
         break;
       default:
-        dispatchSearchResultCouponList(allCoupons, searchInput, dispatch);
+        //guest or customer search for coupons
+        dispatch(getSearchCouponsAction(searchInput.current.value));
         break;
     }
+    setShowSortBox(false);
   };
   return (
     <div
       onSubmit={(e) => {
         e.preventDefault();
         handleSearchButtonClicked(e);
+        setShowSortBox(false);
       }}
       className="p-0 p-md-1 m-0 mt-2 mt-md-5"
     >

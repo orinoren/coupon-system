@@ -6,6 +6,8 @@ import uiRootReducer from "./ui-reducers/uiRootReducer";
 import authReducer from "./authReducer";
 import getAllCouponsReducer from "./getAllCouponsReducer";
 import getAllCouponsImagesReducer from "./getAllCouponsImagesReducers";
+import getSearchResultCouponsReducer from "./getSearchCouponsReducer";
+import getAllCategoriesReducer from "./getAllCategoriesReducer";
 const allReducers = combineReducers({
   adminRootReducer,
   companyRootReducer,
@@ -14,6 +16,8 @@ const allReducers = combineReducers({
   authReducer,
   getAllCouponsReducer,
   getAllCouponsImagesReducer,
+  getSearchResultCouponsReducer,
+  getAllCategoriesReducer,
 });
 
 export default allReducers;

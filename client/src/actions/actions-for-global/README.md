@@ -10,7 +10,7 @@
 
 ### Methods
 
-#### `converArrayToDate`
+#### `convertArrayToDate`
 
 taking an array as a parameter and converting the array to form of yyyy-mm-dd
 to make the visiblity in the ui much easier.

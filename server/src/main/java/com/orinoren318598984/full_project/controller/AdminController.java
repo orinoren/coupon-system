@@ -21,7 +21,9 @@ import com.orinoren318598984.full_project.model.Customer;
 import com.orinoren318598984.full_project.service.AdminServiceInter;
 
 import lombok.extern.slf4j.Slf4j;
-
+/**
+ * REST API FOR ADMINISTRATOR
+ * */
 @Slf4j
 @RestController
 @RequestMapping("admin/")
@@ -33,12 +35,22 @@ public class AdminController {
 	@Autowired
 	private StringResponse stringResponse;
 
+	/**
+	 *  Calls {@link com.orinoren318598984.full_project.service.AdminService#addCompany(Company)}
+	 * @param company
+	 * @return ResponseEntity with the added Company
+	 */
 	@PostMapping(path="company" ,consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Company> addCompany(@RequestBody Company company) {
 		Company companyAdded = adminService.addCompany(company);
 		return ResponseEntity.status(HttpStatus.CREATED).body(companyAdded);
 	}
 
+	/**
+	 *  Calls {@link com.orinoren318598984.full_project.service.AdminService#updateCompany(Company)}
+	 * @param company
+	 * @return ResponseEntity with the {@link com.orinoren318598984.full_project.utils.StringResponse}
+	 */
 	@PutMapping("company")
 	public ResponseEntity<StringResponse> updateCompany(@RequestBody Company company) {
 		adminService.updateCompany(company);
@@ -46,25 +58,42 @@ public class AdminController {
 		return ResponseEntity.ok(stringResponse);
 	}
 
+	/**
+	 *  Calls {@link com.orinoren318598984.full_project.service.AdminService#deleteCompany(Long)}
+	 * @param companyId
+	 * @return ResponseEntity with the {@link com.orinoren318598984.full_project.utils.StringResponse}
+	 */
 	@DeleteMapping("company")
 	public ResponseEntity<StringResponse> deleteCompany(@RequestParam("id") Long companyId) {
 		adminService.deleteCompany(companyId);
 		stringResponse.setMessege("Company with id :" + companyId + " Deleted successfully ");
 		return ResponseEntity.ok(stringResponse);
 	}
-		
+
+	/**
+	 * @return ResponseEntity with a list of all companies.
+	 */
 	@GetMapping("companies")
 	public ResponseEntity<List<Company>> getAllCompanies() {
 		List<Company> allCompanies = adminService.getAllCompanies();
 		return ResponseEntity.ok(allCompanies); 
 	}
 
+	/**
+	 *
+	 * @param companyId
+	 * @return ResponseEntity with Company
+	 */
 	@GetMapping("company")
 	public ResponseEntity<Company> getOneCompany(@RequestParam("id") Long companyId) {
 		Company company = adminService.getOneCompany(companyId);
 		return ResponseEntity.ok(company);
 	}
-
+	/**
+	 *  Calls {@link com.orinoren318598984.full_project.service.AdminService#addCustomer(Customer)}
+	 * @param customer
+	 * @return ResponseEntity with the added Customer
+	 */
 	@PostMapping("customer")
 	public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) {
 		Customer addedCustomer = adminService.addCustomer(customer);
@@ -72,6 +101,12 @@ public class AdminController {
 				.body(addedCustomer);
 	}
 
+
+	/**
+	 *  Calls {@link com.orinoren318598984.full_project.service.AdminService#updateCustomer(Customer)}
+	 * @param customer
+	 * @return ResponseEntity with the {@link com.orinoren318598984.full_project.utils.StringResponse}
+	 */
 	@PutMapping("customer")
 	public ResponseEntity<StringResponse> updateCustomer(@RequestBody Customer customer) {
 		adminService.updateCustomer(customer);
@@ -79,6 +114,11 @@ public class AdminController {
 		return ResponseEntity.ok(stringResponse);
 	}
 
+	/**
+	 *  Calls {@link com.orinoren318598984.full_project.service.AdminService#deleteCustomer(Long)}
+	 * @param customerId
+	 * @return ResponseEntity with the {@link com.orinoren318598984.full_project.utils.StringResponse}
+	 */
 	@DeleteMapping("customer")
 	public ResponseEntity<StringResponse> deleteCustomer(@RequestParam("id") Long customerId) {
 		adminService.deleteCustomer(customerId);
@@ -86,12 +126,17 @@ public class AdminController {
 		return ResponseEntity.ok(stringResponse);
 	}
 
+	/**
+	 * @return ResponseEntity with a list of all customers.
+	 */
 	@GetMapping("customers")
 	public ResponseEntity<List<Customer>> getAllCustomers() {
 		List<Customer> allCustomers = adminService.getAllCustomers();
 		return ResponseEntity.ok(allCustomers);
 	}
-
+	/**
+	 * @return ResponseEntity a customer.
+	 */
 	@GetMapping("customer")
 	public ResponseEntity<Customer> getOneCustomer(@RequestParam("id") Long customerId) {
 		log.info(customerId.toString());

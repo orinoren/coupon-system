@@ -8,8 +8,8 @@ export const getAllCouponsAction = () => async (dispatch) => {
 
     for (let i = 0; i < allCoupons.length; i++) {
       const coupon = allCoupons[i];
-      coupon.startDate = converArrayToDate(coupon.startDate);
-      coupon.endDate = converArrayToDate(coupon.endDate);
+      coupon.startDate = convertArrayToDate(coupon.startDate);
+      coupon.endDate = convertArrayToDate(coupon.endDate);
     }
     dispatch({
       type: "GET-ALL-COUPONS",
@@ -17,7 +17,7 @@ export const getAllCouponsAction = () => async (dispatch) => {
     });
   } catch (error) {}
 };
-export const converArrayToDate = (array) => {
+export const convertArrayToDate = (array) => {
   let date = new Date(array);
   const dateForCoupon =
     date.getFullYear() +

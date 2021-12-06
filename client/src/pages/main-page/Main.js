@@ -20,14 +20,14 @@ const Main = () => {
   useEffect(() => {
     if (userDetails.role !== "CUSTOMER" || userDetails.isLogged === false) {
       if (localStorage.getItem("Role") !== "CUSTOMER") {
-        dispatch({
-          type: "LOGIN-SUCCEED",
-          payload: {
-            token: "",
-            role: "GUEST",
-            isLogged: false,
-          },
-        });
+        // dispatch({
+        //   type: "LOGIN-SUCCEED",
+        //   payload: {
+        //     token: "",
+        //     role: "GUEST",
+        //     isLogged: false,
+        //   },
+        // });
       }
     }
     dispatch({ type: "PURCHASE-COUPON-RESET-MSG" });

@@ -18,9 +18,13 @@
 }
 .sort-box {
   height: 200px;
-  width: 400px;
+  width: 550px;
   z-index: 100;
-  background-color: #bff85a;
+  background-image: linear-gradient(
+    to top,
+    rgb(195, 255, 155),
+    rgb(59, 209, 66)
+  );
   border: 2px solid #198754;
   margin-top: 0.2em;
   position: absolute;

@@ -1,5 +1,6 @@
 package com.orinoren318598984.full_project.model_wrappers;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.orinoren318598984.full_project.model.Coupon;
 import com.orinoren318598984.full_project.service.Role;
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ import java.util.List;
 @Data
 @Component
 public class CouponWrapperForCompany extends CouponWrapper {
-
+    @JsonIgnore
     @Autowired
     private WrapperUtils wrapperUtils;
 
