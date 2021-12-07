@@ -19,8 +19,16 @@ export const getCouponListFunc = (
       return allCustomerCoupons;
     case "FOOD":
       return allCoupons.filter((coupon) => coupon.category === 1);
+    case "ELECTRICITY":
+      return allCoupons.filter((coupon) => coupon.category === 2);
+    case "RESTAURANT":
+      return allCoupons.filter((coupon) => coupon.category === 3);
     case "VACATION":
       return allCoupons.filter((coupon) => coupon.category === 4);
+    case "HOME PRODUCTS":
+      return allCoupons.filter((coupon) => coupon.category === 5);
+    case "CLOTHING PRODUCTS":
+      return allCoupons.filter((coupon) => coupon.category === 6);
     case "Result":
       return searchResultCouponList;
     default:

@@ -12,9 +12,24 @@ import javax.servlet.http.HttpServletResponse;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * AuthorizationFilter
+ * works as a middleware between the ADMIN ,COMPANY ,CUSTOMER api that need Authorization to access
+ */
 @Slf4j
 public class AuthorizationFilter implements Filter {
-
+	/**
+	 * This method <br/>
+	 * Checks if the request header method is options if it is exit this filter.<br/>
+	 * if not takes the JWT from the Authorization header and check if its exist and if it starts with Bearer(unique to JWT) <br/>
+	 * if one of the conditions is not met then a UNAUTHORIZED response send back to user.<br/>
+	 * if the conditions are satisfied then pass the request and response to the next filter to continue the operations.
+	 *  @param request the request provide by the user
+	 * @param response the response provide by the system
+	 * @param chain pass the request and response to the next filter to continue the operations.
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws ServletException, IOException {

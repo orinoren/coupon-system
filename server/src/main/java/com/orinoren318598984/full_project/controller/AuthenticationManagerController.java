@@ -35,7 +35,7 @@ public class AuthenticationManagerController {
 
 	/**
 	 * When a login made from the client the userDetails Map contains the email and the password of the user.
-	 * with those details {@link com.orinoren318598984.full_project.login.AuthenticationManager#login(email, password)} that returns <code>UserDetailsService</code> .
+	 * with those details {@link AuthenticationManager#login(String, String)} that returns <code>UserDetailsService</code> .
 	 * creating a jwtToken with the userDetailsService.
 	 * @param  userDetails 
 	 * @return ResponseEntity with Authorization header that contains the JwtToken and a Role header that conatins the user Role.

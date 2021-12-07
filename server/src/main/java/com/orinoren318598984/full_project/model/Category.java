@@ -27,30 +27,31 @@ import lombok.NoArgsConstructor;
 @Data
 public class Category {
 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Id
-	@Column(name = "ID", insertable = false)
-	private Long id;
-	@Enumerated(EnumType.STRING)
-	@Column(name = "NAME", insertable = false)
-	private CategoryEnum name;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "ID", insertable = false)
+    private Long id;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "NAME", insertable = false)
+    private CategoryEnum name;
 
-	@OneToMany(mappedBy = "category")
-	@JsonIgnore
-	private List<Coupon> coupons = new ArrayList<Coupon>();
+    @OneToMany(mappedBy = "category")
+    @JsonIgnore
+    private List<Coupon> coupons = new ArrayList<>();
 
-	public Category(CategoryEnum name) {
-		super();
-		this.name = name;
-	}
-//	@JsonProperty("category_id")
-	public Long getId() {
-		return id;
-	}
+    public Category(CategoryEnum name) {
+        super();
+        this.name = name;
+    }
 
-	@Override
-	public String toString() {
-		return String.format("%s %s ", id, name);
-	}
+    //	@JsonProperty("category_id")
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s ", id, name);
+    }
 
 }

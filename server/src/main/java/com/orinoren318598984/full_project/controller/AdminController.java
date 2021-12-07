@@ -135,7 +135,7 @@ public class AdminController {
 		return ResponseEntity.ok(allCustomers);
 	}
 	/**
-	 * @return ResponseEntity a customer.
+	 * @return ResponseEntity with a customer.
 	 */
 	@GetMapping("customer")
 	public ResponseEntity<Customer> getOneCustomer(@RequestParam("id") Long customerId) {

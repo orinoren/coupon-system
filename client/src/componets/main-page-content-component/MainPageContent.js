@@ -114,7 +114,19 @@ const MainPageContent = () => {
               <CouponCardListSection title="FOOD"></CouponCardListSection>
             </div>
             <div className="m-0 m-md-1">
+              <CouponCardListSection title="ELECTRICITY"></CouponCardListSection>
+            </div>
+            <div className="m-0 m-md-1">
+              <CouponCardListSection title="RESTAURANT"></CouponCardListSection>
+            </div>
+            <div className="m-0 m-md-1">
               <CouponCardListSection title="VACATION"></CouponCardListSection>
+            </div>
+            <div className="m-0 m-md-1">
+              <CouponCardListSection title="HOME PRODUCTS"></CouponCardListSection>
+            </div>
+            <div className="m-0 m-md-1">
+              <CouponCardListSection title="CLOTHING PRODUCTS"></CouponCardListSection>
             </div>
           </div>
         )}

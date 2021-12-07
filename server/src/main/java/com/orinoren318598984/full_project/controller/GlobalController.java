@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.orinoren318598984.full_project.model.Category;
+import com.orinoren318598984.full_project.model.Customer;
 import com.orinoren318598984.full_project.model_wrappers.CouponWrapperForGlobal;
 import com.orinoren318598984.full_project.repository.CategoryRepo;
 import com.orinoren318598984.full_project.service.Role;
@@ -34,10 +35,17 @@ public class GlobalController {
 	 */
 	@GetMapping("coupons")
 	public ResponseEntity<List<CouponWrapperForGlobal>> getAllCoupons() {
-
 		return ResponseEntity.ok(global.getAllCoupons());
 	}
 
+	/**
+	 * This method accept all parameters or only searchInput .
+	 * Calls  {@link GlobalServiceInter#getCouponsSearchResult(String searchInput, Optional maxPriceSearch, Optional categorySearch)}
+	 * @param searchInput
+	 * @param maxPriceSearch
+	 * @param categorySearch
+	 * @return
+	 */
 	@GetMapping({"search/{searchInput}","search/{searchInput}/{maxPriceSearch}/{categorySearch}"})
 	public ResponseEntity<List<CouponWrapperForGlobal>> getSearchCouponResult(@PathVariable String searchInput, @PathVariable Optional<Double> maxPriceSearch , @PathVariable Optional<List<Integer>>categorySearch) {
 		return ResponseEntity.ok(global.getCouponsSearchResult(searchInput,maxPriceSearch,categorySearch));

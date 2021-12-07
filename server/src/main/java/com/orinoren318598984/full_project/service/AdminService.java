@@ -29,12 +29,13 @@ public class AdminService implements ClientService, AdminServiceInter {
 
 	@Override
 	public Optional<Boolean> login(String email, String password) {
-		if (email.equalsIgnoreCase("admin@admin.com") && password.equalsIgnoreCase("admin")) {
+	String adminEmail="admin@admin.com";
+	String adminPassword="admin";
+		if (adminEmail.equalsIgnoreCase(email)&& adminPassword.equalsIgnoreCase(password)) {
 			return Optional.of(true);
 		}
 		return Optional.of(false);
 	}
-
 	@Override
 	@Transactional(readOnly = false)
 	public Company addCompany(Company company) {
@@ -42,7 +43,6 @@ public class AdminService implements ClientService, AdminServiceInter {
 		return companyDao.save(company);
 
 	}
-
 	@Override
 	@Transactional(readOnly = false)
 	public void updateCompany(Company company) {
@@ -70,7 +70,6 @@ public class AdminService implements ClientService, AdminServiceInter {
 			throw new NotFoundException("Company with id : " + companyId + " not found please try again");
 		}
 	}
-
 	@Override
 	public List<Company> getAllCompanies() {
 		return companyDao.findAll();

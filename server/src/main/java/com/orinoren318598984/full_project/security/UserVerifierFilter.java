@@ -22,6 +22,10 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * UserVerifierFilter
+ * works as a middleware between the client and system api for every request.
+ */
 @Slf4j
 @Order(2)
 @Component
@@ -34,18 +38,32 @@ public class UserVerifierFilter implements Filter {
 
 	private Date nowDate = Date.valueOf(LocalDate.now());
 
+	/**
+	 * This method
+	 * Checks if the request header method is options if it is exit this filter.<br/>
+	 * if not takes the JWT from the Authorization header and check if its exist <br/>
+	 * if exist makes a String tokenToParse that contain the JWT without the prefix Bearer in the start 7 characters.<br/>
+	 * Calls {@link Jwt#parseJWS(String)} with tokenToParse if an exception is thrown during
+	 * the parse an UNAUTHORIZED response send to the user. <br/>
+	 * if token parsed successfully a check for the expiration time of the token is get checked.<br/>
+	 * if the time expired an UNAUTHORIZED response send to the user. <br/>
+	 * if not expired then a check for if the current user role is match to his api that he is trying to access<br/>
+	 * by getting the user role from the token and matching to the url api first part(admin/company/customer) that he try to access.<br/>
+	 * after all the checks been passed successfully the system can set the userDetailsService userId to the user id from the token.
+	 * @param request the request provide by the user
+	 * @param response the response provide by the system
+	 * @param chain pass the request and response to the next filter to continue the operations
+	 * @throws IOException
+	 * @throws ServletException
+	 */
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-
+		log.info("user verifier filter ");
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		if (!httpRequest.getMethod().equalsIgnoreCase("options")) {
 			String token = httpRequest.getHeader("Authorization");
-			log.info("user verefier filter ");
-			if(token==null) {
-			log.info("no token");
-			}
 			Jws<Claims> jwtAfterParse = null;
 			if (token != null) {
 				try {
@@ -58,7 +76,7 @@ public class UserVerifierFilter implements Filter {
 				}
 				if (!httpResponse.isCommitted() && jwtAfterParse.getBody().getExpiration().before(nowDate)) {
 					httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED,
-							" (TOKEN DATE EXPIRED) Unauthrized please login again");
+							"Please verify your login details");
 				}
 
 				if (!httpResponse.isCommitted()) {
