@@ -20,9 +20,9 @@ import java.util.Optional;
 public class WrapperUtils {
 
     /**
-     * This method
-     * 1. Convert the list to array of objects.
-     * 2. enter a for loop to get each object in the array.
+     * This method<br/>
+     * 1. Convert the list to array of objects. <br/>
+     * 2. enter a for loop to get each object in the array. <br/>
      * 3. calls {@link #getCouponWrapperForRelaventRole(Role, Object[])} to retrive the coupon wrraper list for the relevant role.
      *
      * @param couponObjectList the multi dimension list that retreived from the database.
@@ -41,10 +41,10 @@ public class WrapperUtils {
     }
 
     /**
-     * This methods
+     * This method<br/>
      * 1. Calls {@link #convertArrayToCouponWrapper(Object[], Role)} to convert and retrevie the coupon wrapper from the array.
      *
-     * @param role                   the role of the current user request.
+     * @param role the role of the current user request.
      * @param couponInnerObjectArray object array that contains the all data of one coupon to the relevant user.
      * @return couponWrapper for the relevant user.
      */
@@ -54,7 +54,7 @@ public class WrapperUtils {
     }
 
     /**
-     * This Method<br/>
+     * This ethod<br/>
      * 1. Casting the couponInnerObjectArray[0] to coupon.<br/>
      * 2. enter a switch case block by the role of the user.<br/>
      * 3. case GLOBAL - <br/>casting couponInnerObjectArray[1] to the company name. <br/>

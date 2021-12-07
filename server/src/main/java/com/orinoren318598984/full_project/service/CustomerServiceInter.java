@@ -10,7 +10,6 @@ public interface CustomerServiceInter {
 
 	public void purchaseCoupon(List<Long> couponsId);
 
-	public List<Coupon> getAllCoupons();
 
 	public List<Coupon> getCustomerCoupons();
 

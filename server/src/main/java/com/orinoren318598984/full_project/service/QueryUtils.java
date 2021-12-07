@@ -1,6 +1,5 @@
 package com.orinoren318598984.full_project.service;
 
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
