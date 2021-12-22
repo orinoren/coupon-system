@@ -108,6 +108,15 @@ const NavBar = () => {
     }
     return "";
   };
+  const getUsername = () => {
+    if (userDetails.role === "ADMIN") {
+      return;
+    }
+    if (userDetails.username) {
+      return `Hello ${userDetails.username}`;
+    }
+    return `Hello Guest`;
+  };
   return (
     <>
       <nav className="my-navbar navbar navbar-expand-md navbar-light bg-light">
@@ -140,8 +149,11 @@ const NavBar = () => {
             <div className="col-8 p-0 col-lg-9">
               <div className="container-fluid p-0 h-100 w-100 for-collapse">
                 <div className="row m-0 pt-2">
-                  <div className="col-8 p-0">{getNavBarItems()}</div>
+                  <div className="col-6 p-0">{getNavBarItems()}</div>
                   <div className="col-2 pt-2 text-end"> {getCartIcon()}</div>
+                  <div className="col-2 pt-2 text-end fw-bolder text-success">
+                    {getUsername()}
+                  </div>
                   <div className="col-2 pt-2 p-0 text-center">
                     {getLoginButton()}
                   </div>
@@ -152,6 +164,9 @@ const NavBar = () => {
               <div className="d-md-none">
                 <div className="container-fluid w-100 ">
                   <div className="row">
+                    <div className="col-12 fw-bolder text-success">
+                      {getUsername()}
+                    </div>
                     <div className="col-12">{getNavBarItems()}</div>
                     <div className="col-12 text-start py-2">
                       {getCartIcon()}

@@ -13,6 +13,8 @@ import {
 } from "./MainSearchFormFunctions";
 import { getSearchCouponsAction } from "../../actions/actions-for-global/getSearchCouponsAction";
 import { getSearchCompanyCouponsAction } from "../../actions/actions-for-company/getSearchCompanyCouponsAction";
+import { getSearchCustomerCouponsAction } from "../../actions/actions-for-customer/getSearchCustomerCouponsAction";
+import { searchModeAction } from "../../actions/actions-for-ui/action-for-ui";
 const MainSearchForm = (props) => {
   const dispatch = useDispatch();
 
@@ -30,6 +32,11 @@ const MainSearchForm = (props) => {
   const showOperationsFor = useSelector(
     (state) => state.uiRootReducer.showOpForAdminReducer
   );
+  const showCustomerCoupons = useSelector(
+    (state) =>
+      state.uiRootReducer.showCustomerCouponsReducer.showCustomerCoupons
+  );
+
   const userDetails = useSelector((state) => state.authReducer);
 
   const searchInput = useRef();
@@ -48,6 +55,7 @@ const MainSearchForm = (props) => {
         checkedCategoryInputs,
         maxPrice,
         userDetails.role,
+        showCustomerCoupons,
         dispatch
       );
       setShowSortBox(false);
@@ -64,6 +72,7 @@ const MainSearchForm = (props) => {
             searchInput,
             dispatch
           );
+          dispatch(searchModeAction());
           return;
         }
         //admin search for customer
@@ -73,6 +82,7 @@ const MainSearchForm = (props) => {
             searchInput,
             dispatch
           );
+          dispatch(searchModeAction());
           return;
         }
         dispatchSearchResultCouponList(allCoupons, searchInput, dispatch);
@@ -82,7 +92,12 @@ const MainSearchForm = (props) => {
         dispatch(getSearchCompanyCouponsAction(searchInput.current.value));
         break;
       default:
-        //guest or customer search for coupons
+        //guest or customer search all coupons
+        if (showCustomerCoupons) {
+          dispatch(getSearchCustomerCouponsAction(searchInput.current.value));
+          break;
+        }
+
         dispatch(getSearchCouponsAction(searchInput.current.value));
         break;
     }

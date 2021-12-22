@@ -1,4 +1,5 @@
 import { getSearchCompanyCouponsAction } from "../../actions/actions-for-company/getSearchCompanyCouponsAction";
+import { getSearchCustomerCouponsAction } from "../../actions/actions-for-customer/getSearchCustomerCouponsAction";
 import { getSearchCouponsAction } from "../../actions/actions-for-global/getSearchCouponsAction";
 export const checkIfSearchWithSort = (sortInputRef, maxPriceRef) => {
   const checkedCategoryInputs = [];
@@ -40,6 +41,7 @@ export const dispatchSortedSearchResultCouponList = (
   checkedCategoryInputs,
   maxPrice,
   role,
+  showCustomerCoupons,
   dispatch
 ) => {
   if (role === "COMPANY") {
@@ -50,15 +52,25 @@ export const dispatchSortedSearchResultCouponList = (
         checkedCategoryInputs
       )
     );
-  } else {
+    return;
+  }
+  if (role === "CUSTOMER" && showCustomerCoupons) {
     dispatch(
-      getSearchCouponsAction(
+      getSearchCustomerCouponsAction(
         searchInput.current.value,
         maxPrice,
         checkedCategoryInputs
       )
     );
+    return;
   }
+  dispatch(
+    getSearchCouponsAction(
+      searchInput.current.value,
+      maxPrice,
+      checkedCategoryInputs
+    )
+  );
 };
 export const dispatchAdminSearchResultForCompanies = (
   allCompanies,

@@ -1,6 +1,7 @@
 const initialState = {
   role: " ",
   token: "",
+  username: " ",
   isLogged: false,
   loginFailed: false,
 };
@@ -12,6 +13,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         role: action.payload.role,
         token: action.payload.token,
+        username: action.payload.username,
         isLogged: action.payload.isLogged,
         loginFailed: false,
       };
@@ -22,6 +24,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         role: "",
         token: "",
+        username: "",
         isLogged: false,
         loginFailed: false,
       };

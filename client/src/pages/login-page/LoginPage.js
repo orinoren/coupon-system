@@ -82,7 +82,7 @@ const LoginPage = () => {
   return (
     <div className="container-fluid  container-login-page-bg">
       <div className="row h-100 pt-5 align-items-center justify-content-between">
-        <div className="col-12 mt-2 col-lg-3 order-2 order-lg-1">
+        <div className="col-12 col-md-6 mt-2 col-lg-3 order-2 order-lg-1">
           <CompanyEmailPassList></CompanyEmailPassList>
         </div>
         <div className="col-12 col-lg-6 p-2 p-md-5 order-1 order-lg-2">
@@ -179,7 +179,7 @@ const LoginPage = () => {
             </div>
           </div>
         </div>
-        <div className="col-12 col-lg-3 order-3">
+        <div className="col-12 col-md-6 col-lg-3 order-3">
           <CustomerEmailPassList></CustomerEmailPassList>
         </div>
       </div>

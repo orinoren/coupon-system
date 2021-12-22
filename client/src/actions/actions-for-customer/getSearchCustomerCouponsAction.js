@@ -1,19 +1,22 @@
-import axios from "axios";
-import { convertArrayToDate } from "./getAllCouponsAction";
+import authenticatedAxios from "../../service/AuthenticatedAxios";
+import { convertArrayToDate } from "../actions-for-global/getAllCouponsAction";
 import { searchModeAction } from "../actions-for-ui/action-for-ui";
-const url = "http://localhost:8081/global/search/";
-
-export const getSearchCouponsAction =
+const url = "http://localhost:8081/customer/search/";
+export const getSearchCustomerCouponsAction =
   (searchInput, maxPrice, checkedCategoryInputs) => async (dispatch) => {
     try {
       let searchCouponsResult;
       if (maxPrice && checkedCategoryInputs) {
-        const res = await axios.get(
-          url + searchInput + "/" + maxPrice + "/" + checkedCategoryInputs
-        );
+        const res = await authenticatedAxios
+          .getAuthenticatedAxios()
+          .get(
+            url + searchInput + "/" + maxPrice + "/" + checkedCategoryInputs
+          );
         searchCouponsResult = res.data;
       } else {
-        const res = await axios.get(url + searchInput);
+        const res = await authenticatedAxios
+          .getAuthenticatedAxios()
+          .get(url + searchInput);
         searchCouponsResult = res.data;
       }
       for (let i = 0; i < searchCouponsResult.length; i++) {

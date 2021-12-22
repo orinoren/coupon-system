@@ -9,6 +9,9 @@
   padding-top: 5px;
   transform: rotate(-15deg);
 }
+.h-90 {
+  height: 100%;
+}
 .home-login-btn {
   border-radius: 20%;
   border: green 0.1em solid;

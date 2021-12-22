@@ -22,7 +22,7 @@ const SortBox = (props) => {
                   <span className="fs-5">Category:</span>
                   <fieldset ref={props.sortInputRef}>
                     {allCategories.map((category) => (
-                      <span>
+                      <span key={category.id}>
                         <label className="p-2" htmlFor={category.id}>
                           {category.name}
                         </label>

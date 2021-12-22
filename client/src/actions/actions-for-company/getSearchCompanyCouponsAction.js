@@ -25,7 +25,7 @@ export const getSearchCompanyCouponsAction =
         coupon.startDate = convertArrayToDate(coupon.startDate);
         coupon.endDate = convertArrayToDate(coupon.endDate);
       }
-      console.log(searchCouponsResult);
+
       dispatch({
         type: "SEARCH-RESULT-COUPON-LIST",
         payload: searchCouponsResult,

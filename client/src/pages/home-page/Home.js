@@ -23,6 +23,7 @@ const Home = () => {
       payload: {
         token: "",
         role: "GUEST",
+        username: "",
         isLogged: false,
       },
     });
@@ -55,6 +56,12 @@ const Home = () => {
   return (
     <div className="container-fluid container-bg">
       <div className="row justify-content-end pt-1 pt-lg-5">
+        <div className="col-12 col-md-8 col-lg-5 ">
+          <h2 className="mb-2 px-0 px-md-4 ">
+            My final project by
+            <span className="text-warning"> orin oren </span>
+          </h2>
+        </div>
         <div className="col-md-4 col-lg-7 mt-1 mt-lg-3 justify-self-center ">
           <div className="row justify-content-center">
             {userDetails.isLogged ? (
@@ -88,42 +95,55 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="row align-items-end">
-        <div className="col-md-5 col-12 mt-2 ">
-          <h2 className="mb-2 mb-lg-5 text-start text-lg-end">
-            My final project by
-            <span className="text-warning"> orin oren </span>
-          </h2>
+      <div className="row mt-3">
+        <div className="col-md-6 px-5 col-12 mt-2 ">
           <p className="h5">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
-            assumenda incidunt fugit harum? Aliquam itaque voluptas laudantium
-            iusto fugit numquam ab enim dolorem, vel, eveniet excepturi! Est
-            voluptatem odio, eius aliquid quisquam neque. Eveniet dolorem
-            voluptatem cum, quae reprehenderit exercitationem consequuntur alias
-            iusto, voluptates molestiae perferendis harum.
+            Full stack project made with several technologies such as :
           </p>
-          <p className="h5">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
-            assumenda incidunt fugit harum? Aliquam itaque voluptas laudantium
-            iusto fugit numquam ab enim dolorem, vel, eveniet excepturi! Est
-            voluptatem odio, eius aliquid quisquam neque. Eveniet dolorem
-            voluptatem cum, quae reprehenderit exercitationem consequuntur alias
-            iusto, voluptates molestiae perferendis harum fffvsd vssvdsv
-            vsvsdvsdvv sdvsvsd vsdvsdvs.
+          <p className="fw-bold fs-5">
+            <span className="h5"> Server side : </span>
+            <br />
+            <span className="text-danger">Architecture </span>
+            bulid as a MVC model to achive "separation of concerns".
+            <br />
+            <span className="text-danger">Jpa/Hibernate </span>
+            for interaction with the database.
+            <br />
+            <span className="text-danger">JWT </span>autherization for rest api
+            calls.
+            <br />
+            <span className="text-danger">MultiThreading </span>a daily job that
+            runs every 24 hours and deleting expired coupons.
+            <br />
+            <span className="text-danger">MySQL </span>for storing the user data
+            in the database.
+          </p>
+          <p className="fw-bold fs-5">
+            <span className="h5"> Client side : </span> <br />
+            <span className="text-danger">React </span>
+            for single-page application.
+            <br />
+            <span className="text-danger">Redux </span>
+            for state managment.
+            <br />
+            <span className="text-danger">Bootstrap </span>
+            responsivence and design for the webstie .
+            <br />
+            <span className="text-danger">HTML, CSS , JAVASCRIPT </span>
           </p>
         </div>
-        <div className="col-7 d-md-flex d-none justify-content-center  ">
+        <div className="col-6 d-md-flex d-none justify-content-center  ">
           <img className="rotate w-50 mt-5" src={homePic} alt="" />
         </div>
       </div>
-      <div className=" d-inline d-md-none text-center">
+      <div className="d-inline d-md-none text-center">
         <div className="h1 pt-5">
           ORIN OREN <br /> RESPONSIVE WEBSITE
         </div>
       </div>
-      <div className="row">
-        <div className="col-12">
-          <img className="w-100" src={fotterPic} alt="" />
+      <div className="row mt-4">
+        <div className="col-12 mt-3">
+          <img className="w-100 " src={fotterPic} alt="" />
         </div>
       </div>
     </div>
