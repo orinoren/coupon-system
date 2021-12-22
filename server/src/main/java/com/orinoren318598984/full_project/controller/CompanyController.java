@@ -121,5 +121,4 @@ public class CompanyController {
         return ResponseEntity.ok(companyService.getCompanyCouponsSearchResult(searchInput,maxPriceSearch,categorySearch));
     }
 
-
 }

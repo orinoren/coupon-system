@@ -34,5 +34,6 @@ public interface CompanyServiceInter {
 	Long addCouponImage(MultipartFile file);
 
 	Long updateCouponImage(MultipartFile file,Long id);
+
 	List<CouponWrapperForCompany> getCompanyCouponsSearchResult(String searchInput, Optional<Double> maxPriceSearch , Optional<List<Integer>> categorySearch);
 }

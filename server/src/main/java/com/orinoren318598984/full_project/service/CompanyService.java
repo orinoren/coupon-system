@@ -355,7 +355,7 @@ public class CompanyService implements ClientService, CompanyServiceInter {
     }
 
     /**
-     * Calls {@link CouponRepo#findByCompanyId(Long)} to retreive the list of coupons.
+     * Calls {@link CouponRepo#findByCompanyId(Long)} to retrieve the list of coupons.
      *
      * @return list of coupons.
      */
@@ -366,7 +366,7 @@ public class CompanyService implements ClientService, CompanyServiceInter {
     }
 
     /**
-     * 1. Calls {@link CategoryRepo#findById(Object)} to check if the category is exist.<br/>
+     * 1. Calls {@link CategoryRepo#findById(Object)} to check if the category exist.<br/>
      * if not present throw {@link NotFoundException}. <br/>
      * if category is present calls {@link CouponRepo#findByCompanyIdAndCategoryId(Long, Long)}
      * to get all the coupons by chosen category and return it.

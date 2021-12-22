@@ -1,9 +1,11 @@
 package com.orinoren318598984.full_project.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.orinoren318598984.full_project.model.Coupon;
 import com.orinoren318598984.full_project.model.Customer;
+import com.orinoren318598984.full_project.model_wrappers.CouponWrapperForCompany;
 import com.orinoren318598984.full_project.model_wrappers.CouponWrapperForCustomer;
 
 public interface CustomerServiceInter {
@@ -24,4 +26,7 @@ public interface CustomerServiceInter {
 	public List<Object> getCustomerCouponsWithImages(Double maxPrice);
 
 	public Customer getCustomerDetails();
+
+	List<CouponWrapperForCustomer> getCustomerCouponsSearchResult(String searchInput, Optional<Double> maxPriceSearch , Optional<List<Integer>> categorySearch);
+
 }

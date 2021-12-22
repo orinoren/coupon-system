@@ -22,6 +22,8 @@ import com.orinoren318598984.full_project.model.Customer;
 
 import lombok.NoArgsConstructor;
 
+import javax.persistence.EntityManager;
+
 @Service
 @RequestScope
 @NoArgsConstructor
@@ -44,6 +46,12 @@ public class CustomerService implements ClientService, CustomerServiceInter {
 
     @Autowired
     private CouponWrapperForCustomer wrapper;
+
+    @Autowired
+    private EntityManager entityManager;
+
+    @Autowired
+    private QueryUtils queryUtils;
 
     /**
      * Calls {@link CustomerRepo#findByEmailAndPassword(String, String)} to find a match of the email and password in the database.
@@ -148,9 +156,23 @@ public class CustomerService implements ClientService, CustomerServiceInter {
         return couponDao.findByCouponPurchaseCustomerPurchaseIdAndPriceLessThanWithImages(getCustomerId(), maxPrice);
     }
 
+
     @Override
     public Customer getCustomerDetails() {
         return customerDao.findById(getCustomerId()).get();
+    }
+
+    @Override
+    public List<CouponWrapperForCustomer> getCustomerCouponsSearchResult(String searchInput, Optional<Double> maxPriceSearch, Optional<List<Integer>> categorySearch) {
+        String query = "select c , ci.image , count(*) from Coupon c\n" +
+                "join CouponImage as ci on c.couponImage=ci.id join c.couponPurchase as cp on cp.customerPurchaseId=" + getCustomerId() +
+                "\nwhere\n";
+        query += queryUtils.getSearchQuery(categorySearch, maxPriceSearch, searchInput);
+        System.out.println(query);
+        List resultList = entityManager.createQuery(query).getResultList();
+
+        List<CouponWrapperForCustomer> list = (List<CouponWrapperForCustomer>) wrapper.convertMultiDimensionListToOneDimensionArray(resultList);
+        return list;
     }
 
     public Long getCustomerId() {

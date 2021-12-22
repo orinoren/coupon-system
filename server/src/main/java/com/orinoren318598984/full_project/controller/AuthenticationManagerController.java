@@ -46,7 +46,7 @@ public class AuthenticationManagerController {
 		String password = userDetails.get("password");
 		UserDetailsService user = authenticationManager.login(email, password);
 		String userJwt = myJwtToken.createJWT(user);
-		return ResponseEntity.status(HttpStatus.OK).header("Authorization",jwtConfig.getJwtPrefix() +userJwt).header("Role",user.getRole().name()).build();
+		return ResponseEntity.status(HttpStatus.OK).header("Authorization",jwtConfig.getJwtPrefix() +userJwt).header("Username",user.getUsername()).header("Role",user.getRole().name()).build();
 
 	}
 }

@@ -1,8 +1,10 @@
 package com.orinoren318598984.full_project.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.orinoren318598984.full_project.model_wrappers.CouponWrapper;
+import com.orinoren318598984.full_project.model_wrappers.CouponWrapperForCompany;
 import com.orinoren318598984.full_project.model_wrappers.CouponWrapperForCustomer;
 import com.orinoren318598984.full_project.service.CompanyServiceInter;
 import com.orinoren318598984.full_project.service.Role;
@@ -79,4 +81,9 @@ public class CustomerController {
         Customer customerDetails = customerService.getCustomerDetails();
         return ResponseEntity.ok(customerDetails);
     }
+    @GetMapping({"search/{searchInput}","search/{searchInput}/{maxPriceSearch}/{categorySearch}"})
+    public ResponseEntity<List<CouponWrapperForCustomer>> getSearchCustomerCouponResult(@PathVariable String searchInput, @PathVariable Optional<Double> maxPriceSearch , @PathVariable Optional<List<Integer>>categorySearch) {
+        return ResponseEntity.ok(customerService.getCustomerCouponsSearchResult(searchInput,maxPriceSearch,categorySearch));
+    }
+
 }
