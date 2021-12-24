@@ -15,6 +15,11 @@ const Main = () => {
   );
   const userDetails = useSelector((state) => state.authReducer);
 
+  const showCustomerCoupons = useSelector(
+    (state) =>
+      state.uiRootReducer.showCustomerCouponsReducer.showCustomerCoupons
+  );
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,7 +44,11 @@ const Main = () => {
     <div>
       <div className="container-fluid main-container-bg m-0 mt-md-2 p-0 p-md-3  ">
         <div className="row m-0 p-0 m-md-1 p-md-1 ">
-          <MainSearchForm placeholder={"Search coupon..."}></MainSearchForm>
+          <MainSearchForm
+            placeholder={
+              showCustomerCoupons ? "Search your coupons" : "Search coupon..."
+            }
+          ></MainSearchForm>
         </div>
         <div>
           {showCart ? <Cart cartCouponList={cartCouponsContent}></Cart> : ""}

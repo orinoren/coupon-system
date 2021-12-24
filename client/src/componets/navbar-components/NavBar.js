@@ -138,7 +138,7 @@ const NavBar = () => {
                 ></span>
               </button>
             </div>
-            <div className="col-10 col-md-4 col-lg-3 px-1">
+            <div className="col-10 col-md-4 col-lg-4 col-xl-3 px-1">
               <div
                 onClick={() => hanldeHeaderClicked()}
                 className="navbar-brand text-center px-2 m-0 fs-2 fs-xs-4 my-navbar-header"
@@ -146,12 +146,12 @@ const NavBar = () => {
                 COUPON PROJECT
               </div>
             </div>
-            <div className="col-8 p-0 col-lg-9">
+            <div className="col-8 p-0 col-lg-8 col-xl-9">
               <div className="container-fluid p-0 h-100 w-100 for-collapse">
                 <div className="row m-0 pt-2">
                   <div className="col-6 p-0">{getNavBarItems()}</div>
                   <div className="col-2 pt-2 text-end"> {getCartIcon()}</div>
-                  <div className="col-2 pt-2 text-end fw-bolder text-success">
+                  <div className="col-2 p-2 h5 text-end fw-bolder text-success">
                     {getUsername()}
                   </div>
                   <div className="col-2 pt-2 p-0 text-center">
