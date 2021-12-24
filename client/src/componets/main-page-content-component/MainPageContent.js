@@ -37,6 +37,9 @@ const MainPageContent = () => {
   const deletedCoupon = useSelector(
     (state) => state.companyRootReducer.companyDeleteCouponReducer
   );
+  const allCategories = useSelector(
+    (state) => state.getAllCategoriesReducer.allCategories
+  );
 
   const userDetails = useSelector((state) => state.authReducer);
   useEffect(() => {
@@ -110,24 +113,15 @@ const MainPageContent = () => {
             <div className="m-0 m-md-1">
               <CouponCardListSection title="TOP COUPONS"></CouponCardListSection>
             </div>
-            <div className="m-0 m-md-1">
-              <CouponCardListSection title="FOOD"></CouponCardListSection>
-            </div>
-            <div className="m-0 m-md-1">
-              <CouponCardListSection title="ELECTRICITY"></CouponCardListSection>
-            </div>
-            <div className="m-0 m-md-1">
-              <CouponCardListSection title="RESTAURANT"></CouponCardListSection>
-            </div>
-            <div className="m-0 m-md-1">
-              <CouponCardListSection title="VACATION"></CouponCardListSection>
-            </div>
-            <div className="m-0 m-md-1">
-              <CouponCardListSection title="HOME PRODUCTS"></CouponCardListSection>
-            </div>
-            <div className="m-0 m-md-1">
-              <CouponCardListSection title="CLOTHING PRODUCTS"></CouponCardListSection>
-            </div>
+            {allCategories.map((category) => {
+              return (
+                <div key={category.id} className="m-0 m-md-1">
+                  <CouponCardListSection
+                    title={category.name}
+                  ></CouponCardListSection>
+                </div>
+              );
+            })}
           </div>
         )}
       </div>

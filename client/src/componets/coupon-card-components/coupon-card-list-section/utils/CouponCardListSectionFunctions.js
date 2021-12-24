@@ -10,6 +10,10 @@ export const getCouponListFunc = (
   allCustomerCoupons,
   searchResultCouponList
 ) => {
+  {
+    console.log(title);
+  }
+
   switch (title) {
     case "TOP COUPONS":
       return allCoupons;
@@ -25,9 +29,9 @@ export const getCouponListFunc = (
       return allCoupons.filter((coupon) => coupon.category === 3);
     case "VACATION":
       return allCoupons.filter((coupon) => coupon.category === 4);
-    case "HOME PRODUCTS":
+    case "HOME_PRODUCTS":
       return allCoupons.filter((coupon) => coupon.category === 5);
-    case "CLOTHING PRODUCTS":
+    case "CLOTHING_PRODUCTS":
       return allCoupons.filter((coupon) => coupon.category === 6);
     case "Result":
       return searchResultCouponList;
